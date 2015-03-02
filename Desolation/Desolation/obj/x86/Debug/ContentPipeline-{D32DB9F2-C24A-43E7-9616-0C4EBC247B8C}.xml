@@ -8,10 +8,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\DesolationContent\</RootDirectory>
-      <LoggerRootDirectory>D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\GitHub\Desolation\Desolation\DesolationContent\</RootDirectory>
+      <LoggerRootDirectory>D:\GitHub\Desolation\Desolation\Desolation\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\GitHub\Desolation\Desolation\Desolation\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\GitHub\Desolation\Desolation\Desolation\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

@@ -82,7 +82,8 @@ namespace Desolation
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

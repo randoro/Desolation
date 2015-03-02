@@ -1,1 +1,2 @@
 D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\DesolationContent\obj\x86\Debug\DesolationContent.contentprojResolveAssemblyReference.cache
+D:\GitHub\Desolation\Desolation\DesolationContent\obj\x86\Debug\DesolationContent.contentprojResolveAssemblyReference.cache

@@ -4,3 +4,9 @@ D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\obj\x86\
 D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\obj\x86\Debug\Desolation.exe
 D:\Dropbox\Visual Studio 2013\Projects\Desolation\Desolation\Desolation\obj\x86\Debug\Desolation.pdb
+D:\GitHub\Desolation\Desolation\Desolation\bin\x86\Debug\Desolation.exe
+D:\GitHub\Desolation\Desolation\Desolation\bin\x86\Debug\Desolation.pdb
+D:\GitHub\Desolation\Desolation\Desolation\obj\x86\Debug\Desolation.csprojResolveAssemblyReference.cache
+D:\GitHub\Desolation\Desolation\Desolation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\GitHub\Desolation\Desolation\Desolation\obj\x86\Debug\Desolation.exe
+D:\GitHub\Desolation\Desolation\Desolation\obj\x86\Debug\Desolation.pdb
