@@ -46,7 +46,7 @@ namespace Desolation
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
         }
 
