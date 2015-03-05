@@ -18,6 +18,7 @@ namespace Desolation
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        FileLoader fileLoader;
 
         public Game1()
         {
@@ -48,6 +49,9 @@ namespace Desolation
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
+
+            fileLoader = new FileLoader();
+            fileLoader.loadRegionFile(0, 0);
         }
 
         /// <summary>

@@ -72,9 +72,13 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChunkManager.cs" />
+    <Compile Include="FileLoader.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Region.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
