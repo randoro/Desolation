@@ -9,12 +9,14 @@ namespace Desolation
     class ChunkManager
     {
 
-        List<FileStream> regionFiles;
+        List<Region> regionFiles;
 
         public ChunkManager()
         {
-            regionFiles = new List<FileStream>();
+            regionFiles = new List<Region>();
         }
+
+
 
 
     }

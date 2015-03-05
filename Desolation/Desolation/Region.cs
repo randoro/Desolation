@@ -8,8 +8,15 @@ namespace Desolation
 {
     class Region
     {
-        public Region(FileStream fileStream)
+        FileStream fileStream;
+        int xPosRegion;
+        int yPosRegion;
+
+        public Region(FileStream fileStream, int xPosRegion, int yPosRegion)
         {
+            this.fileStream = fileStream;
+            this.xPosRegion = xPosRegion;
+            this.yPosRegion = yPosRegion;
 
         }
     }
