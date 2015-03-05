@@ -18,7 +18,12 @@ namespace Desolation
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+<<<<<<< HEAD
         Player player;
+=======
+        FileLoader fileLoader;
+
+>>>>>>> origin/master
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -50,6 +55,9 @@ namespace Desolation
             this.IsMouseVisible = true;
             player = new Player(new Vector2(0, 0));
             // TODO: use this.Content to load your game content here
+
+            fileLoader = new FileLoader();
+            fileLoader.loadRegionFile(0, 0);
         }
 
         /// <summary>
