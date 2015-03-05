@@ -18,6 +18,8 @@ namespace Desolation
             this.xPosRegion = xPosRegion;
             this.yPosRegion = yPosRegion;
 
+            //testar lite
+            //test test
         }
     }
 }
