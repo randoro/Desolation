@@ -16,12 +16,12 @@ namespace Desolation
             
         }
 
-        public FileStream loadRegionFile(int xPosRegion, int yPosRegion)
+        public Region loadRegionFile(int xPosRegion, int yPosRegion)
         {
             try
             {
                 FileStream fileStream = File.Open(Globals.gamePath + regionFolder + "test.region", FileMode.OpenOrCreate);
-                return fileStream;
+                return new Region(fileStream, xPosRegion, yPosRegion);
             }
             catch(OutOfMemoryException) {
 
