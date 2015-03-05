@@ -18,7 +18,7 @@ namespace Desolation
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Player player;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -36,6 +36,7 @@ namespace Desolation
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace Desolation
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
+            player = new Player(new Vector2(0, 0));
             // TODO: use this.Content to load your game content here
         }
 
