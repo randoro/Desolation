@@ -16,7 +16,10 @@ namespace Desolation
             regionFiles = new List<Region>();
         }
 
-
+        public void addRegion(Region newRegion)
+        {
+            regionFiles.Add(newRegion);
+        }
 
 
     }

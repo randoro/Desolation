@@ -19,6 +19,7 @@ namespace Desolation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         FileLoader fileLoader;
+        ChunkManager chunkManager;
 
         public Game1()
         {
@@ -51,7 +52,10 @@ namespace Desolation
             // TODO: use this.Content to load your game content here
 
             fileLoader = new FileLoader();
-            fileLoader.loadRegionFile(0, 0);
+            chunkManager = new ChunkManager();
+            Region tempRegion = fileLoader.loadRegionFile(0, 0);
+            chunkManager.addRegion(tempRegion);
+            
         }
 
         /// <summary>
