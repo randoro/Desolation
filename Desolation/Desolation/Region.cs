@@ -8,11 +8,11 @@ namespace Desolation
 {
     class Region
     {
-        FileStream fileStream;
+        public FileStream fileStream;
         int xPosRegion;
         int yPosRegion;
 
-        bool[,] chunksLoaded;
+        public bool[,] chunksLoaded;
 
         public Region(FileStream fileStream, int xPosRegion, int yPosRegion)
         {
@@ -23,19 +23,16 @@ namespace Desolation
             chunksLoaded = new bool[4, 4];
 
             
-            //fileStream.WriteByte(123);
-            //fileStream.WriteByte(32);
+            //fileStream.WriteByte(10);
+            //fileStream.WriteByte(0);
+            //fileStream.WriteByte(3);
 
-            Console.WriteLine(fileStream.ReadByte());
-            Console.WriteLine(fileStream.ReadByte());
+            //Console.WriteLine(fileStream.ReadByte());
+            //Console.WriteLine(fileStream.ReadByte());
             //testar lite
             //test test
             //hamdi testar
         }
 
-        public FileStream getFileStream()
-        {
-            return fileStream;
-        }
     }
 }

@@ -5,6 +5,8 @@ using System.Text;
 
 namespace Desolation
 {
+
+    public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
     static class Globals
     {
 
