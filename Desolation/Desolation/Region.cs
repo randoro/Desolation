@@ -32,5 +32,10 @@ namespace Desolation
             //test test
             //hamdi testar
         }
+
+        public FileStream getFileStream()
+        {
+            return fileStream;
+        }
     }
 }

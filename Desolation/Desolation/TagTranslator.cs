@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Desolation
 {
-    class TagTranslator
+    static class TagTranslator
     {
+
+        public Chunk getUnloadedChunk(Region regionFile)
+        {
+            return null;
+        }
     }
 }
