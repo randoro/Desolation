@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,8 +84,22 @@ namespace Desolation
             }
             else if (tagID.Equals(TagID.List))
             {
-                //not done yet
-                return null;
+                byte listTagID = byteArray[0];
+                byte[] listSizeInt = new byte[4];
+                Array.Copy(byteArray, 1, listSizeInt, 0, 4);
+                int listSizeNumber = BitConverter.ToInt32(listSizeInt, 0);
+
+                IList returnList = null;
+
+                if (listTagID.Equals(TagID.Byte))
+                {
+                    returnList = new List<byte>();
+                    for (int i = 0; i < listSizeNumber; i++)
+                    {
+                        returnList.Add(byteArray[5 + i]);
+                    }
+                }
+                return returnList;
             }
             else if (tagID.Equals(TagID.Compound))
             {

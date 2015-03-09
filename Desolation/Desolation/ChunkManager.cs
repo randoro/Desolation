@@ -30,7 +30,7 @@ namespace Desolation
             if (now > ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
                 //time for new chunkLoad
-                Console.WriteLine(now);
+                //Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
                 TagTranslator.readTag(regionFiles[0].fileStream);
