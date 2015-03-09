@@ -22,11 +22,20 @@ namespace Desolation
 
             chunksLoaded = new bool[4, 4];
 
-            
-            //fileStream.WriteByte(10);
-            //fileStream.WriteByte(0);
-            //fileStream.WriteByte(3);
+            ////temporär filskrivare
+            //TagID ID = TagID.Byte;
+            //String TagNamn = "asdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdasdasdasd";
+            //byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
+            //byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
+            //byte value = 42;
 
+            ////TagNamn.Length
+
+            //fileStream.WriteByte((byte)ID);
+            //fileStream.WriteByte(byteArray[0]);
+            //fileStream.WriteByte(byteArray[1]);
+            //fileStream.Write(buffer, 0, TagNamn.Length);
+            //fileStream.WriteByte(value);
             //Console.WriteLine(fileStream.ReadByte());
             //Console.WriteLine(fileStream.ReadByte());
             //testar lite
