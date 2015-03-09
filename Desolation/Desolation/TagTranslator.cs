@@ -144,6 +144,7 @@ namespace Desolation
 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                returnTag.getData();
             }
             else if (tagID.Equals(TagID.String))
             {

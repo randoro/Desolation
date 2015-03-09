@@ -62,13 +62,24 @@ namespace Desolation
             }
             else if (tagID.Equals(TagID.ByteArray))
             {
+                byte[] arraySizeInt = new byte[4];
+                Array.Copy(byteArray, arraySizeInt, 4);
+                int arraySizeNumber = BitConverter.ToInt32(arraySizeInt, 0);
+                byte[] returnData = new byte[arraySizeNumber];
+                Array.Copy(byteArray, 4, returnData, 0, arraySizeNumber);
                 //not done yet
-                return null;
+                return returnData;
             }
             else if (tagID.Equals(TagID.String))
             {
+                byte[] arraySizeShort = new byte[2];
+                Array.Copy(byteArray, arraySizeShort, 2);
+                short arraySizeNumber = BitConverter.ToInt16(arraySizeShort, 0);
+                byte[] returnCharData = new byte[arraySizeNumber];
+                Array.Copy(byteArray, 2, returnCharData, 0, arraySizeNumber);
                 //not done yet
-                return null;
+                string returnData = Encoding.UTF8.GetString(returnCharData);
+                return returnData;
             }
             else if (tagID.Equals(TagID.List))
             {
