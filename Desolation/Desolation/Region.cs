@@ -22,7 +22,11 @@ namespace Desolation
 
             chunksLoaded = new bool[4, 4];
 
-            //fileStream.WriteByte(255);
+            
+            //fileStream.WriteByte(123);
+            //fileStream.WriteByte(32);
+
+            Console.WriteLine(fileStream.ReadByte());
             Console.WriteLine(fileStream.ReadByte());
             //testar lite
             //test test
