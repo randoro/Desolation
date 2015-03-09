@@ -33,7 +33,7 @@ namespace Desolation
                 Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
-
+                TagTranslator.readTag(regionFiles[0].fileStream);
                 //check if chunks in regionfile needs loading
             }
             

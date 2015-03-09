@@ -80,6 +80,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Region.cs" />
+    <Compile Include="Tag.cs" />
     <Compile Include="TagTranslator.cs" />
   </ItemGroup>
   <ItemGroup>

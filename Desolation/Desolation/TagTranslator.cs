@@ -20,6 +20,12 @@ namespace Desolation
         public static void readTag(FileStream fileStream)
         {
             TagID tagID = (TagID)fileStream.ReadByte();
+
+            if (tagID.Equals(TagID.Compound))
+            {
+
+            }
+
         }
     }
 }
