@@ -12,11 +12,17 @@ namespace Desolation
         int xPosRegion;
         int yPosRegion;
 
+        bool[,] chunksLoaded;
+
         public Region(FileStream fileStream, int xPosRegion, int yPosRegion)
         {
             this.fileStream = fileStream;
             this.xPosRegion = xPosRegion;
             this.yPosRegion = yPosRegion;
+
+            chunksLoaded = new bool[4, 4];
+
+            
 
             //testar lite
             //test test

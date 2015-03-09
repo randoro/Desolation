@@ -78,6 +78,7 @@ namespace Desolation
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            chunkManager.update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);

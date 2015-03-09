@@ -9,6 +9,6 @@ namespace Desolation
     {
 
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
-        
+        public static readonly int ticksPerChunkLoad = 10000000;
     }
 }
