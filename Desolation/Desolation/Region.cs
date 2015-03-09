@@ -27,13 +27,16 @@ namespace Desolation
             if (writing)
             {
                 //temporär filskrivare
-                TagID ID = TagID.Int;
+                TagID ID = TagID.ByteArray;
                 String TagNamn = "asdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdasdasdasd";
                 byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
                 byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
-                int value = 42;
-
-                byte[] payload =  BitConverter.GetBytes(value);
+                byte[] array = { 4, 3, 2, 1 , 5, 3, 4, 2, 1, 4, 2};
+                int value = array.Length;
+                byte[] length = BitConverter.GetBytes(value);
+                byte[] payload = new byte[length.Length + array.Length];
+                length.CopyTo(payload, 0);
+                array.CopyTo(payload, length.Length);
 
                 //TagNamn.Length
 
