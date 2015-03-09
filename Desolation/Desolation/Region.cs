@@ -22,25 +22,28 @@ namespace Desolation
 
             chunksLoaded = new bool[4, 4];
 
-            ////temporär filskrivare
-            //TagID ID = TagID.Byte;
-            //String TagNamn = "asdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdasdasdasd";
-            //byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
-            //byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
-            //byte value = 42;
+            bool writing = false;
 
-            ////TagNamn.Length
+            if (writing)
+            {
+                //temporär filskrivare
+                TagID ID = TagID.Int;
+                String TagNamn = "asdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdasdasdasd";
+                byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
+                byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
+                int value = 42;
 
-            //fileStream.WriteByte((byte)ID);
-            //fileStream.WriteByte(byteArray[0]);
-            //fileStream.WriteByte(byteArray[1]);
-            //fileStream.Write(buffer, 0, TagNamn.Length);
-            //fileStream.WriteByte(value);
-            //Console.WriteLine(fileStream.ReadByte());
-            //Console.WriteLine(fileStream.ReadByte());
-            //testar lite
-            //test test
-            //hamdi testar
+                byte[] payload =  BitConverter.GetBytes(value);
+
+                //TagNamn.Length
+
+                fileStream.WriteByte((byte)ID);
+                fileStream.WriteByte(byteArray[0]);
+                fileStream.WriteByte(byteArray[1]);
+                fileStream.Write(buffer, 0, TagNamn.Length);
+                fileStream.Write(payload, 0, payload.Length);
+            }
+
         }
 
     }
