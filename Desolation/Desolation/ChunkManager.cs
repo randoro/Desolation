@@ -32,6 +32,9 @@ namespace Desolation
                 //time for new chunkLoad
                 Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
+
+
+                //check if chunks in regionfile needs loading
             }
             
         }
