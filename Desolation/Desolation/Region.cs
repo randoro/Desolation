@@ -30,6 +30,7 @@ namespace Desolation
             Console.WriteLine(fileStream.ReadByte());
             //testar lite
             //test test
+            //hamdi testar
         }
     }
 }
