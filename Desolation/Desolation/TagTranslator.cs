@@ -34,7 +34,7 @@ namespace Desolation
 
 
 
-                byte[] payload = new byte[1]; //changed for each tag
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
                 payload[0] = (byte)fileStream.ReadByte();
 
                 
@@ -52,8 +52,8 @@ namespace Desolation
                 //Payload
 
 
-                byte[] payload = new byte[2]; //changed for each tag
-                fileStream.Read(payload, 0, 2);
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
+                fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
             }
@@ -68,8 +68,8 @@ namespace Desolation
                 //Payload
 
 
-                byte[] payload = new byte[4]; //changed for each tag
-                fileStream.Read(payload, 0, 4);
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
+                fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
             }
@@ -84,8 +84,8 @@ namespace Desolation
                 //Payload
 
 
-                byte[] payload = new byte[8]; //changed for each tag
-                fileStream.Read(payload, 0, 8);
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
+                fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
             }
@@ -100,8 +100,8 @@ namespace Desolation
                 //Payload
 
 
-                byte[] payload = new byte[4]; //changed for each tag
-                fileStream.Read(payload, 0, 4);
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
+                fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
             }
             else if (tagID.Equals(TagID.Double))
             {
@@ -114,8 +114,8 @@ namespace Desolation
                 //Payload
 
 
-                byte[] payload = new byte[8]; //changed for each tag
-                fileStream.Read(payload, 0, 8);
+                byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
+                fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
             }
@@ -171,15 +171,75 @@ namespace Desolation
             }
             else if (tagID.Equals(TagID.List))
             {
-                returnTag = new Tag(tagID, null, null);
+                byte[] byte2 = new byte[2];
+                fileStream.Read(byte2, 0, 2);
+                short stringLength = BitConverter.ToInt16(byte2, 0);
+                byte[] byteString = new byte[stringLength];
+                fileStream.Read(byteString, 0, stringLength);
+                String tagIdentifier = Encoding.UTF8.GetString(byteString, 0, stringLength);
+                //Payload
+
+
+
+                byte listTagID = (byte)fileStream.ReadByte();
+
+                byte[] sizeArray = new byte[4];
+                fileStream.Read(sizeArray, 0, 4);
+                int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
+
+                byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+
+                byte[] payload = new byte[1 + 4 + arraySizeNumber * payloadElementSize]; //ID + length + payload
+
+                payload[0] = listTagID;
+                payload[1] = sizeArray[0];
+                payload[2] = sizeArray[1];
+                payload[3] = sizeArray[2];
+                payload[4] = sizeArray[3];
+                fileStream.Read(payload, 5, arraySizeNumber * payloadElementSize);
+
+
+                returnTag = new Tag(tagID, tagIdentifier, payload);
             }
             else if (tagID.Equals(TagID.Compound))
             {
-                returnTag = new Tag(tagID, null, null);
+                byte[] byte2 = new byte[2];
+                fileStream.Read(byte2, 0, 2);
+                short stringLength = BitConverter.ToInt16(byte2, 0);
+                byte[] byteString = new byte[stringLength];
+                fileStream.Read(byteString, 0, stringLength);
+                String tagIdentifier = Encoding.UTF8.GetString(byteString, 0, stringLength);
+                // no Payload
+
+                returnTag = new Tag(tagID, tagIdentifier, null);
+
+
             }
             else if (tagID.Equals(TagID.IntArray))
             {
-                returnTag = new Tag(tagID, null, null);
+                byte[] byte2 = new byte[2];
+                fileStream.Read(byte2, 0, 2);
+                short stringLength = BitConverter.ToInt16(byte2, 0);
+                byte[] byteString = new byte[stringLength];
+                fileStream.Read(byteString, 0, stringLength);
+                String tagIdentifier = Encoding.UTF8.GetString(byteString, 0, stringLength);
+                //Payload
+
+
+
+                byte[] sizeArray = new byte[4]; //changed for each tag
+                fileStream.Read(sizeArray, 0, 4);
+                int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
+
+                byte[] payload = new byte[4 + arraySizeNumber * 4]; //changed for each tag
+                payload[0] = sizeArray[0];
+                payload[1] = sizeArray[1];
+                payload[2] = sizeArray[2];
+                payload[3] = sizeArray[3];
+                fileStream.Read(payload, 4, arraySizeNumber * 4);
+
+
+                returnTag = new Tag(tagID, tagIdentifier, payload);
             }
             else
             {
