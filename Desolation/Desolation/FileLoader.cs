@@ -20,7 +20,7 @@ namespace Desolation
         {
             try
             {
-                FileStream fileStream = File.Open(Globals.gamePath + regionFolder + "test.region", FileMode.OpenOrCreate);
+                FileStream fileStream = File.Open(Globals.gamePath + regionFolder + "x"+xPosRegion+".y"+yPosRegion+".region", FileMode.OpenOrCreate);
                 return new Region(fileStream, xPosRegion, yPosRegion);
             }
             catch(OutOfMemoryException) {
