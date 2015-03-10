@@ -58,6 +58,7 @@ namespace Desolation
                         case TagID.IntArray:
                             break;
                         default:
+                            layerDepth = 0;
                             break;
                     }
                 }
