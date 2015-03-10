@@ -21,9 +21,11 @@ namespace Desolation
             if (!allChunksLoaded)
             {
                 newChunk = new Chunk();
-                int chunkXPos = -1;
-                int chunkYPos = -1;
+                int chunkXPos = 0;
+                int chunkYPos = 0;
                 bool chunkIdentified = false;
+                bool chunkChecked = false;
+                bool chunkAlreadyLoaded = false;
                 int layerDepth = 1;
                 Tag regionTag = readTag(regionFile.fileStream); //should be compound
                 
@@ -35,59 +37,108 @@ namespace Desolation
                     TagID tagID = currentTag.getID();
 
 
-                    if (chunkIdentified)
+                    if (chunkIdentified & !chunkChecked)
                     {
-                        bool test = regionFile.chunksLoaded[chunkXPos % 4 + (chunkYPos % 4) * 4];
+
+                        int localxPos;
+                        int localyPos;
+                        if (chunkXPos >= 0)
+                        {
+                            localxPos = chunkXPos % 4;
+                        }
+                        else
+                        {
+                            localxPos = 3 + (chunkXPos + 1) % 4;
+                        }
+                        if (chunkYPos >= 0)
+                        {
+                            localyPos = chunkYPos % 4;
+                        }
+                        else
+                        {
+                            localyPos = 3 + (chunkYPos + 1) % 4;
+                        }
+
+                        bool isThisChunkLoaded = regionFile.chunksLoaded[localxPos + localyPos * 4];
                         // nummer = xpos % 4 + (ypos % 4) * 4
-                        int number1 = 1 % 4 + (1 % 4) * 4;
-                        int number2 = 5 % 4 + (5 % 4) * 4;
-                        int number3 = (4 + (-1 % 4) % 4) + ((4 + (-1 % 4)) % 4) * 4;
-                        int number4 = (4 + (-2 % 4) % 4) + ((4 + (-2 % 4)) % 4) * 4;
-                        int number5 = (4 + (-3 % 4) % 4) + ((4 + (-3 % 4)) % 4) * 4;
-                        int number6 = (4 + (-4 % 4) % 4) + ((4 + (-4 % 4)) % 4) * 4;
-                        int number7 = (4 + (-5 % 4) % 4) + ((4 + (-5 % 4)) % 4) * 4;
+
+                        if (isThisChunkLoaded)
+                        {
+                            chunkAlreadyLoaded = true;
+                        }
+
+                        chunkChecked = true;
+                        
                     }
 
-                    switch (tagID)
+                    if (!chunkAlreadyLoaded)
                     {
-                        case TagID.End:
-                            layerDepth--;
-                            break;
-                        case TagID.Byte:
-                            break;
-                        case TagID.Short:
-                            break;
-                        case TagID.Int:
-                            if (tagName.Equals("XPos")) 
-                            {
-                                chunkXPos = (int)currentTag.getData();
-                            }
-                            else if (tagName.Equals("YPos"))
-                            {
-                                chunkYPos = (int)currentTag.getData();
-                                chunkIdentified = true;
-                            }
-                            break;
-                        case TagID.Long:
-                            break;
-                        case TagID.Float:
-                            break;
-                        case TagID.Double:
-                            break;
-                        case TagID.ByteArray:
-                            break;
-                        case TagID.String:
-                            break;
-                        case TagID.List:
-                            break;
-                        case TagID.Compound:
-                            layerDepth++;
-                            break;
-                        case TagID.IntArray:
-                            break;
-                        default:
-                            layerDepth = 0;
-                            break;
+
+                        switch (tagID)
+                        {
+                            case TagID.End:
+                                layerDepth--;
+                                if (layerDepth == 1)
+                                {
+                                    //end of unloaded chunk
+                                    //this means its now added return new chunk
+                                }
+                                break;
+                            case TagID.Byte:
+                                break;
+                            case TagID.Short:
+                                break;
+                            case TagID.Int:
+                                if (tagName.Equals("XPos"))
+                                {
+                                    chunkXPos = (int)currentTag.getData();
+                                }
+                                else if (tagName.Equals("YPos"))
+                                {
+                                    chunkYPos = (int)currentTag.getData();
+                                    chunkIdentified = true;
+                                }
+                                break;
+                            case TagID.Long:
+                                break;
+                            case TagID.Float:
+                                break;
+                            case TagID.Double:
+                                break;
+                            case TagID.ByteArray:
+                                break;
+                            case TagID.String:
+                                break;
+                            case TagID.List:
+                                break;
+                            case TagID.Compound:
+                                layerDepth++;
+                                break;
+                            case TagID.IntArray:
+                                break;
+                            default:
+                                layerDepth = 0;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (tagID)
+                        {
+                            case TagID.End:
+                                layerDepth--;
+                                if (layerDepth == 1)
+                                {
+                                    //end of already loaded chunk
+                                    chunkAlreadyLoaded = false;
+                                }
+                                break;
+                            case TagID.Compound:
+                                layerDepth++;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }

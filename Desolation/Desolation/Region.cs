@@ -22,32 +22,40 @@ namespace Desolation
 
             chunksLoaded = new bool[16];
 
+            chunksLoaded[5] = true;
+
             bool writing = false;
-            int times = 1;
+            int chunks = 16;
 
             if (writing)
             {
-                for (int i = 0; i < times; i++)
+
+                //temporär filskrivare
+                TagID ID = TagID.Compound;
+                String TagNamn = "region";
+                byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
+                byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
+                //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
+                //int value = array.Length;
+                //byte[] length = BitConverter.GetBytes(value);
+                //byte[] payload = new byte[length.Length + array.Length];
+                //length.CopyTo(payload, 0);
+                //array.CopyTo(payload, length.Length);
+
+                //TagNamn.Length
+
+                fileStream.WriteByte((byte)ID);
+                fileStream.WriteByte(byteArray[0]);
+                fileStream.WriteByte(byteArray[1]);
+                fileStream.Write(buffer, 0, TagNamn.Length);
+
+
+
+
+                for (int i = 0; i < chunks; i++)
                     {
                 
-                    //temporär filskrivare
-                    TagID ID = TagID.Compound;
-                    String TagNamn = "region";
-                    byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
-                    byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
-                    //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
-                    //int value = array.Length;
-                    //byte[] length = BitConverter.GetBytes(value);
-                    //byte[] payload = new byte[length.Length + array.Length];
-                    //length.CopyTo(payload, 0);
-                    //array.CopyTo(payload, length.Length);
-
-                    //TagNamn.Length
-
-                    fileStream.WriteByte((byte)ID);
-                    fileStream.WriteByte(byteArray[0]);
-                    fileStream.WriteByte(byteArray[1]);
-                    fileStream.Write(buffer, 0, TagNamn.Length);
+                    
 
                     TagID ID2 = TagID.Compound;
                     String TagNamn2 = "chunk";
@@ -72,7 +80,7 @@ namespace Desolation
                     byte[] byteArray3 = BitConverter.GetBytes(TagNamn3.Length);
                     byte[] buffer3 = Encoding.UTF8.GetBytes(TagNamn3);
                     //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
-                    int XPos = 1;
+                    int XPos = i % 4;
                     byte[] payload = BitConverter.GetBytes(XPos);
                     //byte[] payload = new byte[length.Length + array.Length];
                     //length.CopyTo(payload, 0);
@@ -91,7 +99,7 @@ namespace Desolation
                     byte[] byteArray4 = BitConverter.GetBytes(TagNamn4.Length);
                     byte[] buffer4 = Encoding.UTF8.GetBytes(TagNamn4);
                     //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
-                    int YPos = 1;
+                    int YPos = i / 4;
                     byte[] payload2 = BitConverter.GetBytes(YPos);
                     //byte[] payload = new byte[length.Length + array.Length];
                     //length.CopyTo(payload, 0);
@@ -107,10 +115,7 @@ namespace Desolation
 
                     TagID ID5 = TagID.End;
 
-                    fileStream.WriteByte((byte)ID3);
-                    TagID ID6 = TagID.End;
-
-                    fileStream.WriteByte((byte)ID4);
+                    fileStream.WriteByte((byte)ID5);
 
                     
                     //fileStream.Write(payload, 0, payload.Length);
@@ -119,6 +124,10 @@ namespace Desolation
 
                     //joakim testar
                 }
+
+                TagID ID6 = TagID.End;
+
+                fileStream.WriteByte((byte)ID6);
 
             }
 
