@@ -11,7 +11,7 @@ namespace Desolation
 
         public static Chunk getUnloadedChunk(Region regionFile)
         {
-
+            Chunk newChunk;
 
 
             bool[] chunksLoaded = regionFile.chunksLoaded;
@@ -20,8 +20,13 @@ namespace Desolation
 
             if (!allChunksLoaded)
             {
+                newChunk = new Chunk();
+                int chunkXPos = -1;
+                int chunkYPos = -1;
+                bool chunkIdentified = false;
                 int layerDepth = 1;
                 Tag regionTag = readTag(regionFile.fileStream); //should be compound
+                
 
                 while (layerDepth > 0)
                 {
@@ -29,6 +34,19 @@ namespace Desolation
                     String tagName = currentTag.getName();
                     TagID tagID = currentTag.getID();
 
+
+                    if (chunkIdentified)
+                    {
+                        bool test = regionFile.chunksLoaded[chunkXPos % 4 + (chunkYPos % 4) * 4];
+                        // nummer = xpos % 4 + (ypos % 4) * 4
+                        int number1 = 1 % 4 + (1 % 4) * 4;
+                        int number2 = 5 % 4 + (5 % 4) * 4;
+                        int number3 = (4 + (-1 % 4) % 4) + ((4 + (-1 % 4)) % 4) * 4;
+                        int number4 = (4 + (-2 % 4) % 4) + ((4 + (-2 % 4)) % 4) * 4;
+                        int number5 = (4 + (-3 % 4) % 4) + ((4 + (-3 % 4)) % 4) * 4;
+                        int number6 = (4 + (-4 % 4) % 4) + ((4 + (-4 % 4)) % 4) * 4;
+                        int number7 = (4 + (-5 % 4) % 4) + ((4 + (-5 % 4)) % 4) * 4;
+                    }
 
                     switch (tagID)
                     {
@@ -40,6 +58,15 @@ namespace Desolation
                         case TagID.Short:
                             break;
                         case TagID.Int:
+                            if (tagName.Equals("XPos")) 
+                            {
+                                chunkXPos = (int)currentTag.getData();
+                            }
+                            else if (tagName.Equals("YPos"))
+                            {
+                                chunkYPos = (int)currentTag.getData();
+                                chunkIdentified = true;
+                            }
                             break;
                         case TagID.Long:
                             break;
