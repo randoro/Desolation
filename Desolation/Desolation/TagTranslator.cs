@@ -12,7 +12,7 @@ namespace Desolation
         public static Chunk getUnloadedChunk(Region regionFile)
         {
             Chunk newChunk;
-
+            regionFile.fileStream.Position = 0;
 
             bool[] chunksLoaded = regionFile.chunksLoaded;
 
@@ -29,7 +29,7 @@ namespace Desolation
                 int layerDepth = 1;
                 Tag regionTag = readTag(regionFile.fileStream); //should be compound
                 
-
+                
                 while (layerDepth > 0)
                 {
                     Tag currentTag = readTag(regionFile.fileStream);
@@ -66,6 +66,13 @@ namespace Desolation
                         {
                             chunkAlreadyLoaded = true;
                         }
+                        else
+                        {
+                            //chunk is not loaded and will be now
+                            newChunk.XPos = chunkXPos;
+                            newChunk.YPos = chunkYPos;
+                            regionFile.chunksLoaded[localxPos + localyPos * 4] = true;
+                        }
 
                         chunkChecked = true;
                         
@@ -82,6 +89,8 @@ namespace Desolation
                                 {
                                     //end of unloaded chunk
                                     //this means its now added return new chunk
+                                    Console.WriteLine("chunk now loaded");
+                                    return newChunk;
                                 }
                                 break;
                             case TagID.Byte:
@@ -131,6 +140,8 @@ namespace Desolation
                                 {
                                     //end of already loaded chunk
                                     chunkAlreadyLoaded = false;
+                                    chunkIdentified = false;
+                                    chunkChecked = false;
                                 }
                                 break;
                             case TagID.Compound:
@@ -142,7 +153,7 @@ namespace Desolation
                     }
                 }
             }
-
+            Console.WriteLine("all chunks are loaded");
             //regionFile.fileStream.ReadByte();
             return null;
         }
