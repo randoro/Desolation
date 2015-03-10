@@ -126,6 +126,11 @@ namespace Desolation
             return tagID;
         }
 
+        public String getName()
+        {
+            return tagIdentifier;
+        }
+
         //unchecked
         //        {
         //            sbyte derpa =  -127;

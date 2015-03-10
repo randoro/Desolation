@@ -26,6 +26,7 @@ namespace Desolation
                 while (layerDepth > 0)
                 {
                     Tag currentTag = readTag(regionFile.fileStream);
+                    String tagName = currentTag.getName();
                     TagID tagID = currentTag.getID();
 
 
