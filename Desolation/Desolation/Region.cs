@@ -23,7 +23,7 @@ namespace Desolation
             chunksLoaded = new bool[16];
 
             bool writing = false;
-            int times = 1;
+            int times = 100000;
 
             if (writing)
             {
