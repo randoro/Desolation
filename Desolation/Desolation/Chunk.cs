@@ -9,6 +9,9 @@ namespace Desolation
     {
         public int XPos { set; get; }
         public int YPos { set; get; }
+        public long lastUpdate { set; get; }
+        public byte terrainPopulated { set; get; }
+        public long inhabitedTime { set; get; }
 
         public Chunk()
         {

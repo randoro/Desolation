@@ -94,6 +94,10 @@ namespace Desolation
                                 }
                                 break;
                             case TagID.Byte:
+                                if (tagName.Equals("TerrainPopulated"))
+                                {
+                                    newChunk.terrainPopulated = (byte)currentTag.getData();
+                                }
                                 break;
                             case TagID.Short:
                                 break;
@@ -109,6 +113,14 @@ namespace Desolation
                                 }
                                 break;
                             case TagID.Long:
+                                if (tagName.Equals("LastUpdate"))
+                                {
+                                    newChunk.lastUpdate = (long)currentTag.getData();
+                                }
+                                else if (tagName.Equals("InhabitedTime"))
+                                {
+                                    newChunk.inhabitedTime = (long)currentTag.getData();
+                                }
                                 break;
                             case TagID.Float:
                                 break;
