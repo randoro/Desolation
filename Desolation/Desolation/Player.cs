@@ -41,7 +41,7 @@ namespace Desolation
             {
                 frameTimer = frameInterval;
                 frame++;
-                pRect.Y = (frame % 4) * 16;
+                //pRect.Y = (frame % 4) * 16;
             }
 
             if(Keyboard.GetState().IsKeyDown(Keys.W))
