@@ -38,13 +38,13 @@ namespace Desolation
             {
                 short returnData = BitConverter.ToInt16(byteArray, 0);
                 return returnData;
-                
+
             }
             else if (tagID.Equals(TagID.Int))
             {
                 int returnData = BitConverter.ToInt32(byteArray, 0);
                 return returnData;
-                
+
             }
             else if (tagID.Equals(TagID.Long))
             {
@@ -118,6 +118,12 @@ namespace Desolation
                 //no data (end tag)
                 return null;
             }
+        }
+
+
+        public TagID getID()
+        {
+            return tagID;
         }
 
         //unchecked

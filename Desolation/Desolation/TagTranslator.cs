@@ -20,7 +20,44 @@ namespace Desolation
 
             if (!allChunksLoaded)
             {
+                //trying to load new chunk
+                byte layerDepth = 1;
 
+                //while (layerDepth > 0)
+                //{
+                //    Tag currentTag = readTag(regionFile.fileStream);
+                //    TagID tagID = currentTag.getID();
+
+                //    switch (tagID)
+                //    {
+                //        case TagID.End:
+                //            break;
+                //        case TagID.Byte:
+                //            break;
+                //        case TagID.Short:
+                //            break;
+                //        case TagID.Int:
+                //            break;
+                //        case TagID.Long:
+                //            break;
+                //        case TagID.Float:
+                //            break;
+                //        case TagID.Double:
+                //            break;
+                //        case TagID.ByteArray:
+                //            break;
+                //        case TagID.String:
+                //            break;
+                //        case TagID.List:
+                //            break;
+                //        case TagID.Compound:
+                //            break;
+                //        case TagID.IntArray:
+                //            break;
+                //        default:
+                //            break;
+                //    }  
+                //}
             }
             //regionFile.fileStream.ReadByte();
             //stuff
