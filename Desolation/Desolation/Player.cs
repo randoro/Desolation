@@ -43,6 +43,24 @@ namespace Desolation
                 frame++;
                 pRect.Y = (frame % 4) * 16;
             }
+
+            if(Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                pPos.Y--;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                pPos.X++;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                pPos.X--;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                pPos.Y++;
+            }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -50,6 +68,7 @@ namespace Desolation
             spriteBatch.Draw(pSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, pFx, 1);
         }
 
+        
        
     }
 }

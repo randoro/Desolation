@@ -25,6 +25,7 @@ namespace Desolation
 
         Player player;
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
