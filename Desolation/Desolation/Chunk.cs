@@ -12,9 +12,6 @@ namespace Desolation
         public long lastUpdate { set; get; }
         public byte terrainPopulated { set; get; }
         public long inhabitedTime { set; get; }
-        public byte[] biomes { set; get; }
-        public byte[] blocks { set; get; }
-        public byte[] objects { set; get; }
 
         public Chunk()
         {

@@ -127,18 +127,6 @@ namespace Desolation
                             case TagID.Double:
                                 break;
                             case TagID.ByteArray:
-                                if (tagName.Equals("Biomes"))
-                                {
-                                    newChunk.biomes = (byte[])currentTag.getData();
-                                }
-                                else if (tagName.Equals("Blocks"))
-                                {
-                                    newChunk.blocks = (byte[])currentTag.getData();
-                                }
-                                else if (tagName.Equals("Objects"))
-                                {
-                                    newChunk.objects = (byte[])currentTag.getData();
-                                }
                                 break;
                             case TagID.String:
                                 break;
@@ -345,7 +333,7 @@ namespace Desolation
                 returnTag = new Tag(tagID, tagIdentifier, payload);
                 return returnTag;
             }
-            else if (tagID.Equals(TagID.List)) //måste fixas så att compound tag sparar extra.   typ, om de e compund tag så körs readTag här inne i en whileloop som breakas genom end tag sen läggs datan mellan varje compund och end in i en bytearray som läggs i en lista av bytearrays.
+            else if (tagID.Equals(TagID.List))
             {
                 byte[] byte2 = new byte[2];
                 fileStream.Read(byte2, 0, 2);
