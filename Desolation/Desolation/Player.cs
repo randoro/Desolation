@@ -74,7 +74,7 @@ namespace Desolation
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(pSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1.5f, pFx, 1);
+            spriteBatch.Draw(pSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, pFx, 1);
         }
   
     }
