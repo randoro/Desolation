@@ -20,8 +20,49 @@ namespace Desolation
 
             if (!allChunksLoaded)
             {
+                int layerDepth = 1;
+                Tag regionTag = readTag(regionFile.fileStream); //should be compound
 
+                while (layerDepth > 0)
+                {
+                    Tag currentTag = readTag(regionFile.fileStream);
+                    TagID tagID = currentTag.getID();
+
+
+                    switch (tagID)
+                    {
+                        case TagID.End:
+                            layerDepth--;
+                            break;
+                        case TagID.Byte:
+                            break;
+                        case TagID.Short:
+                            break;
+                        case TagID.Int:
+                            break;
+                        case TagID.Long:
+                            break;
+                        case TagID.Float:
+                            break;
+                        case TagID.Double:
+                            break;
+                        case TagID.ByteArray:
+                            break;
+                        case TagID.String:
+                            break;
+                        case TagID.List:
+                            break;
+                        case TagID.Compound:
+                            layerDepth++;
+                            break;
+                        case TagID.IntArray:
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
+
             //regionFile.fileStream.ReadByte();
             return null;
         }

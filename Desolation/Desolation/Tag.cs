@@ -120,6 +120,12 @@ namespace Desolation
             }
         }
 
+
+        public TagID getID()
+        {
+            return tagID;
+        }
+
         //unchecked
         //        {
         //            sbyte derpa =  -127;
