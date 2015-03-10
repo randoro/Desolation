@@ -47,18 +47,26 @@ namespace Desolation
             if(Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 pPos.Y--;
+                pRect.X = 2 * 16;
+                pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 pPos.X++;
+                pRect.X = 3 * 16;
+                pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 pPos.X--;
+                pRect.X = 1 * 16;
+                pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 pPos.Y++;
+                pRect.X = 0 * 16;
+                pRect.Y = (frame % 4) * 16;
             }
 
         }
@@ -67,8 +75,6 @@ namespace Desolation
         {
             spriteBatch.Draw(pSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, pFx, 1);
         }
-
-        
-       
+  
     }
 }
