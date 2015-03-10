@@ -23,7 +23,7 @@ namespace Desolation
             chunksLoaded = new bool[16];
 
             bool writing = false;
-            int times = 20000;
+            int times = 1;
 
             if (writing)
             {
@@ -31,16 +31,16 @@ namespace Desolation
                     {
                 
                     //temporär filskrivare
-                    TagID ID = TagID.ByteArray;
-                    String TagNamn = "asdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdddddddddddddddddddddddddddddddddddaaaaaaadasdasdasdasdasdasdasdasdasdasd";
+                    TagID ID = TagID.Compound;
+                    String TagNamn = "region";
                     byte[] byteArray = BitConverter.GetBytes(TagNamn.Length);
                     byte[] buffer = Encoding.UTF8.GetBytes(TagNamn);
-                    byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
-                    int value = array.Length;
-                    byte[] length = BitConverter.GetBytes(value);
-                    byte[] payload = new byte[length.Length + array.Length];
-                    length.CopyTo(payload, 0);
-                    array.CopyTo(payload, length.Length);
+                    //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
+                    //int value = array.Length;
+                    //byte[] length = BitConverter.GetBytes(value);
+                    //byte[] payload = new byte[length.Length + array.Length];
+                    //length.CopyTo(payload, 0);
+                    //array.CopyTo(payload, length.Length);
 
                     //TagNamn.Length
 
@@ -48,7 +48,34 @@ namespace Desolation
                     fileStream.WriteByte(byteArray[0]);
                     fileStream.WriteByte(byteArray[1]);
                     fileStream.Write(buffer, 0, TagNamn.Length);
-                    fileStream.Write(payload, 0, payload.Length);
+
+                    TagID ID2 = TagID.Compound;
+                    String TagNamn2 = "region";
+                    byte[] byteArray2 = BitConverter.GetBytes(TagNamn.Length);
+                    byte[] buffer2 = Encoding.UTF8.GetBytes(TagNamn);
+                    //byte[] array = { 4, 3, 2, 1, 5, 3, 4, 2, 1, 4, 2 };
+                    //int value = array.Length;
+                    //byte[] length = BitConverter.GetBytes(value);
+                    //byte[] payload = new byte[length.Length + array.Length];
+                    //length.CopyTo(payload, 0);
+                    //array.CopyTo(payload, length.Length);
+
+                    //TagNamn.Length
+
+                    fileStream.WriteByte((byte)ID2);
+                    fileStream.WriteByte(byteArray2[0]);
+                    fileStream.WriteByte(byteArray2[1]);
+                    fileStream.Write(buffer, 0, TagNamn2.Length);
+
+                    TagID ID3 = TagID.End;
+
+                    fileStream.WriteByte((byte)ID3);
+                    TagID ID4 = TagID.End;
+
+                    fileStream.WriteByte((byte)ID4);
+
+                    
+                    //fileStream.Write(payload, 0, payload.Length);
 
 
 
