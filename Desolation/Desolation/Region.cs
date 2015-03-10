@@ -12,7 +12,7 @@ namespace Desolation
         int xPosRegion;
         int yPosRegion;
 
-        public bool[,] chunksLoaded;
+        public bool[] chunksLoaded;
 
         public Region(FileStream fileStream, int xPosRegion, int yPosRegion)
         {
@@ -20,7 +20,7 @@ namespace Desolation
             this.xPosRegion = xPosRegion;
             this.yPosRegion = yPosRegion;
 
-            chunksLoaded = new bool[4, 4];
+            chunksLoaded = new bool[16];
 
             bool writing = false;
             int times = 20000;

@@ -34,6 +34,7 @@ namespace Desolation
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
                 TagTranslator.readTag(regionFiles[0].fileStream);
+                TagTranslator.getUnloadedChunk(regionFiles[0]);
                 //check if chunks in regionfile needs loading
             }
             

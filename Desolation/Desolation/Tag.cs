@@ -68,7 +68,6 @@ namespace Desolation
                 int arraySizeNumber = BitConverter.ToInt32(arraySizeInt, 0);
                 byte[] returnData = new byte[arraySizeNumber];
                 Array.Copy(byteArray, 4, returnData, 0, arraySizeNumber);
-                //not done yet
                 return returnData;
             }
             else if (tagID.Equals(TagID.String))
@@ -78,9 +77,8 @@ namespace Desolation
                 short arraySizeNumber = BitConverter.ToInt16(arraySizeShort, 0);
                 byte[] returnCharData = new byte[arraySizeNumber];
                 Array.Copy(byteArray, 2, returnCharData, 0, arraySizeNumber);
-                //not done yet
                 string returnData = Encoding.UTF8.GetString(returnCharData);
-                return returnData;
+                return returnData; //ej testad
             }
             else if (tagID.Equals(TagID.List))
             {
@@ -99,17 +97,21 @@ namespace Desolation
                         returnList.Add(byteArray[5 + i]);
                     }
                 }
-                return returnList;
+                return returnList; //ej testad
             }
             else if (tagID.Equals(TagID.Compound))
             {
-                //no data
+                //no data (compound tag)
                 return null;
             }
             else if (tagID.Equals(TagID.IntArray))
             {
-                //not done
-                return null;
+                byte[] arraySizeInt = new byte[4];
+                Array.Copy(byteArray, arraySizeInt, 4);
+                int arraySizeNumber = BitConverter.ToInt32(arraySizeInt, 0);
+                int[] returnData = new int[arraySizeNumber];
+                Array.Copy(byteArray, 4, returnData, 0, arraySizeNumber * 4);
+                return returnData; //ej testad
             }
             else
             {

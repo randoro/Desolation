@@ -11,13 +11,23 @@ namespace Desolation
 
         public static Chunk getUnloadedChunk(Region regionFile)
         {
-            return null;
 
+
+
+            bool[] chunksLoaded = regionFile.chunksLoaded;
+
+            bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+
+            if (!allChunksLoaded)
+            {
+
+            }
             //regionFile.fileStream.ReadByte();
+            return null;
         }
 
 
-        public static void readTag(FileStream fileStream)
+        public static Tag readTag(FileStream fileStream)
         {
             TagID tagID = (TagID)fileStream.ReadByte();
             Tag returnTag;
@@ -40,6 +50,7 @@ namespace Desolation
                 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Short))
             {
@@ -56,6 +67,7 @@ namespace Desolation
                 fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Int))
             {
@@ -72,6 +84,7 @@ namespace Desolation
                 fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Long))
             {
@@ -88,6 +101,7 @@ namespace Desolation
                 fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Float))
             {
@@ -102,6 +116,9 @@ namespace Desolation
 
                 byte[] payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
                 fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
+
+                returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Double))
             {
@@ -118,6 +135,7 @@ namespace Desolation
                 fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.ByteArray))
             {
@@ -144,7 +162,7 @@ namespace Desolation
 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
-                returnTag.getData();
+                return returnTag;
             }
             else if (tagID.Equals(TagID.String))
             {
@@ -169,6 +187,7 @@ namespace Desolation
 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.List))
             {
@@ -201,6 +220,7 @@ namespace Desolation
 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Compound))
             {
@@ -213,6 +233,7 @@ namespace Desolation
                 // no Payload
 
                 returnTag = new Tag(tagID, tagIdentifier, null);
+                return returnTag;
 
 
             }
@@ -241,10 +262,12 @@ namespace Desolation
 
 
                 returnTag = new Tag(tagID, tagIdentifier, payload);
+                return returnTag;
             }
             else
             {
                 returnTag = new Tag(tagID, null, null);
+                return returnTag;
             }
 
         }
