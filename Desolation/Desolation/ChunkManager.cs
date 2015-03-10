@@ -11,11 +11,13 @@ namespace Desolation
     {
 
         List<Region> regionFiles;
+        List<Chunk> chunkList;
         long ticksLastChunkLoad;
 
         public ChunkManager()
         {
             regionFiles = new List<Region>();
+            chunkList = new List<Chunk>();
             ticksLastChunkLoad = DateTime.Now.Ticks;
         }
 
@@ -33,7 +35,7 @@ namespace Desolation
                 //Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
-                TagTranslator.getUnloadedChunk(regionFiles[0]);
+                chunkList.Add(TagTranslator.getUnloadedChunk(regionFiles[0]));
                 //check if chunks in regionfile needs loading
             }
             

@@ -22,8 +22,6 @@ namespace Desolation
 
             chunksLoaded = new bool[16];
 
-            chunksLoaded[5] = true;
-
             bool writing = false;
             int chunks = 16;
 
