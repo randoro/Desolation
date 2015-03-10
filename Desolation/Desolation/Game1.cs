@@ -21,10 +21,6 @@ namespace Desolation
         FileLoader fileLoader;
         ChunkManager chunkManager;
 
-        Texture2D spriteSheet;
-
-        Player player;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -59,12 +55,13 @@ namespace Desolation
             chunkManager = new ChunkManager();
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
             chunkManager.addRegion(tempRegion);
-
-            spriteSheet = Content.Load<Texture2D>("testSheet");
-
-            player = new Player(spriteSheet, new Rectangle() , new Vector2());
-
+            
         }
+
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
+        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -81,8 +78,6 @@ namespace Desolation
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            player.Update(gameTime);
-
             chunkManager.update(gameTime);
             // TODO: Add your update logic here
 
@@ -97,9 +92,6 @@ namespace Desolation
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
-            player.Draw(spriteBatch);
-
             spriteBatch.End();
             // TODO: Add your drawing code here
 
