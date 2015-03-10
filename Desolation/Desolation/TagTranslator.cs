@@ -20,7 +20,7 @@ namespace Desolation
 
             if (!allChunksLoaded)
             {
-                int layerDepth = 1;
+                int layerDepth = 0;
                 Tag regionTag = readTag(regionFile.fileStream); //should be compound
 
                 while (layerDepth > 0)
