@@ -49,6 +49,10 @@ namespace Desolation
                     fileStream.WriteByte(byteArray[1]);
                     fileStream.Write(buffer, 0, TagNamn.Length);
                     fileStream.Write(payload, 0, payload.Length);
+
+
+
+                    //joakim testar
                 }
 
             }
