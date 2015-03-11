@@ -143,6 +143,14 @@ namespace Desolation
                             case TagID.String:
                                 break;
                             case TagID.List:
+                                if (tagName.Equals("Entities"))
+                                {
+                                    newChunk.entities = (List<Tag>[])currentTag.getData();
+                                }
+                                else if (tagName.Equals("TileEntities"))
+                                {
+                                    newChunk.tileEntities = (List<Tag>[])currentTag.getData();
+                                }
                                 break;
                             case TagID.Compound:
                                 layerDepth++;
