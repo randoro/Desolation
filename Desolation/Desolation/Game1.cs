@@ -44,7 +44,10 @@ namespace Desolation
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            //graphics.IsFullScreen = true;
+            //graphics.PreferredBackBufferHeight = 1080;
+            //graphics.PreferredBackBufferWidth = 1920;
+            //graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -58,7 +61,7 @@ namespace Desolation
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
-
+            
             fileLoader = new FileLoader();
             chunkManager = new ChunkManager();
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
