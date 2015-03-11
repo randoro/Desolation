@@ -85,22 +85,9 @@ namespace Desolation
             }
             else if (tagID.Equals(TagID.List))
             {
-                if(listID)
-                byte[] listSizeInt = new byte[4];
-                Array.Copy((byte[])data, 1, listSizeInt, 0, 4); //ändra
-                int listSizeNumber = BitConverter.ToInt32(listSizeInt, 0);
+                //returns a list of bytearrays 
+                    return data;
 
-                IList returnList = null;
-
-                if (listTagID.Equals(TagID.Byte))
-                {
-                    returnList = new List<byte>();
-                    for (int i = 0; i < listSizeNumber; i++)
-                    {
-                        returnList.Add(((byte[])data)[5 + i]);
-                    }
-                }
-                return returnList; //ej testad
             }
             else if (tagID.Equals(TagID.Compound))
             {
