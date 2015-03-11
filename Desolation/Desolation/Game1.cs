@@ -66,6 +66,7 @@ namespace Desolation
             spriteSheet = Content.Load<Texture2D>("testSheet");
             zombieSheet = Content.Load<Texture2D>("ZombieSheet");
             gobSheet = Content.Load<Texture2D>("npcSheet");
+            Globals.tempsheet = gobSheet;
 
             player = new Player(spriteSheet, new Rectangle() , new Vector2());
             zombie = new Zombie(zombieSheet, new Rectangle(), new Vector2());
@@ -108,6 +109,7 @@ namespace Desolation
             
             zombie.Draw(spriteBatch);
             goblin.Draw(spriteBatch);
+            chunkManager.draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

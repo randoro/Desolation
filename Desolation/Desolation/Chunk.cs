@@ -32,7 +32,7 @@ namespace Desolation
 
         public void draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(sheet, gPos, gRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 16, YPos * 16), new Rectangle(0, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
         

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Desolation
 {
@@ -35,10 +36,27 @@ namespace Desolation
                 //Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
-                chunkList.Add(TagTranslator.getUnloadedChunk(regionFiles[0]));
+                Chunk newchunk = TagTranslator.getUnloadedChunk(regionFiles[0]);
+                if (newchunk != null)
+                {
+                    chunkList.Add(newchunk);
+                }
                 //check if chunks in regionfile needs loading
             }
+
+            foreach (Chunk e in chunkList)
+            {
+                e.update(gameTime);
+            }
             
+        }
+
+        public void draw(SpriteBatch spriteBatch)
+        {
+            foreach (Chunk e in chunkList)
+            {
+                e.draw(spriteBatch);
+            }
         }
 
 
