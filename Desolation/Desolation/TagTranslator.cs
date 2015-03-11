@@ -382,36 +382,34 @@ namespace Desolation
                     }
                     else
                     {
+                        List<Tag>[] byteArrayList = new List<Tag>[elementsInList];
 
+                        int i = 0;
+                        while(i < elementsInList) 
+                        {
+                            List<Tag> singleElementTagList = new List<Tag>();
+                            Tag currentTag = readTag(fileStream);
+                            if (currentTag.getID().Equals(TagID.Compound))
+                            {
+                                while (!currentTag.getID().Equals(TagID.End))
+                                {
+                                    currentTag = readTag(fileStream);
+                                    singleElementTagList.Add(currentTag);
+                                }
+                                byteArrayList[i] = singleElementTagList;
+                                i++;
+                            }
+                        }
+                            
+                        returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
+                        return returnTag;  
                     }
-                }
 
-                //if (!listTagID.Equals(TagID.Compound))
-                //{
+                        
+                    }
 
-                //    byte[] sizeArray = new byte[4];
-                //    fileStream.Read(sizeArray, 0, 4);
-                //    int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
-
-                //    byte payloadElementSize = Globals.dataTypeSizes[listTagID];
-
-                //    byte[] payload = new byte[1 + 4 + arraySizeNumber * payloadElementSize]; //ID + length + payload
-
-                //    payload[0] = listTagID;
-                //    payload[1] = sizeArray[0];
-                //    payload[2] = sizeArray[1];
-                //    payload[3] = sizeArray[2];
-                //    payload[4] = sizeArray[3];
-                //    fileStream.Read(payload, 5, arraySizeNumber * payloadElementSize);
-
-
-                //    returnTag = new Tag(tagID, tagIdentifier, payload);
-                //}
-                //else
-                //{
-                returnTag = new Tag(tagID, tagIdentifier, null, tagID); //change
-                //}
-                return returnTag;
+                returnTag = new Tag(tagID, tagIdentifier, null, (TagID)listTagID);
+                return returnTag;  
             }
             else if (tagID.Equals(TagID.Compound))
             {
