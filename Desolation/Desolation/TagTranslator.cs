@@ -366,7 +366,7 @@ namespace Desolation
                 {
                     if (!listTagID.Equals(TagID.Compound))
                     {
-
+                        byte payloadElementSize = Globals.dataTypeSizes[listTagID];
                     }
                     else
                     {
@@ -397,9 +397,9 @@ namespace Desolation
                 //}
                 //else
                 //{
-                //    returnTag = new Tag(tagID, tagIdentifier, null);
+                    returnTag = new Tag(tagID, tagIdentifier, null);
                 //}
-                //return returnTag;
+                return returnTag;
             }
             else if (tagID.Equals(TagID.Compound))
             {
