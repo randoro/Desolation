@@ -15,25 +15,21 @@ namespace Desolation
 {
     class Player:GameObject
     {
-        Texture2D pSheet;
         Rectangle pRect;
         Vector2 pPos;
-        SpriteEffects pFx;
-
+        Texture2D sheet;
+        
         int frame;
         double frameTimer, frameInterval = 100;
-
-        public Player(Texture2D pSheet, Rectangle pRect, Vector2 pPos)
+        public Player(Texture2D sheet, Rectangle rect, Vector2 pos)
+            :base(sheet, rect, pos)
         {
-            this.pSheet = pSheet;
-            this.pPos = new Vector2(100, 100);
             this.pRect = new Rectangle(0, 16, 16, 16);
-
-
-
+            this.pPos = new Vector2(100, 100);
+            this.sheet = sheet;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
@@ -41,7 +37,6 @@ namespace Desolation
             {
                 frameTimer = frameInterval;
                 frame++;
-                //pRect.Y = (frame % 4) * 16;
             }
 
             if(Keyboard.GetState().IsKeyDown(Keys.W))
@@ -72,9 +67,9 @@ namespace Desolation
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(pSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, pFx, 1);
+            spriteBatch.Draw(sheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
   
     }
