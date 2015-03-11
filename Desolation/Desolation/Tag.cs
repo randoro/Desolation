@@ -12,12 +12,15 @@ namespace Desolation
         TagID tagID;
         String tagIdentifier;
         object data;
+        TagID listID;
 
-        public Tag(TagID tagID, String tagIdentifier, object data)
+        public Tag(TagID tagID, String tagIdentifier, object data, TagID listID)
         {
             this.tagID = tagID;
             this.tagIdentifier = tagIdentifier;
             this.data = data;
+            this.listID = listID;
+
 
         }
 
