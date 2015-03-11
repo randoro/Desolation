@@ -85,7 +85,7 @@ namespace Desolation
             }
             else if (tagID.Equals(TagID.List))
             {
-                byte listTagID = ((byte[])data)[0];
+                if(listID)
                 byte[] listSizeInt = new byte[4];
                 Array.Copy((byte[])data, 1, listSizeInt, 0, 4); //ändra
                 int listSizeNumber = BitConverter.ToInt32(listSizeInt, 0);
