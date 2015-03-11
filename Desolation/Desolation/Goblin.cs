@@ -22,6 +22,9 @@ namespace Desolation
         double totalElapsedSeconds = 0;
         const double MovementChangeTimeSeconds = 1.0; //seconds
 
+        int frame;
+        double frameTimer, frameInterval = 100;
+
         public Goblin(Texture2D sheet, Rectangle rect, Vector2 pos)
             :base(sheet, rect, pos)
         {
@@ -33,6 +36,7 @@ namespace Desolation
         public override void Update(GameTime gameTime)
         {
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
+           
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
@@ -41,6 +45,51 @@ namespace Desolation
             }
 
             gPos += gDir;
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+            }
+
+            MoveDirection moveDirection = GetMoveDirection(this.gDir);
+            switch (moveDirection)
+            {
+                case MoveDirection.Up:
+                    gRect.X = 2 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.UpRight:
+                    gRect.X = 2 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.UpLeft:
+                    gRect.X = 2 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.Down:
+                    gRect.X = 0 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.DownRight:
+                    gRect.X = 0 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.DownLeft:
+                    gRect.X = 0 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.Right:
+                    gRect.X = 3 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+                case MoveDirection.Left:
+                    gRect.X = 1 * 16;
+                    gRect.Y = (frame % 4) * 16;
+                    break;
+
+            }
 
         }
 
