@@ -376,6 +376,9 @@ namespace Desolation
                             fileStream.Read(element, 0, payloadElementSize);
                             byteArrayList.Add(element);
                         }
+
+                        returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
+                        return returnTag;
                     }
                     else
                     {
