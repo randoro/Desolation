@@ -22,9 +22,10 @@ namespace Desolation
         ChunkManager chunkManager;
 
         Texture2D spriteSheet;
-        Texture2D zombieSheet;
+        Texture2D zombieSheet, gobSheet;
         Zombie zombie;
         Player player;
+        Goblin goblin;
 
 
         public Game1()
@@ -64,9 +65,11 @@ namespace Desolation
 
             spriteSheet = Content.Load<Texture2D>("testSheet");
             zombieSheet = Content.Load<Texture2D>("ZombieSheet");
+            gobSheet = Content.Load<Texture2D>("npcSheet");
 
             player = new Player(spriteSheet, new Rectangle() , new Vector2());
             zombie = new Zombie(zombieSheet, new Rectangle(), new Vector2());
+            goblin = new Goblin(gobSheet, new Rectangle(), new Vector2());
         }
         protected override void UnloadContent()
         {
@@ -102,7 +105,9 @@ namespace Desolation
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
+            
             zombie.Draw(spriteBatch);
+            goblin.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
