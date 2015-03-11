@@ -18,6 +18,8 @@ namespace Desolation
         Texture2D sheet;
         Rectangle zRect;
         Vector2 zPos;
+        int frame;
+        double frameTimer, frameInterval = 100;
         
         public Zombie(Texture2D sheet, Rectangle rect, Vector2 pos)
 
@@ -31,7 +33,39 @@ namespace Desolation
         }
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                zPos.Y--;
+                zRect.X = 2 * 16;
+                zRect.Y = (frame % 4) * 16;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                zPos.Y++;
+                zRect.X = 0 * 16;
+                zRect.Y = (frame % 4) * 16;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                zPos.X++;
+                zRect.X = 3 * 16;
+                zRect.Y = (frame % 4) * 16;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                zPos.X--;
+                zRect.X = 1 * 16;
+                zRect.Y = (frame % 4) * 16;
+            }
+           
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
