@@ -25,9 +25,9 @@ namespace Desolation
 
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
