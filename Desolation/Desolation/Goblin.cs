@@ -14,10 +14,16 @@ namespace Desolation
 {
     class Goblin:Entity
     {
-        public Goblin(Texture2D text, Rectangle rect, Vector2 pos)
-            :base(text, rect, pos)
-        {
+        Rectangle gRect;
+        Vector2 gPos;
+        Texture2D sheet;
 
+        public Goblin(Texture2D sheet, Rectangle rect, Vector2 pos)
+            :base(sheet, rect, pos)
+        {
+            this.gRect = new Rectangle(0, 16, 16, 16);
+            this.gPos = new Vector2(200, 200);
+            this.sheet = sheet;
         }
 
         public override void Update(GameTime gameTime)
@@ -27,7 +33,7 @@ namespace Desolation
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            spriteBatch.Draw(sheet, gPos, gRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
     }

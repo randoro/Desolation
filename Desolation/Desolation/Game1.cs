@@ -21,9 +21,10 @@ namespace Desolation
         FileLoader fileLoader;
         ChunkManager chunkManager;
 
-        Texture2D spriteSheet;
+        Texture2D spriteSheet, gobSheet;
 
         Player player;
+        Goblin goblin;
 
 
         public Game1()
@@ -62,8 +63,10 @@ namespace Desolation
             chunkManager.addRegion(tempRegion);
 
             spriteSheet = Content.Load<Texture2D>("testSheet");
+            gobSheet = Content.Load<Texture2D>("npcSheet");
 
             player = new Player(spriteSheet, new Rectangle() , new Vector2());
+            goblin = new Goblin(gobSheet, new Rectangle(), new Vector2());
 
         }
         protected override void UnloadContent()
@@ -100,6 +103,7 @@ namespace Desolation
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
+            goblin.Draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here
