@@ -17,6 +17,7 @@ namespace Desolation
         Rectangle gRect;
         Vector2 gPos;
         Texture2D sheet;
+        Random rand;
 
         public Goblin(Texture2D sheet, Rectangle rect, Vector2 pos)
             :base(sheet, rect, pos)
@@ -28,6 +29,7 @@ namespace Desolation
 
         public override void Update(GameTime gameTime)
         {
+            gPos.X = gPos.X + 2;
             base.Update(gameTime);
         }
 
