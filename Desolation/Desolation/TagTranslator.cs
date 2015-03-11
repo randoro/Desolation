@@ -358,25 +358,48 @@ namespace Desolation
 
 
                 byte listTagID = (byte)fileStream.ReadByte();
+                byte[] elementArray = new byte[4];
+                fileStream.Read(elementArray, 0, 4);
+                int elementsInList = BitConverter.ToInt32(elementArray, 0);
 
-                byte[] sizeArray = new byte[4];
-                fileStream.Read(sizeArray, 0, 4);
-                int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
+                if (elementsInList > 0)
+                {
+                    if (!listTagID.Equals(TagID.Compound))
+                    {
 
-                byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+                    }
+                    else
+                    {
 
-                byte[] payload = new byte[1 + 4 + arraySizeNumber * payloadElementSize]; //ID + length + payload
+                    }
+                }
 
-                payload[0] = listTagID;
-                payload[1] = sizeArray[0];
-                payload[2] = sizeArray[1];
-                payload[3] = sizeArray[2];
-                payload[4] = sizeArray[3];
-                fileStream.Read(payload, 5, arraySizeNumber * payloadElementSize);
+                //if (!listTagID.Equals(TagID.Compound))
+                //{
+
+                //    byte[] sizeArray = new byte[4];
+                //    fileStream.Read(sizeArray, 0, 4);
+                //    int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
+
+                //    byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+
+                //    byte[] payload = new byte[1 + 4 + arraySizeNumber * payloadElementSize]; //ID + length + payload
+
+                //    payload[0] = listTagID;
+                //    payload[1] = sizeArray[0];
+                //    payload[2] = sizeArray[1];
+                //    payload[3] = sizeArray[2];
+                //    payload[4] = sizeArray[3];
+                //    fileStream.Read(payload, 5, arraySizeNumber * payloadElementSize);
 
 
-                returnTag = new Tag(tagID, tagIdentifier, payload);
-                return returnTag;
+                //    returnTag = new Tag(tagID, tagIdentifier, payload);
+                //}
+                //else
+                //{
+                //    returnTag = new Tag(tagID, tagIdentifier, null);
+                //}
+                //return returnTag;
             }
             else if (tagID.Equals(TagID.Compound))
             {
