@@ -37,8 +37,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="npcSheet.png">
-      <Name>npcSheet</Name>
+    <Compile Include="ZombieSheet.png">
+      <Name>ZombieSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
