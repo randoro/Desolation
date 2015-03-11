@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Desolation
 {
-    class Entity
+    class Entity:GameObject
     {
     }
 }

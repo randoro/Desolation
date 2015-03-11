@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Player
+    class Player:GameObject
     {
         Texture2D pSheet;
         Rectangle pRect;
