@@ -367,6 +367,7 @@ namespace Desolation
                     if (!listTagID.Equals(TagID.Compound))
                     {
                         byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+
                     }
                     else
                     {
