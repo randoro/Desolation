@@ -61,6 +61,7 @@ namespace Desolation
             fileLoader = new FileLoader();
             chunkManager = new ChunkManager();
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
+            TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion.fileStream);
             chunkManager.addRegion(tempRegion);
 
             spriteSheet = Content.Load<Texture2D>("testSheet");

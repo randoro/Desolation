@@ -10,7 +10,7 @@ namespace Desolation
     {
         public TempChunkCreator(FileStream fileStream)
         {
-            bool writing = false;
+            bool writing = true;
             int chunks = 16;
 
             if (writing)
