@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    abstract class GameObject
+  public  abstract class GameObject
     {
         Texture2D sheet;
         Rectangle rect;

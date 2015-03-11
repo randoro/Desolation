@@ -24,7 +24,7 @@ namespace Desolation
         Texture2D spriteSheet;
         Texture2D zombieSheet, gobSheet;
         Zombie zombie;
-        Player player;
+       public static Player player;
         Goblin goblin;
         GameObject go;
 

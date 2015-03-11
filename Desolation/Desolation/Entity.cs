@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Entity:GameObject
+   public class Entity:GameObject
     {
         public Entity(Texture2D sheet, Rectangle rect, Vector2 pos)
             :base(sheet, rect, pos)

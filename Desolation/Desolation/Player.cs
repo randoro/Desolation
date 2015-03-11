@@ -13,11 +13,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Player:GameObject
+  public  class Player:GameObject
     {
         Rectangle pRect;
         Vector2 pPos;
         Texture2D sheet;
+      public  int speed =2;
         
         int frame;
         double frameTimer, frameInterval = 100;
@@ -27,6 +28,7 @@ namespace Desolation
             this.pRect = new Rectangle(0, 16, 16, 16);
             this.pPos = new Vector2(100, 100);
             this.sheet = sheet;
+           
         }
 
         public override void Update(GameTime gameTime)
@@ -42,30 +44,39 @@ namespace Desolation
             if(Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 pPos.Y--;
+            
                 pRect.X = 2 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 pPos.Y++;
+              
                 pRect.X = 0 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 pPos.X++;
+         
                 pRect.X = 3 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 pPos.X--;
+             
                 pRect.X = 1 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
-            
 
+         
         }
+        public Vector2 getPOS()
+        {
+             return pPos;
+        }
+       
 
         public override void Draw(SpriteBatch spriteBatch)
         {
