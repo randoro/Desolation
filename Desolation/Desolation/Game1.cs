@@ -94,6 +94,7 @@ namespace Desolation
                 this.Exit();
 
             player.Update(gameTime);
+            goblin.Update(gameTime);
             zombie.Update(gameTime);
             chunkManager.update(gameTime);
             // TODO: Add your update logic here
