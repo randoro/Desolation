@@ -26,6 +26,7 @@ namespace Desolation
         Zombie zombie;
         Player player;
         Goblin goblin;
+        GameObject go;
 
 
         public Game1()
