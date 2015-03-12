@@ -14,12 +14,11 @@ namespace Desolation
 {
   public  abstract class GameObject
     {
-        Texture2D sheet;
+        TextureManager textureManager;
         Rectangle rect;
         Vector2 pos;
-        public GameObject(Texture2D sheet, Rectangle rect, Vector2 pos)
+        public GameObject(Rectangle rect, Vector2 pos)
         {
-            this.sheet = sheet;
             this.rect = rect;
             this.pos = pos;
         }

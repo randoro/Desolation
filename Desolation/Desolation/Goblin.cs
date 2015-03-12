@@ -16,7 +16,7 @@ namespace Desolation
     {
         Rectangle gRect;
         Vector2 gPos, gDir;
-        Texture2D sheet;
+        TextureManager textureManager;
         Random rnd = new Random();
 
         double totalElapsedSeconds = 0;
@@ -25,12 +25,11 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
 
-        public Goblin(Texture2D sheet, Rectangle rect, Vector2 pos)
-            :base(sheet, rect, pos)
+        public Goblin(Rectangle rect, Vector2 pos)
+            : base(rect, pos)
         {
             this.gRect = new Rectangle(0, 16, 16, 16);
             this.gPos = new Vector2(350, 250);
-            this.sheet = sheet;
         }
 
         public override void Update(GameTime gameTime)
@@ -95,7 +94,7 @@ namespace Desolation
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sheet, gPos, gRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.npcSheet, gPos, gRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
         Vector2 GetRandomDirection()

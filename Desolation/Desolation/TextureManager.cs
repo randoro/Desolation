@@ -7,19 +7,32 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Desolation
 {
-    class TextureManager
+    public class TextureManager
     {
-        Texture2D runTimetestSheet;
+        public static Texture2D playerSheet { set; get; }
+        public static Texture2D zombieSheet { set; get; }
+        public static Texture2D npcSheet { set; get; }
         ContentManager contentManager;
 
         public TextureManager(ContentManager contentManager)
         {
             this.contentManager = contentManager;
+
+            playerSheet = contentManager.Load<Texture2D>("testSheet");
+            zombieSheet = contentManager.Load<Texture2D>("ZombieSheet");
+            npcSheet = contentManager.Load<Texture2D>("npcSheet");
         }
 
-        public void runTime()
+        public void runTimeLoading()
         {
-            //runTimetestSheet = contentManager.Load<Texture2D>("testSheet");
+            if (Globals.rand.Next(0, 2) == 0)
+            {
+                playerSheet = contentManager.Load<Texture2D>("npcSheet");
+            }
+            else
+            {
+                playerSheet = contentManager.Load<Texture2D>("testSheet");
+            }
         }
     }
 }

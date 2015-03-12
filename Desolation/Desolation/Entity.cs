@@ -14,8 +14,8 @@ namespace Desolation
 {
    public class Entity:GameObject
     {
-        public Entity(Texture2D sheet, Rectangle rect, Vector2 pos)
-            :base(sheet, rect, pos)
+        public Entity(Rectangle rect, Vector2 pos)
+           : base(rect, pos)
         {
 
         }

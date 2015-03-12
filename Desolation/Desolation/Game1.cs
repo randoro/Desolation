@@ -81,9 +81,9 @@ namespace Desolation
             gobSheet = Content.Load<Texture2D>("npcSheet");
             Globals.tempsheet = Content.Load<Texture2D>("tempblocksheet");
 
-            player = new Player(spriteSheet, new Rectangle() , new Vector2());
-            zombie = new Zombie(zombieSheet, new Rectangle(), new Vector2());
-            goblin = new Goblin(gobSheet, new Rectangle(), new Vector2());
+            player = new Player(new Rectangle(), new Vector2());
+            zombie = new Zombie(new Rectangle(), new Vector2());
+            goblin = new Goblin(new Rectangle(), new Vector2());
         }
         protected override void UnloadContent()
         {
@@ -107,7 +107,7 @@ namespace Desolation
             zombie.Update(gameTime);
             chunkManager.update(gameTime);
 
-            textureManager.runTime();
+            textureManager.runTimeLoading();
             // TODO: Add your update logic here
 
             base.Update(gameTime);

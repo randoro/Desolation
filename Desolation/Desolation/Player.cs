@@ -17,17 +17,17 @@ namespace Desolation
     {
         Rectangle pRect;
         Vector2 pPos;
-        Texture2D sheet;
+        TextureManager textureManager;
       public  int speed =2;
         
         int frame;
         double frameTimer, frameInterval = 100;
-        public Player(Texture2D sheet, Rectangle rect, Vector2 pos)
-            :base(sheet, rect, pos)
+        public Player(Rectangle rect, Vector2 pos)
+            : base(rect, pos)
         {
             this.pRect = new Rectangle(0, 16, 16, 16);
             this.pPos = new Vector2(100, 100);
-            this.sheet = sheet;
+            this.textureManager = textureManager;
            
         }
 
@@ -86,7 +86,7 @@ namespace Desolation
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.playerSheet, pPos, pRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
   
     }

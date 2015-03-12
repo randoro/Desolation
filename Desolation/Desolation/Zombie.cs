@@ -13,20 +13,19 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-   public class Zombie :Entity
+    public class Zombie :Entity
     {
-        Texture2D sheet;
+       TextureManager textureManager;
         Rectangle zRect;
         Vector2 zPos;
         Player player = Game1.player;
         int frame;
         double frameTimer, frameInterval = 100;
         int range = 250;
-        public Zombie(Texture2D sheet, Rectangle rect, Vector2 pos)
+        public Zombie(Rectangle rect, Vector2 pos)
 
-            : base(sheet, rect, pos)
+            : base(rect, pos)
         {
-            this.sheet = sheet;
             this.zRect = rect;
             this.zPos = pos;
             zRect = new Rectangle(0, 0, 16, 16);
@@ -72,7 +71,7 @@ namespace Desolation
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sheet, zPos, zRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.zombieSheet, zPos, zRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
            
         }
 
