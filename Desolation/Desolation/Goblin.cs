@@ -14,9 +14,7 @@ namespace Desolation
 {
     class Goblin:Entity
     {
-        Rectangle gRect;
-        Vector2 gPos, gDir;
-        TextureManager textureManager;
+        Vector2 gDir;
         Random rnd = new Random();
 
         double totalElapsedSeconds = 0;
@@ -25,11 +23,12 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
 
-        public Goblin(Rectangle rect, Vector2 pos)
-            : base(rect, pos)
+        public Goblin(Vector2 position)
+            : base(position)
         {
-            this.gRect = new Rectangle(0, 16, 16, 16);
-            this.gPos = new Vector2(350, 250);
+
+            this.position = position;
+            this.sourceRect = new Rectangle(0, 16, 16, 16);
         }
 
         public override void Update(GameTime gameTime)
@@ -43,7 +42,7 @@ namespace Desolation
                 this.gDir = GetRandomDirection();
             }
 
-            gPos += gDir;
+            position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -56,36 +55,36 @@ namespace Desolation
             switch (moveDirection)
             {
                 case MoveDirection.Up:
-                    gRect.X = 2 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.UpRight:
-                    gRect.X = 2 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.UpLeft:
-                    gRect.X = 2 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.Down:
-                    gRect.X = 0 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.DownRight:
-                    gRect.X = 0 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.DownLeft:
-                    gRect.X = 0 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.Right:
-                    gRect.X = 3 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 3 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case MoveDirection.Left:
-                    gRect.X = 1 * 16;
-                    gRect.Y = (frame % 4) * 16;
+                    sourceRect.X = 1 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
 
             }
@@ -94,7 +93,7 @@ namespace Desolation
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.npcSheet, gPos, gRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
         Vector2 GetRandomDirection()

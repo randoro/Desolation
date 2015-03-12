@@ -15,55 +15,54 @@ namespace Desolation
 {
     public class Zombie :Entity
     {
-       TextureManager textureManager;
-        Rectangle zRect;
-        Vector2 zPos;
-        Player player = Game1.player;
         int frame;
         double frameTimer, frameInterval = 100;
         int range = 250;
-        public Zombie(Rectangle rect, Vector2 pos)
-
-            : base(rect, pos)
+        Player player;
+        public Zombie(Player player, Vector2 pos)
+            : base(pos)
         {
-            this.zRect = rect;
-            this.zPos = pos;
-            zRect = new Rectangle(0, 0, 16, 16);
-            zPos = new Vector2(400, 300);
+            sourceRect = new Rectangle(0, 0, 16, 16);
+            position = new Vector2(400, 300);
+            this.player = player;
         }
+
+
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
+
+            //måste fixas
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
                 frame++;
             }
-            if (player.getPOS().X > zPos.X && ((player.getPOS().X - zPos.X)) < range)
+            if (player.position.X > position.X && ((player.position.X - position.X)) < range)
            {
-               zPos.X += 0.5f;
-               zRect.X = 3 * 16;
-               zRect.Y = (frame % 4) * 16;
+               position.X += 0.5f;
+               sourceRect.X = 3 * 16;
+               sourceRect.Y = (frame % 4) * 16;
 
            }
-            if (player.getPOS().X < zPos.X && ((player.getPOS().X - zPos.X)) > -range)
+            if (player.position.X < position.X && ((player.position.X - position.X)) > -range)
             {
-                zPos.X -= 0.5f;
-                zRect.X = 1 * 16;
-                zRect.Y = (frame % 4) * 16;
+                position.X -= 0.5f;
+                sourceRect.X = 1 * 16;
+                sourceRect.Y = (frame % 4) * 16;
             }
-            if (player.getPOS().Y < zPos.Y && ((player.getPOS().Y - zPos.Y)) > -range)
+            if (player.position.Y < position.Y && ((player.position.Y - position.Y)) > -range)
             {
-                zPos.Y -= 0.5f;
-                zRect.X = 2 * 16;
-                zRect.Y = (frame % 4) * 16;
+                position.Y -= 0.5f;
+                sourceRect.X = 2 * 16;
+                sourceRect.Y = (frame % 4) * 16;
             }
-            if (player.getPOS().Y > zPos.Y && ((player.getPOS().Y - zPos.Y)) < range)
+            if (player.position.Y > position.Y && ((player.position.Y - position.Y)) < range)
             {
-                zPos.Y += 0.5f;
-                zRect.X = 0 * 16;
-                zRect.Y = (frame % 4) * 16;
+                position.Y += 0.5f;
+                sourceRect.X = 0 * 16;
+                sourceRect.Y = (frame % 4) * 16;
             }
 
            
@@ -71,7 +70,7 @@ namespace Desolation
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.zombieSheet, zPos, zRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.zombieSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
            
         }
 

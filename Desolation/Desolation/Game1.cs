@@ -81,9 +81,9 @@ namespace Desolation
             gobSheet = Content.Load<Texture2D>("npcSheet");
             Globals.tempsheet = Content.Load<Texture2D>("tempblocksheet");
 
-            player = new Player(new Rectangle(), new Vector2());
-            zombie = new Zombie(new Rectangle(), new Vector2());
-            goblin = new Goblin(new Rectangle(), new Vector2());
+            player = new Player(new Vector2(200, 200));
+            zombie = new Zombie(player, new Vector2(500, 500));
+            goblin = new Goblin(new Vector2(350, 250));
         }
         protected override void UnloadContent()
         {
@@ -101,7 +101,7 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            camera.update(new Vector2(player.getPOS().X - 500, player.getPOS().Y - 500));
+            camera.update(new Vector2(player.position.X - 500, player.position.Y - 500));
             player.Update(gameTime);
             goblin.Update(gameTime);
             zombie.Update(gameTime);

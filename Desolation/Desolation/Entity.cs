@@ -12,22 +12,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-   public class Entity:GameObject
+   abstract public class Entity :   GameObject
     {
-        public Entity(Rectangle rect, Vector2 pos)
-           : base(rect, pos)
+        public Entity(Vector2 pos)
+           : base(pos)
         {
 
         }
 
-        public override void Update(GameTime gameTime)
-        {
+        abstract public override void Update(GameTime gameTime);
 
-        }
+        abstract public override void Draw(SpriteBatch spriteBatch);
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            
-        }
     }
 }

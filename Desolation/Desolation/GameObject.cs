@@ -14,13 +14,11 @@ namespace Desolation
 {
   public  abstract class GameObject
     {
-        TextureManager textureManager;
-        Rectangle rect;
-        Vector2 pos;
-        public GameObject(Rectangle rect, Vector2 pos)
+        protected Rectangle sourceRect;
+        public Vector2 position;
+        public GameObject(Vector2 position)
         {
-            this.rect = rect;
-            this.pos = pos;
+            this.position = position;
         }
 
         public abstract void Update(GameTime gameTime);
