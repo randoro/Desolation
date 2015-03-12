@@ -43,26 +43,26 @@ namespace Desolation
             }
            if  (player.getPOS().X > zPos.X)
            {
-               zPos.X++;
+               zPos.X += 0.5f;
                zRect.X = 3 * 16;
                zRect.Y = (frame % 4) * 16;
 
            }
             if(player.getPOS().X < zPos.X)
             {
-                zPos.X--;
+                zPos.X -= 0.5f;
                 zRect.X = 1 * 16;
                 zRect.Y = (frame % 4) * 16;
             }
             if (player.getPOS().Y < zPos.Y)
             {
-                zPos.Y--;
+                zPos.Y -= 0.5f;
                 zRect.X = 2 * 16;
                 zRect.Y = (frame % 4) * 16;
             }
             if (player.getPOS().Y > zPos.Y)
             {
-                zPos.Y++;
+                zPos.Y += 0.5f;
                 zRect.X = 0 * 16;
                 zRect.Y = (frame % 4) * 16;
             }
