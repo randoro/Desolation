@@ -88,6 +88,7 @@
     <Compile Include="Tag.cs" />
     <Compile Include="TagTranslator.cs" />
     <Compile Include="TempChunkCreator.cs" />
+    <Compile Include="TextureManager.cs" />
     <Compile Include="Zombie.cs" />
   </ItemGroup>
   <ItemGroup>
