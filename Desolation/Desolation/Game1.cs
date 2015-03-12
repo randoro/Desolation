@@ -20,12 +20,9 @@ namespace Desolation
         SpriteBatch spriteBatch;
         FileLoader fileLoader;
         ChunkManager chunkManager;
-<<<<<<< HEAD
         Camera camera;
-=======
         TextureManager textureManager;
 
->>>>>>> origin/master
         Texture2D spriteSheet;
         Texture2D zombieSheet, gobSheet;
         Zombie zombie;
@@ -70,12 +67,10 @@ namespace Desolation
             
             fileLoader = new FileLoader();
             chunkManager = new ChunkManager();
-<<<<<<< HEAD
 
             camera = new Camera(GraphicsDevice.Viewport);
-=======
             textureManager = new TextureManager(Content);
->>>>>>> origin/master
+
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
             Globals.rand = new Random();
             TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion.fileStream);
