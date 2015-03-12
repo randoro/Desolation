@@ -45,9 +45,9 @@ namespace Desolation
         {
             // TODO: Add your initialization logic here
             //graphics.IsFullScreen = true;
-            //graphics.PreferredBackBufferHeight = 1080;
-            //graphics.PreferredBackBufferWidth = 1920;
-            //graphics.ApplyChanges();
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -65,13 +65,14 @@ namespace Desolation
             fileLoader = new FileLoader();
             chunkManager = new ChunkManager();
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
+            Globals.rand = new Random();
             TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion.fileStream);
             chunkManager.addRegion(tempRegion);
 
             spriteSheet = Content.Load<Texture2D>("testSheet");
             zombieSheet = Content.Load<Texture2D>("ZombieSheet");
             gobSheet = Content.Load<Texture2D>("npcSheet");
-            Globals.tempsheet = gobSheet;
+            Globals.tempsheet = Content.Load<Texture2D>("tempblocksheet");
 
             player = new Player(spriteSheet, new Rectangle() , new Vector2());
             zombie = new Zombie(zombieSheet, new Rectangle(), new Vector2());
@@ -111,11 +112,12 @@ namespace Desolation
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
+
+            chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
             
             zombie.Draw(spriteBatch);
             goblin.Draw(spriteBatch);
-            chunkManager.draw(spriteBatch);
 
             spriteBatch.End();
             // TODO: Add your drawing code here

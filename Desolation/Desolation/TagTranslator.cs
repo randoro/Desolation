@@ -96,7 +96,7 @@ namespace Desolation
                             case TagID.Byte:
                                 if (tagName.Equals("TerrainPopulated"))
                                 {
-                                    newChunk.terrainPopulated = (byte)currentTag.getData();
+                                    newChunk.terrainPopulated = (sbyte)currentTag.getData();
                                 }
                                 break;
                             case TagID.Short:
