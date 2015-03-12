@@ -41,18 +41,11 @@ namespace Desolation
                 frame++;
             }
 
-            if(Keyboard.GetState().IsKeyDown(Keys.W))
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                pPos.Y--;
-            
-                pRect.X = 2 * 16;
-                pRect.Y = (frame % 4) * 16;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                pPos.Y++;
-              
-                pRect.X = 0 * 16;
+                pPos.X--;
+             
+                pRect.X = 1 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
@@ -62,13 +55,26 @@ namespace Desolation
                 pRect.X = 3 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                pPos.X--;
-             
-                pRect.X = 1 * 16;
+                pPos.Y++;
+              
+                pRect.X = 0 * 16;
                 pRect.Y = (frame % 4) * 16;
             }
+            if(Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                pPos.Y--;
+            
+                pRect.X = 2 * 16;
+                pRect.Y = (frame % 4) * 16;
+            }
+            
+            
+            
+            
+            
+            
 
          
         }
