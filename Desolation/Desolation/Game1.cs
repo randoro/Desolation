@@ -20,13 +20,14 @@ namespace Desolation
         SpriteBatch spriteBatch;
         FileLoader fileLoader;
         ChunkManager chunkManager;
-
+        Camera camera;
         Texture2D spriteSheet;
         Texture2D zombieSheet, gobSheet;
         Zombie zombie;
        public static Player player;
         Goblin goblin;
         GameObject go;
+
 
 
         public Game1()
@@ -64,6 +65,8 @@ namespace Desolation
             
             fileLoader = new FileLoader();
             chunkManager = new ChunkManager();
+
+            camera = new Camera(GraphicsDevice.Viewport);
             Region tempRegion = fileLoader.loadRegionFile(0, 0);
             Globals.rand = new Random();
             TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion.fileStream);
@@ -94,6 +97,7 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            camera.update(new Vector2(player.getPOS().X - 500, player.getPOS().Y - 500));
             player.Update(gameTime);
             goblin.Update(gameTime);
             zombie.Update(gameTime);
@@ -110,7 +114,7 @@ namespace Desolation
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
 
 
             chunkManager.draw(spriteBatch);
@@ -118,6 +122,8 @@ namespace Desolation
             
             zombie.Draw(spriteBatch);
             goblin.Draw(spriteBatch);
+
+            
 
             spriteBatch.End();
             // TODO: Add your drawing code here

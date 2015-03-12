@@ -21,6 +21,7 @@ namespace Desolation
         protected MouseState _mState;
         protected KeyboardState _keyState;
         protected Int32 _scroll;
+        Player player = Game1.player;
 
         #endregion
 
@@ -69,6 +70,7 @@ namespace Desolation
             _rotation = 0.0f;
             _pos = Vector2.Zero;
             _viewport = viewport;
+     
         }
 
         #endregion
