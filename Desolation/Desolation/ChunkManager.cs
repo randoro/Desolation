@@ -21,6 +21,9 @@ namespace Desolation
             regionFiles = new List<Region>();
             chunkList = new List<Chunk>();
             ticksLastChunkLoad = DateTime.Now.Ticks;
+
+            chunkArray = new Chunk[12, 12];
+            Globals.shiftRight(chunkArray);
         }
 
         public void addRegion(Region newRegion)

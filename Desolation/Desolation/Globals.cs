@@ -19,5 +19,9 @@ namespace Desolation
         public static Random rand;
 
 
+        public static void shiftRight(ref Chunk[,] chunkArray) 
+        {
+            chunkArray[0,0] = new Chunk();
+        }
     }
 }
