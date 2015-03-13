@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Player  :   GameObject
+    class Player  :   Entity
     {
       
         int frame;
@@ -63,14 +63,6 @@ namespace Desolation
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
             }
-            
-            
-            
-            
-            
-            
-
-         
         }
         
        

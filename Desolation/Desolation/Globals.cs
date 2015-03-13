@@ -8,6 +8,7 @@ namespace Desolation
 {
 
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
+    public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
