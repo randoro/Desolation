@@ -13,6 +13,7 @@ namespace Desolation
 
         List<Region> regionFiles;
         List<Chunk> chunkList;
+        Chunk[,] chunkArray;
         long ticksLastChunkLoad;
 
         public ChunkManager()
