@@ -27,7 +27,35 @@ namespace Desolation
                     chunkArray[i * 12 + 11 - j] = chunkArray[i * 12 + 7 - j];
                 }
 
-                Array.Clear(chunkArray, i, 3);
+                Array.Clear(chunkArray, i*12, 4);
+            }
+        }
+
+
+
+        public static void shiftLeft(ref int[] chunkArray) //chunks moving left and right side getting null
+        {
+            for (int i = 0; i < 12; i++) //ycoords
+            {
+                for (int j = 0; j < 8; j++) //xcoords
+                {
+                    chunkArray[i * 12 + j] = chunkArray[i * 12 + j + 4];
+                }
+
+                Array.Clear(chunkArray, i * 12 + 8, 4);
+            }
+        }
+
+        public static void shiftUp(ref int[] chunkArray) //chunks moving up and down side getting null
+        {
+            for (int i = 0; i < 12; i++) //ycoords
+            {
+                for (int j = 0; j < 8; j++) //xcoords
+                {
+                    chunkArray[i * 12 + j] = chunkArray[i * 12 + j + 4];
+                }
+
+                Array.Clear(chunkArray, i * 12 + 8, 4);
             }
         }
     }

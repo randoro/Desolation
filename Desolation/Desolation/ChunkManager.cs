@@ -28,7 +28,7 @@ namespace Desolation
             {
                 chunkArray[i] = i;
             }
-            Globals.shiftRight(ref chunkArray);
+            Globals.shiftLeft(ref chunkArray);
             int temp = 0;
         }
 
