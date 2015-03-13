@@ -108,8 +108,49 @@ namespace Desolation
             chunkManager.update(gameTime);
 
             textureManager.runTimeLoading();
-            // TODO: Add your update logic here
 
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    player.moveDirection(Direction.NorthWest);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+                    player.moveDirection(Direction.NorthEast);
+                }
+                else
+                {
+                    player.moveDirection(Direction.North);
+                }
+
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    player.moveDirection(Direction.SouthWest);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+                    player.moveDirection(Direction.SouthEast);
+                }
+                else
+                {
+                    player.moveDirection(Direction.South);
+                }
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                player.moveDirection(Direction.West);
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                player.moveDirection(Direction.East);
+            }
+
+            // TODO: Add your update logic here
+            KeyMouseReader.Update();
             base.Update(gameTime);
         }
 

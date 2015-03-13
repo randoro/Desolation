@@ -65,12 +65,9 @@ namespace Desolation
             }*/
         }
 
-        public void moveDirection()
+        public override void moveDirection(Direction direction)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-              Globals.dir = Direction.North;
-            }
+            base.moveDirection(direction);
         }
         
        
