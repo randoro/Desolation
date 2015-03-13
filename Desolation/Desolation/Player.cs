@@ -18,6 +18,7 @@ namespace Desolation
       
         int frame;
         double frameTimer, frameInterval = 100;
+        Direction currentDirection;
         public Player(Vector2 position)
             : base(position)
         {
@@ -67,6 +68,7 @@ namespace Desolation
 
         public override void moveDirection(Direction direction)
         {
+            currentDirection = direction;
             base.moveDirection(direction);
         }
         
@@ -75,6 +77,44 @@ namespace Desolation
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TextureManager.playerSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+
+            switch (currentDirection)
+            {
+                case Direction.North:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.NorthEast:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.NorthWest:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.South:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.SouthEast:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.SouthWest:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.East:
+                    sourceRect.X = 3 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.West:
+                    sourceRect.X = 1 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.None:
+                    break;
+            }
         }
   
     }

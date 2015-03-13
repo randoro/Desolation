@@ -57,6 +57,8 @@ namespace Desolation
                     position.X--;
                     position.Y--;
                     break;
+                case Direction.None:
+                    break;
                 default:
                     break;
             }

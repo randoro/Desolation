@@ -148,6 +148,10 @@ namespace Desolation
             {
                 player.moveDirection(Direction.East);
             }
+            else
+            {
+                player.moveDirection(Direction.None);
+            }
 
             // TODO: Add your update logic here
             KeyMouseReader.Update();
