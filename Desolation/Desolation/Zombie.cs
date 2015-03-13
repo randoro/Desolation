@@ -26,7 +26,10 @@ namespace Desolation
             position = new Vector2(400, 300);
             this.player = player;
         }
-
+        public void moveDirection()
+        {
+            throw new NotImplementedException();
+        }
 
         public override void Update(GameTime gameTime)
         {

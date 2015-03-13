@@ -35,10 +35,10 @@ namespace Desolation
                 frame++;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 position.X--;
-             
+
                 sourceRect.X = 1 * 16;
                 sourceRect.Y = (frame % 4) * 16;
             }
@@ -62,6 +62,14 @@ namespace Desolation
 
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
+            }*/
+        }
+
+        public void moveDirection()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+              Globals.dir = Direction.North;
             }
         }
         

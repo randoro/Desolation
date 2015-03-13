@@ -24,10 +24,32 @@ namespace Desolation
 
         abstract public override void Draw(SpriteBatch spriteBatch);
 
-       public void moveNorth()
-           
+        public void moveDirection()
         {
-           
+            switch (Globals.dir)
+            {
+                case Direction.North:
+                    position.Y--;
+                    break;
+                case Direction.NorthEast:
+                    break;
+                case Direction.East:
+                  
+                    break;
+                case Direction.SouthEast:
+                    break;
+                case Direction.South:
+                    break;
+                case Direction.SouthWest:
+                    break;
+                case Direction.West:
+                    //position.X--;
+                    break;
+                case Direction.NorthWest:
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

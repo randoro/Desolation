@@ -14,7 +14,7 @@ namespace Desolation
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
         public static readonly int ticksPerChunkLoad = 10000000;
         public static readonly byte[] dataTypeSizes = { 0, 1, 2, 4, 8, 4, 8, 0, 0, 0, 0, 0 }; //datatypes in order of TagID's sizes
-
+        public static Direction dir;
         public static Texture2D tempsheet;
         public static Random rand;
 

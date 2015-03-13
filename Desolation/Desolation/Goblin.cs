@@ -30,6 +30,10 @@ namespace Desolation
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
         }
+        public void moveDirection()
+        {
+            throw new NotImplementedException();
+        }
 
         public override void Update(GameTime gameTime)
         {
