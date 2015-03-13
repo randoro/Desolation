@@ -19,9 +19,17 @@ namespace Desolation
         public static Random rand;
 
 
-        public static void shiftRight(ref Chunk[,] chunkArray) 
+        public static void shiftRight(ref int[] chunkArray) //chunks moving right and left side getting null
         {
-            chunkArray[0,0] = new Chunk();
+            for (int i = 0; i < 12; i++) //ycoords
+            {
+                for (int j = 0; j < 8; j++) //xcoords
+                {
+                    chunkArray[i * 12 + 11 - j] = chunkArray[i * 12 + 7 - j];
+                }
+
+                Array.Clear(chunkArray, i, 3);
+            }
         }
     }
 }

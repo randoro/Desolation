@@ -13,7 +13,7 @@ namespace Desolation
 
         List<Region> regionFiles;
         List<Chunk> chunkList;
-        Chunk[,] chunkArray;
+        int[] chunkArray;
         long ticksLastChunkLoad;
 
         public ChunkManager()
@@ -22,8 +22,14 @@ namespace Desolation
             chunkList = new List<Chunk>();
             ticksLastChunkLoad = DateTime.Now.Ticks;
 
-            chunkArray = new Chunk[12, 12];
+            chunkArray = new int[144];
+
+            for (int i = 0; i < 144; i++)
+            {
+                chunkArray[i] = i;
+            }
             Globals.shiftRight(ref chunkArray);
+            int temp = 0;
         }
 
         public void addRegion(Region newRegion)
