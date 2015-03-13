@@ -21,7 +21,6 @@ namespace Desolation
         protected MouseState _mState;
         protected KeyboardState _keyState;
         protected Int32 _scroll;
-        Player player = Game1.player;
 
         #endregion
 

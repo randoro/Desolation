@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    public class Zombie :Entity
+    class Zombie :Entity
     {
         int frame;
         double frameTimer, frameInterval = 100;
