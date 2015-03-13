@@ -24,7 +24,7 @@ namespace Desolation
 
         abstract public override void Draw(SpriteBatch spriteBatch);
 
-       public override void moveNorth()
+       public void moveNorth()
            
         {
            
