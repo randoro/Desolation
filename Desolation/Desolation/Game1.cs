@@ -18,7 +18,6 @@ namespace Desolation
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        FileLoader fileLoader;
         ChunkManager chunkManager;
         Camera camera;
         TextureManager textureManager;
@@ -48,8 +47,8 @@ namespace Desolation
         {
             // TODO: Add your initialization logic here
             //graphics.IsFullScreen = true;
-            graphics.PreferredBackBufferHeight = 1080;
-            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferWidth = Globals.screenX;
+            graphics.PreferredBackBufferHeight = Globals.screenY;
             graphics.ApplyChanges();
             base.Initialize();
         }
@@ -64,17 +63,16 @@ namespace Desolation
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
-            
-            fileLoader = new FileLoader();
+            Globals.rand = new Random();
+
             chunkManager = new ChunkManager();
 
             camera = new Camera(GraphicsDevice.Viewport);
             textureManager = new TextureManager(Content);
 
-            Region tempRegion = fileLoader.loadRegionFile(0, 0);
-            Globals.rand = new Random();
-            TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion.fileStream);
-            chunkManager.addRegion(tempRegion);
+            
+            
+            
 
             spriteSheet = Content.Load<Texture2D>("testSheet");
             zombieSheet = Content.Load<Texture2D>("ZombieSheet");
@@ -101,13 +99,16 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            camera.update(new Vector2(player.position.X - 500, player.position.Y - 500));
+            Globals.playerPos = player.position;
+
+            camera.update(new Vector2(Globals.playerPos.X - 500, Globals.playerPos.Y - 500));
             player.Update(gameTime);
             goblin.Update(gameTime);
             zombie.Update(gameTime);
             chunkManager.update(gameTime);
 
             textureManager.runTimeLoading();
+            
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {

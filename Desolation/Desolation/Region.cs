@@ -9,8 +9,8 @@ namespace Desolation
     class Region
     {
         public FileStream fileStream;
-        int xPosRegion;
-        int yPosRegion;
+        public int xPosRegion;
+        public int yPosRegion;
 
         public bool[] chunksLoaded;
 

@@ -8,8 +8,11 @@ namespace Desolation
 {
     class TempChunkCreator
     {
-        public TempChunkCreator(FileStream fileStream)
+        public TempChunkCreator(Region region)
         {
+
+            FileStream fileStream = region.fileStream;
+            
             bool writing = true;
             int chunks = 16;
 
@@ -26,10 +29,10 @@ namespace Desolation
 
                     makeCompound("chunk", fileStream);
 
-                    int XPos = i % 4;
+                    int XPos = region.xPosRegion * 4 + i % 4;
                     makeInt("XPos", XPos, fileStream);
 
-                    int YPos = i / 4;
+                    int YPos = region.yPosRegion * 4 + i / 4;
                     makeInt("YPos", YPos, fileStream);
 
                     makeLong("LastUpdate", 123456, fileStream);
