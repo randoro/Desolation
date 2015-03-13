@@ -23,7 +23,7 @@ namespace Desolation
             ticksLastChunkLoad = DateTime.Now.Ticks;
 
             chunkArray = new Chunk[12, 12];
-            Globals.shiftRight(chunkArray);
+            Globals.shiftRight(ref chunkArray);
         }
 
         public void addRegion(Region newRegion)
