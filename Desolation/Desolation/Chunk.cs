@@ -20,6 +20,8 @@ namespace Desolation
         public List<Tag>[] entities { set; get; }
         public List<Tag>[] tileEntities { set; get; }
 
+        public byte innerIndex; //0-16 which chunk in regionFile
+
         public Chunk()
         {
 

@@ -13,7 +13,7 @@ namespace Desolation
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly int ticksPerChunkLoad = 10000000;
+        public static readonly int ticksPerChunkLoad = 2000000;
         public static readonly byte[] dataTypeSizes = { 0, 1, 2, 4, 8, 4, 8, 0, 0, 0, 0, 0 }; //datatypes in order of TagID's sizes
         public static Texture2D tempsheet;
         public static Random rand;
@@ -70,28 +70,37 @@ namespace Desolation
 
         public static void shiftRegionsRight(ref Region[] regionArray) //regions moving right and left side getting null
         {
+            regionArray[2].fileStream.Dispose();
+            regionArray[5].fileStream.Dispose();
+            regionArray[8].fileStream.Dispose();
+
             regionArray[2] = regionArray[1];
             regionArray[1] = regionArray[0];
             regionArray[5] = regionArray[4];
             regionArray[4] = regionArray[3]; 
             regionArray[8] = regionArray[7];
             regionArray[7] = regionArray[6];
+
             Array.Clear(regionArray, 0, 1);
             Array.Clear(regionArray, 3, 1);
             Array.Clear(regionArray, 6, 1);
-            
         }
 
 
 
         public static void shiftRegionsLeft(ref Region[] regionArray) //regions moving left and right side getting null
         {
+            regionArray[0].fileStream.Dispose();
+            regionArray[3].fileStream.Dispose();
+            regionArray[6].fileStream.Dispose();
+
             regionArray[0] = regionArray[1];
             regionArray[1] = regionArray[2];
             regionArray[3] = regionArray[4];
             regionArray[4] = regionArray[5];
             regionArray[6] = regionArray[7];
             regionArray[7] = regionArray[8];
+
             Array.Clear(regionArray, 2, 1);
             Array.Clear(regionArray, 5, 1);
             Array.Clear(regionArray, 8, 1);
@@ -99,12 +108,17 @@ namespace Desolation
 
         public static void shiftRegionsUp(ref Region[] regionArray) //chunks moving up and down side getting null
         {
+            regionArray[0].fileStream.Dispose();
+            regionArray[1].fileStream.Dispose();
+            regionArray[2].fileStream.Dispose();
+
             regionArray[0] = regionArray[3];
             regionArray[1] = regionArray[4];
             regionArray[2] = regionArray[5];
             regionArray[3] = regionArray[6];
             regionArray[4] = regionArray[7];
             regionArray[5] = regionArray[8];
+
             Array.Clear(regionArray, 6, 1);
             Array.Clear(regionArray, 7, 1);
             Array.Clear(regionArray, 8, 1);
@@ -112,12 +126,17 @@ namespace Desolation
 
         public static void shiftRegionsDown(ref Region[] regionArray) //chunks moving up and down side getting null
         {
+            regionArray[6].fileStream.Dispose();
+            regionArray[7].fileStream.Dispose();
+            regionArray[8].fileStream.Dispose();
+
             regionArray[8] = regionArray[5];
             regionArray[7] = regionArray[4];
             regionArray[6] = regionArray[3];
             regionArray[5] = regionArray[2];
             regionArray[4] = regionArray[1];
             regionArray[3] = regionArray[0];
+
             Array.Clear(regionArray, 0, 1);
             Array.Clear(regionArray, 1, 1);
             Array.Clear(regionArray, 2, 1);

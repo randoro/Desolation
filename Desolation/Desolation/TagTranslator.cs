@@ -71,6 +71,7 @@ namespace Desolation
                             //chunk is not loaded and will be now
                             newChunk.XPos = chunkXPos;
                             newChunk.YPos = chunkYPos;
+                            newChunk.innerIndex = (byte)(localxPos + localyPos * 4);
                             regionFile.chunksLoaded[localxPos + localyPos * 4] = true;
                         }
 

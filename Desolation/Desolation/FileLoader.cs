@@ -23,7 +23,7 @@ namespace Desolation
                 FileStream fileStream = File.Open(Globals.gamePath + regionFolder + "x"+xPosRegion+".y"+yPosRegion+".region", FileMode.OpenOrCreate);
                 return new Region(fileStream, xPosRegion, yPosRegion);
             }
-            catch(IOException) {
+            catch(OutOfMemoryException) {
                 Console.WriteLine("region already loaded");
             }
             return null;

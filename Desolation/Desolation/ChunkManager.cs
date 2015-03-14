@@ -95,26 +95,53 @@ namespace Desolation
 
         public void update(GameTime gameTime, GameWindow window)
         {
+            long now = DateTime.Now.Ticks;
+            if (now > ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+            {
+
+
+                //time for new chunkLoad
+                //Console.WriteLine(now);
+                ticksLastChunkLoad = DateTime.Now.Ticks;
+
+
+                for (int i = 0; i < 9; i++)
+                {
+                    if (regionArray[i] != null)
+                    {
+                        Chunk newChunk = TagTranslator.getUnloadedChunk(regionArray[i]);
+                        if (newChunk != null)
+                        {
+                            byte innerIndex = newChunk.innerIndex;
+                            chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
+                        }
+                    }
+                }
+                //check if chunks in regionfile needs loading
+            }
+
             //set region file numbers (the region file the player is currently in)
             if (Globals.playerPos.X >= 0)
             {
                 newRegionX = (int)Globals.playerPos.X / 1024;
+                newChunkX = (int)Globals.playerPos.X / 256;
             }
             else
             {
                 newRegionX = (int)Globals.playerPos.X / 1024 - 1;
+                newChunkX = (int)Globals.playerPos.X / 256 - 1;
             }
 
             if (Globals.playerPos.Y >= 0)
             {
                 newRegionY = (int)Globals.playerPos.Y / 1024;
+                newChunkY = (int)Globals.playerPos.Y / 256;
             }
             else
             {
                 newRegionY = (int)Globals.playerPos.Y / 1024 - 1;
+                newChunkY = (int)Globals.playerPos.Y / 256 - 1;
             }
-            newChunkX = (int)Globals.playerPos.X / 256; //måste fixas
-            newChunkY = (int)Globals.playerPos.Y / 256; //måste fixas
 
             window.Title = "newRegionX:" + newRegionX + "  newRegionY:" + newRegionY;
 
@@ -126,6 +153,7 @@ namespace Desolation
                     
                     lastRegionX = newRegionX;
                     Globals.shiftRegionsRight(ref regionArray);
+                    Globals.shiftChunksRight(ref chunkArray);
 
                     Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                     if (tempRegion1 != null)
@@ -152,6 +180,7 @@ namespace Desolation
                 {
                     lastRegionX = newRegionX;
                     Globals.shiftRegionsLeft(ref regionArray);
+                    Globals.shiftChunksLeft(ref chunkArray);
 
                     Region tempRegion1 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                     if (tempRegion1 != null)
@@ -171,7 +200,7 @@ namespace Desolation
                         TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
                         regionArray[8] = tempRegion3;
                     }
-                    
+
                     
                     
                 }
@@ -181,6 +210,7 @@ namespace Desolation
                     lastRegionY = newRegionY;
 
                     Globals.shiftRegionsDown(ref regionArray);
+                    Globals.shiftChunksDown(ref chunkArray);
 
                     Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                     if (tempRegion1 != null)
@@ -207,6 +237,7 @@ namespace Desolation
                     lastRegionY = newRegionY;
 
                     Globals.shiftRegionsUp(ref regionArray);
+                    Globals.shiftChunksUp(ref chunkArray);
 
                     Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                     if (tempRegion1 != null)
@@ -230,29 +261,12 @@ namespace Desolation
 
             }
 
-
-            long now = DateTime.Now.Ticks;
-            if (now > ticksLastChunkLoad + Globals.ticksPerChunkLoad)
-            {
-
-                //time for new chunkLoad
-                //Console.WriteLine(now);
-                ticksLastChunkLoad = DateTime.Now.Ticks;
+            lastRegionX = newRegionX;
+            lastRegionY = newRegionY;
+            
 
                 
-                for (int i = 0; i < 9; i++)
-                {
-                    if (regionArray[i] != null)
-                    {
-                        Chunk newchunk = TagTranslator.getUnloadedChunk(regionArray[i]);
-                        if (newchunk != null)
-                        {
-                            chunkList.Add(newchunk);
-                        }
-                    }
-                }
-                //check if chunks in regionfile needs loading
-            }
+                
 
             foreach (Chunk e in chunkList)
             {
@@ -263,9 +277,12 @@ namespace Desolation
 
         public void draw(SpriteBatch spriteBatch)
         {
-            foreach (Chunk e in chunkList)
-            {
-                e.draw(spriteBatch);
+            for (int i = 0; i < 144; i++)
+			{
+                if(chunkArray[i] != null) 
+                { 
+                    chunkArray[i].draw(spriteBatch);
+                }
             }
         }
 
