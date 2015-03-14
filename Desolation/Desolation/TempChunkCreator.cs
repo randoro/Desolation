@@ -8,11 +8,17 @@ namespace Desolation
 {
     class TempChunkCreator
     {
-        public TempChunkCreator(Region region)
+        public TempChunkCreator()
         {
 
-            FileStream fileStream = region.fileStream;
             
+
+        }
+
+        public void makeRandomChunk(Region region)
+        {
+            FileStream fileStream = region.fileStream;
+
             bool writing = true;
             int chunks = 16;
 
@@ -31,7 +37,7 @@ namespace Desolation
 
                     int XPos = region.xPosRegion * 4 + i % 4;
                     makeInt("XPos", XPos, fileStream);
-                    
+
                     int YPos = region.yPosRegion * 4 + i / 4;
                     makeInt("YPos", YPos, fileStream);
 
@@ -62,7 +68,61 @@ namespace Desolation
                 makeEnd(fileStream);
 
             }
+        }
 
+        public void makeEmptyChunk(Region region)
+        {
+            FileStream fileStream = region.fileStream;
+
+            bool writing = true;
+            int chunks = 16;
+
+            if (writing)
+            {
+
+                makeCompound("region", fileStream);
+
+
+
+
+                for (int i = 0; i < chunks; i++)
+                {
+
+                    makeCompound("chunk", fileStream);
+
+                    int XPos = region.xPosRegion * 4 + i % 4;
+                    makeInt("XPos", XPos, fileStream);
+
+                    int YPos = region.yPosRegion * 4 + i / 4;
+                    makeInt("YPos", YPos, fileStream);
+
+                    makeLong("LastUpdate", 123456, fileStream);
+
+                    makeByte("TerrainPopulated", 0, fileStream);
+
+                    makeLong("InhabitedTime", 1337, fileStream);
+
+                    byte[] biomes = new byte[256];
+                    makeByteArray("Biomes", biomes, fileStream);
+
+                    byte[] blocks = new byte[256];
+                    for (int j = 0; j < blocks.Length; j++)
+                    {
+                        blocks[j] = (byte)0;
+                    }
+                    makeByteArray("Blocks", blocks, fileStream);
+
+                    byte[] objects = new byte[256];
+                    makeByteArray("Objects", objects, fileStream);
+
+
+                    makeEnd(fileStream);
+
+                }
+
+                makeEnd(fileStream);
+
+            }
         }
 
         public void makeCompound(String TagNamn, FileStream fileStream)
