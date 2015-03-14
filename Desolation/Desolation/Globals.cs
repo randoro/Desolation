@@ -22,7 +22,7 @@ namespace Desolation
         public static readonly int screenY = 1080;
 
 
-        public static void shiftRight(ref int[] chunkArray) //chunks moving right and left side getting null
+        public static void shiftChunksRight(ref Chunk[] chunkArray) //chunks moving right and left side getting null
         {
             for (int i = 0; i < 12; i++) //ycoords
             {
@@ -37,7 +37,7 @@ namespace Desolation
 
 
 
-        public static void shiftLeft(ref int[] chunkArray) //chunks moving left and right side getting null
+        public static void shiftChunksLeft(ref Chunk[] chunkArray) //chunks moving left and right side getting null
         {
             for (int i = 0; i < 12; i++) //ycoords
             {
@@ -50,7 +50,7 @@ namespace Desolation
             }
         }
 
-        public static void shiftUp(ref int[] chunkArray) //chunks moving up and down side getting null
+        public static void shiftChunksUp(ref Chunk[] chunkArray) //chunks moving up and down side getting null
         {
             for (int i = 0; i < 96; i++) //ycoords
             {
@@ -59,13 +59,68 @@ namespace Desolation
             Array.Clear(chunkArray, 96, 48);
         }
 
-        public static void shiftDown(ref int[] chunkArray) //chunks moving up and down side getting null
+        public static void shiftChunksDown(ref Chunk[] chunkArray) //chunks moving up and down side getting null
         {
             for (int i = 96; i > 0; i--) //ycoords
             {
                 chunkArray[i + 47] = chunkArray[i - 1];
             }
             Array.Clear(chunkArray, 0, 48);
+        }
+
+        public static void shiftRegionsRight(ref Region[] regionArray) //regions moving right and left side getting null
+        {
+            regionArray[2] = regionArray[1];
+            regionArray[1] = regionArray[0];
+            regionArray[5] = regionArray[4];
+            regionArray[4] = regionArray[3]; 
+            regionArray[8] = regionArray[7];
+            regionArray[7] = regionArray[6];
+            Array.Clear(regionArray, 0, 1);
+            Array.Clear(regionArray, 3, 1);
+            Array.Clear(regionArray, 6, 1);
+            
+        }
+
+
+
+        public static void shiftRegionsLeft(ref Region[] regionArray) //regions moving left and right side getting null
+        {
+            regionArray[0] = regionArray[1];
+            regionArray[1] = regionArray[2];
+            regionArray[3] = regionArray[4];
+            regionArray[4] = regionArray[5];
+            regionArray[6] = regionArray[7];
+            regionArray[7] = regionArray[8];
+            Array.Clear(regionArray, 2, 1);
+            Array.Clear(regionArray, 5, 1);
+            Array.Clear(regionArray, 8, 1);
+        }
+
+        public static void shiftRegionsUp(ref Region[] regionArray) //chunks moving up and down side getting null
+        {
+            regionArray[0] = regionArray[3];
+            regionArray[1] = regionArray[4];
+            regionArray[2] = regionArray[5];
+            regionArray[3] = regionArray[6];
+            regionArray[4] = regionArray[7];
+            regionArray[5] = regionArray[8];
+            Array.Clear(regionArray, 6, 1);
+            Array.Clear(regionArray, 7, 1);
+            Array.Clear(regionArray, 8, 1);
+        }
+
+        public static void shiftRegionsDown(ref Region[] regionArray) //chunks moving up and down side getting null
+        {
+            regionArray[8] = regionArray[5];
+            regionArray[7] = regionArray[4];
+            regionArray[6] = regionArray[3];
+            regionArray[5] = regionArray[2];
+            regionArray[4] = regionArray[1];
+            regionArray[3] = regionArray[0];
+            Array.Clear(regionArray, 0, 1);
+            Array.Clear(regionArray, 1, 1);
+            Array.Clear(regionArray, 2, 1);
         }
     }
 }

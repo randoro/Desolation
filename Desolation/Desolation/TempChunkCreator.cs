@@ -31,7 +31,7 @@ namespace Desolation
 
                     int XPos = region.xPosRegion * 4 + i % 4;
                     makeInt("XPos", XPos, fileStream);
-
+                    
                     int YPos = region.yPosRegion * 4 + i / 4;
                     makeInt("YPos", YPos, fileStream);
 

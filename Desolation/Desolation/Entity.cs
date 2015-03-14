@@ -29,33 +29,33 @@ namespace Desolation
             switch (direction)
             {
                 case Direction.North:
-                    position.Y--;
+                    position.Y -= 5;
                     
                     break;
                 case Direction.NorthEast:
-                    position.X++;
-                    position.Y--;
+                    position.X += 5;
+                    position.Y -= 5;
                     break;
                 case Direction.East:
-                    position.X++;
+                    position.X += 5;
                     break;
                 case Direction.SouthEast:
-                    position.X++;
-                    position.Y++;
+                    position.X += 5;
+                    position.Y += 5;
                     break;
                 case Direction.South:
-                    position.Y++;
+                    position.Y += 5;
                     break;
                 case Direction.SouthWest:
-                    position.X--;
-                    position.Y++;
+                    position.X -= 5;
+                    position.Y += 5;
                     break;
                 case Direction.West:
-                    position.X--;
+                    position.X -= 5;
                     break;
                 case Direction.NorthWest:
-                    position.X--;
-                    position.Y--;
+                    position.X -= 5;
+                    position.Y -= 5;
                     break;
                 case Direction.None:
                     break;

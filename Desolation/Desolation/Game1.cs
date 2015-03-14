@@ -101,11 +101,11 @@ namespace Desolation
 
             Globals.playerPos = player.position;
 
-            camera.update(new Vector2(Globals.playerPos.X - 500, Globals.playerPos.Y - 500));
+            camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
             player.Update(gameTime);
             goblin.Update(gameTime);
             zombie.Update(gameTime);
-            chunkManager.update(gameTime);
+            chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();
             

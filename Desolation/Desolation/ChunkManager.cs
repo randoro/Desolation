@@ -14,7 +14,8 @@ namespace Desolation
         List<Region> regionFiles;
         List<Chunk> chunkList;
         FileLoader fileLoader;
-        int[] chunkArray;
+        Chunk[] chunkArray;
+        Region[] regionArray;
         long ticksLastChunkLoad;
 
         int lastRegionX;
@@ -33,21 +34,58 @@ namespace Desolation
             chunkList = new List<Chunk>();
             fileLoader = new FileLoader();
             ticksLastChunkLoad = DateTime.Now.Ticks;
+            regionArray = new Region[9];
 
-            Region tempRegion = fileLoader.loadRegionFile(0, 0);
-            TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion);
-            addRegion(tempRegion);
+
+                Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
+                TempChunkCreator tempChunkCreator0 = new TempChunkCreator(tempRegion0);
+                regionArray[0] = tempRegion0;
+
+                Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
+                TempChunkCreator tempChunkCreator1 = new TempChunkCreator(tempRegion1);
+                regionArray[1] = tempRegion1;
+
+                Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
+                TempChunkCreator tempChunkCreator2 = new TempChunkCreator(tempRegion2);
+                regionArray[2] = tempRegion2;
+
+                Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);
+                TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
+                regionArray[3] = tempRegion3;
+
+                Region tempRegion4 = fileLoader.loadRegionFile(0, 0);
+                TempChunkCreator tempChunkCreator4 = new TempChunkCreator(tempRegion4);
+                regionArray[4] = tempRegion4;
+
+                Region tempRegion5 = fileLoader.loadRegionFile(1, 0);
+                TempChunkCreator tempChunkCreator5 = new TempChunkCreator(tempRegion5);
+                regionArray[5] = tempRegion5;
+
+                Region tempRegion6 = fileLoader.loadRegionFile(-1, 1);
+                TempChunkCreator tempChunkCreator6 = new TempChunkCreator(tempRegion6);
+                regionArray[6] = tempRegion6;
+
+                Region tempRegion7 = fileLoader.loadRegionFile(0, 1);
+                TempChunkCreator tempChunkCreator7 = new TempChunkCreator(tempRegion7);
+                regionArray[7] = tempRegion7;
+
+                Region tempRegion8 = fileLoader.loadRegionFile(1, 1);
+                TempChunkCreator tempChunkCreator8 = new TempChunkCreator(tempRegion8);
+                regionArray[8] = tempRegion8;
+
+
             
 
 
-            chunkArray = new int[144];
+            chunkArray = new Chunk[144];
+            
 
-            for (int i = 0; i < 144; i++)
-            {
-                chunkArray[i] = i;
-            }
-            Globals.shiftDown(ref chunkArray);
-            int temp = 0;
+            //for (int i = 0; i < 144; i++)
+            //{
+            //    chunkArray[i] = i;
+            //}
+            //Globals.shiftChunksDown(ref chunkArray);
+            //int temp = 0;
         }
 
         public void addRegion(Region newRegion)
@@ -55,23 +93,141 @@ namespace Desolation
             regionFiles.Add(newRegion);
         }
 
-        public void update(GameTime gameTime)
+        public void update(GameTime gameTime, GameWindow window)
         {
             //set region file numbers (the region file the player is currently in)
-            newRegionX = (int)Globals.playerPos.X / 1024;
-            newRegionY = (int)Globals.playerPos.Y / 1024;
-            newChunkX = (int)Globals.playerPos.X / 256;
-            newChunkY = (int)Globals.playerPos.Y / 256;
+            if (Globals.playerPos.X >= 0)
+            {
+                newRegionX = (int)Globals.playerPos.X / 1024;
+            }
+            else
+            {
+                newRegionX = (int)Globals.playerPos.X / 1024 - 1;
+            }
+
+            if (Globals.playerPos.Y >= 0)
+            {
+                newRegionY = (int)Globals.playerPos.Y / 1024;
+            }
+            else
+            {
+                newRegionY = (int)Globals.playerPos.Y / 1024 - 1;
+            }
+            newChunkX = (int)Globals.playerPos.X / 256; //måste fixas
+            newChunkY = (int)Globals.playerPos.Y / 256; //måste fixas
+
+            window.Title = "newRegionX:" + newRegionX + "  newRegionY:" + newRegionY;
 
             if (newRegionX != lastRegionX || newRegionY != lastRegionY)
             {
-                //time for new region file load
-                lastRegionX = newRegionX;
-                lastRegionY = newRegionY;
+                
+                if (newRegionX < lastRegionX)
+                {
+                    
+                    lastRegionX = newRegionX;
+                    Globals.shiftRegionsRight(ref regionArray);
 
-                Region tempRegion = fileLoader.loadRegionFile(newRegionX, newRegionY);
-                TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion);
-                addRegion(tempRegion);
+                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                    if (tempRegion1 != null)
+                    {
+                        TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion1);
+                        regionArray[0] = tempRegion1;
+                    }
+
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                    if (tempRegion2 != null)
+                    {
+                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator(tempRegion2);
+                        regionArray[3] = tempRegion2;
+                    }
+                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                    if (tempRegion3 != null)
+                    {
+                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
+                        regionArray[6] = tempRegion3;
+                    }
+
+                }
+                else if (newRegionX > lastRegionX)
+                {
+                    lastRegionX = newRegionX;
+                    Globals.shiftRegionsLeft(ref regionArray);
+
+                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                    if (tempRegion1 != null)
+                    {
+                        TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion1);
+                        regionArray[2] = tempRegion1;
+                    }
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                    if (tempRegion2 != null)
+                    {
+                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator(tempRegion2);
+                        regionArray[5] = tempRegion2;
+                    }
+                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                    if (tempRegion3 != null)
+                    {
+                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
+                        regionArray[8] = tempRegion3;
+                    }
+                    
+                    
+                    
+                }
+
+                if (newRegionY < lastRegionY)
+                {
+                    lastRegionY = newRegionY;
+
+                    Globals.shiftRegionsDown(ref regionArray);
+
+                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                    if (tempRegion1 != null)
+                    {
+                        TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion1);
+                        regionArray[0] = tempRegion1;
+                    }
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                    if (tempRegion2 != null)
+                    {
+                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator(tempRegion2);
+                        regionArray[1] = tempRegion2;
+                    }
+                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                    if (tempRegion3 != null)
+                    {
+                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
+                        regionArray[2] = tempRegion3;
+                    }
+
+                }
+                else if (newRegionY > lastRegionY)
+                {
+                    lastRegionY = newRegionY;
+
+                    Globals.shiftRegionsUp(ref regionArray);
+
+                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                    if (tempRegion1 != null)
+                    {
+                        TempChunkCreator tempChunkCreator = new TempChunkCreator(tempRegion1);
+                        regionArray[6] = tempRegion1;
+                    }
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                    if (tempRegion2 != null)
+                    {
+                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator(tempRegion2);
+                        regionArray[7] = tempRegion2;
+                    }
+                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                    if (tempRegion3 != null)
+                    {
+                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator(tempRegion3);
+                        regionArray[8] = tempRegion3;
+                    }
+                }
+
             }
 
 
@@ -79,21 +235,20 @@ namespace Desolation
             if (now > ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
 
-                if (regionFiles.Count > 1)
-                {
-                    int derp = 0;
-                }
-
                 //time for new chunkLoad
                 //Console.WriteLine(now);
                 ticksLastChunkLoad = DateTime.Now.Ticks;
 
-                foreach (Region reg in regionFiles)
+                
+                for (int i = 0; i < 9; i++)
                 {
-                    Chunk newchunk = TagTranslator.getUnloadedChunk(reg);
-                    if (newchunk != null)
+                    if (regionArray[i] != null)
                     {
-                        chunkList.Add(newchunk);
+                        Chunk newchunk = TagTranslator.getUnloadedChunk(regionArray[i]);
+                        if (newchunk != null)
+                        {
+                            chunkList.Add(newchunk);
+                        }
                     }
                 }
                 //check if chunks in regionfile needs loading
