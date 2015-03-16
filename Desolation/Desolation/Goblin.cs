@@ -19,8 +19,8 @@ namespace Desolation
 
         Direction currentDirection;
 
-        double totalElapsedSeconds = 0;
-        const double MovementChangeTimeSeconds = 1.0; //seconds
+        double totalElapsedSeconds = 2;
+        const double MovementChangeTimeSeconds = 2.0; //seconds
 
         int frame;
         double frameTimer, frameInterval = 100;
