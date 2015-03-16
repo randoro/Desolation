@@ -19,6 +19,7 @@ namespace Desolation
         double frameTimer, frameInterval = 100;
         int range = 250;
         Player player;
+        Direction currentDirection;
         public Zombie(Player player, Vector2 pos)
             : base(pos)
         {
@@ -26,16 +27,17 @@ namespace Desolation
             position = new Vector2(400, 300);
             this.player = player;
         }
-        public void moveDirection()
+        public override void moveDirection(Direction direction)
         {
-            throw new NotImplementedException();
+            currentDirection = direction;
+            base.moveDirection(direction);
         }
 
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-
+            moveDirection(currentDirection);
             //måste fixas
             if (frameTimer <= 0)
             {
@@ -44,26 +46,30 @@ namespace Desolation
             }
             if (player.position.X > position.X && ((player.position.X - position.X)) < range)
            {
-               position.X += 0.5f;
+               currentDirection = Direction.East; 
+              // position.X += 0.5f;
                sourceRect.X = 3 * 16;
                sourceRect.Y = (frame % 4) * 16;
 
            }
             if (player.position.X < position.X && ((player.position.X - position.X)) > -range)
             {
-                position.X -= 0.5f;
+                currentDirection = Direction.West; 
+               // position.X -= 0.5f;
                 sourceRect.X = 1 * 16;
                 sourceRect.Y = (frame % 4) * 16;
             }
             if (player.position.Y < position.Y && ((player.position.Y - position.Y)) > -range)
             {
-                position.Y -= 0.5f;
+                currentDirection = Direction.North; 
+                //  position.Y -= 0.5f;
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
             }
             if (player.position.Y > position.Y && ((player.position.Y - position.Y)) < range)
             {
-                position.Y += 0.5f;
+                currentDirection = Direction.South; 
+               // position.Y += 0.5f;
                 sourceRect.X = 0 * 16;
                 sourceRect.Y = (frame % 4) * 16;
             }
