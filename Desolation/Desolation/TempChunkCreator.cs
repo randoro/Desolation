@@ -109,6 +109,7 @@ namespace Desolation
                     {
                         blocks[j] = (byte)0;
                     }
+                    blocks[39] = (byte)1;
                     makeByteArray("Blocks", blocks, fileStream);
 
                     byte[] objects = new byte[256];

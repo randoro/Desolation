@@ -82,9 +82,29 @@ namespace Desolation
            int chunkOffsetX = entityChunkX - playerChunkX;
            int chunkOffsetY = entityChunkY - playerChunkY;
 
-           window.Title = "chunkOffsetX:" + chunkOffsetX + " chunkOffsetY:" + chunkOffsetY;
+           //window.Title = "chunkOffsetX:" + chunkOffsetX + " chunkOffsetY:" + chunkOffsetY;
 
+           int internChunkPosInRegionX;
+           int internChunkPosInRegionY;
 
+           if (playerChunkX >= 0)
+           {
+               internChunkPosInRegionX = playerChunkX % 4;
+           }
+           else
+           {
+               internChunkPosInRegionX = 3 + (playerChunkX + 1) % 4;
+           }
+
+           if (playerChunkY >= 0)
+           {
+               internChunkPosInRegionY = playerChunkY / 4;
+           }
+           else
+           {
+               internChunkPosInRegionY = 3 + (playerChunkY - 1) / 4;
+           }
+           window.Title = "internChunkPosInRegionX:" + internChunkPosInRegionX + " internChunkPosInRegionY:" + internChunkPosInRegionY;
 
 
        }
