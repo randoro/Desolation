@@ -44,11 +44,10 @@ namespace Desolation
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
-                this.gDir = GetRandomDirection(currentDirection);
+                currentDirection = GetRandomDirection();
             }
 
-            position += gDir; 
-
+            base.moveDirection(currentDirection);
             //position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -102,59 +101,74 @@ namespace Desolation
             spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
-        Vector2 GetRandomDirection(Direction currentDirection)
+        public Direction GetRandomDirection()
         {
-            Random random = new Random();
-            int randomDirection = random.Next(8);
+            int randomDirection = Globals.rand.Next(8);
 
             switch (randomDirection)
             {
+                case 0:
+                    return Direction.North;
+                    break;
                 case 1:
-                    return new Vector2(-1, 0);
+                    return Direction.NorthEast;
+                    break;
                 case 2:
-                    return new Vector2(1, 0);
+                    return Direction.East;
+                    break;
                 case 3:
-                    return new Vector2(0, -1);
+                    return Direction.SouthEast;
+                    break;
                 case 4:
-                    return new Vector2(0, 1);
+                    return Direction.South;
+                    break;
                 case 5:
-                    return new Vector2(-1, -1);
+                    return Direction.SouthWest;
+                    break;
                 case 6:
-                    return new Vector2(1, 1);
+                    return Direction.West;
+                    break;
+                case 7:
+                    return Direction.NorthWest;
+                    break;
                 default:
-                    return Vector2.Zero;
+                    return Direction.None;
+                    break;
             }
+
+
+
         }
 
-        public override void moveDirection(Direction direction)
-        {
-            if (direction < 0)
-            {
-                if (direction < 0)
-                    direction = Direction.NorthWest;
-                else if (direction > 0)
-                    direction = Direction.NorthEast;
-                else
-                    direction = Direction.North;
-            }
-            else if (direction > 0)
-            {
-                if (direction < 0)
-                    direction = Direction.SouthWest;
-                else if (direction > 0)
-                    direction = Direction.SouthEast;
-                else
-                    direction = Direction.South;
-            }
-            else
-            {
-                if (direction < 0)
-                    direction = Direction.West;
-                else if (direction > 0)
-                    direction = Direction.East;
-                else
-                    direction = Direction.None;
-            }
-        }
+        //public override void moveDirection(Direction direction)
+        //{
+        //    if (direction < 0)
+        //    {
+        //        if (direction < 0)
+        //            direction = Direction.NorthWest;
+        //        else if (direction > 0)
+        //            direction = Direction.NorthEast;
+        //        else
+        //            direction = Direction.North;
+        //    }
+        //    else if (direction > 0)
+        //    {
+        //        if (direction < 0)
+        //            direction = Direction.SouthWest;
+        //        else if (direction > 0)
+        //            direction = Direction.SouthEast;
+        //        else
+        //            direction = Direction.South;
+        //    }
+        //    else
+        //    {
+        //        if (direction < 0)
+        //            direction = Direction.West;
+        //        else if (direction > 0)
+        //            direction = Direction.East;
+        //        else
+        //            direction = Direction.None;
+        //    }
+        //}
     }
 }
