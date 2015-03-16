@@ -29,12 +29,7 @@ namespace Desolation
         {
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
-<<<<<<< HEAD
-=======
             speed = 1;
-
-            
->>>>>>> origin/master
         }
 
         public override void Update(GameTime gameTime)
