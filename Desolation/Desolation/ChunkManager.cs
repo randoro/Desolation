@@ -145,126 +145,446 @@ namespace Desolation
                 
                 if (newRegionX < lastRegionX)
                 {
-                    
+                    if (newRegionY < lastRegionY)
+                    {
+                        //northwest
+                        lastRegionX = newRegionX;
+                        lastRegionY = newRegionY;
+
+                        Globals.shiftRegionsDown(ref regionArray);
+                        Globals.shiftChunksDown(ref chunkArray);
+
+                        Globals.shiftRegionsRight(ref regionArray);
+                        Globals.shiftChunksRight(ref chunkArray);
+
+                        Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                        if (tempRegion0 != null)
+                        {
+                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+                            tempChunkCreator0.makeRandomChunk(tempRegion0);
+                            regionArray[0] = tempRegion0;
+                        }
+                        Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                        if (tempRegion1 != null)
+                        {
+                            TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
+                            tempChunkCreator1.makeRandomChunk(tempRegion1);
+                            regionArray[1] = tempRegion1;
+                        }
+                        Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                        if (tempRegion2 != null)
+                        {
+                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+                            tempChunkCreator2.makeRandomChunk(tempRegion2);
+                            regionArray[2] = tempRegion2;
+                        }
+                        Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                        if (tempRegion3 != null)
+                        {
+                            TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+                            tempChunkCreator3.makeRandomChunk(tempRegion3);
+                            regionArray[3] = tempRegion3;
+                        }
+                        Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                        if (tempRegion6 != null)
+                        {
+                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
+                            tempChunkCreator6.makeRandomChunk(tempRegion6);
+                            regionArray[6] = tempRegion6;
+                        }
+                    }
+                    else if (newRegionY > lastRegionY)
+                    {
+                        //southwest
+                        lastRegionX = newRegionX;
+                        lastRegionY = newRegionY;
+                        Globals.shiftRegionsUp(ref regionArray);
+                        Globals.shiftChunksUp(ref chunkArray);
+
+                        Globals.shiftRegionsRight(ref regionArray);
+                        Globals.shiftChunksRight(ref chunkArray);
+
+                        Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                        if (tempRegion6 != null)
+                        {
+                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
+                            tempChunkCreator6.makeRandomChunk(tempRegion6);
+                            regionArray[6] = tempRegion6;
+                        }
+                        Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                        if (tempRegion7 != null)
+                        {
+                            TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
+                            tempChunkCreator7.makeRandomChunk(tempRegion7);
+                            regionArray[7] = tempRegion7;
+                        }
+                        Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                        if (tempRegion8 != null)
+                        {
+                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
+                            tempChunkCreator8.makeRandomChunk(tempRegion8);
+                            regionArray[8] = tempRegion8;
+                        }
+                        Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                        if (tempRegion0 != null)
+                        {
+                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+                            tempChunkCreator0.makeRandomChunk(tempRegion0);
+                            regionArray[0] = tempRegion0;
+                        }
+
+                        Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                        if (tempRegion3 != null)
+                        {
+                            TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+                            tempChunkCreator3.makeRandomChunk(tempRegion3);
+                            regionArray[3] = tempRegion3;
+                        }
+                    }
+                    else
+                    {
+                        //west
+                        lastRegionX = newRegionX;
                     Globals.shiftRegionsRight(ref regionArray);
                     Globals.shiftChunksRight(ref chunkArray);
 
-                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                    if (tempRegion1 != null)
+                    Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                    if (tempRegion0 != null)
                     {
-                        TempChunkCreator tempChunkCreator = new TempChunkCreator();
-                        tempChunkCreator.makeRandomChunk(tempRegion1);
-                        regionArray[0] = tempRegion1;
+                        TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+                        tempChunkCreator0.makeRandomChunk(tempRegion0);
+                        regionArray[0] = tempRegion0;
                     }
 
-                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
-                    if (tempRegion2 != null)
-                    {
-                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                        tempChunkCreator2.makeRandomChunk(tempRegion2);
-                        regionArray[3] = tempRegion2;
-                    }
-                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
                     if (tempRegion3 != null)
                     {
                         TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
                         tempChunkCreator3.makeRandomChunk(tempRegion3);
-                        regionArray[6] = tempRegion3;
+                        regionArray[3] = tempRegion3;
+                    }
+                    Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                    if (tempRegion6 != null)
+                    {
+                        TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
+                        tempChunkCreator6.makeRandomChunk(tempRegion6);
+                        regionArray[6] = tempRegion6;
+                    }
                     }
 
-                }
-                else if (newRegionX > lastRegionX)
+                } else if (newRegionX > lastRegionX)
                 {
-                    lastRegionX = newRegionX;
+                    if (newRegionY < lastRegionY)
+                    {
+                        //northeast
+                        lastRegionX = newRegionX;
+                        lastRegionY = newRegionY;
+                        Globals.shiftRegionsLeft(ref regionArray);
+                        Globals.shiftChunksLeft(ref chunkArray);
+
+                        Globals.shiftRegionsDown(ref regionArray);
+                        Globals.shiftChunksDown(ref chunkArray);
+
+
+                        Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                        if (tempRegion0 != null)
+                        {
+                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+                            tempChunkCreator0.makeRandomChunk(tempRegion0);
+                            regionArray[0] = tempRegion0;
+                        }
+                        Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                        if (tempRegion1 != null)
+                        {
+                            TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
+                            tempChunkCreator1.makeRandomChunk(tempRegion1);
+                            regionArray[1] = tempRegion1;
+                        }
+
+                        Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                        if (tempRegion2 != null)
+                        {
+                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+                            tempChunkCreator2.makeRandomChunk(tempRegion2);
+                            regionArray[2] = tempRegion2;
+                        }
+                        Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                        if (tempRegion5 != null)
+                        {
+                            TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
+                            tempChunkCreator5.makeRandomChunk(tempRegion5);
+                            regionArray[5] = tempRegion5;
+                        }
+                        Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                        if (tempRegion8 != null)
+                        {
+                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
+                            tempChunkCreator8.makeRandomChunk(tempRegion8);
+                            regionArray[8] = tempRegion8;
+                        }
+
+                    }
+                    else if (newRegionY > lastRegionY)
+                    {
+                        //southeast
+                        lastRegionX = newRegionX;
+                        lastRegionY = newRegionY;
+                        Globals.shiftRegionsUp(ref regionArray);
+                        Globals.shiftChunksUp(ref chunkArray);
+
+                        Globals.shiftRegionsLeft(ref regionArray);
+                        Globals.shiftChunksLeft(ref chunkArray);
+
+                        Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                        if (tempRegion6 != null)
+                        {
+                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
+                            tempChunkCreator6.makeRandomChunk(tempRegion6);
+                            regionArray[6] = tempRegion6;
+                        }
+                        Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                        if (tempRegion7 != null)
+                        {
+                            TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
+                            tempChunkCreator7.makeRandomChunk(tempRegion7);
+                            regionArray[7] = tempRegion7;
+                        }
+                        Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                        if (tempRegion8 != null)
+                        {
+                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
+                            tempChunkCreator8.makeRandomChunk(tempRegion8);
+                            regionArray[8] = tempRegion8;
+                        }
+                        Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                        if (tempRegion2 != null)
+                        {
+                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+                            tempChunkCreator2.makeRandomChunk(tempRegion2);
+                            regionArray[2] = tempRegion2;
+                        }
+                        Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                        if (tempRegion5 != null)
+                        {
+                            TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
+                            tempChunkCreator5.makeRandomChunk(tempRegion5);
+                            regionArray[5] = tempRegion5;
+                        }
+                    }
+                    else
+                    {
+                        //east
+                        lastRegionX = newRegionX;
                     Globals.shiftRegionsLeft(ref regionArray);
                     Globals.shiftChunksLeft(ref chunkArray);
 
-                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                    if (tempRegion1 != null)
-                    {
-                        TempChunkCreator tempChunkCreator = new TempChunkCreator();
-                        tempChunkCreator.makeRandomChunk(tempRegion1);
-                        regionArray[2] = tempRegion1;
-                    }
-                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                     if (tempRegion2 != null)
                     {
                         TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
                         tempChunkCreator2.makeRandomChunk(tempRegion2);
-                        regionArray[5] = tempRegion2;
+                        regionArray[2] = tempRegion2;
                     }
-                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                    if (tempRegion3 != null)
+                    Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                    if (tempRegion5 != null)
                     {
-                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                        tempChunkCreator3.makeRandomChunk(tempRegion3);
-                        regionArray[8] = tempRegion3;
+                        TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
+                        tempChunkCreator5.makeRandomChunk(tempRegion5);
+                        regionArray[5] = tempRegion5;
+                    }
+                    Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                    if (tempRegion8 != null)
+                    {
+                        TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
+                        tempChunkCreator8.makeRandomChunk(tempRegion8);
+                        regionArray[8] = tempRegion8;
+                    }
                     }
 
-                    
-                    
                 }
-
-                if (newRegionY < lastRegionY)
+                else 
                 {
-
+                    if (newRegionY < lastRegionY)
+                    {
+                        //north
+                        lastRegionY = newRegionY;
                     Globals.shiftRegionsDown(ref regionArray);
                     Globals.shiftChunksDown(ref chunkArray);
 
-                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                    Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                    if (tempRegion0 != null)
+                    {
+                        TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+                        tempChunkCreator0.makeRandomChunk(tempRegion0);
+                        regionArray[0] = tempRegion0;
+                    }
+                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
                     if (tempRegion1 != null)
                     {
-                        TempChunkCreator tempChunkCreator = new TempChunkCreator();
-                        tempChunkCreator.makeRandomChunk(tempRegion1);
-                        regionArray[0] = tempRegion1;
+                        TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
+                        tempChunkCreator1.makeRandomChunk(tempRegion1);
+                        regionArray[1] = tempRegion1;
                     }
-                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                     if (tempRegion2 != null)
                     {
                         TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
                         tempChunkCreator2.makeRandomChunk(tempRegion2);
-                        regionArray[1] = tempRegion2;
+                        regionArray[2] = tempRegion2;
                     }
-                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                    if (tempRegion3 != null)
+                    }
+                    else if (newRegionY > lastRegionY)
                     {
-                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                        tempChunkCreator3.makeRandomChunk(tempRegion3);
-                        regionArray[2] = tempRegion3;
-                    }
-
-                }
-                else if (newRegionY > lastRegionY)
-                {
-
+                        //south
+                        lastRegionY = newRegionY;
                     Globals.shiftRegionsUp(ref regionArray);
                     Globals.shiftChunksUp(ref chunkArray);
 
-                    Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                    if (tempRegion1 != null)
+                    Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                    if (tempRegion6 != null)
                     {
-                        TempChunkCreator tempChunkCreator = new TempChunkCreator();
-                        tempChunkCreator.makeRandomChunk(tempRegion1);
-                        regionArray[6] = tempRegion1;
+                        TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
+                        tempChunkCreator6.makeRandomChunk(tempRegion6);
+                        regionArray[6] = tempRegion6;
                     }
-                    Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
-                    if (tempRegion2 != null)
+                    Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                    if (tempRegion7 != null)
                     {
-                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                        tempChunkCreator2.makeRandomChunk(tempRegion2);
-                        regionArray[7] = tempRegion2;
+                        TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
+                        tempChunkCreator7.makeRandomChunk(tempRegion7);
+                        regionArray[7] = tempRegion7;
                     }
-                    Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                    if (tempRegion3 != null)
+                    Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                    if (tempRegion8 != null)
                     {
-                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                        tempChunkCreator3.makeRandomChunk(tempRegion3);
-                        regionArray[8] = tempRegion3;
+                        TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
+                        tempChunkCreator8.makeRandomChunk(tempRegion8);
+                        regionArray[8] = tempRegion8;
+                    }
                     }
                 }
 
-                lastRegionX = newRegionX;
-                lastRegionY = newRegionY;
+
+
+
+            //        //lastRegionX = newRegionX;
+            //        //Globals.shiftRegionsRight(ref regionArray);
+            //        //Globals.shiftChunksRight(ref chunkArray);
+
+            //        //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+            //        //if (tempRegion1 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator = new TempChunkCreator();
+            //        //    tempChunkCreator.makeRandomChunk(tempRegion1);
+            //        //    regionArray[0] = tempRegion1;
+            //        //}
+
+            //        //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+            //        //if (tempRegion2 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+            //        //    tempChunkCreator2.makeRandomChunk(tempRegion2);
+            //        //    regionArray[3] = tempRegion2;
+            //        //}
+            //        //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+            //        //if (tempRegion3 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+            //        //    tempChunkCreator3.makeRandomChunk(tempRegion3);
+            //        //    regionArray[6] = tempRegion3;
+            //        //}
+
+            //    }
+            //    else if (newRegionX > lastRegionX)
+            //    {
+            //        //lastRegionX = newRegionX;
+            //        //Globals.shiftRegionsLeft(ref regionArray);
+            //        //Globals.shiftChunksLeft(ref chunkArray);
+
+            //        //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+            //        //if (tempRegion1 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator = new TempChunkCreator();
+            //        //    tempChunkCreator.makeRandomChunk(tempRegion1);
+            //        //    regionArray[2] = tempRegion1;
+            //        //}
+            //        //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+            //        //if (tempRegion2 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+            //        //    tempChunkCreator2.makeRandomChunk(tempRegion2);
+            //        //    regionArray[5] = tempRegion2;
+            //        //}
+            //        //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+            //        //if (tempRegion3 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+            //        //    tempChunkCreator3.makeRandomChunk(tempRegion3);
+            //        //    regionArray[8] = tempRegion3;
+            //        //}
+
+                    
+                    
+            //    }
+
+            //    if (newRegionY < lastRegionY)
+            //    {
+            //        //lastRegionY = newRegionY;
+            //        //Globals.shiftRegionsDown(ref regionArray);
+            //        //Globals.shiftChunksDown(ref chunkArray);
+
+            //        //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+            //        //if (tempRegion1 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator = new TempChunkCreator();
+            //        //    tempChunkCreator.makeRandomChunk(tempRegion1);
+            //        //    regionArray[0] = tempRegion1;
+            //        //}
+            //        //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+            //        //if (tempRegion2 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+            //        //    tempChunkCreator2.makeRandomChunk(tempRegion2);
+            //        //    regionArray[1] = tempRegion2;
+            //        //}
+            //        //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+            //        //if (tempRegion3 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+            //        //    tempChunkCreator3.makeRandomChunk(tempRegion3);
+            //        //    regionArray[2] = tempRegion3;
+            //        //}
+
+            //    }
+            //    else if (newRegionY > lastRegionY)
+            //    {
+            //        //lastRegionY = newRegionY;
+            //        //Globals.shiftRegionsUp(ref regionArray);
+            //        //Globals.shiftChunksUp(ref chunkArray);
+
+            //        //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+            //        //if (tempRegion1 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator = new TempChunkCreator();
+            //        //    tempChunkCreator.makeRandomChunk(tempRegion1);
+            //        //    regionArray[6] = tempRegion1;
+            //        //}
+            //        //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+            //        //if (tempRegion2 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+            //        //    tempChunkCreator2.makeRandomChunk(tempRegion2);
+            //        //    regionArray[7] = tempRegion2;
+            //        //}
+            //        //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+            //        //if (tempRegion3 != null)
+            //        //{
+            //        //    TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
+            //        //    tempChunkCreator3.makeRandomChunk(tempRegion3);
+            //        //    regionArray[8] = tempRegion3;
+            //        //}
+            //    }
+
 
             }
 

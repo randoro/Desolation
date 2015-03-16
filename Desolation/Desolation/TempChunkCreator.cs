@@ -73,7 +73,6 @@ namespace Desolation
         public void makeEmptyChunk(Region region)
         {
             FileStream fileStream = region.fileStream;
-
             bool writing = true;
             int chunks = 16;
 
