@@ -17,6 +17,8 @@ namespace Desolation
         Vector2 gDir;
         Random rnd = new Random();
 
+        Direction currentDirection;
+
         double totalElapsedSeconds = 0;
         const double MovementChangeTimeSeconds = 1.0; //seconds
 
@@ -30,23 +32,22 @@ namespace Desolation
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
         }
-        public void moveDirection()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public override void Update(GameTime gameTime)
         {
-            totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
+            /*totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
            
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 this.gDir = GetRandomDirection();
-            }
+            }*/
 
-            position += gDir;
+            //position = GetRandomDirection(direction);
+
+            //position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -54,53 +55,57 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-
-            MoveDirection moveDirection = GetMoveDirection(this.gDir);
-            switch (moveDirection)
-            {
-                case MoveDirection.Up:
-                    sourceRect.X = 2 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.UpRight:
-                    sourceRect.X = 2 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.UpLeft:
-                    sourceRect.X = 2 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.Down:
-                    sourceRect.X = 0 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.DownRight:
-                    sourceRect.X = 0 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.DownLeft:
-                    sourceRect.X = 0 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.Right:
-                    sourceRect.X = 3 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-                case MoveDirection.Left:
-                    sourceRect.X = 1 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
-                    break;
-
-            }
-
         }
-
+        public override void moveDirection(Direction direction)
+        {
+            currentDirection = direction;
+            base.moveDirection(direction);
+        }
+          
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+
+            switch (currentDirection)
+            {
+                case Direction.North:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.NorthEast:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.NorthWest:
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.South:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.SouthEast:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.SouthWest:
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.East:
+                    sourceRect.X = 3 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.West:
+                    sourceRect.X = 1 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    break;
+                case Direction.None:
+                    break;
+            }
         }
 
-        Vector2 GetRandomDirection()
+        protected Vector2 GetRandomDirection(Direction direction)
         {
             Random random = new Random();
             int randomDirection = random.Next(8);
@@ -123,12 +128,12 @@ namespace Desolation
                     return Vector2.Zero;
             }
         }
-        enum MoveDirection
+        /*enum MoveDirection
         {
             Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight, None
         }
 
-        MoveDirection GetMoveDirection(Vector2 direction)
+        Direction GetMoveDirection(Vector2 direction)
         {
             if (direction.Y < 0)
             {
@@ -157,6 +162,6 @@ namespace Desolation
                 else
                     return MoveDirection.None;
             }
-        }
+        }*/
     }
 }
