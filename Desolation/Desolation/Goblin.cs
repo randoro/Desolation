@@ -34,12 +34,12 @@ namespace Desolation
 
             base.getCurrentChunkNrInArray();
         }
-        
+
 
         public override void Update(GameTime gameTime)
         {
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
-           
+
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
@@ -57,24 +57,15 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-        }
-        public override void moveDirection(Direction direction)
-        {
-            currentDirection = direction;
-            base.moveDirection(direction);
-        }
-          
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
 
             switch (currentDirection)
             {
-                case Direction.North:
+                
+                case Direction.NorthEast:
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
-                case Direction.NorthEast:
+                case Direction.North:
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
@@ -106,6 +97,16 @@ namespace Desolation
                     break;
             }
         }
+        public override void moveDirection(Direction direction)
+        {
+            currentDirection = direction;
+            base.moveDirection(direction);
+        }
+          
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+        }
 
         Vector2 GetRandomDirection()
         {
@@ -130,39 +131,35 @@ namespace Desolation
                     return Vector2.Zero;
             }
         }
-        enum MoveDirection
-        {
-            Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight, None
-        }
 
-        MoveDirection GetMoveDirection(Vector2 direction)
+        Direction GetMoveDirection(Direction direction)
         {
-            if (direction.Y < 0)
+            if (direction < 0)
             {
-                if (direction.X < 0)
-                    return MoveDirection.UpLeft;
-                else if (direction.X > 0)
-                    return MoveDirection.UpRight;
+                if (direction < 0)
+                    return Direction.NorthWest;
+                else if (direction > 0)
+                    return Direction.NorthEast;
                 else
-                    return MoveDirection.Up;
+                    return Direction.North;
             }
-            else if (direction.Y > 0)
+            else if (direction > 0)
             {
-                if (direction.X < 0)
-                    return MoveDirection.DownLeft;
-                else if (direction.X > 0)
-                    return MoveDirection.DownRight;
+                if (direction < 0)
+                    return Direction.SouthWest;
+                else if (direction > 0)
+                    return Direction.SouthEast;
                 else
-                    return MoveDirection.Down;
+                    return Direction.South;
             }
             else
             {
-                if (direction.X < 0)
-                    return MoveDirection.Left;
-                else if (direction.X > 0)
-                    return MoveDirection.Right;
+                if (direction < 0)
+                    return Direction.West;
+                else if (direction > 0)
+                    return Direction.East;
                 else
-                    return MoveDirection.None;
+                    return Direction.None;
             }
         }
     }
