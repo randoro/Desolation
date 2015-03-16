@@ -130,27 +130,13 @@ namespace Desolation
             }
 
             //set region file numbers (the region file the player is currently in)
-            if (Globals.playerPos.X >= 0)
-            {
-                newRegionX = (int)Globals.playerPos.X / 1024;
-                newChunkX = (int)Globals.playerPos.X / 256;
-            }
-            else
-            {
-                newRegionX = (int)Globals.playerPos.X / 1024 - 1;
-                newChunkX = (int)Globals.playerPos.X / 256 - 1;
-            }
+            
+                newRegionX = Globals.getRegionValue(Globals.playerPos.X);
+                newRegionY = Globals.getRegionValue(Globals.playerPos.Y);
 
-            if (Globals.playerPos.Y >= 0)
-            {
-                newRegionY = (int)Globals.playerPos.Y / 1024;
-                newChunkY = (int)Globals.playerPos.Y / 256;
-            }
-            else
-            {
-                newRegionY = (int)Globals.playerPos.Y / 1024 - 1;
-                newChunkY = (int)Globals.playerPos.Y / 256 - 1;
-            }
+                newChunkX = Globals.getChunkValue(Globals.playerPos.X);
+                newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+            
 
             window.Title = "newRegionX:" + newRegionX + "  newRegionY:" + newRegionY;
 

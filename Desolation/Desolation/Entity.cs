@@ -64,5 +64,25 @@ namespace Desolation
             }
         }
 
+
+       public void getCurrentChunkNrInArray() 
+       {
+           int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
+           int playerRegionY = Globals.getRegionValue(Globals.playerPos.Y);
+
+           int playerChunkX = Globals.getChunkValue(Globals.playerPos.X);
+           int playerChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+
+           int entityRegionX = Globals.getRegionValue(position.X);
+           int entityRegionY = Globals.getRegionValue(position.Y);
+
+           int regionOffsetX = entityRegionX - playerRegionX;
+           int regionOffsetY = entityRegionX - playerRegionX;
+
+
+
+
+       }
+
     }
 }

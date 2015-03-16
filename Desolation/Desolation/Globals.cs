@@ -141,5 +141,33 @@ namespace Desolation
             Array.Clear(regionArray, 1, 1);
             Array.Clear(regionArray, 2, 1);
         }
+
+        public static int getRegionValue(float input)
+        {
+
+            int returnInt;
+            if (input >= 0)
+            {
+                return returnInt = (int)input / 1024;
+            }
+            else
+            {
+                return returnInt = (int)input / 1024 - 1;
+            }
+        }
+
+        public static int getChunkValue(float input)
+        {
+
+            int returnInt;
+            if (input >= 0)
+            {
+                return returnInt = (int)input / 256;
+            }
+            else
+            {
+                return returnInt = (int)input / 256 - 1;
+            }
+        }
     }
 }
