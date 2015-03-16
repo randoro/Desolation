@@ -38,18 +38,18 @@ namespace Desolation
 
         public override void Update(GameTime gameTime)
         {
-            /*totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
+            totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
            
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 this.gDir = GetRandomDirection();
-            }*/
+            }
 
-            //position = GetRandomDirection(direction);
+            //position = gDir;
 
-            //position += gDir;
+            position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -107,7 +107,7 @@ namespace Desolation
             }
         }
 
-        protected Vector2 GetRandomDirection(Direction direction)
+        Vector2 GetRandomDirection()
         {
             Random random = new Random();
             int randomDirection = random.Next(8);
@@ -130,12 +130,12 @@ namespace Desolation
                     return Vector2.Zero;
             }
         }
-        /*enum MoveDirection
+        enum MoveDirection
         {
             Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight, None
         }
 
-        Direction GetMoveDirection(Vector2 direction)
+        MoveDirection GetMoveDirection(Vector2 direction)
         {
             if (direction.Y < 0)
             {
@@ -164,6 +164,6 @@ namespace Desolation
                 else
                     return MoveDirection.None;
             }
-        }*/
+        }
     }
 }
