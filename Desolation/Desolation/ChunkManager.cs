@@ -146,7 +146,6 @@ namespace Desolation
                 if (newRegionX < lastRegionX)
                 {
                     
-                    lastRegionX = newRegionX;
                     Globals.shiftRegionsRight(ref regionArray);
                     Globals.shiftChunksRight(ref chunkArray);
 
@@ -208,7 +207,6 @@ namespace Desolation
 
                 if (newRegionY < lastRegionY)
                 {
-                    lastRegionY = newRegionY;
 
                     Globals.shiftRegionsDown(ref regionArray);
                     Globals.shiftChunksDown(ref chunkArray);
@@ -238,7 +236,6 @@ namespace Desolation
                 }
                 else if (newRegionY > lastRegionY)
                 {
-                    lastRegionY = newRegionY;
 
                     Globals.shiftRegionsUp(ref regionArray);
                     Globals.shiftChunksUp(ref chunkArray);
@@ -266,10 +263,12 @@ namespace Desolation
                     }
                 }
 
+                lastRegionX = newRegionX;
+                lastRegionY = newRegionY;
+
             }
 
-            lastRegionX = newRegionX;
-            lastRegionY = newRegionY;
+            
             
 
                 

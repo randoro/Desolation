@@ -70,9 +70,12 @@ namespace Desolation
 
         public static void shiftRegionsRight(ref Region[] regionArray) //regions moving right and left side getting null
         {
-            regionArray[2].fileStream.Dispose();
-            regionArray[5].fileStream.Dispose();
-            regionArray[8].fileStream.Dispose();
+            if (regionArray[2] != null)
+                regionArray[2].fileStream.Dispose();
+            if (regionArray[5] != null)
+                regionArray[5].fileStream.Dispose();
+            if (regionArray[8] != null)
+                regionArray[8].fileStream.Dispose();
 
             regionArray[2] = regionArray[1];
             regionArray[1] = regionArray[0];
@@ -90,9 +93,12 @@ namespace Desolation
 
         public static void shiftRegionsLeft(ref Region[] regionArray) //regions moving left and right side getting null
         {
-            regionArray[0].fileStream.Dispose();
-            regionArray[3].fileStream.Dispose();
-            regionArray[6].fileStream.Dispose();
+            if (regionArray[0] != null)
+                regionArray[0].fileStream.Dispose();
+            if (regionArray[3] != null)
+                regionArray[3].fileStream.Dispose();
+            if (regionArray[6] != null)
+                regionArray[6].fileStream.Dispose();
 
             regionArray[0] = regionArray[1];
             regionArray[1] = regionArray[2];
@@ -108,9 +114,12 @@ namespace Desolation
 
         public static void shiftRegionsUp(ref Region[] regionArray) //chunks moving up and down side getting null
         {
-            regionArray[0].fileStream.Dispose();
-            regionArray[1].fileStream.Dispose();
-            regionArray[2].fileStream.Dispose();
+            if (regionArray[0] != null)
+                regionArray[0].fileStream.Dispose();
+            if (regionArray[1] != null)
+                regionArray[1].fileStream.Dispose();
+            if (regionArray[2] != null)
+                regionArray[2].fileStream.Dispose();
 
             regionArray[0] = regionArray[3];
             regionArray[1] = regionArray[4];
@@ -126,9 +135,12 @@ namespace Desolation
 
         public static void shiftRegionsDown(ref Region[] regionArray) //chunks moving up and down side getting null
         {
-            regionArray[6].fileStream.Dispose();
-            regionArray[7].fileStream.Dispose();
-            regionArray[8].fileStream.Dispose();
+            if (regionArray[6] != null)
+                regionArray[6].fileStream.Dispose();
+            if (regionArray[7] != null)
+                regionArray[7].fileStream.Dispose();
+            if (regionArray[8] != null)
+                regionArray[8].fileStream.Dispose();
 
             regionArray[8] = regionArray[5];
             regionArray[7] = regionArray[4];
