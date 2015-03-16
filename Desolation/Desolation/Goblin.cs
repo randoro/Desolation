@@ -14,13 +14,12 @@ namespace Desolation
 {
     class Goblin:Entity
     {
-        Vector2 gDir;
         Random rnd = new Random();
 
         Direction currentDirection;
 
         double totalElapsedSeconds = 2;
-        const double MovementChangeTimeSeconds = 2.0; //seconds
+        const double MovementChangeTimeSeconds = 6.0; //seconds
 
         int frame;
         double frameTimer, frameInterval = 100;
@@ -28,27 +27,20 @@ namespace Desolation
         public Goblin(Vector2 position)
             : base(position)
         {
-
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
-
-            
         }
-
 
         public override void Update(GameTime gameTime)
         {
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
-
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 currentDirection = GetRandomDirection();
             }
-
             base.moveDirection(currentDirection);
-            //position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -109,31 +101,22 @@ namespace Desolation
             {
                 case 0:
                     return Direction.North;
-                    break;
                 case 1:
                     return Direction.NorthEast;
-                    break;
                 case 2:
                     return Direction.East;
-                    break;
                 case 3:
                     return Direction.SouthEast;
-                    break;
                 case 4:
                     return Direction.South;
-                    break;
                 case 5:
                     return Direction.SouthWest;
-                    break;
                 case 6:
                     return Direction.West;
-                    break;
                 case 7:
                     return Direction.NorthWest;
-                    break;
                 default:
                     return Direction.None;
-                    break;
             }
 
 
