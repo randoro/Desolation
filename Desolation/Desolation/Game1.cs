@@ -108,7 +108,7 @@ namespace Desolation
             chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();
-            
+            zombie.getCurrentChunkNrInArray(Window);
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {

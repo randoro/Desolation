@@ -65,20 +65,22 @@ namespace Desolation
         }
 
 
-       public void getCurrentChunkNrInArray() 
+       public void getCurrentChunkNrInArray(GameWindow window) 
        {
-           Vector2 tempPos = new Vector2(1050, 1050);
-           int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
-           int playerRegionY = Globals.getRegionValue(Globals.playerPos.Y);
+           //Vector2 tempPos = new Vector2(1050, 1050);
+           //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
+           //int playerRegionY = Globals.getRegionValue(Globals.playerPos.Y);
 
            int playerChunkX = Globals.getChunkValue(Globals.playerPos.X);
            int playerChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
-           int entityRegionX = Globals.getRegionValue(tempPos.X);
-           int entityRegionY = Globals.getRegionValue(tempPos.Y);
+           int entityChunkX = Globals.getChunkValue(position.X);
+           int entityChunkY = Globals.getChunkValue(position.Y);
 
-           int regionOffsetX = entityRegionX - playerRegionX;
-           int regionOffsetY = entityRegionX - playerRegionX;
+           int chunkOffsetX = entityChunkX - playerChunkX;
+           int chunkOffsetY = entityChunkY - playerChunkY;
+
+           window.Title = "chunkOffsetX:" + chunkOffsetX + " chunkOffsetY:" + chunkOffsetY;
 
 
 

@@ -32,7 +32,7 @@ namespace Desolation
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
 
-            base.getCurrentChunkNrInArray();
+            
         }
 
 

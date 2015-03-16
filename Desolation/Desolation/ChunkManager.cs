@@ -138,7 +138,7 @@ namespace Desolation
                 newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
 
-                window.Title = "newRegionX:" + newRegionX + "  newRegionY:" + newRegionY + "  newChunkX:" + newChunkX + "  newChunkY:" + newChunkY;
+               // window.Title = "newRegionX:" + newRegionX + "  newRegionY:" + newRegionY + "  newChunkX:" + newChunkX + "  newChunkY:" + newChunkY;
 
             if (newRegionX != lastRegionX || newRegionY != lastRegionY)
             {
