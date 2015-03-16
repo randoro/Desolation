@@ -13,11 +13,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Zombie :Entity
+    class Zombie : Entity
     {
         int frame;
         double frameTimer, frameInterval = 100;
-        int range = 250;
+        int range = 450;
         Player player;
         Direction currentDirection;
         public Zombie(Player player, Vector2 pos)
@@ -44,43 +44,77 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-            if (player.position.X > position.X && ((player.position.X - position.X)) < range)
-           {
-               currentDirection = Direction.East; 
-              // position.X += 0.5f;
-               sourceRect.X = 3 * 16;
-               sourceRect.Y = (frame % 4) * 16;
-
-           }
-            if (player.position.X < position.X && ((player.position.X - position.X)) > -range)
+            if (player.position.Y < position.Y && ((player.position.Y - position.Y)) < range)//Y
             {
-                currentDirection = Direction.West; 
-               // position.X -= 0.5f;
+
+                // position.X += 0.5f;
+                sourceRect.X = 3 * 16;
+                sourceRect.Y = (frame % 4) * 16;
+                if (player.position.X < position.X && ((player.position.X - position.X)) < range)
+                {
+                    currentDirection = Direction.NorthWest;
+                }
+                else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
+                {
+                    currentDirection = Direction.NorthEast;
+                }
+                else
+                {
+                    currentDirection = Direction.North;
+                }
+
+
+            }
+            else if (player.position.Y > position.Y && ((player.position.Y - position.Y)) > -range)
+            {
+
+                // position.X -= 0.5f;
                 sourceRect.X = 1 * 16;
                 sourceRect.Y = (frame % 4) * 16;
+                if (player.position.X < position.X && ((player.position.Y - position.Y)) < range)
+                {
+                    currentDirection = Direction.SouthWest;
+
+                }
+                else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
+                {
+                    currentDirection = Direction.SouthEast;
+                }
+                else
+                {
+                    currentDirection = Direction.South;
+                }
             }
-            if (player.position.Y < position.Y && ((player.position.Y - position.Y)) > -range)
+            else if (player.position.X < position.X && ((player.position.X - position.X)) > -range)
             {
-                currentDirection = Direction.North; 
+                currentDirection = Direction.West;
                 //  position.Y -= 0.5f;
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
+
             }
-            if (player.position.Y > position.Y && ((player.position.Y - position.Y)) < range)
+            else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
             {
-                currentDirection = Direction.South; 
-               // position.Y += 0.5f;
+                currentDirection = Direction.East;
+                //// position.Y += 0.5f;
                 sourceRect.X = 0 * 16;
                 sourceRect.Y = (frame % 4) * 16;
+
+            }
+            else
+            {
+                currentDirection = Direction.None;
             }
 
-           
-           
+
+
+
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TextureManager.zombieSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
-           
+
         }
 
     }
