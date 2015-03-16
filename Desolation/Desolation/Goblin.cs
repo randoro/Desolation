@@ -44,12 +44,10 @@ namespace Desolation
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)
             {
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
-                this.gDir = GetRandomDirection();
+                this.gDir = GetRandomDirection(currentDirection);
             }
 
-            //position = gDir;
-
-            position += gDir;
+            //position += gDir;
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -60,12 +58,11 @@ namespace Desolation
 
             switch (currentDirection)
             {
-                
-                case Direction.NorthEast:
+                case Direction.North:
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
-                case Direction.North:
+                case Direction.NorthEast:
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
@@ -108,7 +105,7 @@ namespace Desolation
             spriteBatch.Draw(TextureManager.npcSheet, position, sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
-        Vector2 GetRandomDirection()
+        Vector2 GetRandomDirection(Direction currentDirection)
         {
             Random random = new Random();
             int randomDirection = random.Next(8);
@@ -132,31 +129,31 @@ namespace Desolation
             }
         }
 
-        Direction GetMoveDirection(Direction direction)
+        Direction GetMoveDirection(Direction currentDirection)
         {
-            if (direction < 0)
+            if (currentDirection < 0)
             {
-                if (direction < 0)
+                if (currentDirection < 0)
                     return Direction.NorthWest;
-                else if (direction > 0)
+                else if (currentDirection > 0)
                     return Direction.NorthEast;
                 else
                     return Direction.North;
             }
-            else if (direction > 0)
+            else if (currentDirection > 0)
             {
-                if (direction < 0)
+                if (currentDirection < 0)
                     return Direction.SouthWest;
-                else if (direction > 0)
+                else if (currentDirection > 0)
                     return Direction.SouthEast;
                 else
                     return Direction.South;
             }
             else
             {
-                if (direction < 0)
+                if (currentDirection < 0)
                     return Direction.West;
-                else if (direction > 0)
+                else if (currentDirection > 0)
                     return Direction.East;
                 else
                     return Direction.None;
