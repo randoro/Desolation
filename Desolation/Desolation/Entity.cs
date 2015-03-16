@@ -14,10 +14,12 @@ namespace Desolation
 {
    abstract public class Entity :   GameObject
     {
+
+        protected int speed;
         public Entity(Vector2 pos)
            : base(pos)
         {
-
+            speed = 0;
         }
 
         abstract public override void Update(GameTime gameTime);
@@ -29,33 +31,33 @@ namespace Desolation
             switch (direction)
             {
                 case Direction.North:
-                    position.Y -= 5;
+                    position.Y -= speed;
                     
                     break;
                 case Direction.NorthEast:
-                    position.X += 5;
-                    position.Y -= 5;
+                    position.X += speed;
+                    position.Y -= speed;
                     break;
                 case Direction.East:
-                    position.X += 5;
+                    position.X += speed;
                     break;
                 case Direction.SouthEast:
-                    position.X += 5;
-                    position.Y += 5;
+                    position.X += speed;
+                    position.Y += speed;
                     break;
                 case Direction.South:
-                    position.Y += 5;
+                    position.Y += speed;
                     break;
                 case Direction.SouthWest:
-                    position.X -= 5;
-                    position.Y += 5;
+                    position.X -= speed;
+                    position.Y += speed;
                     break;
                 case Direction.West:
-                    position.X -= 5;
+                    position.X -= speed;
                     break;
                 case Direction.NorthWest:
-                    position.X -= 5;
-                    position.Y -= 5;
+                    position.X -= speed;
+                    position.Y -= speed;
                     break;
                 case Direction.None:
                     break;

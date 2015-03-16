@@ -26,6 +26,8 @@ namespace Desolation
             sourceRect = new Rectangle(0, 0, 16, 16);
             position = new Vector2(400, 300);
             this.player = player;
+
+            speed = 1;
         }
         public override void moveDirection(Direction direction)
         {
