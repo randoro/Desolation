@@ -67,7 +67,7 @@ namespace Desolation
         }
 
 
-       public void getCurrentChunkNrInArray(GameWindow window) 
+       public void getCurrentChunkNrInArray(ref ChunkManager chunkManager, GameWindow window) 
        {
            //Vector2 tempPos = new Vector2(1050, 1050);
            //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
@@ -98,15 +98,25 @@ namespace Desolation
 
            if (playerChunkY >= 0)
            {
-               internChunkPosInRegionY = playerChunkY / 4;
+               internChunkPosInRegionY = playerChunkY % 4;
            }
            else
            {
-               internChunkPosInRegionY = 3 + (playerChunkY - 1) / 4;
+               internChunkPosInRegionY = 3 + (playerChunkY + 1) % 4;
            }
-           window.Title = "internChunkPosInRegionX:" + internChunkPosInRegionX + " internChunkPosInRegionY:" + internChunkPosInRegionY;
 
+           int chunkNrInArrayX = 4 + internChunkPosInRegionX + chunkOffsetX;
+           int chunkNrInArrayY = 4 + internChunkPosInRegionY + chunkOffsetY;
 
+           if (chunkManager.tempGetChunkArray()[chunkNrInArrayX + chunkNrInArrayY * 12] != null)
+               for (int i = 0; i < 256; i++)
+               {
+                    chunkManager.tempGetChunkArray()[chunkNrInArrayX + chunkNrInArrayY * 12].blocks[i] = 1;
+               }
+
+           window.Title = "chunkNrInArrayX:" + chunkNrInArrayX + " chunkNrInArrayY:" + chunkNrInArrayY;
+
+           
        }
 
     }

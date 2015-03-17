@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Player  :   Entity
+    public class Player  :   Entity
     {
       
         int frame;

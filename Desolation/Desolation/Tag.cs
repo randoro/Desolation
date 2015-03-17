@@ -7,7 +7,7 @@ using System.Text;
 namespace Desolation
 {
 
-    class Tag
+    public class Tag
     {
         TagID tagID;
         String tagIdentifier;

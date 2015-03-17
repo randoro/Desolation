@@ -81,7 +81,7 @@ namespace Desolation
 
             player = new Player(new Vector2(200, 200));
             zombie = new Zombie(player, new Vector2(500, 500));
-            goblin = new Goblin(new Vector2(350, 250));
+            goblin = new Goblin(new Vector2(300, 300));
         }
         protected override void UnloadContent()
         {
@@ -108,7 +108,7 @@ namespace Desolation
             chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();
-            goblin.getCurrentChunkNrInArray(Window);
+            goblin.getCurrentChunkNrInArray(ref chunkManager, Window);
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {

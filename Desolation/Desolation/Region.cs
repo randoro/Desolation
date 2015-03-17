@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Desolation
 {
-    class Region
+    public class Region
     {
         public FileStream fileStream;
         public int xPosRegion;

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Goblin:Entity
+    public class Goblin:Entity
     {
         Random rnd = new Random();
 
@@ -29,7 +29,7 @@ namespace Desolation
         {
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
-            speed = 1;
+            speed = 3;
         }
 
         public override void Update(GameTime gameTime)

@@ -8,13 +8,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Desolation
 {
-    class ChunkManager
+    public class ChunkManager
     {
 
-        List<Region> regionFiles;
-        List<Chunk> chunkList;
+        public List<Region> regionFiles;
+        public List<Chunk> chunkList;
         FileLoader fileLoader;
-        Chunk[] chunkArray;
+        public Chunk[] chunkArray;
         Region[] regionArray;
         long ticksLastChunkLoad;
 
@@ -610,6 +610,11 @@ namespace Desolation
                     chunkArray[i].draw(spriteBatch);
                 }
             }
+        }
+
+        public Chunk[] tempGetChunkArray()
+        {
+            return chunkArray;
         }
 
 
