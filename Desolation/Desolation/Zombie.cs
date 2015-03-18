@@ -27,7 +27,7 @@ namespace Desolation
             position = new Vector2(400, 300);
             this.player = player;
 
-            speed = 5;
+            speed = 1;
         }
         public override void moveDirection(Direction direction)
         {
@@ -46,17 +46,17 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-            if (player.position.Y < position.Y && ((player.position.Y - position.Y)) < range)//Y
+            if (player.position.Y < position.Y -1 && ((player.position.Y - position.Y)) < range)//Y
             {
 
                 // position.X += 0.5f;
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X && ((player.position.X - position.X)) < range)
+                if (player.position.X < position.X -1 && ((player.position.X - position.X)) < range)
                 {
                     currentDirection = Direction.NorthWest;
                 }
-                else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
+                else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
                 {
                     currentDirection = Direction.NorthEast;
                 }
@@ -67,18 +67,18 @@ namespace Desolation
 
 
             }
-            else if (player.position.Y > position.Y && ((player.position.Y - position.Y)) > -range)
+            else if (player.position.Y > position.Y +1 && ((player.position.Y - position.Y)) > -range)
             {
 
                 // position.X -= 0.5f;
                 sourceRect.X = 0 * 16;
                 sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X && ((player.position.Y - position.Y)) < range)
+                if (player.position.X < position.X -1 && ((player.position.Y - position.Y)) < range)
                 {
                     currentDirection = Direction.SouthWest;
 
                 }
-                else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
+                else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
                 {
                     currentDirection = Direction.SouthEast;
                 }
@@ -87,7 +87,7 @@ namespace Desolation
                     currentDirection = Direction.South;
                 }
             }
-            else if (player.position.X < position.X && ((player.position.X - position.X)) > -range)
+            else if (player.position.X < position.X -1 && ((player.position.X - position.X)) > -range)
             {
                 currentDirection = Direction.West;
                 //  position.Y -= 0.5f;
@@ -95,7 +95,7 @@ namespace Desolation
                 sourceRect.Y = (frame % 4) * 16;
 
             }
-            else if (player.position.X > position.X && ((player.position.X - position.X)) < range)
+            else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
             {
                 currentDirection = Direction.East;
                 //// position.Y += 0.5f;
@@ -106,6 +106,7 @@ namespace Desolation
             else
             {
                 currentDirection = Direction.None;
+                sourceRect.X = 0 * 16;
             }
 
 
