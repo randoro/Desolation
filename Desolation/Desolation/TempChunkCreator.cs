@@ -118,9 +118,16 @@ namespace Desolation
                     byte[] objects = new byte[256];
                     for (int j = 0; j < objects.Length; j++)
                     {
-                        objects[j] = (byte)0;
+                        int chance = Globals.rand.Next(0, 20);
+                        if(chance <= 0) 
+                        {
+                            objects[j] = (byte)1;
+                        } else 
+                        {
+
+                            objects[j] = (byte)0;
+                        }
                     }
-                    objects[24] = (byte)1;
                     makeByteArray("Objects", objects, fileStream);
 
 
