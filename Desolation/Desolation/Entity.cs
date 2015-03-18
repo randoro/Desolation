@@ -15,11 +15,13 @@ namespace Desolation
    abstract public class Entity :   GameObject
     {
 
-        protected int speed;
+        protected float speed;
+        protected float realSpeed;
         public Entity(Vector2 pos)
            : base(pos)
         {
-            speed = 0;
+            //speed = 0;
+            
         }
 
         abstract public override void Update(GameTime gameTime);
@@ -28,6 +30,7 @@ namespace Desolation
 
         public virtual void moveDirection(Direction direction)
         {
+            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
             switch (direction)
             {
                 case Direction.North:
@@ -35,29 +38,29 @@ namespace Desolation
                     
                     break;
                 case Direction.NorthEast:
-                    position.X += speed;
-                    position.Y -= speed;
+                    position.X += realSpeed;
+                    position.Y -= realSpeed;
                     break;
                 case Direction.East:
                     position.X += speed;
                     break;
                 case Direction.SouthEast:
-                    position.X += speed;
-                    position.Y += speed;
+                    position.X += realSpeed;
+                    position.Y += realSpeed;
                     break;
                 case Direction.South:
                     position.Y += speed;
                     break;
                 case Direction.SouthWest:
-                    position.X -= speed;
-                    position.Y += speed;
+                    position.X -= realSpeed;
+                    position.Y += realSpeed;
                     break;
                 case Direction.West:
                     position.X -= speed;
                     break;
                 case Direction.NorthWest:
-                    position.X -= speed;
-                    position.Y -= speed;
+                    position.X -= realSpeed;
+                    position.Y -= realSpeed;
                     break;
                 case Direction.None:
                     break;

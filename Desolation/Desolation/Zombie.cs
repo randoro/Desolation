@@ -27,7 +27,7 @@ namespace Desolation
             position = new Vector2(400, 300);
             this.player = player;
 
-            speed = 1;
+            speed = 5;
         }
         public override void moveDirection(Direction direction)
         {
