@@ -28,6 +28,7 @@ namespace Desolation
         Player player;
         Goblin goblin;
         GameObject go;
+        public static GameWindow gameWindow;
 
 
 
@@ -64,7 +65,7 @@ namespace Desolation
             this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
             Globals.rand = new Random();
-
+            gameWindow = Window;
             chunkManager = new ChunkManager();
 
             camera = new Camera(GraphicsDevice.Viewport);

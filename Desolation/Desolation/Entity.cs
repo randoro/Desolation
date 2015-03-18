@@ -30,6 +30,7 @@ namespace Desolation
 
         public virtual void moveDirection(Direction direction)
         {
+            Vector2 oldPosition = position;
             realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
             switch (direction)
             {
@@ -67,6 +68,28 @@ namespace Desolation
                 default:
                     break;
             }
+
+            int currentBlockX;
+            int currentBlockY;
+            if (position.X >= 0)
+            {
+                currentBlockX = ((int)position.X / 16) % 16;
+            }
+            else
+            {
+                currentBlockX = 15 + ((int)position.X + 1) / 16 % 16;
+            }
+
+            if (position.Y >= 0)
+            {
+                currentBlockY = ((int)position.Y / 16) % 16;
+            }
+            else
+            {
+                currentBlockY = 15 + ((int)position.Y + 1) / 16 % 16;
+            }
+
+            Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
 
