@@ -17,7 +17,7 @@ namespace Desolation
     {
         int frame;
         double frameTimer, frameInterval = 100;
-        int range = 450;
+        int range = 200;
         Player player;
         Direction currentDirection;
         public Zombie(Player player, Vector2 pos)
@@ -46,13 +46,13 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-            if (player.position.Y < position.Y -1 && ((player.position.Y - position.Y)) < range)//Y
+            if (player.position.Y < position.Y -1 && ((player.position.Y - position.Y)) > -range)//Y
             {
 
                 // position.X += 0.5f;
                 sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X -1 && ((player.position.X - position.X)) < range)
+                if (player.position.X < position.X -1 && ((player.position.X - position.X)) > -range)
                 {
                     currentDirection = Direction.NorthWest;
                 }
@@ -67,13 +67,13 @@ namespace Desolation
 
 
             }
-            else if (player.position.Y > position.Y +1 && ((player.position.Y - position.Y)) > -range)
+            else if (player.position.Y > position.Y +1 && ((player.position.Y - position.Y)) < range)
             {
 
                 // position.X -= 0.5f;
                 sourceRect.X = 0 * 16;
                 sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X -1 && ((player.position.Y - position.Y)) < range)
+                if (player.position.X < position.X -1 && ((player.position.Y - position.Y)) > -range)
                 {
                     currentDirection = Direction.SouthWest;
 
