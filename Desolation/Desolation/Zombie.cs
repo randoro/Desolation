@@ -17,8 +17,9 @@ namespace Desolation
     {
         int frame;
         double frameTimer, frameInterval = 100;
-        int range = 200;
+        float range = 200;
         Player player;
+        bool InRange = false;
         Direction currentDirection;
         public Zombie(Player player, Vector2 pos)
             : base(pos)
@@ -38,7 +39,16 @@ namespace Desolation
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if ((player.position.X - position.X) * (player.position.X - position.X) + (player.position.Y - position.Y) * (player.position.Y - position.Y)<(range*range))
+            {
+                InRange = true;
+            }
+            else
+            {
+                InRange = false;
+                currentDirection = Direction.None;
 
+            }
             moveDirection(currentDirection);
             //måste fixas
             if (frameTimer <= 0)
@@ -46,70 +56,75 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-            if (player.position.Y < position.Y -1 && ((player.position.Y - position.Y)) > -range)//Y
+            if (InRange)
             {
 
-                // position.X += 0.5f;
-                sourceRect.X = 2 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X -1 && ((player.position.X - position.X)) > -range)
+
+                if (player.position.Y < position.Y - 1)//&& ((player.position.Y - position.Y)) > -range)//Y
                 {
-                    currentDirection = Direction.NorthWest;
+
+                    // position.X += 0.5f;
+                    sourceRect.X = 2 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    if (player.position.X < position.X - 1)// && ((player.position.X - position.X)) > -range)
+                    {
+                        currentDirection = Direction.NorthWest;
+                    }
+                    else if (player.position.X > position.X + 1)//&& ((player.position.X - position.X)) < range)
+                    {
+                        currentDirection = Direction.NorthEast;
+                    }
+                    else
+                    {
+                        currentDirection = Direction.North;
+                    }
+
+
                 }
-                else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
+                else if (player.position.Y > position.Y + 1 )//&& ((player.position.Y - position.Y)) < range)
                 {
-                    currentDirection = Direction.NorthEast;
+
+                    // position.X -= 0.5f;
+                    sourceRect.X = 0 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+                    if (player.position.X < position.X - 1)// && ((player.position.Y - position.Y)) > -range//)
+                    {
+                        currentDirection = Direction.SouthWest;
+
+                    }
+                    else if (player.position.X > position.X + 1)// && ((player.position.X - position.X)) < range)
+                    {
+                        currentDirection = Direction.SouthEast;
+                    }
+                    else
+                    {
+                        currentDirection = Direction.South;
+                    }
+                }
+                else if (player.position.X < position.X - 1)//&& ((player.position.X - position.X)) > -range)
+                {
+                    currentDirection = Direction.West;
+                    //  position.Y -= 0.5f;
+                    sourceRect.X = 1 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+
+                }
+                else if (player.position.X > position.X + 1)// && ((player.position.X - position.X)) < range)
+                {
+                    currentDirection = Direction.East;
+                    //// position.Y += 0.5f;
+                    sourceRect.X = 3 * 16;
+                    sourceRect.Y = (frame % 4) * 16;
+
                 }
                 else
                 {
-                    currentDirection = Direction.North;
+                    currentDirection = Direction.None;
+                    sourceRect.X = 0 * 16;
                 }
 
 
             }
-            else if (player.position.Y > position.Y +1 && ((player.position.Y - position.Y)) < range)
-            {
-
-                // position.X -= 0.5f;
-                sourceRect.X = 0 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-                if (player.position.X < position.X -1 && ((player.position.Y - position.Y)) > -range)
-                {
-                    currentDirection = Direction.SouthWest;
-
-                }
-                else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
-                {
-                    currentDirection = Direction.SouthEast;
-                }
-                else
-                {
-                    currentDirection = Direction.South;
-                }
-            }
-            else if (player.position.X < position.X -1 && ((player.position.X - position.X)) > -range)
-            {
-                currentDirection = Direction.West;
-                //  position.Y -= 0.5f;
-                sourceRect.X = 1 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-
-            }
-            else if (player.position.X > position.X +1 && ((player.position.X - position.X)) < range)
-            {
-                currentDirection = Direction.East;
-                //// position.Y += 0.5f;
-                sourceRect.X = 3 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-
-            }
-            else
-            {
-                currentDirection = Direction.None;
-                sourceRect.X = 0 * 16;
-            }
-
-
 
 
 
