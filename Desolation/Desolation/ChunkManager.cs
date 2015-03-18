@@ -11,10 +11,8 @@ namespace Desolation
     public class ChunkManager
     {
 
-        public List<Region> regionFiles;
-        public List<Chunk> chunkList;
         FileLoader fileLoader;
-        public Chunk[] chunkArray;
+        public static Chunk[] chunkArray;
         Region[] regionArray;
         long ticksLastChunkLoad;
 
@@ -30,8 +28,6 @@ namespace Desolation
 
         public ChunkManager()
         {
-            regionFiles = new List<Region>();
-            chunkList = new List<Chunk>();
             fileLoader = new FileLoader();
             ticksLastChunkLoad = DateTime.Now.Ticks;
             regionArray = new Region[9];
@@ -97,10 +93,6 @@ namespace Desolation
             //int temp = 0;
         }
 
-        public void addRegion(Region newRegion)
-        {
-            regionFiles.Add(newRegion);
-        }
 
         public void update(GameTime gameTime, GameWindow window)
         {
@@ -594,10 +586,7 @@ namespace Desolation
                 
                 
 
-            foreach (Chunk e in chunkList)
-            {
-                e.update(gameTime);
-            }
+            
             
         }
 

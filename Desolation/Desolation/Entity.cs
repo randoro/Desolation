@@ -88,12 +88,22 @@ namespace Desolation
             {
                 currentBlockY = 15 + ((int)position.Y + 1) / 16 % 16;
             }
+            int chunkIndex = getCurrentChunkNrInArray();
+            if (chunkIndex != -1)
+            {
+                Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+                if (currentChunk != null)
+                {
+                    currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
+                }
 
+            }
+            //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
             Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
 
-       public int getCurrentChunkNrInArray(ref ChunkManager chunkManager, GameWindow window) 
+       public int getCurrentChunkNrInArray() 
        {
            //Vector2 tempPos = new Vector2(1050, 1050);
            //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
@@ -134,8 +144,16 @@ namespace Desolation
            int chunkNrInArrayX = 4 + internChunkPosInRegionX + chunkOffsetX;
            int chunkNrInArrayY = 4 + internChunkPosInRegionY + chunkOffsetY;
 
+           if (chunkNrInArrayX > 0 && chunkNrInArrayX < 11 && chunkNrInArrayY > 0 && chunkNrInArrayY < 11)
+           {
+               return chunkNrInArrayX + chunkNrInArrayY * 12;
+           }
+           else
+           {
+               return -1;
+           }
 
-           return chunkNrInArrayX + chunkNrInArrayY * 12;
+           
 
            //if (chunkManager.tempGetChunkArray()[chunkNrInArrayX + chunkNrInArrayY * 12] != null)
            //    for (int i = 0; i < 256; i++)

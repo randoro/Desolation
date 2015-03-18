@@ -109,7 +109,7 @@ namespace Desolation
             chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();
-            goblin.getCurrentChunkNrInArray(ref chunkManager, Window);
+            //goblin.getCurrentChunkNrInArray(ref chunkManager, Window);
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
