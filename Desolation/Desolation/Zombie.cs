@@ -50,7 +50,7 @@ namespace Desolation
             {
 
                 // position.X += 0.5f;
-                sourceRect.X = 3 * 16;
+                sourceRect.X = 2 * 16;
                 sourceRect.Y = (frame % 4) * 16;
                 if (player.position.X < position.X && ((player.position.X - position.X)) < range)
                 {
@@ -71,7 +71,7 @@ namespace Desolation
             {
 
                 // position.X -= 0.5f;
-                sourceRect.X = 1 * 16;
+                sourceRect.X = 0 * 16;
                 sourceRect.Y = (frame % 4) * 16;
                 if (player.position.X < position.X && ((player.position.Y - position.Y)) < range)
                 {
@@ -91,7 +91,7 @@ namespace Desolation
             {
                 currentDirection = Direction.West;
                 //  position.Y -= 0.5f;
-                sourceRect.X = 2 * 16;
+                sourceRect.X = 1 * 16;
                 sourceRect.Y = (frame % 4) * 16;
 
             }
@@ -99,7 +99,7 @@ namespace Desolation
             {
                 currentDirection = Direction.East;
                 //// position.Y += 0.5f;
-                sourceRect.X = 0 * 16;
+                sourceRect.X = 3 * 16;
                 sourceRect.Y = (frame % 4) * 16;
 
             }
