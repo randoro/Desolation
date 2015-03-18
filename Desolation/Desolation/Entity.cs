@@ -31,8 +31,46 @@ namespace Desolation
         public virtual void moveDirection(Direction direction)
         {
             Vector2 oldPosition = position;
-            
+            //rörelse
+            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+            switch (direction)
+            {
+                case Direction.North:
+                    position.Y -= speed;
 
+                    break;
+                case Direction.NorthEast:
+                    position.X += realSpeed;
+                    position.Y -= realSpeed;
+                    break;
+                case Direction.East:
+                    position.X += speed;
+                    break;
+                case Direction.SouthEast:
+                    position.X += realSpeed;
+                    position.Y += realSpeed;
+                    break;
+                case Direction.South:
+                    position.Y += speed;
+                    break;
+                case Direction.SouthWest:
+                    position.X -= realSpeed;
+                    position.Y += realSpeed;
+                    break;
+                case Direction.West:
+                    position.X -= speed;
+                    break;
+                case Direction.NorthWest:
+                    position.X -= realSpeed;
+                    position.Y -= realSpeed;
+                    break;
+                case Direction.None:
+                    break;
+                default:
+                    break;
+            }
+
+            //kolla om entity är laddad
             int currentBlockX;
             int currentBlockY;
             if (position.X >= 0)
@@ -59,46 +97,17 @@ namespace Desolation
                 if (currentChunk != null)
                 {
                     currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
-
-                    realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
-                    switch (direction)
+                    if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
                     {
-                        case Direction.North:
-                            position.Y -= speed;
-
-                            break;
-                        case Direction.NorthEast:
-                            position.X += realSpeed;
-                            position.Y -= realSpeed;
-                            break;
-                        case Direction.East:
-                            position.X += speed;
-                            break;
-                        case Direction.SouthEast:
-                            position.X += realSpeed;
-                            position.Y += realSpeed;
-                            break;
-                        case Direction.South:
-                            position.Y += speed;
-                            break;
-                        case Direction.SouthWest:
-                            position.X -= realSpeed;
-                            position.Y += realSpeed;
-                            break;
-                        case Direction.West:
-                            position.X -= speed;
-                            break;
-                        case Direction.NorthWest:
-                            position.X -= realSpeed;
-                            position.Y -= realSpeed;
-                            break;
-                        case Direction.None:
-                            break;
-                        default:
-                            break;
+                        position = oldPosition; //undo'ar rörelse
                     }
+                    
                 }
 
+            }
+            else
+            {
+                position = oldPosition; //undo'ar rörelse
             }
             //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
             //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
