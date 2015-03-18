@@ -31,43 +31,7 @@ namespace Desolation
         public virtual void moveDirection(Direction direction)
         {
             Vector2 oldPosition = position;
-            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
-            switch (direction)
-            {
-                case Direction.North:
-                    position.Y -= speed;
-                    
-                    break;
-                case Direction.NorthEast:
-                    position.X += realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.East:
-                    position.X += speed;
-                    break;
-                case Direction.SouthEast:
-                    position.X += realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.South:
-                    position.Y += speed;
-                    break;
-                case Direction.SouthWest:
-                    position.X -= realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.West:
-                    position.X -= speed;
-                    break;
-                case Direction.NorthWest:
-                    position.X -= realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.None:
-                    break;
-                default:
-                    break;
-            }
+            
 
             int currentBlockX;
             int currentBlockY;
@@ -95,11 +59,49 @@ namespace Desolation
                 if (currentChunk != null)
                 {
                     currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
+
+                    realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+                    switch (direction)
+                    {
+                        case Direction.North:
+                            position.Y -= speed;
+
+                            break;
+                        case Direction.NorthEast:
+                            position.X += realSpeed;
+                            position.Y -= realSpeed;
+                            break;
+                        case Direction.East:
+                            position.X += speed;
+                            break;
+                        case Direction.SouthEast:
+                            position.X += realSpeed;
+                            position.Y += realSpeed;
+                            break;
+                        case Direction.South:
+                            position.Y += speed;
+                            break;
+                        case Direction.SouthWest:
+                            position.X -= realSpeed;
+                            position.Y += realSpeed;
+                            break;
+                        case Direction.West:
+                            position.X -= speed;
+                            break;
+                        case Direction.NorthWest:
+                            position.X -= realSpeed;
+                            position.Y -= realSpeed;
+                            break;
+                        case Direction.None:
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
             }
             //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
-            Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
+            //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
 
