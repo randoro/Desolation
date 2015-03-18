@@ -32,43 +32,7 @@ namespace Desolation
         {
             Vector2 oldPosition = position;
             //rörelse
-            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
-            switch (direction)
-            {
-                case Direction.North:
-                    position.Y -= speed;
-
-                    break;
-                case Direction.NorthEast:
-                    position.X += realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.East:
-                    position.X += speed;
-                    break;
-                case Direction.SouthEast:
-                    position.X += realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.South:
-                    position.Y += speed;
-                    break;
-                case Direction.SouthWest:
-                    position.X -= realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.West:
-                    position.X -= speed;
-                    break;
-                case Direction.NorthWest:
-                    position.X -= realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.None:
-                    break;
-                default:
-                    break;
-            }
+            
 
             //kolla om entity är laddad
             int currentBlockX;
@@ -79,7 +43,7 @@ namespace Desolation
             }
             else
             {
-                currentBlockX = 15 + ((int)position.X + 1) / 16 % 16;
+                currentBlockX = 15 + ((int)position.X) / 16 % 16;
             }
 
             if (position.Y >= 0)
@@ -88,15 +52,65 @@ namespace Desolation
             }
             else
             {
-                currentBlockY = 15 + ((int)position.Y + 1) / 16 % 16;
+                currentBlockY = 15 + ((int)position.Y) / 16  % 16;
             }
             int chunkIndex = getCurrentChunkNrInArray();
             if (chunkIndex != -1)
             {
                 Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+                //Chunk currentChunk0 = ChunkManager.chunkArray[chunkIndex - 13];
+                //Chunk currentChunk1 = ChunkManager.chunkArray[chunkIndex - 12];
+                //Chunk currentChunk2 = ChunkManager.chunkArray[chunkIndex - 11];
+                //Chunk currentChunk3 = ChunkManager.chunkArray[chunkIndex - 1];
+                //Chunk currentChunk4 = ChunkManager.chunkArray[chunkIndex];
+                //Chunk currentChunk5 = ChunkManager.chunkArray[chunkIndex + 1];
+                //Chunk currentChunk6 = ChunkManager.chunkArray[chunkIndex + 11];
+                //Chunk currentChunk7 = ChunkManager.chunkArray[chunkIndex + 12];
+                //Chunk currentChunk8 = ChunkManager.chunkArray[chunkIndex + 13];
+
+                //if (currentBlockX < 1)
                 if (currentChunk != null)
                 {
                     currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
+
+                    realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+                    switch (direction)
+                    {
+                        case Direction.North:
+                            position.Y -= speed;
+
+                            break;
+                        case Direction.NorthEast:
+                            position.X += realSpeed;
+                            position.Y -= realSpeed;
+                            break;
+                        case Direction.East:
+                            position.X += speed;
+                            break;
+                        case Direction.SouthEast:
+                            position.X += realSpeed;
+                            position.Y += realSpeed;
+                            break;
+                        case Direction.South:
+                            position.Y += speed;
+                            break;
+                        case Direction.SouthWest:
+                            position.X -= realSpeed;
+                            position.Y += realSpeed;
+                            break;
+                        case Direction.West:
+                            position.X -= speed;
+                            break;
+                        case Direction.NorthWest:
+                            position.X -= realSpeed;
+                            position.Y -= realSpeed;
+                            break;
+                        case Direction.None:
+                            break;
+                        default:
+                            break;
+                    }
+
                     if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
                     {
                         position = oldPosition; //undo'ar rörelse
@@ -119,9 +133,20 @@ namespace Desolation
            //Vector2 tempPos = new Vector2(1050, 1050);
            //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
            //int playerRegionY = Globals.getRegionValue(Globals.playerPos.Y);
+           int playerChunkX;
+           int playerChunkY;
 
-           int playerChunkX = Globals.getChunkValue(Globals.playerPos.X);
-           int playerChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+           if (this is Player)
+           {
+               playerChunkX = Globals.getChunkValue(position.X);
+               playerChunkY = Globals.getChunkValue(position.Y);
+           }
+           else
+           {
+               playerChunkX = Globals.getChunkValue(Globals.playerPos.X);
+               playerChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+           }
+           
 
            int entityChunkX = Globals.getChunkValue(position.X);
            int entityChunkY = Globals.getChunkValue(position.Y);
