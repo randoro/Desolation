@@ -109,10 +109,18 @@ namespace Desolation
                     {
                         blocks[j] = (byte)0;
                     }
-                    blocks[39] = (byte)1;
+                    blocks[0] = (byte)1;
+                    blocks[15] = (byte)1;
+                    blocks[240] = (byte)1;
+                    blocks[255] = (byte)1;
                     makeByteArray("Blocks", blocks, fileStream);
 
                     byte[] objects = new byte[256];
+                    for (int j = 0; j < objects.Length; j++)
+                    {
+                        objects[j] = (byte)0;
+                    }
+                    objects[24] = (byte)1;
                     makeByteArray("Objects", objects, fileStream);
 
 

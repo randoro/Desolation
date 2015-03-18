@@ -47,6 +47,16 @@ namespace Desolation
                     spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
 
                 }
+
+                if (objects[i] == 0)
+                {
+                    
+                }
+                else
+                {
+                    spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.Red, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+
+                }
             }
         }
 
