@@ -24,7 +24,7 @@ namespace Desolation
 
         Texture2D spriteSheet;
         Texture2D zombieSheet, gobSheet;
-        Player player;
+        public static Player player;
         public static GameWindow gameWindow;
 
 
@@ -100,7 +100,7 @@ namespace Desolation
             Globals.playerPos = player.position;
 
             camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
-            player.Update(gameTime);
+            
             chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();

@@ -32,7 +32,43 @@ namespace Desolation
         {
             Vector2 oldPosition = position;
             //rörelse
-            
+            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+            switch (direction)
+            {
+                case Direction.North:
+                    position.Y -= speed;
+
+                    break;
+                case Direction.NorthEast:
+                    position.X += realSpeed;
+                    position.Y -= realSpeed;
+                    break;
+                case Direction.East:
+                    position.X += speed;
+                    break;
+                case Direction.SouthEast:
+                    position.X += realSpeed;
+                    position.Y += realSpeed;
+                    break;
+                case Direction.South:
+                    position.Y += speed;
+                    break;
+                case Direction.SouthWest:
+                    position.X -= realSpeed;
+                    position.Y += realSpeed;
+                    break;
+                case Direction.West:
+                    position.X -= speed;
+                    break;
+                case Direction.NorthWest:
+                    position.X -= realSpeed;
+                    position.Y -= realSpeed;
+                    break;
+                case Direction.None:
+                    break;
+                default:
+                    break;
+            }
 
             //kolla om entity är laddad
             int currentBlockX;
@@ -73,43 +109,6 @@ namespace Desolation
                 {
                     currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
 
-                    realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
-                    switch (direction)
-                    {
-                        case Direction.North:
-                            position.Y -= speed;
-
-                            break;
-                        case Direction.NorthEast:
-                            position.X += realSpeed;
-                            position.Y -= realSpeed;
-                            break;
-                        case Direction.East:
-                            position.X += speed;
-                            break;
-                        case Direction.SouthEast:
-                            position.X += realSpeed;
-                            position.Y += realSpeed;
-                            break;
-                        case Direction.South:
-                            position.Y += speed;
-                            break;
-                        case Direction.SouthWest:
-                            position.X -= realSpeed;
-                            position.Y += realSpeed;
-                            break;
-                        case Direction.West:
-                            position.X -= speed;
-                            break;
-                        case Direction.NorthWest:
-                            position.X -= realSpeed;
-                            position.Y -= realSpeed;
-                            break;
-                        case Direction.None:
-                            break;
-                        default:
-                            break;
-                    }
 
                     if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
                     {

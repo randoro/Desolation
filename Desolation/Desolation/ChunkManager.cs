@@ -592,8 +592,8 @@ namespace Desolation
             {
                 e.Update(gameTime);
             }
-                
-                
+
+            Game1.player.Update(gameTime); 
 
             
             
