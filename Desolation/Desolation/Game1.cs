@@ -24,10 +24,7 @@ namespace Desolation
 
         Texture2D spriteSheet;
         Texture2D zombieSheet, gobSheet;
-        Zombie zombie;
         Player player;
-        Goblin goblin;
-        GameObject go;
         public static GameWindow gameWindow;
 
 
@@ -81,8 +78,8 @@ namespace Desolation
             Globals.tempsheet = Content.Load<Texture2D>("tempblocksheet");
 
             player = new Player(new Vector2(200, 200));
-            zombie = new Zombie(player, new Vector2(500, 500));
-            goblin = new Goblin(new Vector2(300, 300));
+            ChunkManager.entityList.Add(new Zombie(player, new Vector2(500, 500)));
+            ChunkManager.entityList.Add(new Goblin(new Vector2(300, 300)));
         }
         protected override void UnloadContent()
         {
@@ -104,8 +101,6 @@ namespace Desolation
 
             camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
             player.Update(gameTime);
-            goblin.Update(gameTime);
-            zombie.Update(gameTime);
             chunkManager.update(gameTime, Window);
 
             textureManager.runTimeLoading();
@@ -173,8 +168,6 @@ namespace Desolation
             chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
             
-            zombie.Draw(spriteBatch);
-            goblin.Draw(spriteBatch);
 
             
 

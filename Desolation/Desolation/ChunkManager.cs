@@ -14,6 +14,7 @@ namespace Desolation
         FileLoader fileLoader;
         public static Chunk[] chunkArray;
         Region[] regionArray;
+        public static List<Entity> entityList;
         long ticksLastChunkLoad;
 
         int lastRegionX;
@@ -31,6 +32,7 @@ namespace Desolation
             fileLoader = new FileLoader();
             ticksLastChunkLoad = DateTime.Now.Ticks;
             regionArray = new Region[9];
+            entityList = new List<Entity>();
 
 
                 Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
@@ -458,6 +460,10 @@ namespace Desolation
 
 
 
+                
+
+
+
 
             //        //lastRegionX = newRegionX;
             //        //Globals.shiftRegionsRight(ref regionArray);
@@ -580,9 +586,12 @@ namespace Desolation
 
             }
 
-            
-            
 
+
+            foreach (Entity e in entityList)
+            {
+                e.Update(gameTime);
+            }
                 
                 
 
@@ -598,6 +607,11 @@ namespace Desolation
                 { 
                     chunkArray[i].draw(spriteBatch);
                 }
+            }
+
+            foreach (Entity e in entityList)
+            {
+                e.Draw(spriteBatch);
             }
         }
 
