@@ -471,5 +471,14 @@ namespace Desolation
             }
 
         }
+
+        public static void overwriteRegionStream(ref FileStream fileStream, int index)
+        {
+            for (int innerIndex = 0; innerIndex < 16; innerIndex++)
+			{
+                Chunk currentChunk = ChunkManager.chunkArray[((innerIndex / 4) + (index / 3) * 4) * 12 + (innerIndex % 4) + (index % 3) * 4];
+			}
+            
+        }
     }
 }
