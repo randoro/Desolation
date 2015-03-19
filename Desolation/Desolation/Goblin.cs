@@ -98,7 +98,7 @@ namespace Desolation
 
         public Direction GetRandomDirection()
         {
-            int randomDirection = Globals.rand.Next(8);
+            int randomDirection = Globals.rand.Next(9);
 
             switch (randomDirection)
             {
@@ -118,6 +118,8 @@ namespace Desolation
                     return Direction.West;
                 case 7:
                     return Direction.NorthWest;
+                case 8:
+                    return Direction.None;
                 default:
                     return Direction.None;
             }
