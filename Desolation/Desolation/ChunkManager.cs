@@ -145,6 +145,8 @@ namespace Desolation
                         lastRegionX = newRegionX;
                         lastRegionY = newRegionY;
 
+                        
+
                         Globals.shiftRegionsDown(ref regionArray);
                         Globals.shiftChunksDown(ref chunkArray);
 

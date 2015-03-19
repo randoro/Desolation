@@ -192,6 +192,41 @@ namespace Desolation
         }
 
 
+        public static void saveChunk(Chunk chunk, FileStream fileStream)
+        {
+            Tag chunkTag = new Tag(TagID.Compound, "chunk", null, TagID.Compound);
+            writeTag(chunkTag, fileStream);
+
+
+            Tag XPos = new Tag(TagID.Int, "XPos", chunk.XPos, TagID.Int);
+            writeTag(XPos, fileStream);
+
+            Tag YPos = new Tag(TagID.Int, "YPos", chunk.YPos, TagID.Int);
+            writeTag(YPos, fileStream);
+
+            Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
+            writeTag(LastUpdate, fileStream);
+
+            Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
+            writeTag(TerrainPopulated, fileStream);
+
+            Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
+            writeTag(InhabitedTime, fileStream);
+
+            Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
+            writeTag(Biomes, fileStream);
+
+            Tag Blocks = new Tag(TagID.ByteArray, "Blocks", chunk.blocks, TagID.ByteArray);
+            writeTag(Blocks, fileStream);
+
+            Tag Objects = new Tag(TagID.ByteArray, "Objects", chunk.objects, TagID.ByteArray);
+            writeTag(Objects, fileStream);
+
+            Tag End = new Tag(TagID.End, null, null, TagID.End);
+            writeTag(Objects, fileStream);
+
+        }
+
         public static Tag readTag(FileStream fileStream)
         {
             TagID tagID = (TagID)fileStream.ReadByte();
@@ -779,11 +814,17 @@ namespace Desolation
             }
         }
 
-        public static void overwriteRegionStream(ref FileStream fileStream, int index)
+        public static void overwriteRegionStream(Region region, int index)
         {
+            FileStream fileStream = region.fileStream;
+            Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
+            writeTag(chunkTag, fileStream);
+
+
             for (int innerIndex = 0; innerIndex < 16; innerIndex++)
 			{
                 Chunk currentChunk = ChunkManager.chunkArray[((innerIndex / 4) + (index / 3) * 4) * 12 + (innerIndex % 4) + (index % 3) * 4];
+                saveChunk(currentChunk, fileStream);
 			}
             
         }
