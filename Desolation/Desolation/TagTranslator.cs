@@ -629,165 +629,152 @@ namespace Desolation
 
         }
 
-        public static Tag writeTag(Tag tag, FileStream fileStream)
+        public static void writeTag(Tag tag, FileStream fileStream)
         {
-            TagID tagID = (TagID)fileStream.ReadByte();
-            Tag returnTag;
+            TagID tagID = tag.getID();
+            String tagName = tag.getName();
+            var data = tag.getData();
+
+            fileStream.WriteByte((byte)tagID);
 
             if (tagID.Equals(TagID.End))
             {
-                returnTag = new Tag(tagID, null, null, tagID);
-                return returnTag; //No payload
+                return; //No payload
             }
 
-            byte[] byte2 = new byte[2];
-            fileStream.Read(byte2, 0, 2);
-            short stringLength = BitConverter.ToInt16(byte2, 0);
-            byte[] byteString = new byte[stringLength];
-            fileStream.Read(byteString, 0, stringLength);
-            String tagIdentifier = Encoding.UTF8.GetString(byteString, 0, stringLength);
+            byte[] byteArray3 = BitConverter.GetBytes((short)tagName.Length);
+            byte[] buffer3 = Encoding.UTF8.GetBytes(tagName);
+
             byte[] payload;
+
+            
+            fileStream.WriteByte(byteArray3[0]);
+            fileStream.WriteByte(byteArray3[1]);
+            fileStream.Write(buffer3, 0, (short)tagName.Length);
 
             //Payload
             switch (tagID)
             {
                 case TagID.End:
-                    returnTag = new Tag(tagID, null, null, tagID);
-                    return returnTag; //No payload
+                    return; //No payload
                     break;
                 case TagID.Byte:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    payload[0] = (byte)fileStream.ReadByte();
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
-
+                    fileStream.WriteByte((byte)data);
+                    return;
                     break;
                 case TagID.Short:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+
+                    fileStream.Write((byte[])data, 0, 2);
+                    return;
 
                     break;
                 case TagID.Int:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                    fileStream.Write((byte[])data, 0, 4);
+                    return;
 
                     break;
                 case TagID.Long:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                    fileStream.Write((byte[])data, 0, 8);
+                    return;
 
                     break;
                 case TagID.Float:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                    fileStream.Write((byte[])data, 0, 4);
+                    return;
 
                     break;
                 case TagID.Double:
 
-                    payload = new byte[Globals.dataTypeSizes[(int)tagID]]; //changed for each tag
-                    fileStream.Read(payload, 0, Globals.dataTypeSizes[(int)tagID]);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                    fileStream.Write((byte[])data, 0, 8);
+                    return;
 
                     break;
                 case TagID.ByteArray:
 
-                    byte[] sizeArray = new byte[4]; //changed for each tag
-                    fileStream.Read(sizeArray, 0, 4);
-                    int arraySizeNumber = BitConverter.ToInt32(sizeArray, 0);
-                    payload = new byte[4 + arraySizeNumber]; //changed for each tag
-                    payload[0] = sizeArray[0];
-                    payload[1] = sizeArray[1];
-                    payload[2] = sizeArray[2];
-                    payload[3] = sizeArray[3];
-                    fileStream.Read(payload, 4, arraySizeNumber);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                    int sizeArray = ((byte[])data).Length; //changed for each tag
+                    byte[] sizeArrayArray = BitConverter.GetBytes((int)sizeArray);
 
+                    fileStream.Write(sizeArrayArray, 0, 4);
+                    fileStream.Write((byte[])data, 0, sizeArray);
+                    return;
                     break;
                 case TagID.String:
+                    short stringLength = (short)((String)data).Length;
+                    byte[] stringArrayLength = BitConverter.GetBytes(stringLength);
+                    byte[] bufferstring = Encoding.UTF8.GetBytes((String)data);
 
-                    byte[] sizeArray2 = new byte[2]; //changed for each tag
-                    fileStream.Read(sizeArray2, 0, 2);
-                    short stringSizeNumber = BitConverter.ToInt16(sizeArray2, 0);
-                    payload = new byte[2 + stringSizeNumber]; //changed for each tag
-                    payload[0] = sizeArray2[0];
-                    payload[1] = sizeArray2[1];
-                    fileStream.Read(payload, 2, stringSizeNumber);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+
+                    fileStream.WriteByte(stringArrayLength[0]);
+                    fileStream.WriteByte(stringArrayLength[1]);
+                    fileStream.Write(bufferstring, 0, stringLength);
+
+
+                    return;
 
                     break;
                 case TagID.List:
+                    //fix this
 
-                    byte listTagID = (byte)fileStream.ReadByte();
-                    byte[] elementArray = new byte[4];
-                    fileStream.Read(elementArray, 0, 4);
-                    int elementsInList = BitConverter.ToInt32(elementArray, 0);
+                    //byte listTagID = (byte)fileStream.ReadByte();
+                    //byte[] elementArray = new byte[4];
+                    //fileStream.Read(elementArray, 0, 4);
+                    //int elementsInList = BitConverter.ToInt32(elementArray, 0);
 
-                    if (elementsInList > 0)
-                    {
-                        if (!listTagID.Equals(TagID.Compound))
-                        {
-                            byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+                    //if (elementsInList > 0)
+                    //{
+                    //    if (!listTagID.Equals(TagID.Compound))
+                    //    {
+                    //        byte payloadElementSize = Globals.dataTypeSizes[listTagID];
 
-                            List<byte[]> byteArrayList = new List<byte[]>();
+                    //        List<byte[]> byteArrayList = new List<byte[]>();
 
-                            for (int i = 0; i < elementsInList; i++)
-                            {
-                                byte[] element = new byte[payloadElementSize];
-                                fileStream.Read(element, 0, payloadElementSize);
-                                byteArrayList.Add(element);
-                            }
+                    //        for (int i = 0; i < elementsInList; i++)
+                    //        {
+                    //            byte[] element = new byte[payloadElementSize];
+                    //            fileStream.Read(element, 0, payloadElementSize);
+                    //            byteArrayList.Add(element);
+                    //        }
 
-                            returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
-                            return returnTag;
-                        }
-                        else
-                        {
+                    //        returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
+                    //        return returnTag;
+                    //    }
+                    //    else
+                    //    {
 
-                        }
-                    }
-                    returnTag = new Tag(tagID, tagIdentifier, null, tagID); //change
-                    return returnTag;
+                    //    }
+                    //}
+                    //returnTag = new Tag(tagID, tagIdentifier, null, tagID); //change
+                    return;
 
                     break;
                 case TagID.Compound:
-                    returnTag = new Tag(tagID, tagIdentifier, null, tagID);
-                    return returnTag; //No payload
+                    return; //No payload
                     break;
                 case TagID.IntArray:
+                //    fix this
 
-                    byte[] sizeArray3 = new byte[4]; //changed for each tag
-                    fileStream.Read(sizeArray3, 0, 4);
-                    int arraySizeNumber2 = BitConverter.ToInt32(sizeArray3, 0);
+                //    byte[] sizeArray3 = new byte[4]; //changed for each tag
+                //    fileStream.Read(sizeArray3, 0, 4);
+                //    int arraySizeNumber2 = BitConverter.ToInt32(sizeArray3, 0);
 
-                    payload = new byte[4 + arraySizeNumber2 * 4]; //changed for each tag
-                    payload[0] = sizeArray3[0];
-                    payload[1] = sizeArray3[1];
-                    payload[2] = sizeArray3[2];
-                    payload[3] = sizeArray3[3];
-                    fileStream.Read(payload, 4, arraySizeNumber2 * 4);
-                    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
-                    return returnTag;
+                //    payload = new byte[4 + arraySizeNumber2 * 4]; //changed for each tag
+                //    payload[0] = sizeArray3[0];
+                //    payload[1] = sizeArray3[1];
+                //    payload[2] = sizeArray3[2];
+                //    payload[3] = sizeArray3[3];
+                //    fileStream.Read(payload, 4, arraySizeNumber2 * 4);
+                //    returnTag = new Tag(tagID, tagIdentifier, payload, tagID);
+                //    return returnTag;
 
-                    break;
-                default:
-                    returnTag = new Tag(tagID, tagIdentifier, null, tagID);
-                    return returnTag; //No payload
+                //    break;
+                //default:
+                //    returnTag = new Tag(tagID, tagIdentifier, null, tagID);
+                    return; //No payload
                     break;
             }
         }
