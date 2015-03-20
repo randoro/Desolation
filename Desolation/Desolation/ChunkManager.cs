@@ -36,52 +36,40 @@ namespace Desolation
 
 
                 Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
-            //TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-            //tempChunkCreator0.makeEmptyChunk(tempRegion0);
-                regionArray[0] = tempRegion0;
-
                 Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
-            //TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
-            //tempChunkCreator1.makeEmptyChunk(tempRegion1);
-                regionArray[1] = tempRegion1;
-
                 Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
-            //TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-            //tempChunkCreator2.makeEmptyChunk(tempRegion2);
-                regionArray[2] = tempRegion2;
-
                 Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);
-                TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                tempChunkCreator3.makeEmptyChunk(tempRegion3);
-                regionArray[3] = tempRegion3;
-
                 Region tempRegion4 = fileLoader.loadRegionFile(0, 0);
-                TempChunkCreator tempChunkCreator4 = new TempChunkCreator();
-                tempChunkCreator4.makeEmptyChunk(tempRegion4);
-                regionArray[4] = tempRegion4;
-
                 Region tempRegion5 = fileLoader.loadRegionFile(1, 0);
-                TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
-                tempChunkCreator5.makeEmptyChunk(tempRegion5);
-                regionArray[5] = tempRegion5;
-
                 Region tempRegion6 = fileLoader.loadRegionFile(-1, 1);
-                TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                tempChunkCreator6.makeEmptyChunk(tempRegion6);
-                regionArray[6] = tempRegion6;
-
                 Region tempRegion7 = fileLoader.loadRegionFile(0, 1);
-                TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
-                tempChunkCreator7.makeEmptyChunk(tempRegion7);
-                regionArray[7] = tempRegion7;
-
                 Region tempRegion8 = fileLoader.loadRegionFile(1, 1);
-                TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                tempChunkCreator8.makeEmptyChunk(tempRegion8);
-                regionArray[8] = tempRegion8;
 
+                bool newGame = false;
+
+                if (newGame)
+                {
+                    TempChunkCreator.makeEmptyChunk(tempRegion0);
+                    TempChunkCreator.makeEmptyChunk(tempRegion1);
+                    TempChunkCreator.makeEmptyChunk(tempRegion2);
+                    TempChunkCreator.makeEmptyChunk(tempRegion3);
+                    TempChunkCreator.makeEmptyChunk(tempRegion4);
+                    TempChunkCreator.makeEmptyChunk(tempRegion5);
+                    TempChunkCreator.makeEmptyChunk(tempRegion6);
+                    TempChunkCreator.makeEmptyChunk(tempRegion7);
+                    TempChunkCreator.makeEmptyChunk(tempRegion8);
+                }
 
             
+                regionArray[0] = tempRegion0;
+                regionArray[1] = tempRegion1;
+                regionArray[2] = tempRegion2;
+                regionArray[3] = tempRegion3;
+                regionArray[4] = tempRegion4;
+                regionArray[5] = tempRegion5;
+                regionArray[6] = tempRegion6;
+                regionArray[7] = tempRegion7;
+                regionArray[8] = tempRegion8;
 
 
             chunkArray = new Chunk[144];
@@ -113,11 +101,19 @@ namespace Desolation
                     if (regionArray[i] != null)
                     {
                         Chunk newChunk = TagTranslator.getUnloadedChunk(regionArray[i]);
-                        if (newChunk != null)
-                        {
-                            byte innerIndex = newChunk.innerIndex;
-                            chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
-                        }
+                        
+                            if (newChunk == null || newChunk.terrainPopulated == 0)
+                            {
+                                newChunk = TempChunkCreator.createChunk(regionArray[i]);
+                            }
+
+                            if (newChunk != null)
+                            {
+                                byte innerIndex = newChunk.innerIndex;
+                                chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
+                            }
+                                
+
                     }
                 }
                 //check if chunks in regionfile needs loading
@@ -162,36 +158,26 @@ namespace Desolation
                         Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                         if (tempRegion0 != null)
                         {
-                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                            tempChunkCreator0.makeRandomChunk(tempRegion0);
                             regionArray[0] = tempRegion0;
                         }
                         Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
                         if (tempRegion1 != null)
                         {
-                            TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
-                            tempChunkCreator1.makeRandomChunk(tempRegion1);
                             regionArray[1] = tempRegion1;
                         }
                         Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                         if (tempRegion2 != null)
                         {
-                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                            tempChunkCreator2.makeRandomChunk(tempRegion2);
                             regionArray[2] = tempRegion2;
                         }
                         Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
                         if (tempRegion3 != null)
                         {
-                            TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                            tempChunkCreator3.makeRandomChunk(tempRegion3);
                             regionArray[3] = tempRegion3;
                         }
                         Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                         if (tempRegion6 != null)
                         {
-                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                            tempChunkCreator6.makeRandomChunk(tempRegion6);
                             regionArray[6] = tempRegion6;
                         }
                     }
@@ -216,37 +202,27 @@ namespace Desolation
                         Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                         if (tempRegion6 != null)
                         {
-                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                            tempChunkCreator6.makeRandomChunk(tempRegion6);
                             regionArray[6] = tempRegion6;
                         }
                         Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
                         if (tempRegion7 != null)
                         {
-                            TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
-                            tempChunkCreator7.makeRandomChunk(tempRegion7);
                             regionArray[7] = tempRegion7;
                         }
                         Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
                         if (tempRegion8 != null)
                         {
-                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                            tempChunkCreator8.makeRandomChunk(tempRegion8);
                             regionArray[8] = tempRegion8;
                         }
                         Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                         if (tempRegion0 != null)
                         {
-                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                            tempChunkCreator0.makeRandomChunk(tempRegion0);
                             regionArray[0] = tempRegion0;
                         }
 
                         Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
                         if (tempRegion3 != null)
                         {
-                            TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                            tempChunkCreator3.makeRandomChunk(tempRegion3);
                             regionArray[3] = tempRegion3;
                         }
                     }
@@ -265,23 +241,17 @@ namespace Desolation
                     Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                     if (tempRegion0 != null)
                     {
-                        TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                        tempChunkCreator0.makeRandomChunk(tempRegion0);
                         regionArray[0] = tempRegion0;
                     }
 
                     Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
                     if (tempRegion3 != null)
                     {
-                        TempChunkCreator tempChunkCreator3 = new TempChunkCreator();
-                        tempChunkCreator3.makeRandomChunk(tempRegion3);
                         regionArray[3] = tempRegion3;
                     }
                     Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                     if (tempRegion6 != null)
                     {
-                        TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                        tempChunkCreator6.makeRandomChunk(tempRegion6);
                         regionArray[6] = tempRegion6;
                     }
                     }
@@ -309,37 +279,27 @@ namespace Desolation
                         Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                         if (tempRegion0 != null)
                         {
-                            TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                            tempChunkCreator0.makeRandomChunk(tempRegion0);
                             regionArray[0] = tempRegion0;
                         }
                         Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
                         if (tempRegion1 != null)
                         {
-                            TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
-                            tempChunkCreator1.makeRandomChunk(tempRegion1);
                             regionArray[1] = tempRegion1;
                         }
 
                         Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                         if (tempRegion2 != null)
                         {
-                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                            tempChunkCreator2.makeRandomChunk(tempRegion2);
                             regionArray[2] = tempRegion2;
                         }
                         Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
                         if (tempRegion5 != null)
                         {
-                            TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
-                            tempChunkCreator5.makeRandomChunk(tempRegion5);
                             regionArray[5] = tempRegion5;
                         }
                         Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
                         if (tempRegion8 != null)
                         {
-                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                            tempChunkCreator8.makeRandomChunk(tempRegion8);
                             regionArray[8] = tempRegion8;
                         }
 
@@ -364,36 +324,26 @@ namespace Desolation
                         Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                         if (tempRegion6 != null)
                         {
-                            TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                            tempChunkCreator6.makeRandomChunk(tempRegion6);
                             regionArray[6] = tempRegion6;
                         }
                         Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
                         if (tempRegion7 != null)
                         {
-                            TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
-                            tempChunkCreator7.makeRandomChunk(tempRegion7);
                             regionArray[7] = tempRegion7;
                         }
                         Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
                         if (tempRegion8 != null)
                         {
-                            TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                            tempChunkCreator8.makeRandomChunk(tempRegion8);
                             regionArray[8] = tempRegion8;
                         }
                         Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                         if (tempRegion2 != null)
                         {
-                            TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                            tempChunkCreator2.makeRandomChunk(tempRegion2);
                             regionArray[2] = tempRegion2;
                         }
                         Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
                         if (tempRegion5 != null)
                         {
-                            TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
-                            tempChunkCreator5.makeRandomChunk(tempRegion5);
                             regionArray[5] = tempRegion5;
                         }
                     }
@@ -412,22 +362,16 @@ namespace Desolation
                     Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                     if (tempRegion2 != null)
                     {
-                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                        tempChunkCreator2.makeRandomChunk(tempRegion2);
                         regionArray[2] = tempRegion2;
                     }
                     Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
                     if (tempRegion5 != null)
                     {
-                        TempChunkCreator tempChunkCreator5 = new TempChunkCreator();
-                        tempChunkCreator5.makeRandomChunk(tempRegion5);
                         regionArray[5] = tempRegion5;
                     }
                     Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
                     if (tempRegion8 != null)
                     {
-                        TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                        tempChunkCreator8.makeRandomChunk(tempRegion8);
                         regionArray[8] = tempRegion8;
                     }
                     }
@@ -450,22 +394,16 @@ namespace Desolation
                     Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
                     if (tempRegion0 != null)
                     {
-                        TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                        tempChunkCreator0.makeRandomChunk(tempRegion0);
                         regionArray[0] = tempRegion0;
                     }
                     Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
                     if (tempRegion1 != null)
                     {
-                        TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
-                        tempChunkCreator1.makeRandomChunk(tempRegion1);
                         regionArray[1] = tempRegion1;
                     }
                     Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
                     if (tempRegion2 != null)
                     {
-                        TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                        tempChunkCreator2.makeRandomChunk(tempRegion2);
                         regionArray[2] = tempRegion2;
                     }
                     }
@@ -484,22 +422,16 @@ namespace Desolation
                     Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
                     if (tempRegion6 != null)
                     {
-                        TempChunkCreator tempChunkCreator6 = new TempChunkCreator();
-                        tempChunkCreator6.makeRandomChunk(tempRegion6);
                         regionArray[6] = tempRegion6;
                     }
                     Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
                     if (tempRegion7 != null)
                     {
-                        TempChunkCreator tempChunkCreator7 = new TempChunkCreator();
-                        tempChunkCreator7.makeRandomChunk(tempRegion7);
                         regionArray[7] = tempRegion7;
                     }
                     Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
                     if (tempRegion8 != null)
                     {
-                        TempChunkCreator tempChunkCreator8 = new TempChunkCreator();
-                        tempChunkCreator8.makeRandomChunk(tempRegion8);
                         regionArray[8] = tempRegion8;
                     }
                     }

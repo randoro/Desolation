@@ -6,16 +6,107 @@ using System.Text;
 
 namespace Desolation
 {
-    class TempChunkCreator
+    static class TempChunkCreator
     {
-        public TempChunkCreator()
+
+        public static Chunk createChunk(Region region)
         {
 
+            bool[] chunksLoaded = region.chunksLoaded;
+
+            bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+
+            if(!allChunksLoaded) 
+            {
+
+            int valueIndex = -1;
+            for (int i = 0; i < chunksLoaded.Length; i++)
+			{
+			    if(!chunksLoaded[i]) 
+                {
+                    valueIndex = i;
+                    break;
+                }
+			}
+
+            Chunk chunk = new Chunk();
+
+
+            int XPos = region.xPosRegion * 4 + valueIndex % 4;
+
+            int YPos = region.yPosRegion * 4 + valueIndex / 4;
+
+
+            int localxPos;
+            int localyPos;
+            if (XPos >= 0)
+            {
+                localxPos = XPos % 4;
+            }
+            else
+            {
+                localxPos = 3 + (XPos + 1) % 4;
+            }
+            if (YPos >= 0)
+            {
+                localyPos = YPos % 4;
+            }
+            else
+            {
+                localyPos = 3 + (YPos + 1) % 4;
+            }
+
+            chunk.innerIndex = (byte)(localxPos + localyPos * 4);
+            region.chunksLoaded[localxPos + localyPos * 4] = true;
             
 
+            chunk.XPos = XPos;
+            chunk.YPos = YPos;
+
+            chunk.terrainPopulated = 1;
+
+            chunk.lastUpdate = 123;
+            chunk.inhabitedTime = 456;          
+                               
+                             
+            chunk.biomes = new byte[256];
+
+            byte[] blocks = new byte[256];
+            for (int j = 0; j < blocks.Length; j++)
+            {
+                blocks[j] = (byte)0;
+            }
+            blocks[0] = (byte)1;
+            blocks[15] = (byte)1;
+            blocks[240] = (byte)1;
+            blocks[255] = (byte)1;
+
+            chunk.blocks = blocks;
+
+            byte[] objects = new byte[256];
+            for (int j = 0; j < objects.Length; j++)
+            {
+                int chance = Globals.rand.Next(0, 20);
+                if (chance <= 0)
+                {
+                    objects[j] = (byte)1;
+                }
+                else
+                {
+
+                    objects[j] = (byte)0;
+                }
+            }
+
+            chunk.objects = objects;
+
+            return chunk;
+            
+            }
+            return null;
         }
 
-        public void makeRandomChunk(Region region)
+        public static void makeRandomChunk(Region region)
         {
             
             bool writing = true;
@@ -69,7 +160,7 @@ namespace Desolation
             }
         }
 
-        public void makeEmptyChunk(Region region)
+        public static void makeEmptyChunk(Region region)
         {
 
             bool writing = true;
@@ -100,8 +191,8 @@ namespace Desolation
 
                     //makeLong("InhabitedTime", 1337, fileStream);
 
-                    //byte[] biomes = new byte[256];
-                    //makeByteArray("Biomes", biomes, fileStream);
+                    byte[] biomes = new byte[256];
+                    makeByteArray("Biomes", biomes, fileStream);
 
                     byte[] blocks = new byte[256];
                     for (int j = 0; j < blocks.Length; j++)
@@ -139,7 +230,7 @@ namespace Desolation
             }
         }
 
-        public void makeCompound(String TagNamn, FileStream fileStream)
+        public static void makeCompound(String TagNamn, FileStream fileStream)
         {
             //temporär filskrivare
             TagID ID = TagID.Compound;
@@ -160,7 +251,7 @@ namespace Desolation
             fileStream.Write(buffer, 0, TagNamn.Length);
         }
 
-        public void makeByte(String TagNamn, sbyte number, FileStream fileStream)
+        public static void makeByte(String TagNamn, sbyte number, FileStream fileStream)
         {
             TagID ID3 = TagID.Byte;
             byte[] byteArray3 = BitConverter.GetBytes(TagNamn.Length);
@@ -181,7 +272,7 @@ namespace Desolation
             fileStream.WriteByte((byte)number);
         }
 
-        public void makeInt(String TagNamn, int number, FileStream fileStream)
+        public static void makeInt(String TagNamn, int number, FileStream fileStream)
         {
             TagID ID3 = TagID.Int;
             byte[] byteArray3 = BitConverter.GetBytes(TagNamn.Length);
@@ -204,7 +295,7 @@ namespace Desolation
 
 
 
-        public void makeByteArray(String TagNamn, byte[] numbers, FileStream fileStream)
+        public static void makeByteArray(String TagNamn, byte[] numbers, FileStream fileStream)
         {
             TagID ID3 = TagID.ByteArray;
             byte[] byteArray3 = BitConverter.GetBytes(TagNamn.Length);
@@ -228,7 +319,7 @@ namespace Desolation
         }
 
 
-        public void makeLong(String TagNamn, long number, FileStream fileStream)
+        public static void makeLong(String TagNamn, long number, FileStream fileStream)
         {
             TagID ID3 = TagID.Long;
             byte[] byteArray3 = BitConverter.GetBytes(TagNamn.Length);
@@ -249,7 +340,7 @@ namespace Desolation
             fileStream.Write(payload, 0, 8);
         }
 
-        public void makeEnd(FileStream fileStream)
+        public static void makeEnd(FileStream fileStream)
         {
             TagID end = TagID.End;
             fileStream.WriteByte((byte)end);

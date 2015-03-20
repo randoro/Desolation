@@ -221,8 +221,8 @@ namespace Desolation
             //Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
             //writeTag(InhabitedTime, fileStream);
 
-            //Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
-            //writeTag(Biomes, fileStream);
+            Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
+            writeTag(Biomes, fileStream);
 
             Tag Blocks = new Tag(TagID.ByteArray, "Blocks", chunk.blocks, TagID.ByteArray);
             writeTag(Blocks, fileStream);
@@ -231,7 +231,7 @@ namespace Desolation
             writeTag(Objects, fileStream);
 
             Tag End = new Tag(TagID.End, null, null, TagID.End);
-            writeTag(Objects, fileStream);
+            writeTag(End, fileStream);
 
         }
 
@@ -240,7 +240,7 @@ namespace Desolation
             TagID tagID = (TagID)fileStream.ReadByte();
             Tag returnTag;
 
-            if (tagID.Equals(TagID.End) || (int)tagID == -1)
+            if (tagID.Equals(TagID.End))
             {
 
                 returnTag = new Tag(TagID.End, null, null, TagID.End);
@@ -838,10 +838,15 @@ namespace Desolation
             Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
             writeTag(chunkTag, fileStream);
 
+            int xindex = index % 3;
+            int yindex = index / 3;
 
             for (int innerIndex = 0; innerIndex < 16; innerIndex++)
 			{
-                Chunk currentChunk = ChunkManager.chunkArray[((innerIndex / 4) + (index / 3) * 4) * 12 + (innerIndex % 4) + (index % 3) * 4];
+                int xinnedIndex = innerIndex % 4;
+                int yinnedIndex = innerIndex / 4;
+
+                Chunk currentChunk = ChunkManager.chunkArray[(((yindex * 4) + yinnedIndex) * 12) + ((xindex * 4) + xinnedIndex)];
                 if (currentChunk != null)
                 {
                     saveChunk(currentChunk, fileStream);
@@ -851,7 +856,7 @@ namespace Desolation
             Tag endTag = new Tag(TagID.End, null, null, TagID.End);
             writeTag(endTag, fileStream);
 
-            fileStream.Close();
+            //fileStream.Close();
             
         }
     }
