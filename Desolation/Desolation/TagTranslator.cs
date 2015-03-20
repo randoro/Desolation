@@ -212,17 +212,17 @@ namespace Desolation
             Tag YPos = new Tag(TagID.Int, "YPos", chunk.YPos, TagID.Int);
             writeTag(YPos, fileStream);
 
-            Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
-            writeTag(LastUpdate, fileStream);
+            //Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
+            //writeTag(LastUpdate, fileStream);
 
-            Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
-            writeTag(TerrainPopulated, fileStream);
+            //Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
+            //writeTag(TerrainPopulated, fileStream);
 
-            Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
-            writeTag(InhabitedTime, fileStream);
+            //Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
+            //writeTag(InhabitedTime, fileStream);
 
-            Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
-            writeTag(Biomes, fileStream);
+            //Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
+            //writeTag(Biomes, fileStream);
 
             Tag Blocks = new Tag(TagID.ByteArray, "Blocks", chunk.blocks, TagID.ByteArray);
             writeTag(Blocks, fileStream);
@@ -240,9 +240,10 @@ namespace Desolation
             TagID tagID = (TagID)fileStream.ReadByte();
             Tag returnTag;
 
-            if (tagID.Equals(TagID.End))
+            if (tagID.Equals(TagID.End) || (int)tagID == -1)
             {
-                returnTag = new Tag(tagID, null, null, tagID);
+
+                returnTag = new Tag(TagID.End, null, null, TagID.End);
                 return returnTag; //No payload
             }
 
@@ -747,7 +748,7 @@ namespace Desolation
                     byte[] sizeArrayArray = BitConverter.GetBytes((int)sizeArray);
 
                     fileStream.Write(sizeArrayArray, 0, 4);
-                    fileStream.Write((byte[])data, 4, sizeArray - 4);
+                    fileStream.Write((byte[])data, 0, sizeArray);
                     return;
                     break;
                 case TagID.String:
@@ -757,7 +758,7 @@ namespace Desolation
 
                     fileStream.WriteByte(stringArrayLength[0]);
                     fileStream.WriteByte(stringArrayLength[1]);
-                    fileStream.Write((byte[])data, 2, stringLength - 2);
+                    fileStream.Write((byte[])data, 0, stringLength);
 
 
                     return;
@@ -827,6 +828,8 @@ namespace Desolation
 
         public static void overwriteRegionStream(Region region, int index)
         {
+            
+            
             FileStream fileStream = region.fileStream;
 
 

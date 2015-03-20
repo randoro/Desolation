@@ -34,8 +34,8 @@ namespace Desolation
             {
                 unchecked
                 {
-                    sbyte[] signed = (sbyte[])(Array)data;
-                    sbyte returnData = signed[0];
+                    byte unsigned = ((byte[])data)[0];
+                    sbyte returnData = (sbyte)unsigned;
                     return returnData;
                 }
 

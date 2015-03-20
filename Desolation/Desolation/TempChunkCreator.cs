@@ -94,14 +94,14 @@ namespace Desolation
                     int YPos = region.yPosRegion * 4 + i / 4;
                     makeInt("YPos", YPos, fileStream);
 
-                    makeLong("LastUpdate", 123456, fileStream);
+                    //makeLong("LastUpdate", 123456, fileStream);
 
-                    makeByte("TerrainPopulated", 0, fileStream);
+                    //makeByte("TerrainPopulated", 0, fileStream);
 
-                    makeLong("InhabitedTime", 1337, fileStream);
+                    //makeLong("InhabitedTime", 1337, fileStream);
 
-                    byte[] biomes = new byte[256];
-                    makeByteArray("Biomes", biomes, fileStream);
+                    //byte[] biomes = new byte[256];
+                    //makeByteArray("Biomes", biomes, fileStream);
 
                     byte[] blocks = new byte[256];
                     for (int j = 0; j < blocks.Length; j++)
