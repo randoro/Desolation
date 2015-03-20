@@ -36,18 +36,18 @@ namespace Desolation
 
 
                 Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
-                TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
-                tempChunkCreator0.makeEmptyChunk(tempRegion0);
+            //TempChunkCreator tempChunkCreator0 = new TempChunkCreator();
+            //tempChunkCreator0.makeEmptyChunk(tempRegion0);
                 regionArray[0] = tempRegion0;
 
                 Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
-                TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
-                tempChunkCreator1.makeEmptyChunk(tempRegion1);
+            //TempChunkCreator tempChunkCreator1 = new TempChunkCreator();
+            //tempChunkCreator1.makeEmptyChunk(tempRegion1);
                 regionArray[1] = tempRegion1;
 
                 Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
-                TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
-                tempChunkCreator2.makeEmptyChunk(tempRegion2);
+            //TempChunkCreator tempChunkCreator2 = new TempChunkCreator();
+            //tempChunkCreator2.makeEmptyChunk(tempRegion2);
                 regionArray[2] = tempRegion2;
 
                 Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);

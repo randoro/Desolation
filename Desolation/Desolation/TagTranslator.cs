@@ -747,7 +747,7 @@ namespace Desolation
                     byte[] sizeArrayArray = BitConverter.GetBytes((int)sizeArray);
 
                     fileStream.Write(sizeArrayArray, 0, 4);
-                    fileStream.Write((byte[])data, 0, sizeArray);
+                    fileStream.Write((byte[])data, 4, sizeArray - 4);
                     return;
                     break;
                 case TagID.String:
@@ -757,7 +757,7 @@ namespace Desolation
 
                     fileStream.WriteByte(stringArrayLength[0]);
                     fileStream.WriteByte(stringArrayLength[1]);
-                    fileStream.Write((byte[])data, 0, stringLength);
+                    fileStream.Write((byte[])data, 2, stringLength - 2);
 
 
                     return;
