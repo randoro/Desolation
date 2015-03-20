@@ -17,14 +17,13 @@ namespace Desolation
 
         public void makeRandomChunk(Region region)
         {
-            FileStream fileStream = region.fileStream;
-
+            
             bool writing = true;
             int chunks = 16;
 
             if (writing)
             {
-
+                FileStream fileStream = region.fileStream;
                 makeCompound("region", fileStream);
 
 
@@ -72,13 +71,13 @@ namespace Desolation
 
         public void makeEmptyChunk(Region region)
         {
-            FileStream fileStream = region.fileStream;
+
             bool writing = true;
             int chunks = 16;
 
             if (writing)
             {
-
+                FileStream fileStream = region.fileStream;
                 makeCompound("region", fileStream);
 
 

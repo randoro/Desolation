@@ -145,7 +145,13 @@ namespace Desolation
                         lastRegionX = newRegionX;
                         lastRegionY = newRegionY;
 
-                        
+
+                        TagTranslator.overwriteRegionStream(regionArray[2], 2);
+                        TagTranslator.overwriteRegionStream(regionArray[5], 5);
+                        TagTranslator.overwriteRegionStream(regionArray[8], 8);
+                        TagTranslator.overwriteRegionStream(regionArray[7], 7);
+                        TagTranslator.overwriteRegionStream(regionArray[6], 6);
+
 
                         Globals.shiftRegionsDown(ref regionArray);
                         Globals.shiftChunksDown(ref chunkArray);
@@ -194,6 +200,13 @@ namespace Desolation
                         //southwest
                         lastRegionX = newRegionX;
                         lastRegionY = newRegionY;
+
+                        TagTranslator.overwriteRegionStream(regionArray[0], 0);
+                        TagTranslator.overwriteRegionStream(regionArray[1], 1);
+                        TagTranslator.overwriteRegionStream(regionArray[2], 2);
+                        TagTranslator.overwriteRegionStream(regionArray[5], 5);
+                        TagTranslator.overwriteRegionStream(regionArray[8], 8);
+
                         Globals.shiftRegionsUp(ref regionArray);
                         Globals.shiftChunksUp(ref chunkArray);
 
@@ -241,6 +254,11 @@ namespace Desolation
                     {
                         //west
                         lastRegionX = newRegionX;
+
+                        TagTranslator.overwriteRegionStream(regionArray[2], 2);
+                        TagTranslator.overwriteRegionStream(regionArray[5], 5);
+                        TagTranslator.overwriteRegionStream(regionArray[8], 8);
+
                     Globals.shiftRegionsRight(ref regionArray);
                     Globals.shiftChunksRight(ref chunkArray);
 
@@ -275,9 +293,15 @@ namespace Desolation
                         //northeast
                         lastRegionX = newRegionX;
                         lastRegionY = newRegionY;
+
+                        TagTranslator.overwriteRegionStream(regionArray[0], 0);
+                        TagTranslator.overwriteRegionStream(regionArray[3], 3);
+                        TagTranslator.overwriteRegionStream(regionArray[6], 6);
+                        TagTranslator.overwriteRegionStream(regionArray[7], 7);
+                        TagTranslator.overwriteRegionStream(regionArray[8], 8);
+
                         Globals.shiftRegionsLeft(ref regionArray);
                         Globals.shiftChunksLeft(ref chunkArray);
-
                         Globals.shiftRegionsDown(ref regionArray);
                         Globals.shiftChunksDown(ref chunkArray);
 
@@ -325,9 +349,15 @@ namespace Desolation
                         //southeast
                         lastRegionX = newRegionX;
                         lastRegionY = newRegionY;
+
+                        TagTranslator.overwriteRegionStream(regionArray[0], 0);
+                        TagTranslator.overwriteRegionStream(regionArray[1], 1);
+                        TagTranslator.overwriteRegionStream(regionArray[2], 2);
+                        TagTranslator.overwriteRegionStream(regionArray[3], 3);
+                        TagTranslator.overwriteRegionStream(regionArray[6], 6);
+
                         Globals.shiftRegionsUp(ref regionArray);
                         Globals.shiftChunksUp(ref chunkArray);
-
                         Globals.shiftRegionsLeft(ref regionArray);
                         Globals.shiftChunksLeft(ref chunkArray);
 
@@ -371,6 +401,11 @@ namespace Desolation
                     {
                         //east
                         lastRegionX = newRegionX;
+
+                        TagTranslator.overwriteRegionStream(regionArray[0], 0);
+                        TagTranslator.overwriteRegionStream(regionArray[3], 3);
+                        TagTranslator.overwriteRegionStream(regionArray[6], 6);
+
                     Globals.shiftRegionsLeft(ref regionArray);
                     Globals.shiftChunksLeft(ref chunkArray);
 
@@ -404,6 +439,11 @@ namespace Desolation
                     {
                         //north
                         lastRegionY = newRegionY;
+
+                        TagTranslator.overwriteRegionStream(regionArray[6], 6);
+                        TagTranslator.overwriteRegionStream(regionArray[7], 7);
+                        TagTranslator.overwriteRegionStream(regionArray[8], 8);
+
                     Globals.shiftRegionsDown(ref regionArray);
                     Globals.shiftChunksDown(ref chunkArray);
 
@@ -433,6 +473,11 @@ namespace Desolation
                     {
                         //south
                         lastRegionY = newRegionY;
+
+                        TagTranslator.overwriteRegionStream(regionArray[0], 0);
+                        TagTranslator.overwriteRegionStream(regionArray[1], 1);
+                        TagTranslator.overwriteRegionStream(regionArray[2], 2);
+
                     Globals.shiftRegionsUp(ref regionArray);
                     Globals.shiftChunksUp(ref chunkArray);
 

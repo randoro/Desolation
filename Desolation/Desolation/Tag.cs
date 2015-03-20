@@ -23,7 +23,10 @@ namespace Desolation
 
 
         }
-
+        public object getRawData()
+        {
+            return data;
+        }
 
         public object getData()
         {
@@ -46,7 +49,7 @@ namespace Desolation
             else if (tagID.Equals(TagID.Int))
             {
                 int returnData = BitConverter.ToInt32((byte[])data, 0);
-                return returnData;
+                return data;
                 
             }
             else if (tagID.Equals(TagID.Long))
@@ -109,7 +112,6 @@ namespace Desolation
                 return null;
             }
         }
-
 
         public TagID getID()
         {

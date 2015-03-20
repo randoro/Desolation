@@ -105,22 +105,30 @@ namespace Desolation
                             case TagID.Int:
                                 if (tagName.Equals("XPos"))
                                 {
-                                    chunkXPos = (int)currentTag.getData();
+                                    byte[] data = (byte[])currentTag.getRawData();
+                                    int dataInt = BitConverter.ToInt32(data, 0);
+                                    chunkXPos = dataInt;
                                 }
                                 else if (tagName.Equals("YPos"))
                                 {
-                                    chunkYPos = (int)currentTag.getData();
+                                    byte[] data = (byte[])currentTag.getRawData();
+                                    int dataInt = BitConverter.ToInt32(data, 0);
+                                    chunkYPos = dataInt;
                                     chunkIdentified = true;
                                 }
                                 break;
                             case TagID.Long:
                                 if (tagName.Equals("LastUpdate"))
                                 {
-                                    newChunk.lastUpdate = (long)currentTag.getData();
+                                    byte[] data = (byte[])currentTag.getRawData();
+                                    long dataLong = BitConverter.ToInt64(data, 0);
+                                    newChunk.lastUpdate = dataLong;
                                 }
                                 else if (tagName.Equals("InhabitedTime"))
                                 {
-                                    newChunk.inhabitedTime = (long)currentTag.getData();
+                                    byte[] data = (byte[])currentTag.getRawData();
+                                    long dataLong = BitConverter.ToInt64(data, 0);
+                                    newChunk.inhabitedTime = dataLong;
                                 }
                                 break;
                             case TagID.Float:
@@ -668,7 +676,7 @@ namespace Desolation
         {
             TagID tagID = tag.getID();
             String tagName = tag.getName();
-            var data = tag.getData();
+            var data = tag.getRawData();
 
             fileStream.WriteByte((byte)tagID);
 
@@ -680,13 +688,13 @@ namespace Desolation
             byte[] byteArray3 = BitConverter.GetBytes((short)tagName.Length);
             byte[] buffer3 = Encoding.UTF8.GetBytes(tagName);
 
-            byte[] payload;
 
             
             fileStream.WriteByte(byteArray3[0]);
             fileStream.WriteByte(byteArray3[1]);
             fileStream.Write(buffer3, 0, (short)tagName.Length);
 
+            byte[] dataInBytes;
             //Payload
             switch (tagID)
             {
@@ -694,38 +702,42 @@ namespace Desolation
                     return; //No payload
                     break;
                 case TagID.Byte:
-
-                    fileStream.WriteByte((byte)data);
+                    unchecked
+                    {
+                        sbyte signedByte = (sbyte)data;
+                        byte newByte = (byte)signedByte;
+                        fileStream.WriteByte(newByte);
+                    }
                     return;
                     break;
                 case TagID.Short:
-
-
-                    fileStream.Write((byte[])data, 0, 2);
+                    dataInBytes = BitConverter.GetBytes((short)data);
+                    fileStream.Write(dataInBytes, 0, 2);
                     return;
 
                     break;
                 case TagID.Int:
 
-                    fileStream.Write((byte[])data, 0, 4);
+                    dataInBytes = BitConverter.GetBytes((int)data);
+                    fileStream.Write(dataInBytes, 0, 4);
                     return;
 
                     break;
                 case TagID.Long:
-
-                    fileStream.Write((byte[])data, 0, 8);
+                    dataInBytes = BitConverter.GetBytes((long)data);
+                    fileStream.Write(dataInBytes, 0, 8);
                     return;
 
                     break;
                 case TagID.Float:
-
-                    fileStream.Write((byte[])data, 0, 4);
+                    dataInBytes = BitConverter.GetBytes((float)data);
+                    fileStream.Write(dataInBytes, 0, 4);
                     return;
 
                     break;
                 case TagID.Double:
-
-                    fileStream.Write((byte[])data, 0, 8);
+                    dataInBytes = BitConverter.GetBytes((double)data);
+                    fileStream.Write(dataInBytes, 0, 8);
                     return;
 
                     break;
@@ -739,14 +751,13 @@ namespace Desolation
                     return;
                     break;
                 case TagID.String:
-                    short stringLength = (short)((String)data).Length;
+                    short stringLength = (short)((byte[])data).Length;
                     byte[] stringArrayLength = BitConverter.GetBytes(stringLength);
-                    byte[] bufferstring = Encoding.UTF8.GetBytes((String)data);
 
 
                     fileStream.WriteByte(stringArrayLength[0]);
                     fileStream.WriteByte(stringArrayLength[1]);
-                    fileStream.Write(bufferstring, 0, stringLength);
+                    fileStream.Write((byte[])data, 0, stringLength);
 
 
                     return;
@@ -817,6 +828,10 @@ namespace Desolation
         public static void overwriteRegionStream(Region region, int index)
         {
             FileStream fileStream = region.fileStream;
+
+
+            fileStream.SetLength(0);
+            fileStream.Position = 0;
             Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
             writeTag(chunkTag, fileStream);
 
@@ -824,8 +839,16 @@ namespace Desolation
             for (int innerIndex = 0; innerIndex < 16; innerIndex++)
 			{
                 Chunk currentChunk = ChunkManager.chunkArray[((innerIndex / 4) + (index / 3) * 4) * 12 + (innerIndex % 4) + (index % 3) * 4];
-                saveChunk(currentChunk, fileStream);
+                if (currentChunk != null)
+                {
+                    saveChunk(currentChunk, fileStream);
+                }
 			}
+
+            Tag endTag = new Tag(TagID.End, null, null, TagID.End);
+            writeTag(endTag, fileStream);
+
+            fileStream.Close();
             
         }
     }
