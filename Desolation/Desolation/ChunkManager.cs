@@ -113,7 +113,7 @@ namespace Desolation
                             chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
                         }
 
-                    
+
                     }
                 }
                 //check if chunks in regionfile needs loading
@@ -566,7 +566,7 @@ namespace Desolation
 
                 }
 
-
+            }
 
                 foreach (Entity e in entityList)
                 {
@@ -575,7 +575,7 @@ namespace Desolation
 
                 Game1.player.Update(gameTime);
 
-            }
+            
             
         }
 
