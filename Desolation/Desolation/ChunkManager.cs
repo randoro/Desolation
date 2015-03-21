@@ -13,7 +13,7 @@ namespace Desolation
 
         FileLoader fileLoader;
         public static Chunk[] chunkArray;
-        Region[] regionArray;
+        public static Region[] regionArray;
         public static List<Entity> entityList;
         long ticksLastChunkLoad;
 
@@ -113,7 +113,7 @@ namespace Desolation
                             chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
                         }
 
-
+                    
                     }
                 }
                 //check if chunks in regionfile needs loading

@@ -85,6 +85,10 @@ namespace Desolation
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            for (int i = 0; i < 9; i++)
+            {
+            TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
+            }
         }
 
         /// <summary>
