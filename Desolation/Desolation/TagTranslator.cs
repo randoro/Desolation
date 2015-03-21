@@ -215,8 +215,8 @@ namespace Desolation
             //Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
             //writeTag(LastUpdate, fileStream);
 
-            //Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
-            //writeTag(TerrainPopulated, fileStream);
+            Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
+            writeTag(TerrainPopulated, fileStream);
 
             //Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
             //writeTag(InhabitedTime, fileStream);
@@ -828,35 +828,37 @@ namespace Desolation
 
         public static void overwriteRegionStream(Region region, int index)
         {
-            
-            
-            FileStream fileStream = region.fileStream;
+
+            if (region != null)
+            {
+                FileStream fileStream = region.fileStream;
 
 
-            fileStream.SetLength(0);
-            fileStream.Position = 0;
-            Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
-            writeTag(chunkTag, fileStream);
+                fileStream.SetLength(0);
+                fileStream.Position = 0;
+                Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
+                writeTag(chunkTag, fileStream);
 
-            int xindex = index % 3;
-            int yindex = index / 3;
+                int xindex = index % 3;
+                int yindex = index / 3;
 
-            for (int innerIndex = 0; innerIndex < 16; innerIndex++)
-			{
-                int xinnedIndex = innerIndex % 4;
-                int yinnedIndex = innerIndex / 4;
-
-                Chunk currentChunk = ChunkManager.chunkArray[(((yindex * 4) + yinnedIndex) * 12) + ((xindex * 4) + xinnedIndex)];
-                if (currentChunk != null)
+                for (int innerIndex = 0; innerIndex < 16; innerIndex++)
                 {
-                    saveChunk(currentChunk, fileStream);
+                    int xinnedIndex = innerIndex % 4;
+                    int yinnedIndex = innerIndex / 4;
+
+                    Chunk currentChunk = ChunkManager.chunkArray[(((yindex * 4) + yinnedIndex) * 12) + ((xindex * 4) + xinnedIndex)];
+                    if (currentChunk != null)
+                    {
+                        saveChunk(currentChunk, fileStream);
+                    }
                 }
-			}
 
-            Tag endTag = new Tag(TagID.End, null, null, TagID.End);
-            writeTag(endTag, fileStream);
+                Tag endTag = new Tag(TagID.End, null, null, TagID.End);
+                writeTag(endTag, fileStream);
 
-            //fileStream.Close();
+                fileStream.Close();
+            }
             
         }
     }
