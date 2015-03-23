@@ -50,7 +50,6 @@ namespace Desolation
                 frame++;
             }
 
-            Game1.gameWindow.Title = "GoblinX:"+position.X+" GoblinY:"+position.Y;
 
             switch (currentDirection)
             {

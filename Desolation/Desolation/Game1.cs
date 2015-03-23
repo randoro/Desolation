@@ -79,7 +79,11 @@ namespace Desolation
 
             player = new Player(new Vector2(200, 200));
             ChunkManager.entityList.Add(new Zombie(player, new Vector2(500, 500)));
-            ChunkManager.entityList.Add(new Goblin(new Vector2(300, 300)));
+            for (int i = 0; i < 1500; i++)
+            {
+            ChunkManager.entityList.Add(new Goblin(new Vector2(i*0.1f, i*0.1f)));
+            }
+
             ChunkManager.entityList.Add(new Deer(player, new Vector2(100, 100)));
         }
         protected override void UnloadContent()
