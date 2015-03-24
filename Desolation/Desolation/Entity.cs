@@ -70,60 +70,70 @@ namespace Desolation
                     break;
             }
 
-            //kolla om entity är laddad
-            int currentBlockX;
-            int currentBlockY;
-            if (position.X >= 0)
+            long now = DateTime.Now.Ticks;
+            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
-                currentBlockX = ((int)position.X / 16) % 16;
-            }
-            else
-            {
-                currentBlockX = 15 + ((int)position.X) / 16 % 16;
-            }
 
-            if (position.Y >= 0)
-            {
-                currentBlockY = ((int)position.Y / 16) % 16;
-            }
-            else
-            {
-                currentBlockY = 15 + ((int)position.Y) / 16  % 16;
-            }
-            int chunkIndex = getCurrentChunkNrInArray();
-            if (chunkIndex != -1)
-            {
-                Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
-                //Chunk currentChunk0 = ChunkManager.chunkArray[chunkIndex - 13];
-                //Chunk currentChunk1 = ChunkManager.chunkArray[chunkIndex - 12];
-                //Chunk currentChunk2 = ChunkManager.chunkArray[chunkIndex - 11];
-                //Chunk currentChunk3 = ChunkManager.chunkArray[chunkIndex - 1];
-                //Chunk currentChunk4 = ChunkManager.chunkArray[chunkIndex];
-                //Chunk currentChunk5 = ChunkManager.chunkArray[chunkIndex + 1];
-                //Chunk currentChunk6 = ChunkManager.chunkArray[chunkIndex + 11];
-                //Chunk currentChunk7 = ChunkManager.chunkArray[chunkIndex + 12];
-                //Chunk currentChunk8 = ChunkManager.chunkArray[chunkIndex + 13];
 
-                //if (currentBlockX < 1)
-                if (currentChunk != null)
+                //time for new chunkLoad
+                //Console.WriteLine(now);
+
+
+                //kolla om entity är laddad
+                int currentBlockX;
+                int currentBlockY;
+                if (position.X >= 0)
                 {
-                    currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
-
-
-                    if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
-                    {
-                        position = oldPosition; //undo'ar rörelse
-                    }
-                    
+                    currentBlockX = ((int)position.X / 16) % 16;
+                }
+                else
+                {
+                    currentBlockX = 15 + ((int)position.X) / 16 % 16;
                 }
 
+                if (position.Y >= 0)
+                {
+                    currentBlockY = ((int)position.Y / 16) % 16;
+                }
+                else
+                {
+                    currentBlockY = 15 + ((int)position.Y) / 16 % 16;
+                }
+                int chunkIndex = getCurrentChunkNrInArray();
+                if (chunkIndex != -1)
+                {
+                    Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+                    //Chunk currentChunk0 = ChunkManager.chunkArray[chunkIndex - 13];
+                    //Chunk currentChunk1 = ChunkManager.chunkArray[chunkIndex - 12];
+                    //Chunk currentChunk2 = ChunkManager.chunkArray[chunkIndex - 11];
+                    //Chunk currentChunk3 = ChunkManager.chunkArray[chunkIndex - 1];
+                    //Chunk currentChunk4 = ChunkManager.chunkArray[chunkIndex];
+                    //Chunk currentChunk5 = ChunkManager.chunkArray[chunkIndex + 1];
+                    //Chunk currentChunk6 = ChunkManager.chunkArray[chunkIndex + 11];
+                    //Chunk currentChunk7 = ChunkManager.chunkArray[chunkIndex + 12];
+                    //Chunk currentChunk8 = ChunkManager.chunkArray[chunkIndex + 13];
+
+                    //if (currentBlockX < 1)
+                    if (currentChunk != null)
+                    {
+                        currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
+
+
+                        if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
+                        {
+                            position = oldPosition; //undo'ar rörelse
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    position = oldPosition; //undo'ar rörelse
+                }
+                //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+                //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
             }
-            else
-            {
-                position = oldPosition; //undo'ar rörelse
-            }
-            //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
-            //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
 

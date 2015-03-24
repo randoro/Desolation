@@ -20,6 +20,7 @@ namespace Desolation
         public static Vector2 playerPos;
         public static readonly int screenX = 1920;
         public static readonly int screenY = 1080;
+        public static long ticksLastChunkLoad = 0;
 
 
         public static void shiftChunksRight(ref Chunk[] chunkArray) //chunks moving right and left side getting null

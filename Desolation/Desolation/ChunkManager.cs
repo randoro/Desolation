@@ -87,13 +87,12 @@ namespace Desolation
         public void update(GameTime gameTime, GameWindow window)
         {
             long now = DateTime.Now.Ticks;
-            if (now > ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
 
 
                 //time for new chunkLoad
                 //Console.WriteLine(now);
-                ticksLastChunkLoad = DateTime.Now.Ticks;
 
 
                 for (int i = 0; i < 9; i++)
@@ -575,7 +574,10 @@ namespace Desolation
 
                 Game1.player.Update(gameTime);
 
-            
+                if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+                {
+                    Globals.ticksLastChunkLoad = DateTime.Now.Ticks;
+                }
             
         }
 
