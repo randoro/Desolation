@@ -89,7 +89,7 @@ namespace Desolation
                 int chance = Globals.rand.Next(0, 20);
                 if (chance <= 0)
                 {
-                    objects[j] = (byte)0;
+                    objects[j] = (byte)1;
                 }
                 else
                 {

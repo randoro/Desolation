@@ -70,7 +70,9 @@ namespace Desolation
         public override void moveDirection(Direction direction)
         {
             currentDirection = direction;
+            oldPosition = position;
             base.moveDirection(direction);
+            base.checkCollision();
         }
         
        

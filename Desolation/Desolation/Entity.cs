@@ -17,6 +17,7 @@ namespace Desolation
 
         protected float speed;
         protected float realSpeed;
+        protected Vector2 oldPosition;
         public Entity(Vector2 pos)
            : base(pos)
         {
@@ -30,7 +31,7 @@ namespace Desolation
 
         public virtual void moveDirection(Direction direction)
         {
-            Vector2 oldPosition = position;
+            oldPosition = position;
             //rörelse
             realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
             switch (direction)
@@ -70,11 +71,11 @@ namespace Desolation
                     break;
             }
 
-            long now = DateTime.Now.Ticks;
-            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
-            {
+        }
 
-
+        public void checkCollision()
+        {
+            
                 //time for new chunkLoad
                 //Console.WriteLine(now);
 
@@ -133,8 +134,8 @@ namespace Desolation
                 }
                 //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
                 //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
-            }
         }
+
 
 
        public int getCurrentChunkNrInArray() 

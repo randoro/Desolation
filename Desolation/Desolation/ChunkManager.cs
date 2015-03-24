@@ -565,14 +565,18 @@ namespace Desolation
 
                 }
 
+                Game1.player.Update(gameTime);
+
             }
+
+
+            
 
                 foreach (Entity e in entityList)
                 {
                     e.Update(gameTime);
                 }
 
-                Game1.player.Update(gameTime);
 
                 if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
                 {

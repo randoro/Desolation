@@ -41,7 +41,15 @@ namespace Desolation
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 currentDirection = GetRandomDirection();
             }
+ 
+            
             base.moveDirection(currentDirection);
+            long now = DateTime.Now.Ticks;
+            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+            {
+                
+                base.checkCollision();
+            }
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)

@@ -831,33 +831,38 @@ namespace Desolation
 
             if (region != null)
             {
-                FileStream fileStream = region.fileStream;
+                bool allChunksLoaded = !Array.Exists(region.chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
 
-
-                fileStream.SetLength(0);
-                fileStream.Position = 0;
-                Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
-                writeTag(chunkTag, fileStream);
-
-                int xindex = index % 3;
-                int yindex = index / 3;
-
-                for (int innerIndex = 0; innerIndex < 16; innerIndex++)
+                if (allChunksLoaded)
                 {
-                    int xinnedIndex = innerIndex % 4;
-                    int yinnedIndex = innerIndex / 4;
+                    FileStream fileStream = region.fileStream;
 
-                    Chunk currentChunk = ChunkManager.chunkArray[(((yindex * 4) + yinnedIndex) * 12) + ((xindex * 4) + xinnedIndex)];
-                    if (currentChunk != null)
+
+                    fileStream.SetLength(0);
+                    fileStream.Position = 0;
+                    Tag chunkTag = new Tag(TagID.Compound, "region", null, TagID.Compound);
+                    writeTag(chunkTag, fileStream);
+
+                    int xindex = index % 3;
+                    int yindex = index / 3;
+
+                    for (int innerIndex = 0; innerIndex < 16; innerIndex++)
                     {
-                        saveChunk(currentChunk, fileStream);
+                        int xinnedIndex = innerIndex % 4;
+                        int yinnedIndex = innerIndex / 4;
+
+                        Chunk currentChunk = ChunkManager.chunkArray[(((yindex * 4) + yinnedIndex) * 12) + ((xindex * 4) + xinnedIndex)];
+                        if (currentChunk != null)
+                        {
+                            saveChunk(currentChunk, fileStream);
+                        }
                     }
+
+                    Tag endTag = new Tag(TagID.End, null, null, TagID.End);
+                    writeTag(endTag, fileStream);
+
+                    fileStream.Close();
                 }
-
-                Tag endTag = new Tag(TagID.End, null, null, TagID.End);
-                writeTag(endTag, fileStream);
-
-                fileStream.Close();
             }
             
         }
