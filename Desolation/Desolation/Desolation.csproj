@@ -73,25 +73,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="Chunk.cs" />
-    <Compile Include="ChunkManager.cs" />
-    <Compile Include="Deer.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="FileLoader.cs" />
-    <Compile Include="GameObject.cs" />
+    <Compile Include="Chunk\Chunk.cs" />
+    <Compile Include="Chunk\ChunkManager.cs" />
+    <Compile Include="GameObjects\Deer.cs" />
+    <Compile Include="GameObjects\Entity.cs" />
+    <Compile Include="Tag\FileLoader.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="Goblin.cs" />
+    <Compile Include="GameObjects\Goblin.cs" />
     <Compile Include="KeyMouseReader.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Region.cs" />
-    <Compile Include="Tag.cs" />
-    <Compile Include="TagTranslator.cs" />
-    <Compile Include="TempChunkCreator.cs" />
+    <Compile Include="Chunk\Region.cs" />
+    <Compile Include="Tag\Tag.cs" />
+    <Compile Include="Tag\TagTranslator.cs" />
+    <Compile Include="Chunk\TempChunkCreator.cs" />
     <Compile Include="TextureManager.cs" />
-    <Compile Include="Zombie.cs" />
+    <Compile Include="GameObjects\Zombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
