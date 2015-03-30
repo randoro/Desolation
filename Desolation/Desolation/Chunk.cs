@@ -39,12 +39,12 @@ namespace Desolation
 
                 if (blocks[i] == 0)
                 {
-                    spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(0, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(0, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
 
                 }
                 else
                 {
-                    spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
 
                 }
 
@@ -54,7 +54,7 @@ namespace Desolation
                 }
                 else
                 {
-                    spriteBatch.Draw(Globals.tempsheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.Red, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), new Rectangle(16, 0, 16, 16), Color.Red, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
 
                 }
             }

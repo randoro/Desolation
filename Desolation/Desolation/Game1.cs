@@ -62,24 +62,15 @@ namespace Desolation
             this.IsMouseVisible = true;
             // TODO: use this.Content to load your game content here
             Globals.rand = new Random();
-            gameWindow = Window;
             chunkManager = new ChunkManager();
 
             camera = new Camera(GraphicsDevice.Viewport);
             textureManager = new TextureManager(Content);
 
-            
-            
-            
-
-            spriteSheet = Content.Load<Texture2D>("testSheet");
-            zombieSheet = Content.Load<Texture2D>("ZombieSheet");
-            gobSheet = Content.Load<Texture2D>("npcSheet");
-            Globals.tempsheet = Content.Load<Texture2D>("tempblocksheet");
 
             player = new Player(new Vector2(200, 200));
             ChunkManager.entityList.Add(new Zombie(player, new Vector2(500, 500)));
-            for (int i = 0; i < 1500; i++)
+            for (int i = 0; i < 150; i++)
             {
             ChunkManager.entityList.Add(new Goblin(new Vector2(i*0.1f, i*0.1f)));
             }
@@ -170,8 +161,8 @@ namespace Desolation
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX/2 - Globals.playerPos.X, Globals.screenY/2 - Globals.playerPos.Y, 0));
 
 
             chunkManager.draw(spriteBatch);

@@ -13,6 +13,7 @@ namespace Desolation
         public static Texture2D zombieSheet { set; get; }
         public static Texture2D npcSheet { set; get; }
         public static Texture2D deerSheet { set; get; }
+        public static Texture2D blocksheet { set; get; }
         ContentManager contentManager;
 
         public TextureManager(ContentManager contentManager)
@@ -23,6 +24,7 @@ namespace Desolation
             zombieSheet = contentManager.Load<Texture2D>("ZombieSheet");
             npcSheet = contentManager.Load<Texture2D>("npcSheet");
             deerSheet = contentManager.Load<Texture2D>("DeerspriteShite");
+            blocksheet = contentManager.Load<Texture2D>("tempblocksheet");
         }
 
         public void runTimeLoading()
