@@ -97,15 +97,26 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            Globals.playerPos = player.position;
 
-            //camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
-            
+            player.Update(gameTime);
             chunkManager.update(gameTime, Window);
-
             textureManager.runTimeLoading();
-            //goblin.getCurrentChunkNrInArray(ref chunkManager, Window);
 
+
+            #region SaveSync
+            long now = DateTime.Now.Ticks;
+            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+            {
+                Globals.playerPos = player.position;
+                Globals.ticksLastChunkLoad = now;
+
+                chunkManager.syncUpdate(gameTime);
+
+
+            }
+            #endregion
+
+            #region Controls
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -149,8 +160,8 @@ namespace Desolation
             {
                 player.moveDirection(Direction.None);
             }
+            #endregion
 
-            // TODO: Add your update logic here
             KeyMouseReader.Update();
             base.Update(gameTime);
         }
@@ -162,7 +173,7 @@ namespace Desolation
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX/2 - Globals.playerPos.X, Globals.screenY/2 - Globals.playerPos.Y, 0));
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
 
 
             chunkManager.draw(spriteBatch);
