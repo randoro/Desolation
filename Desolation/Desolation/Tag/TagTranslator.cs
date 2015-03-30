@@ -194,8 +194,6 @@ namespace Desolation
                     }
                 }
             }
-            Console.WriteLine("all chunks are loaded");
-            //regionFile.fileStream.ReadByte();
             return null;
         }
 
