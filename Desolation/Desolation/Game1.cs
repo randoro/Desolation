@@ -100,7 +100,6 @@ namespace Desolation
 
             player.Update(gameTime);
             chunkManager.update(gameTime, Window);
-            textureManager.runTimeLoading();
 
 
             #region SaveSync
@@ -112,6 +111,7 @@ namespace Desolation
 
                 chunkManager.syncUpdate(gameTime);
 
+                textureManager.runTimeLoading();
 
             }
             #endregion

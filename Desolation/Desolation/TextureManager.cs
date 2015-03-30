@@ -16,6 +16,8 @@ namespace Desolation
         public static Texture2D blocksheet { set; get; }
         ContentManager contentManager;
 
+        byte currentskin;
+
         public TextureManager(ContentManager contentManager)
         {
             this.contentManager = contentManager;
@@ -25,16 +27,19 @@ namespace Desolation
             npcSheet = contentManager.Load<Texture2D>("npcSheet");
             deerSheet = contentManager.Load<Texture2D>("DeerspriteShite");
             blocksheet = contentManager.Load<Texture2D>("tempblocksheet");
+            currentskin = 0;
         }
 
         public void runTimeLoading()
         {
-            if (Globals.rand.Next(0, 2) == 0)
+            if (currentskin == 0)
             {
+                currentskin = 1;
                 playerSheet = contentManager.Load<Texture2D>("npcSheet");
             }
             else
             {
+                currentskin = 0;
                 playerSheet = contentManager.Load<Texture2D>("testSheet");
             }
         }
