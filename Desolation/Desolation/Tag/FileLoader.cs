@@ -25,7 +25,7 @@ namespace Desolation
                 return new Region(fileStream, xPosRegion, yPosRegion);
             }
             catch(IOException) {
-                //Console.WriteLine("region already loaded");
+                Console.WriteLine("region: x:" + xPosRegion+" y:"+yPosRegion+ " already loaded");
             }
             return null;
         }

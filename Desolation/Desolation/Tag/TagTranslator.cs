@@ -829,11 +829,12 @@ namespace Desolation
 
             if (region != null)
             {
+                FileStream fileStream = region.fileStream;
                 bool allChunksLoaded = !Array.Exists(region.chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
 
                 if (allChunksLoaded)
                 {
-                    FileStream fileStream = region.fileStream;
+                    
 
 
                     fileStream.SetLength(0);
@@ -859,8 +860,10 @@ namespace Desolation
                     Tag endTag = new Tag(TagID.End, null, null, TagID.End);
                     writeTag(endTag, fileStream);
 
-                    fileStream.Close();
+                    
                 }
+
+                fileStream.Close();
             }
             
         }

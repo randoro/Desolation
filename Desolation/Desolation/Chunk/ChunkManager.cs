@@ -97,7 +97,12 @@ namespace Desolation
 
         public void syncUpdate(GameTime gameTime)
         {
-            
+                newRegionX = Globals.getRegionValue(Globals.playerPos.X);
+                newRegionY = Globals.getRegionValue(Globals.playerPos.Y);
+
+                newChunkX = Globals.getChunkValue(Globals.playerPos.X);
+                newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+
                 //time for new chunkLoad
 
                 for (int i = 0; i < 9; i++)
@@ -119,18 +124,20 @@ namespace Desolation
 
 
                     }
+                    else
+                    {
+                        if (newRegionX == lastRegionX && newRegionY == lastRegionY)
+                        {
+                            regionArray[i] = fileLoader.loadRegionFile(newRegionX - 1 + i % 3, newRegionY - 1 + i / 3);
+                        }
+                    }
                 }
                 //check if chunks in regionfile needs loading
 
 
                 //set region file numbers (the region file the player is currently in)
 
-                newRegionX = Globals.getRegionValue(Globals.playerPos.X);
-                newRegionY = Globals.getRegionValue(Globals.playerPos.Y);
-
-                newChunkX = Globals.getChunkValue(Globals.playerPos.X);
-                newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
-
+                
 
                 if (newRegionX != lastRegionX || newRegionY != lastRegionY)
                 {
@@ -157,31 +164,31 @@ namespace Desolation
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
 
-                            Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                            if (tempRegion0 != null)
-                            {
-                                regionArray[0] = tempRegion0;
-                            }
-                            Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
-                            if (tempRegion1 != null)
-                            {
-                                regionArray[1] = tempRegion1;
-                            }
-                            Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                            if (tempRegion2 != null)
-                            {
-                                regionArray[2] = tempRegion2;
-                            }
-                            Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
-                            if (tempRegion3 != null)
-                            {
-                                regionArray[3] = tempRegion3;
-                            }
-                            Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                            if (tempRegion6 != null)
-                            {
-                                regionArray[6] = tempRegion6;
-                            }
+                            //Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                            //if (tempRegion0 != null)
+                            //{
+                            //    //regionArray[0] = tempRegion0;
+                            //}
+                            //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                            //if (tempRegion1 != null)
+                            //{
+                            //    //regionArray[1] = tempRegion1;
+                            //}
+                            //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                            //if (tempRegion2 != null)
+                            //{
+                            //    //regionArray[2] = tempRegion2;
+                            //}
+                            //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                            //if (tempRegion3 != null)
+                            //{
+                            //    //regionArray[3] = tempRegion3;
+                            //}
+                            //Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                            //if (tempRegion6 != null)
+                            //{
+                            //    //regionArray[6] = tempRegion6;
+                            //}
                         }
                         else if (newRegionY > lastRegionY)
                         {
@@ -201,32 +208,32 @@ namespace Desolation
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
 
-                            Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                            if (tempRegion6 != null)
-                            {
-                                regionArray[6] = tempRegion6;
-                            }
-                            Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
-                            if (tempRegion7 != null)
-                            {
-                                regionArray[7] = tempRegion7;
-                            }
-                            Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                            if (tempRegion8 != null)
-                            {
-                                regionArray[8] = tempRegion8;
-                            }
-                            Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                            if (tempRegion0 != null)
-                            {
-                                regionArray[0] = tempRegion0;
-                            }
+                            //Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                            //if (tempRegion6 != null)
+                            //{
+                            //    //regionArray[6] = tempRegion6;
+                            //}
+                            //Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                            //if (tempRegion7 != null)
+                            //{
+                            //    //regionArray[7] = tempRegion7;
+                            //}
+                            //Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                            //if (tempRegion8 != null)
+                            //{
+                            //    //regionArray[8] = tempRegion8;
+                            //}
+                            //Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                            //if (tempRegion0 != null)
+                            //{
+                            //    //regionArray[0] = tempRegion0;
+                            //}
 
-                            Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
-                            if (tempRegion3 != null)
-                            {
-                                regionArray[3] = tempRegion3;
-                            }
+                            //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                            //if (tempRegion3 != null)
+                            //{
+                            //    //regionArray[3] = tempRegion3;
+                            //}
                         }
                         else
                         {
@@ -240,22 +247,22 @@ namespace Desolation
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
 
-                            Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                            if (tempRegion0 != null)
-                            {
-                                regionArray[0] = tempRegion0;
-                            }
+                            //Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                            //if (tempRegion0 != null)
+                            //{
+                            //    //regionArray[0] = tempRegion0;
+                            //}
 
-                            Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
-                            if (tempRegion3 != null)
-                            {
-                                regionArray[3] = tempRegion3;
-                            }
-                            Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                            if (tempRegion6 != null)
-                            {
-                                regionArray[6] = tempRegion6;
-                            }
+                            //Region tempRegion3 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY);
+                            //if (tempRegion3 != null)
+                            //{
+                            //    //regionArray[3] = tempRegion3;
+                            //}
+                            //Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                            //if (tempRegion6 != null)
+                            //{
+                            //    //regionArray[6] = tempRegion6;
+                            //}
                         }
 
                     }
@@ -279,32 +286,32 @@ namespace Desolation
                             Globals.shiftChunksDown(ref chunkArray);
 
 
-                            Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                            if (tempRegion0 != null)
-                            {
-                                regionArray[0] = tempRegion0;
-                            }
-                            Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
-                            if (tempRegion1 != null)
-                            {
-                                regionArray[1] = tempRegion1;
-                            }
+                            //Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                            //if (tempRegion0 != null)
+                            //{
+                            //    //regionArray[0] = tempRegion0;
+                            //}
+                            //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                            //if (tempRegion1 != null)
+                            //{
+                            //    //regionArray[1] = tempRegion1;
+                            //}
 
-                            Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                            if (tempRegion2 != null)
-                            {
-                                regionArray[2] = tempRegion2;
-                            }
-                            Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
-                            if (tempRegion5 != null)
-                            {
-                                regionArray[5] = tempRegion5;
-                            }
-                            Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                            if (tempRegion8 != null)
-                            {
-                                regionArray[8] = tempRegion8;
-                            }
+                            //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                            //if (tempRegion2 != null)
+                            //{
+                            //    //regionArray[2] = tempRegion2;
+                            //}
+                            //Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                            //if (tempRegion5 != null)
+                            //{
+                            //    //regionArray[5] = tempRegion5;
+                            //}
+                            //Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                            //if (tempRegion8 != null)
+                            //{
+                            //    //regionArray[8] = tempRegion8;
+                            //}
 
                         }
                         else if (newRegionY > lastRegionY)
@@ -324,31 +331,31 @@ namespace Desolation
                             Globals.shiftRegionsLeft(ref regionArray);
                             Globals.shiftChunksLeft(ref chunkArray);
 
-                            Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                            if (tempRegion6 != null)
-                            {
-                                regionArray[6] = tempRegion6;
-                            }
-                            Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
-                            if (tempRegion7 != null)
-                            {
-                                regionArray[7] = tempRegion7;
-                            }
-                            Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                            if (tempRegion8 != null)
-                            {
-                                regionArray[8] = tempRegion8;
-                            }
-                            Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                            if (tempRegion2 != null)
-                            {
-                                regionArray[2] = tempRegion2;
-                            }
-                            Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
-                            if (tempRegion5 != null)
-                            {
-                                regionArray[5] = tempRegion5;
-                            }
+                            //Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                            //if (tempRegion6 != null)
+                            //{
+                            //    //regionArray[6] = tempRegion6;
+                            //}
+                            //Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                            //if (tempRegion7 != null)
+                            //{
+                            //    //regionArray[7] = tempRegion7;
+                            //}
+                            //Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                            //if (tempRegion8 != null)
+                            //{
+                            //    //regionArray[8] = tempRegion8;
+                            //}
+                            //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                            //if (tempRegion2 != null)
+                            //{
+                            //    //regionArray[2] = tempRegion2;
+                            //}
+                            //Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                            //if (tempRegion5 != null)
+                            //{
+                            //    //regionArray[5] = tempRegion5;
+                            //}
                         }
                         else
                         {
@@ -362,21 +369,21 @@ namespace Desolation
                             Globals.shiftRegionsLeft(ref regionArray);
                             Globals.shiftChunksLeft(ref chunkArray);
 
-                            Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                            if (tempRegion2 != null)
-                            {
-                                regionArray[2] = tempRegion2;
-                            }
-                            Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
-                            if (tempRegion5 != null)
-                            {
-                                regionArray[5] = tempRegion5;
-                            }
-                            Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                            if (tempRegion8 != null)
-                            {
-                                regionArray[8] = tempRegion8;
-                            }
+                            //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                            //if (tempRegion2 != null)
+                            //{
+                            //    //regionArray[2] = tempRegion2;
+                            //}
+                            //Region tempRegion5 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY);
+                            //if (tempRegion5 != null)
+                            //{
+                            //    //regionArray[5] = tempRegion5;
+                            //}
+                            //Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                            //if (tempRegion8 != null)
+                            //{
+                            //    //regionArray[8] = tempRegion8;
+                            //}
                         }
 
                     }
@@ -394,21 +401,21 @@ namespace Desolation
                             Globals.shiftRegionsDown(ref regionArray);
                             Globals.shiftChunksDown(ref chunkArray);
 
-                            Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
-                            if (tempRegion0 != null)
-                            {
-                                regionArray[0] = tempRegion0;
-                            }
-                            Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
-                            if (tempRegion1 != null)
-                            {
-                                regionArray[1] = tempRegion1;
-                            }
-                            Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
-                            if (tempRegion2 != null)
-                            {
-                                regionArray[2] = tempRegion2;
-                            }
+                            //Region tempRegion0 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY - 1);
+                            //if (tempRegion0 != null)
+                            //{
+                            //    //regionArray[0] = tempRegion0;
+                            //}
+                            //Region tempRegion1 = fileLoader.loadRegionFile(newRegionX, newRegionY - 1);
+                            //if (tempRegion1 != null)
+                            //{
+                            //    //regionArray[1] = tempRegion1;
+                            //}
+                            //Region tempRegion2 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY - 1);
+                            //if (tempRegion2 != null)
+                            //{
+                            //    //regionArray[2] = tempRegion2;
+                            //}
                         }
                         else if (newRegionY > lastRegionY)
                         {
@@ -422,21 +429,21 @@ namespace Desolation
                             Globals.shiftRegionsUp(ref regionArray);
                             Globals.shiftChunksUp(ref chunkArray);
 
-                            Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
-                            if (tempRegion6 != null)
-                            {
-                                regionArray[6] = tempRegion6;
-                            }
-                            Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
-                            if (tempRegion7 != null)
-                            {
-                                regionArray[7] = tempRegion7;
-                            }
-                            Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
-                            if (tempRegion8 != null)
-                            {
-                                regionArray[8] = tempRegion8;
-                            }
+                            //Region tempRegion6 = fileLoader.loadRegionFile(newRegionX - 1, newRegionY + 1);
+                            //if (tempRegion6 != null)
+                            //{
+                            //   // regionArray[6] = tempRegion6;
+                            //}
+                            //Region tempRegion7 = fileLoader.loadRegionFile(newRegionX, newRegionY + 1);
+                            //if (tempRegion7 != null)
+                            //{
+                            //   // regionArray[7] = tempRegion7;
+                            //}
+                            //Region tempRegion8 = fileLoader.loadRegionFile(newRegionX + 1, newRegionY + 1);
+                            //if (tempRegion8 != null)
+                            //{
+                            //   // regionArray[8] = tempRegion8;
+                            //}
                         }
                     }
 
