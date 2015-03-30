@@ -99,7 +99,7 @@ namespace Desolation
 
             Globals.playerPos = player.position;
 
-            camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
+            //camera.update(new Vector2(Globals.playerPos.X - Globals.screenX / 2, Globals.playerPos.Y - Globals.screenY / 2));
             
             chunkManager.update(gameTime, Window);
 
