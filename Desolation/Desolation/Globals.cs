@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace Desolation
 {
-
+    public enum RenderType { blocks, objects };
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
-    public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None}
+    public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None};
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -18,6 +18,7 @@ namespace Desolation
         public static Texture2D tempsheet;
         public static Random rand;
         public static Vector2 playerPos;
+        public static readonly byte blockSize = 16;
         public static readonly int screenX = 1920;
         public static readonly int screenY = 1080;
         public static long ticksLastChunkLoad = 0;

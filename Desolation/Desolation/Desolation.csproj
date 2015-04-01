@@ -75,6 +75,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Chunk\Chunk.cs" />
     <Compile Include="Chunk\ChunkManager.cs" />
+    <Compile Include="Chunk\RenderObject.cs" />
     <Compile Include="GameObjects\Deer.cs" />
     <Compile Include="GameObjects\Entity.cs" />
     <Compile Include="Tag\FileLoader.cs" />
