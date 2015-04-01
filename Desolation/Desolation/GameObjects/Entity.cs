@@ -18,13 +18,16 @@ namespace Desolation
         protected float speed;
         protected float realSpeed;
         protected Vector2 oldPosition;
+        #region Constructor
         public Entity(Vector2 pos)
            : base(pos)
         {
             //speed = 0;
             
         }
+        #endregion
 
+        #region Methods
         abstract public override void Update(GameTime gameTime);
 
         abstract public override void Draw(SpriteBatch spriteBatch);
@@ -207,8 +210,9 @@ namespace Desolation
 
            //window.Title = "chunkNrInArrayX:" + chunkNrInArrayX + " chunkNrInArrayY:" + chunkNrInArrayY;
 
-           
+
        }
+        #endregion
 
     }
 }
