@@ -16,7 +16,7 @@ namespace Desolation
     {
         int frame;
         double frameTimer, frameInterval = 100;
-        float range = 200;
+        float range = 300;
         Player player;
         bool InRange = false;
         Direction currentDirection;
@@ -27,7 +27,7 @@ namespace Desolation
             position = new Vector2(100, 100);
             this.player = player;
 
-            speed = 3;
+            speed = 2;
         }
         public override void moveDirection(Direction direction)
         {
@@ -36,6 +36,80 @@ namespace Desolation
         }
         public override void Update(GameTime gameTime)
         {
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if ((player.position.X - position.X) * (player.position.X - position.X) + (player.position.Y - position.Y) * (player.position.Y - position.Y) < (range * range))
+            {
+                InRange = true;
+            }
+            else
+            {
+                InRange = false;
+            }
+            moveDirection(currentDirection);
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+            }
+            if (InRange)
+            {
+
+                if (player.position.Y > position.Y - 1)
+                {
+                    //sourceRect.X = 2 * 16;
+                    //sourceRect.Y = (frame % 4) * 16;
+                    if (player.position.X > position.X - 1)
+                    {
+                        currentDirection = Direction.NorthWest;
+                    }
+                    else if (player.position.X < position.X + 1)
+                    {
+                        currentDirection = Direction.NorthEast;
+                    }
+                    else
+                    {
+                        currentDirection = Direction.North;
+                    }
+                }
+                else if (player.position.Y < position.Y + 1)
+                {
+                    //sourceRect.X = 0 * 16;
+                    //sourceRect.Y = (frame % 4) * 16;
+                    if (player.position.X < position.X - 1)
+                    {
+                        currentDirection = Direction.SouthWest;
+
+                    }
+                    else if (player.position.X < position.X + 1)
+                    {
+                        currentDirection = Direction.SouthEast;
+                    }
+                    else
+                    {
+                        currentDirection = Direction.South;
+                    }
+                }
+                else if (player.position.X > position.X - 1)
+                {
+                    currentDirection = Direction.West;
+                    //sourceRect.X = 1 * 16;
+                    //sourceRect.Y = (frame % 4) * 16;
+
+                }
+                else if (player.position.X < position.X + 1)
+                {
+                    currentDirection = Direction.East;
+                    //sourceRect.X = 3 * 16;
+                    //sourceRect.Y = (frame % 4) * 16;
+
+                }
+                else
+                {
+                    currentDirection = Direction.None;
+                    sourceRect.X = 0 * 16;
+                }
+            }
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
