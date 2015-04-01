@@ -24,6 +24,7 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
 
+        #region Constructor
         public Goblin(Vector2 position)
             : base(position)
         {
@@ -31,7 +32,9 @@ namespace Desolation
             this.sourceRect = new Rectangle(0, 16, 16, 16);
             speed = 3;
         }
+        #endregion
 
+        #region Methods
         public override void Update(GameTime gameTime)
         {
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
@@ -44,12 +47,15 @@ namespace Desolation
  
             
             base.moveDirection(currentDirection);
+
+            #region SaveSync
             long now = DateTime.Now.Ticks;
             if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
                 
                 base.checkCollision();
             }
+            #endregion
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -58,7 +64,7 @@ namespace Desolation
                 frame++;
             }
 
-
+            #region CurrentDirection
             switch (currentDirection)
             {
                 case Direction.North:
@@ -96,6 +102,7 @@ namespace Desolation
                 case Direction.None:
                     break;
             }
+            #endregion
         }
           
         public override void Draw(SpriteBatch spriteBatch)
@@ -131,5 +138,6 @@ namespace Desolation
                     return Direction.None;
             }
         }
+        #endregion
     }
 }
