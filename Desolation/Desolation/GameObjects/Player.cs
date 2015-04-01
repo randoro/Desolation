@@ -19,6 +19,7 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
         Direction currentDirection;
+        #region Constructor
         public Player(Vector2 position)
             : base(position)
         {
@@ -26,7 +27,9 @@ namespace Desolation
             sourceRect = new Rectangle(0, 16, 16, 16);
             speed = 3;
         }
+        #endregion
 
+        #region Methods
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -36,37 +39,7 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
-
-            /*if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                position.X--;
-
-                sourceRect.X = 1 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                position.X++;
-
-                sourceRect.X = 3 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                position.Y++;
-
-                sourceRect.X = 0 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-            }
-            if(Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                position.Y--;
-
-                sourceRect.X = 2 * 16;
-                sourceRect.Y = (frame % 4) * 16;
-            }*/
         }
-
         public override void moveDirection(Direction direction)
         {
             currentDirection = direction;
@@ -74,9 +47,6 @@ namespace Desolation
             base.moveDirection(direction);
             base.checkCollision();
         }
-        
-       
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TextureManager.playerSheet, new Vector2(position.X - 8, position.Y -15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
@@ -119,6 +89,7 @@ namespace Desolation
                     break;
             }
         }
-  
+        #endregion
+
     }
 }

@@ -136,8 +136,6 @@ namespace Desolation
                 //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
-
-
        public int getCurrentChunkNrInArray() 
        {
            //Vector2 tempPos = new Vector2(1050, 1050);
