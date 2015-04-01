@@ -21,6 +21,7 @@ namespace Desolation
         Player player;
         bool InRange = false;
         Direction currentDirection;
+        #region Constructor
         public Zombie(Player player, Vector2 pos)
             : base(pos)
         {
@@ -30,6 +31,9 @@ namespace Desolation
 
             speed = 1;
         }
+        #endregion
+
+        #region Methods
         public override void moveDirection(Direction direction)
         {
             currentDirection = direction;
@@ -56,14 +60,11 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
+            #region CheckRange
             if (InRange)
             {
-
-
                 if (player.position.Y < position.Y - 1)
                 {
-
-                    
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     if (player.position.X < position.X - 1)
@@ -78,13 +79,9 @@ namespace Desolation
                     {
                         currentDirection = Direction.North;
                     }
-
-
                 }
                 else if (player.position.Y > position.Y + 1 )
-                {
-
-                    
+                {    
                     sourceRect.X = 0 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     if (player.position.X < position.X - 1)
@@ -120,19 +117,13 @@ namespace Desolation
                     currentDirection = Direction.None;
                     sourceRect.X = 0 * 16;
                 }
-
-
             }
-
-
-
+            #endregion
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
-
         }
-
+        #endregion
     }
-
 }
