@@ -50,6 +50,7 @@ namespace Desolation
 
             }
             moveDirection(currentDirection);
+            
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
@@ -61,6 +62,8 @@ namespace Desolation
 
                 if (player.position.Y < position.Y - 1)
                 {
+
+                    
                     sourceRect.X = 2 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     if (player.position.X < position.X - 1)
@@ -75,9 +78,13 @@ namespace Desolation
                     {
                         currentDirection = Direction.North;
                     }
+
+
                 }
                 else if (player.position.Y > position.Y + 1 )
                 {
+
+                    
                     sourceRect.X = 0 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     if (player.position.X < position.X - 1)
