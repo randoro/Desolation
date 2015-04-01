@@ -10,15 +10,15 @@ namespace Desolation
     public static class RenderObject
     {
 
-        public static void draw(SpriteBatch spriteBatch, Vector2 position, RenderType renderType, byte id)
+        public static void draw(SpriteBatch spriteBatch, ref Vector2 position, RenderType renderType, ref byte id)
         {
             switch (renderType)
             {
                 case RenderType.blocks:
-                    drawBlock(spriteBatch, position, id);
+                    drawBlock(spriteBatch, ref position, ref id);
                     break;
                 case RenderType.objects:
-                    drawObject(spriteBatch, position, id);
+                    drawObject(spriteBatch, ref position, ref id);
                     break;
                 default:
                     break;
@@ -26,7 +26,7 @@ namespace Desolation
         }
 
 
-        private static void drawBlock(SpriteBatch spriteBatch, Vector2 position, byte id) 
+        private static void drawBlock(SpriteBatch spriteBatch, ref Vector2 position, ref byte id) 
         {
             switch (id)
             {
@@ -43,9 +43,18 @@ namespace Desolation
 
         }
 
-        private static void drawObject(SpriteBatch spriteBatch, Vector2 position, byte id)
+        private static void drawObject(SpriteBatch spriteBatch, ref Vector2 position, ref byte id)
         {
-            //spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            switch (id)
+            {
+                case 0:
+                    break;
+                case 1:
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

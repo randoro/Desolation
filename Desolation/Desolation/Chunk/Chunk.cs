@@ -36,15 +36,32 @@ namespace Desolation
         {
             for (int i = 0; i < 256; i++)
             {
+                Vector2 pos = new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16);
+                RenderObject.draw(spriteBatch, ref pos, RenderType.blocks, ref blocks[i]);
 
-                RenderObject.draw(spriteBatch, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), RenderType.blocks, blocks[i]);
+                RenderObject.draw(spriteBatch, ref pos, RenderType.objects, ref objects[i]);
+                //if (blocks[i] == 0)
+                //{
+                //    spriteBatch.Draw(TextureManager.blocksheet, pos, new Rectangle(0, 0, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
 
-                RenderObject.draw(spriteBatch, new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16), RenderType.objects, objects[i]);
-                   
+                //}
+                //else
+                //{
+                //    spriteBatch.Draw(TextureManager.blocksheet, pos, new Rectangle(16, 0, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
 
+                //}
+
+                //if (objects[i] == 0)
+                //{
+
+                //}
+                //else
+                //{
+                //    spriteBatch.Draw(TextureManager.blocksheet, pos, new Rectangle(16, 0, 16, 16), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+
+                //}
             }
-        }
 
-        
+        }
     }
 }
