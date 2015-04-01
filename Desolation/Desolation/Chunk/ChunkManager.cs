@@ -35,41 +35,41 @@ namespace Desolation
             entityList = new List<Entity>();
 
 
-                Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
-                Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
-                Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
-                Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);
-                Region tempRegion4 = fileLoader.loadRegionFile(0, 0);
-                Region tempRegion5 = fileLoader.loadRegionFile(1, 0);
-                Region tempRegion6 = fileLoader.loadRegionFile(-1, 1);
-                Region tempRegion7 = fileLoader.loadRegionFile(0, 1);
-                Region tempRegion8 = fileLoader.loadRegionFile(1, 1);
+                //Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
+                //Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
+                //Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
+                //Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);
+                //Region tempRegion4 = fileLoader.loadRegionFile(0, 0);
+                //Region tempRegion5 = fileLoader.loadRegionFile(1, 0);
+                //Region tempRegion6 = fileLoader.loadRegionFile(-1, 1);
+                //Region tempRegion7 = fileLoader.loadRegionFile(0, 1);
+                //Region tempRegion8 = fileLoader.loadRegionFile(1, 1);
 
-                bool newGame = false;
+                //bool newGame = false;
 
-                if (newGame)
-                {
-                    TempChunkCreator.makeEmptyChunk(tempRegion0);
-                    TempChunkCreator.makeEmptyChunk(tempRegion1);
-                    TempChunkCreator.makeEmptyChunk(tempRegion2);
-                    TempChunkCreator.makeEmptyChunk(tempRegion3);
-                    TempChunkCreator.makeEmptyChunk(tempRegion4);
-                    TempChunkCreator.makeEmptyChunk(tempRegion5);
-                    TempChunkCreator.makeEmptyChunk(tempRegion6);
-                    TempChunkCreator.makeEmptyChunk(tempRegion7);
-                    TempChunkCreator.makeEmptyChunk(tempRegion8);
-                }
+                //if (newGame)
+                //{
+                //    TempChunkCreator.makeEmptyChunk(tempRegion0);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion1);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion2);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion3);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion4);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion5);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion6);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion7);
+                //    TempChunkCreator.makeEmptyChunk(tempRegion8);
+                //}
 
             
-                regionArray[0] = tempRegion0;
-                regionArray[1] = tempRegion1;
-                regionArray[2] = tempRegion2;
-                regionArray[3] = tempRegion3;
-                regionArray[4] = tempRegion4;
-                regionArray[5] = tempRegion5;
-                regionArray[6] = tempRegion6;
-                regionArray[7] = tempRegion7;
-                regionArray[8] = tempRegion8;
+                //regionArray[0] = tempRegion0;
+                //regionArray[1] = tempRegion1;
+                //regionArray[2] = tempRegion2;
+                //regionArray[3] = tempRegion3;
+                //regionArray[4] = tempRegion4;
+                //regionArray[5] = tempRegion5;
+                //regionArray[6] = tempRegion6;
+                //regionArray[7] = tempRegion7;
+                //regionArray[8] = tempRegion8;
 
 
             chunkArray = new Chunk[144];
@@ -104,22 +104,29 @@ namespace Desolation
                 newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
                 //time for new chunkLoad
-
+                #region ChunkLoading
                 for (int i = 0; i < 9; i++)
                 {
                     if (regionArray[i] != null)
                     {
-                        Chunk newChunk = TagTranslator.getUnloadedChunk(regionArray[i]);
+                        bool[] chunksLoaded = regionArray[i].chunksLoaded;
 
-                        if (newChunk == null || newChunk.terrainPopulated == 0)
-                        {
-                            newChunk = TempChunkCreator.createChunk(regionArray[i]);
-                        }
+                        bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
 
-                        if (newChunk != null)
+                        if (!allChunksLoaded)
                         {
-                            byte innerIndex = newChunk.innerIndex;
-                            chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
+                            Chunk newChunk = TagTranslator.getUnloadedChunk(regionArray[i]);
+
+                            if (newChunk == null || newChunk.terrainPopulated == 0)
+                            {
+                                newChunk = TempChunkCreator.createChunk(regionArray[i]);
+                            }
+
+                            if (newChunk != null)
+                            {
+                                byte innerIndex = newChunk.innerIndex;
+                                chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
+                            }
                         }
 
 
@@ -132,13 +139,9 @@ namespace Desolation
                         }
                     }
                 }
-                //check if chunks in regionfile needs loading
+                #endregion
 
-
-                //set region file numbers (the region file the player is currently in)
-
-                
-
+                #region ShiftRegions
                 if (newRegionX != lastRegionX || newRegionY != lastRegionY)
                 {
 
@@ -448,6 +451,7 @@ namespace Desolation
                     }
 
                 }
+                #endregion
 
         }
 

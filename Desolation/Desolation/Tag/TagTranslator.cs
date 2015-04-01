@@ -14,12 +14,12 @@ namespace Desolation
             Chunk newChunk;
             regionFile.fileStream.Position = 0;
 
-            bool[] chunksLoaded = regionFile.chunksLoaded;
+            //bool[] chunksLoaded = regionFile.chunksLoaded;
 
-            bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+            //bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
 
-            if (!allChunksLoaded)
-            {
+            //if (!allChunksLoaded)
+            //{
                 newChunk = new Chunk();
                 int chunkXPos = 0;
                 int chunkYPos = 0;
@@ -192,7 +192,7 @@ namespace Desolation
                                 break;
                         }
                     }
-                }
+                //}
             }
             return null;
         }
@@ -210,14 +210,14 @@ namespace Desolation
             Tag YPos = new Tag(TagID.Int, "YPos", chunk.YPos, TagID.Int);
             writeTag(YPos, fileStream);
 
-            //Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
-            //writeTag(LastUpdate, fileStream);
+            Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
+            writeTag(LastUpdate, fileStream);
 
             Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
             writeTag(TerrainPopulated, fileStream);
 
-            //Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
-            //writeTag(InhabitedTime, fileStream);
+            Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
+            writeTag(InhabitedTime, fileStream);
 
             Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
             writeTag(Biomes, fileStream);
