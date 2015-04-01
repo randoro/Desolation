@@ -24,6 +24,7 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
 
+        #region Constructor
         public Goblin(Vector2 position)
             : base(position)
         {
@@ -31,7 +32,9 @@ namespace Desolation
             this.sourceRect = new Rectangle(0, 16, 16, 16);
             speed = 3;
         }
+        #endregion
 
+        #region Methods
         public override void Update(GameTime gameTime)
         {
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
@@ -44,12 +47,15 @@ namespace Desolation
  
             
             base.moveDirection(currentDirection);
+
+            #region SaveSync
             long now = DateTime.Now.Ticks;
             if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
                 
                 base.checkCollision();
             }
+            #endregion
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
@@ -58,7 +64,7 @@ namespace Desolation
                 frame++;
             }
 
-
+            #region CurrentDirection
             switch (currentDirection)
             {
                 case Direction.North:
@@ -96,6 +102,7 @@ namespace Desolation
                 case Direction.None:
                     break;
             }
+            #endregion
         }
           
         public override void Draw(SpriteBatch spriteBatch)
@@ -130,40 +137,7 @@ namespace Desolation
                 default:
                     return Direction.None;
             }
-
-
-
         }
-
-        //public override void moveDirection(Direction direction)
-        //{
-        //    if (direction < 0)
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.NorthWest;
-        //        else if (direction > 0)
-        //            direction = Direction.NorthEast;
-        //        else
-        //            direction = Direction.North;
-        //    }
-        //    else if (direction > 0)
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.SouthWest;
-        //        else if (direction > 0)
-        //            direction = Direction.SouthEast;
-        //        else
-        //            direction = Direction.South;
-        //    }
-        //    else
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.West;
-        //        else if (direction > 0)
-        //            direction = Direction.East;
-        //        else
-        //            direction = Direction.None;
-        //    }
-        //}
+        #endregion
     }
 }
