@@ -130,40 +130,6 @@ namespace Desolation
                 default:
                     return Direction.None;
             }
-
-
-
         }
-
-        //public override void moveDirection(Direction direction)
-        //{
-        //    if (direction < 0)
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.NorthWest;
-        //        else if (direction > 0)
-        //            direction = Direction.NorthEast;
-        //        else
-        //            direction = Direction.North;
-        //    }
-        //    else if (direction > 0)
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.SouthWest;
-        //        else if (direction > 0)
-        //            direction = Direction.SouthEast;
-        //        else
-        //            direction = Direction.South;
-        //    }
-        //    else
-        //    {
-        //        if (direction < 0)
-        //            direction = Direction.West;
-        //        else if (direction > 0)
-        //            direction = Direction.East;
-        //        else
-        //            direction = Direction.None;
-        //    }
-        //}
     }
 }
