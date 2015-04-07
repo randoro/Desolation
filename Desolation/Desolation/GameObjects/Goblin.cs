@@ -138,6 +138,14 @@ namespace Desolation
                     return Direction.None;
             }
         }
+
+
+        public override void getTagList(ref List<Tag> individualList)
+        {
+            base.getTagList(ref individualList);
+
+        }
+
         #endregion
     }
 }

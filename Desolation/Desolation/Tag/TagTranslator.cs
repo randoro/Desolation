@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Desolation
 {
@@ -154,11 +155,11 @@ namespace Desolation
                             case TagID.List:
                                 if (tagName.Equals("Entities"))
                                 {
-                                    newChunk.entities = (List<Tag>[])currentTag.getData();
+                                    newChunk.entities = (List<List<Tag>>)currentTag.getData();
                                 }
                                 else if (tagName.Equals("TileEntities"))
                                 {
-                                    newChunk.tileEntities = (List<Tag>[])currentTag.getData();
+                                    newChunk.tileEntities = (List<List<Tag>>)currentTag.getData();
                                 }
                                 break;
                             case TagID.Compound:
@@ -341,7 +342,7 @@ namespace Desolation
                     byte listTagID = (byte)fileStream.ReadByte();
                     byte[] elementArray = new byte[4];
                     fileStream.Read(elementArray, 0, 4);
-                    int elementsInList = BitConverter.ToInt32(elementArray, 0);
+                    int elementsInList = BitConverter.ToInt32(elementArray, 0); //number of List<Tag>s
 
                     if (elementsInList > 0)
                     {
@@ -363,6 +364,29 @@ namespace Desolation
                         }
                         else
                         {
+                            List<List<Tag>> tagListList = new List<List<Tag>>();
+
+                            for (int i = 0; i < elementsInList; i++)
+                            {
+                                List<Tag> tagList = new List<Tag>();
+                                bool stillInList = true;
+                                while (stillInList)
+                                {
+                                    Tag aTag = TagTranslator.readTag(fileStream);
+                                    tagList.Add(aTag);
+                                    if (aTag.getID().Equals(TagID.End))
+                                    {
+                                        stillInList = false;
+                                    }
+                                }
+                                tagListList.Add(tagList);
+
+                                
+                            }
+
+                            returnTag = new Tag(tagID, tagIdentifier, tagListList, (TagID)listTagID);
+                            return returnTag;
+
 
                         }
                     }
@@ -866,6 +890,83 @@ namespace Desolation
                 fileStream.Close();
             }
             
+        }
+
+        public static Entity getUnloadedEntity(List<Tag> entity)
+        {
+            foreach (Tag e in entity)
+            {
+                Entity newEntity = new Goblin(Vector2.Zero); // will never be used
+                String tagName = e.getName();
+                TagID tagID = e.getID();
+
+                switch (tagID)
+                {
+                    case TagID.End:
+                            //end of unloaded chunk
+                            //this means its now added return new chunk
+                            Console.WriteLine("entity now loaded");
+                            return newEntity;
+                        break;
+                    case TagID.Byte:
+                        if (tagName.Equals("ID"))
+                        {
+                            EntityID ID = (EntityID)(sbyte)e.getData();
+                            switch (ID)
+                            {
+                                case EntityID.Player:
+                                    break;
+                                case EntityID.Goblin:
+                                    newEntity = new Goblin(Vector2.Zero);
+                                    break;
+                                case EntityID.Zombie:
+                                    newEntity = new Zombie(Vector2.Zero);
+                                    break;
+                                case EntityID.Deer:
+                                    newEntity = new Deer(Vector2.Zero);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TagID.Short:
+                        break;
+                    case TagID.Int:
+                        if (tagName.Equals("XPos"))
+                        {
+                            byte[] data = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(data, 0);
+                            newEntity.position.X = dataInt;
+                        }
+                        else if (tagName.Equals("YPos"))
+                        {
+                            byte[] data = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(data, 0);
+                            newEntity.position.X = dataInt;
+                        }
+                        break;
+                    case TagID.Long:
+                        break;
+                    case TagID.Float:
+                        break;
+                    case TagID.Double:
+                        break;
+                    case TagID.ByteArray:
+                        break;
+                    case TagID.String:
+                        break;
+                    case TagID.List:
+                        break;
+                    case TagID.Compound:
+                        break;
+                    case TagID.IntArray:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return null;
         }
     }
 }

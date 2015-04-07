@@ -17,8 +17,8 @@ namespace Desolation
         public byte[] biomes { set; get; }
         public byte[] blocks { set; get; }
         public byte[] objects { set; get; }
-        public List<Tag>[] entities { set; get; }
-        public List<Tag>[] tileEntities { set; get; }
+        public List<List<Tag>> entities { set; get; }
+        public List<List<Tag>> tileEntities { set; get; }
 
         public byte innerIndex; //0-16 which chunk in regionFile
 

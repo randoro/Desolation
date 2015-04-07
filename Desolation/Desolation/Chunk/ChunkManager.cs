@@ -16,6 +16,7 @@ namespace Desolation
         public static Region[] regionArray;
         public static List<Entity> entityList;
         long ticksLastChunkLoad;
+        int currentChunkForEntityLoad;
 
         int lastRegionX;
         int lastRegionY;
@@ -73,7 +74,7 @@ namespace Desolation
 
 
             chunkArray = new Chunk[144];
-            
+            currentChunkForEntityLoad = 0;
 
             //for (int i = 0; i < 144; i++)
             //{
@@ -103,6 +104,30 @@ namespace Desolation
                 newChunkX = Globals.getChunkValue(Globals.playerPos.X);
                 newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
+
+                Chunk curChunk = chunkArray[currentChunkForEntityLoad];
+                if (curChunk != null)
+                {
+                    List<List<Tag>> listListTag = new List<List<Tag>>();
+                    foreach (Entity e in entityList)
+                    {
+                        Vector2 pos = e.position;
+                        int ChunkX = Globals.getChunkValue(pos.X);
+                        int ChunkY = Globals.getChunkValue(pos.Y);
+                        if (curChunk.XPos == ChunkX && curChunk.YPos == ChunkY)
+                        {
+                            List<Tag> newList = new List<Tag>();
+                            e.getTagList(ref newList);
+                            listListTag.Add(newList);
+
+                        }
+                    }
+                    curChunk.entities = listListTag;
+                }
+                currentChunkForEntityLoad++;
+                currentChunkForEntityLoad %= 144;
+
+
                 //time for new chunkLoad
                 #region ChunkLoading
                 for (int i = 0; i < 9; i++)
@@ -126,6 +151,11 @@ namespace Desolation
                             {
                                 byte innerIndex = newChunk.innerIndex;
                                 chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
+
+                                foreach (List<Tag> e in newChunk.entities)
+                                {
+                                    entityList.Add(TagTranslator.getEntity(e));
+                                }
                             }
                         }
 

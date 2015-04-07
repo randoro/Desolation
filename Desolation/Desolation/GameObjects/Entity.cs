@@ -213,6 +213,15 @@ namespace Desolation
 
        }
 
+
+       public virtual void getTagList(ref List<Tag> individualList)
+       {
+           Tag xPos = new Tag(TagID.Float, "XPos", position.X, TagID.Float);
+           Tag yPos = new Tag(TagID.Float, "YPos", position.Y, TagID.Float);
+           individualList.Add(xPos);
+           individualList.Add(yPos);
+       }
+       
         #endregion
 
     }

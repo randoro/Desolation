@@ -9,6 +9,8 @@ namespace Desolation
 {
     public enum RenderType { blocks, objects };
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
+
+    public enum EntityID { Player, Goblin, Zombie, Deer };
     public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None};
     static class Globals
     {

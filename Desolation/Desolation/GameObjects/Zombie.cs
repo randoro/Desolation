@@ -22,7 +22,7 @@ namespace Desolation
         bool InRange = false;
         Direction currentDirection;
         #region Constructor
-        public Zombie(Player player, Vector2 pos)
+        public Zombie(Vector2 pos)
             : base(pos)
         {
             sourceRect = new Rectangle(0, 0, 16, 16);
@@ -124,6 +124,13 @@ namespace Desolation
         {
             spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
         }
+
+
+        public void getTagList(ref List<Tag> individualList)
+        {
+
+        }
+
         #endregion
     }
 }

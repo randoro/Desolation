@@ -89,6 +89,10 @@ namespace Desolation
                     break;
             }
         }
+
+        public void getTagList(ref List<Tag> individualList)
+        {
+        }
         #endregion
 
     }
