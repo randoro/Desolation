@@ -20,6 +20,7 @@ namespace Desolation
         Player player;
         bool InRange = false;
         Direction currentDirection;
+        #region Constructor
         public Deer(Vector2 pos)
             : base(pos)
         {
@@ -29,6 +30,8 @@ namespace Desolation
 
             speed = 2;
         }
+        #endregion
+        #region Methods
         public override void moveDirection(Direction direction)
         {
             currentDirection = direction;
@@ -51,11 +54,21 @@ namespace Desolation
                 InRange = false;
             }
             moveDirection(currentDirection);
+
+            #region SaveSync
+            long now = DateTime.Now.Ticks;
+            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
+            {
+
+                base.checkCollision();
+            }
+            #endregion
             if (frameTimer <= 0)
             {
                 frameTimer = frameInterval;
                 frame++;
             }
+            #region InRange
             if (InRange)
             {
 
@@ -122,8 +135,7 @@ namespace Desolation
                     speed = 0;
                 }
             }
-
-
+            #endregion
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -142,6 +154,7 @@ namespace Desolation
             Tag end = new Tag(TagID.End, null, null, TagID.End);
             individualList.Add(end);
         }
+        #endregion
 
     }
 
