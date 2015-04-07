@@ -131,6 +131,9 @@ namespace Desolation
             Tag compound = new Tag(TagID.Compound, "Zombie", null, TagID.Compound);
             individualList.Add(compound);
 
+            Tag ID = new Tag(TagID.Byte, "ID", (sbyte)EntityID.Zombie, TagID.Byte);
+            individualList.Add(ID);
+
             base.getTagList(ref individualList);
 
             Tag end = new Tag(TagID.End, null, null, TagID.End);

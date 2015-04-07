@@ -105,27 +105,7 @@ namespace Desolation
                 newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
 
-                Chunk curChunk = chunkArray[currentChunkForEntityLoad];
-                if (curChunk != null)
-                {
-                    List<List<Tag>> listListTag = new List<List<Tag>>();
-                    foreach (Entity e in entityList)
-                    {
-                        Vector2 pos = e.position;
-                        int ChunkX = Globals.getChunkValue(pos.X);
-                        int ChunkY = Globals.getChunkValue(pos.Y);
-                        if (curChunk.XPos == ChunkX && curChunk.YPos == ChunkY)
-                        {
-                            List<Tag> newList = new List<Tag>();
-                            e.getTagList(ref newList);
-                            listListTag.Add(newList);
-
-                        }
-                    }
-                    curChunk.entities = listListTag;
-                }
-                currentChunkForEntityLoad++;
-                currentChunkForEntityLoad %= 144;
+                
 
 
                 //time for new chunkLoad
@@ -156,7 +136,11 @@ namespace Desolation
                                 {
                                     foreach (List<Tag> e in newChunk.entities)
                                     {
-                                        entityList.Add(TagTranslator.getUnloadedEntity(e));
+                                        Entity newEntity = TagTranslator.getUnloadedEntity(e);
+                                        if (newEntity != null)
+                                        {
+                                            entityList.Add(newEntity);
+                                        }
                                     }
                                 }
                             }
@@ -485,6 +469,29 @@ namespace Desolation
 
                 }
                 #endregion
+
+
+                Chunk curChunk = chunkArray[currentChunkForEntityLoad];
+                if (curChunk != null)
+                {
+                    List<List<Tag>> listListTag = new List<List<Tag>>();
+                    foreach (Entity e in entityList)
+                    {
+                        Vector2 pos = e.position;
+                        int ChunkX = Globals.getChunkValue(pos.X);
+                        int ChunkY = Globals.getChunkValue(pos.Y);
+                        if (curChunk.XPos == ChunkX && curChunk.YPos == ChunkY)
+                        {
+                            List<Tag> newList = new List<Tag>();
+                            e.getTagList(ref newList);
+                            listListTag.Add(newList);
+
+                        }
+                    }
+                    curChunk.entities = listListTag;
+                }
+                currentChunkForEntityLoad++;
+                currentChunkForEntityLoad %= 144;
 
         }
 

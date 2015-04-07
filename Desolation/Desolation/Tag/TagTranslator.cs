@@ -933,23 +933,26 @@ namespace Desolation
                     case TagID.Short:
                         break;
                     case TagID.Int:
-                        break;
-                    case TagID.Long:
-                        break;
-                    case TagID.Float:
                         if (tagName.Equals("EntityXPos"))
                         {
-                            float dataFloat = BitConverter.ToSingle((byte[])data, 0);
-                            newEntity.position.X = dataFloat;
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newEntity.position.X = (float)dataInt;
                         }
                         else if (tagName.Equals("EntityYPos"))
                         {
-                            float dataFloat = BitConverter.ToSingle((byte[])data, 0);
-                            newEntity.position.Y = dataFloat;
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newEntity.position.Y = (float)dataInt;
                             //byte[] data = (byte[])e.getRawData();
                             //float dataFloat = BitConverter.ToSingle(data, 0);
                             //newEntity.position.Y = dataFloat;
                         }
+                        break;
+                    case TagID.Long:
+                        break;
+                    case TagID.Float:
+                        
                         break;
                     case TagID.Double:
                         break;
