@@ -152,9 +152,12 @@ namespace Desolation
                                 byte innerIndex = newChunk.innerIndex;
                                 chunkArray[((innerIndex / 4) + (i / 3) * 4) * 12 + (innerIndex % 4) + (i % 3) * 4] = newChunk;
 
-                                foreach (List<Tag> e in newChunk.entities)
+                                if (newChunk.entities != null)
                                 {
-                                    entityList.Add(TagTranslator.getUnloadedEntity(e));
+                                    foreach (List<Tag> e in newChunk.entities)
+                                    {
+                                        entityList.Add(TagTranslator.getUnloadedEntity(e));
+                                    }
                                 }
                             }
                         }

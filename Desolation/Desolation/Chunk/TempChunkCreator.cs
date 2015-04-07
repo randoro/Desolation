@@ -100,6 +100,13 @@ namespace Desolation
 
             chunk.objects = objects;
 
+
+            List<List<Tag>> entities = new List<List<Tag>>();
+            chunk.entities = entities;
+
+            //List<List<Tag>> tileEntities = new List<List<Tag>>();
+            //chunk.tileEntities = tileEntities;
+
             return chunk;
             
             }

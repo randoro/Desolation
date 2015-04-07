@@ -142,7 +142,13 @@ namespace Desolation
 
         public override void getTagList(ref List<Tag> individualList)
         {
+            Tag compound = new Tag(TagID.Compound, "Goblin", null, TagID.Compound);
+            individualList.Add(compound);
+
             base.getTagList(ref individualList);
+
+            Tag end = new Tag(TagID.End, null, null, TagID.End);
+            individualList.Add(end);
 
         }
 

@@ -28,6 +28,11 @@ namespace Desolation
             return data;
         }
 
+        public TagID getListID()
+        {
+            return listID;
+        }
+
         public object getData()
         {
             if (tagID.Equals(TagID.Byte))

@@ -157,10 +157,10 @@ namespace Desolation
                                 {
                                     newChunk.entities = (List<List<Tag>>)currentTag.getData();
                                 }
-                                else if (tagName.Equals("TileEntities"))
-                                {
-                                    newChunk.tileEntities = (List<List<Tag>>)currentTag.getData();
-                                }
+                                //else if (tagName.Equals("TileEntities"))
+                                //{
+                                //    newChunk.tileEntities = (List<List<Tag>>)currentTag.getData();
+                                //}
                                 break;
                             case TagID.Compound:
                                 layerDepth++;
@@ -228,6 +228,12 @@ namespace Desolation
 
             Tag Objects = new Tag(TagID.ByteArray, "Objects", chunk.objects, TagID.ByteArray);
             writeTag(Objects, fileStream);
+
+            Tag Entities = new Tag(TagID.List, "Entities", chunk.entities, TagID.Compound);
+            writeTag(Entities, fileStream);
+
+            //Tag TileEntities = new Tag(TagID.List, "TileEntities", chunk.tileEntities, TagID.Compound);
+            //writeTag(TileEntities, fileStream);
 
             Tag End = new Tag(TagID.End, null, null, TagID.End);
             writeTag(End, fileStream);
@@ -339,32 +345,33 @@ namespace Desolation
                     break;
                 case TagID.List:
 
-                    byte listTagID = (byte)fileStream.ReadByte();
+                    //sbyte listTagID = (sbyte)fileStream.ReadByte();
                     byte[] elementArray = new byte[4];
                     fileStream.Read(elementArray, 0, 4);
                     int elementsInList = BitConverter.ToInt32(elementArray, 0); //number of List<Tag>s
+                    List<List<Tag>> tagListList = new List<List<Tag>>();
 
                     if (elementsInList > 0)
                     {
-                        if (!listTagID.Equals(TagID.Compound))
-                        {
-                            byte payloadElementSize = Globals.dataTypeSizes[listTagID];
+                        //if (!listTagID.Equals(TagID.Compound))
+                        //{
+                        //    byte payloadElementSize = Globals.dataTypeSizes[listTagID];
 
-                            List<byte[]> byteArrayList = new List<byte[]>();
+                        //    List<byte[]> byteArrayList = new List<byte[]>();
 
-                            for (int i = 0; i < elementsInList; i++)
-                            {
-                                byte[] element = new byte[payloadElementSize];
-                                fileStream.Read(element, 0, payloadElementSize);
-                                byteArrayList.Add(element);
-                            }
+                        //    for (int i = 0; i < elementsInList; i++)
+                        //    {
+                        //        byte[] element = new byte[payloadElementSize];
+                        //        fileStream.Read(element, 0, payloadElementSize);
+                        //        byteArrayList.Add(element);
+                        //    }
 
-                            returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
-                            return returnTag;
-                        }
-                        else
-                        {
-                            List<List<Tag>> tagListList = new List<List<Tag>>();
+                        //    returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
+                        //    return returnTag;
+                        //}
+                        //else
+                        //{
+                            
 
                             for (int i = 0; i < elementsInList; i++)
                             {
@@ -384,13 +391,13 @@ namespace Desolation
                                 
                             }
 
-                            returnTag = new Tag(tagID, tagIdentifier, tagListList, (TagID)listTagID);
+                            returnTag = new Tag(tagID, tagIdentifier, tagListList, TagID.Compound);
                             return returnTag;
 
 
-                        }
+                        //}
                     }
-                    returnTag = new Tag(tagID, tagIdentifier, null, tagID); //change
+                    returnTag = new Tag(tagID, tagIdentifier, tagListList, TagID.Compound); //change
                     return returnTag;
 
                     break;
@@ -788,37 +795,27 @@ namespace Desolation
                     break;
                 case TagID.List:
                     //fix this
+                    
+                        List<List<Tag>> theData = ((List<List<Tag>>)data);
 
-                    //byte listTagID = (byte)fileStream.ReadByte();
-                    //byte[] elementArray = new byte[4];
-                    //fileStream.Read(elementArray, 0, 4);
-                    //int elementsInList = BitConverter.ToInt32(elementArray, 0);
+                        //fileStream.WriteByte((byte)tag.getListID());
+                        int elementsInList = theData.Count;
+                        byte[] elementArray = BitConverter.GetBytes(elementsInList);
+                        fileStream.Write(elementArray, 0, 4);
 
-                    //if (elementsInList > 0)
-                    //{
-                    //    if (!listTagID.Equals(TagID.Compound))
-                    //    {
-                    //        byte payloadElementSize = Globals.dataTypeSizes[listTagID];
-
-                    //        List<byte[]> byteArrayList = new List<byte[]>();
-
-                    //        for (int i = 0; i < elementsInList; i++)
-                    //        {
-                    //            byte[] element = new byte[payloadElementSize];
-                    //            fileStream.Read(element, 0, payloadElementSize);
-                    //            byteArrayList.Add(element);
-                    //        }
-
-                    //        returnTag = new Tag(tagID, tagIdentifier, byteArrayList, (TagID)listTagID);
-                    //        return returnTag;
-                    //    }
-                    //    else
-                    //    {
-
-                    //    }
-                    //}
-                    //returnTag = new Tag(tagID, tagIdentifier, null, tagID); //change
-                    return;
+                        if (elementsInList > 0)
+                        {
+                            if (tag.getListID().Equals(TagID.Compound))
+                            {
+                                foreach (List<Tag> list in theData)
+                                {
+                                    foreach (Tag innerTag in list)
+                                    {
+                                        TagTranslator.writeTag(innerTag, fileStream);
+                                    }
+                                }
+                            }
+                        }
 
                     break;
                 case TagID.Compound:
@@ -894,11 +891,14 @@ namespace Desolation
 
         public static Entity getUnloadedEntity(List<Tag> entity)
         {
+            Entity newEntity = new Goblin(Vector2.Zero); // will never be used
+            bool isReturnable = false;
             foreach (Tag e in entity)
             {
-                Entity newEntity = new Goblin(Vector2.Zero); // will never be used
                 String tagName = e.getName();
                 TagID tagID = e.getID();
+                var data = e.getRawData();
+                
 
                 switch (tagID)
                 {
@@ -906,7 +906,7 @@ namespace Desolation
                             //end of unloaded chunk
                             //this means its now added return new chunk
                             Console.WriteLine("entity now loaded");
-                            return newEntity;
+                            isReturnable = true;
                         break;
                     case TagID.Byte:
                         if (tagName.Equals("ID"))
@@ -933,22 +933,23 @@ namespace Desolation
                     case TagID.Short:
                         break;
                     case TagID.Int:
-                        if (tagName.Equals("XPos"))
-                        {
-                            byte[] data = (byte[])e.getRawData();
-                            int dataInt = BitConverter.ToInt32(data, 0);
-                            newEntity.position.X = dataInt;
-                        }
-                        else if (tagName.Equals("YPos"))
-                        {
-                            byte[] data = (byte[])e.getRawData();
-                            int dataInt = BitConverter.ToInt32(data, 0);
-                            newEntity.position.X = dataInt;
-                        }
                         break;
                     case TagID.Long:
                         break;
                     case TagID.Float:
+                        if (tagName.Equals("EntityXPos"))
+                        {
+                            float dataFloat = BitConverter.ToSingle((byte[])data, 0);
+                            newEntity.position.X = dataFloat;
+                        }
+                        else if (tagName.Equals("EntityYPos"))
+                        {
+                            float dataFloat = BitConverter.ToSingle((byte[])data, 0);
+                            newEntity.position.Y = dataFloat;
+                            //byte[] data = (byte[])e.getRawData();
+                            //float dataFloat = BitConverter.ToSingle(data, 0);
+                            //newEntity.position.Y = dataFloat;
+                        }
                         break;
                     case TagID.Double:
                         break;
@@ -966,7 +967,15 @@ namespace Desolation
                         break;
                 }
             }
-            return null;
+
+            if (isReturnable)
+            {
+                return newEntity;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
