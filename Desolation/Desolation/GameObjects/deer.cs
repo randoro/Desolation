@@ -24,8 +24,8 @@ namespace Desolation
             : base(pos)
         {
             sourceRect = new Rectangle(0, 0, 16, 32);
-            position = new Vector2(100, 100);
-            this.player = player;
+            position = new Vector2(100, 100); 
+            player = Game1.player;
 
             speed = 2;
         }

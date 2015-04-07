@@ -154,7 +154,7 @@ namespace Desolation
 
                                 foreach (List<Tag> e in newChunk.entities)
                                 {
-                                    entityList.Add(TagTranslator.getEntity(e));
+                                    entityList.Add(TagTranslator.getUnloadedEntity(e));
                                 }
                             }
                         }
