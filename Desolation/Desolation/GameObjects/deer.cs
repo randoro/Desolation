@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Deer :Entity 
+    class Deer : Entity
     {
         int frame;
         double frameTimer, frameInterval = 100;
@@ -40,6 +40,11 @@ namespace Desolation
             if ((player.position.X - position.X) * (player.position.X - position.X) + (player.position.Y - position.Y) * (player.position.Y - position.Y) < (range * range))
             {
                 InRange = true;
+                speed=speed+0.01f;
+                if (speed >= 2)
+                {
+                    speed = 2;
+                }
             }
             else
             {
@@ -54,15 +59,15 @@ namespace Desolation
             if (InRange)
             {
 
-                if (player.position.Y > position.Y - 1)
+                if (player.position.Y > position.Y - 5)
                 {
                     //sourceRect.X = 2 * 16;
                     //sourceRect.Y = (frame % 4) * 16;
-                    if (player.position.X > position.X - 1)
+                    if (player.position.X > position.X - 5)
                     {
                         currentDirection = Direction.NorthWest;
                     }
-                    else if (player.position.X < position.X + 1)
+                    else if (player.position.X < position.X + 5)
                     {
                         currentDirection = Direction.NorthEast;
                     }
@@ -71,16 +76,16 @@ namespace Desolation
                         currentDirection = Direction.North;
                     }
                 }
-                else if (player.position.Y < position.Y + 1)
+                else if (player.position.Y < position.Y + 5)
                 {
                     //sourceRect.X = 0 * 16;
                     //sourceRect.Y = (frame % 4) * 16;
-                    if (player.position.X > position.X - 1)
+                    if (player.position.X > position.X - 5)
                     {
                         currentDirection = Direction.SouthWest;
 
                     }
-                    else if (player.position.X < position.X + 1)
+                    else if (player.position.X < position.X + 5)
                     {
                         currentDirection = Direction.SouthEast;
                     }
@@ -89,14 +94,14 @@ namespace Desolation
                         currentDirection = Direction.South;
                     }
                 }
-                else if (player.position.X > position.X - 1)
+                else if (player.position.X > position.X - 5)
                 {
                     currentDirection = Direction.West;
                     //sourceRect.X = 1 * 16;
                     //sourceRect.Y = (frame % 4) * 16;
 
                 }
-                else if (player.position.X < position.X + 1)
+                else if (player.position.X < position.X + 5)
                 {
                     currentDirection = Direction.East;
                     //sourceRect.X = 3 * 16;
@@ -109,6 +114,15 @@ namespace Desolation
                     sourceRect.X = 0 * 16;
                 }
             }
+            else
+            {
+                speed=speed-0.01f;
+                if(speed<=0)
+                {
+                    speed = 0;
+                }
+            }
+
 
         }
         public override void Draw(SpriteBatch spriteBatch)
