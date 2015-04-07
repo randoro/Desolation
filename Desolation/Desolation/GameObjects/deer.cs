@@ -75,7 +75,7 @@ namespace Desolation
                 {
                     //sourceRect.X = 0 * 16;
                     //sourceRect.Y = (frame % 4) * 16;
-                    if (player.position.X < position.X - 1)
+                    if (player.position.X > position.X - 1)
                     {
                         currentDirection = Direction.SouthWest;
 
