@@ -204,20 +204,25 @@ namespace Desolation
             Tag chunkTag = new Tag(TagID.Compound, "chunk", null, TagID.Compound);
             writeTag(chunkTag, fileStream);
 
-
-            Tag XPos = new Tag(TagID.Int, "XPos", chunk.XPos, TagID.Int);
+            byte[] chunkXpos = BitConverter.GetBytes(chunk.XPos);
+            Tag XPos = new Tag(TagID.Int, "XPos", chunkXpos, TagID.Int);
             writeTag(XPos, fileStream);
 
-            Tag YPos = new Tag(TagID.Int, "YPos", chunk.YPos, TagID.Int);
+            byte[] chunkYpos = BitConverter.GetBytes(chunk.YPos);
+            Tag YPos = new Tag(TagID.Int, "YPos", chunkYpos, TagID.Int);
             writeTag(YPos, fileStream);
 
-            Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunk.lastUpdate, TagID.Long);
+            byte[] chunkLastUpdate = BitConverter.GetBytes(chunk.lastUpdate);
+            Tag LastUpdate = new Tag(TagID.Long, "LastUpdate", chunkLastUpdate, TagID.Long);
             writeTag(LastUpdate, fileStream);
 
-            Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunk.terrainPopulated, TagID.Byte);
+            byte terrainByte = (byte)chunk.terrainPopulated;
+            byte[] chunkTerrainPopulated = { terrainByte };
+            Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunkTerrainPopulated, TagID.Byte);
             writeTag(TerrainPopulated, fileStream);
 
-            Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunk.inhabitedTime, TagID.Long);
+            byte[] chunkInhabitedTime = BitConverter.GetBytes(chunk.inhabitedTime);
+            Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunkInhabitedTime, TagID.Long);
             writeTag(InhabitedTime, fileStream);
 
             Tag Biomes = new Tag(TagID.ByteArray, "Biomes", chunk.biomes, TagID.ByteArray);
@@ -734,40 +739,38 @@ namespace Desolation
                 case TagID.Byte:
                     unchecked
                     {
-                        sbyte signedByte = (sbyte)data;
-                        byte newByte = (byte)signedByte;
-                        fileStream.WriteByte(newByte);
+                        fileStream.Write((byte[])data, 0, 1);
                     }
                     return;
                     break;
                 case TagID.Short:
-                    dataInBytes = BitConverter.GetBytes((short)data);
-                    fileStream.Write(dataInBytes, 0, 2);
+                    //dataInBytes = BitConverter.GetBytes((short)data);
+                    fileStream.Write((byte[])data, 0, 2);
                     return;
 
                     break;
                 case TagID.Int:
 
-                    dataInBytes = BitConverter.GetBytes((int)data);
-                    fileStream.Write(dataInBytes, 0, 4);
+                    //dataInBytes = BitConverter.GetBytes((int)data);
+                    fileStream.Write((byte[])data, 0, 4);
                     return;
 
                     break;
                 case TagID.Long:
-                    dataInBytes = BitConverter.GetBytes((long)data);
-                    fileStream.Write(dataInBytes, 0, 8);
+                    //dataInBytes = BitConverter.GetBytes((long)data);
+                    fileStream.Write((byte[])data, 0, 8);
                     return;
 
                     break;
                 case TagID.Float:
-                    dataInBytes = BitConverter.GetBytes((float)data);
-                    fileStream.Write(dataInBytes, 0, 4);
+                    //dataInBytes = BitConverter.GetBytes((float)data);
+                    fileStream.Write((byte[])data, 0, 4);
                     return;
 
                     break;
                 case TagID.Double:
-                    dataInBytes = BitConverter.GetBytes((double)data);
-                    fileStream.Write(dataInBytes, 0, 8);
+                    //dataInBytes = BitConverter.GetBytes((double)data);
+                    fileStream.Write((byte[])data, 0, 8);
                     return;
 
                     break;

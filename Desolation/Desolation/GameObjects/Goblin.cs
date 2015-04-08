@@ -147,7 +147,8 @@ namespace Desolation
 
 
             int theInt = (int)EntityID.Goblin;
-            Tag ID = new Tag(TagID.Int, "ID", theInt, TagID.Int);
+            byte[] entityID = BitConverter.GetBytes(theInt);
+            Tag ID = new Tag(TagID.Int, "ID", entityID, TagID.Int);
             individualList.Add(ID);
 
             base.getTagList(ref individualList);

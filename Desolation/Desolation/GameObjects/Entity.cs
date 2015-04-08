@@ -216,9 +216,11 @@ namespace Desolation
 
        public virtual void getTagList(ref List<Tag> individualList)
        {
-           Tag xPos = new Tag(TagID.Int, "EntityXPos", (int)position.X, TagID.Int);
+           byte[] entityXpos = BitConverter.GetBytes((int)position.X);
+           Tag xPos = new Tag(TagID.Int, "EntityXPos", entityXpos, TagID.Int);
            individualList.Add(xPos);
-           Tag yPos = new Tag(TagID.Int, "EntityYPos", (int)position.Y, TagID.Int);
+           byte[] entityYpos = BitConverter.GetBytes((int)position.Y);
+           Tag yPos = new Tag(TagID.Int, "EntityYPos", entityYpos, TagID.Int);
            individualList.Add(yPos);
        }
        
