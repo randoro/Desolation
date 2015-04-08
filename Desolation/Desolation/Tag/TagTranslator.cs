@@ -909,9 +909,16 @@ namespace Desolation
                             isReturnable = true;
                         break;
                     case TagID.Byte:
+                        
+                        break;
+                    case TagID.Short:
+                        break;
+                    case TagID.Int:
                         if (tagName.Equals("ID"))
                         {
-                            EntityID ID = (EntityID)(sbyte)e.getData();
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            EntityID ID = (EntityID)dataInt;
                             switch (ID)
                             {
                                 case EntityID.Player:
@@ -929,11 +936,7 @@ namespace Desolation
                                     break;
                             }
                         }
-                        break;
-                    case TagID.Short:
-                        break;
-                    case TagID.Int:
-                        if (tagName.Equals("EntityXPos"))
+                        else if (tagName.Equals("EntityXPos"))
                         {
                             byte[] byteData = (byte[])e.getRawData();
                             int dataInt = BitConverter.ToInt32(byteData, 0);

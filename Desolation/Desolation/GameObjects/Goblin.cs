@@ -145,7 +145,9 @@ namespace Desolation
             Tag compound = new Tag(TagID.Compound, "Goblin", null, TagID.Compound);
             individualList.Add(compound);
 
-            Tag ID = new Tag(TagID.Byte, "ID", (sbyte)EntityID.Goblin, TagID.Byte);
+
+            int theInt = (int)EntityID.Goblin;
+            Tag ID = new Tag(TagID.Int, "ID", theInt, TagID.Int);
             individualList.Add(ID);
 
             base.getTagList(ref individualList);
