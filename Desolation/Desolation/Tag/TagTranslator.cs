@@ -908,7 +908,7 @@ namespace Desolation
                     case TagID.End:
                             //end of unloaded chunk
                             //this means its now added return new chunk
-                            Console.WriteLine("entity now loaded");
+                            //Console.WriteLine("entity now loaded");
                             isReturnable = true;
                         break;
                     case TagID.Byte:

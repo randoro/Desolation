@@ -18,6 +18,8 @@ namespace Desolation
         long ticksLastChunkLoad;
         int currentChunkForEntityLoad;
         int currentEntityForEntityLoad;
+        int currentRegionPerTick;
+        int regionSave;
 
         int lastRegionX;
         int lastRegionY;
@@ -77,6 +79,8 @@ namespace Desolation
             chunkArray = new Chunk[144];
             currentChunkForEntityLoad = 0;
             currentEntityForEntityLoad = 0;
+            currentRegionPerTick = 0;
+            regionSave = 0;
 
             //for (int i = 0; i < 144; i++)
             //{
@@ -95,6 +99,20 @@ namespace Desolation
                     e.Update(gameTime);
                 }
 
+                //if (regionArray[currentRegionPerTick] != null)
+                //{
+                //    bool[] chunksLoaded = regionArray[currentRegionPerTick].chunksLoaded;
+                //    bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+
+                //    if (allChunksLoaded)
+                //    {
+                //        TagTranslator.overwriteRegionStream(ChunkManager.regionArray[currentRegionPerTick], currentRegionPerTick);
+                //        ChunkManager.regionArray[currentRegionPerTick] = null;
+                //        currentRegionPerTick++;
+                //        currentRegionPerTick %= 9;
+                //    }
+                //}
+
             
         }
 
@@ -106,8 +124,24 @@ namespace Desolation
                 newChunkX = Globals.getChunkValue(Globals.playerPos.X);
                 newChunkY = Globals.getChunkValue(Globals.playerPos.Y);
 
+                //if (regionSave == 0)
+                //{
+                //    if (regionArray[currentRegionPerTick] != null)
+                //    {
+                //        bool[] chunksLoaded = regionArray[currentRegionPerTick].chunksLoaded;
+                //        bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
 
-                
+                //        if (allChunksLoaded)
+                //        {
+                //            TagTranslator.overwriteRegionStream(ChunkManager.regionArray[currentRegionPerTick], currentRegionPerTick);
+                //            ChunkManager.regionArray[currentRegionPerTick] = null;
+                //            currentRegionPerTick++;
+                //            currentRegionPerTick %= 9;
+                //        }
+                //    }
+                //}
+                //regionSave++;
+                //regionSave %= 20;
 
 
                 //time for new chunkLoad
@@ -146,6 +180,11 @@ namespace Desolation
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
+                            ChunkManager.regionArray[i] = null;
                         }
 
 
@@ -498,32 +537,50 @@ namespace Desolation
                 //currentChunkForEntityLoad %= 144;
 
 
-                for (; currentEntityForEntityLoad < Globals.entitiesPerTick; currentEntityForEntityLoad++)
-                {
-                    Entity e = entityList[currentEntityForEntityLoad];
-                    if (e != null)
-                    {
-                        Vector2 pos = e.position;
-                        int chunkNr = e.getCurrentChunkNrInArray();
-                        Chunk curChunk = chunkArray[chunkNr];
-                        if (curChunk != null)
-                        {
-                        List<Tag> newList = new List<Tag>();
-                        e.getTagList(ref newList);
-                        curChunk.entities.Add(newList);
-                        }
-                    }
-                    
-                }
+                //for (int i = currentEntityForEntityLoad; i < Globals.entitiesPerTick; i++)
+                //{
+                //    try
+                //    {
+                //        Entity e = entityList[i];
+                //        if (e != null)
+                //        {
+                //            Vector2 pos = e.position;
+                //            int chunkNr = e.getCurrentChunkNrInArray();
+                //            if (chunkNr != -1)
+                //            {
+                //                Chunk curChunk = chunkArray[chunkNr];
+                //                if (curChunk != null)
+                //                {
+                //                    List<Tag> newList = new List<Tag>();
+                //                    e.getTagList(ref newList);
+                //                    curChunk.entities.Add(newList);
+                //                }
+                //            }
 
-                if (currentEntityForEntityLoad > entityList.Count)
-                {
-                    for (int i = 0; i < 144; i++)
-                    {
-                        chunkArray[i].entities.Clear(); 
-                    }
-                    currentEntityForEntityLoad = 0;
-                }
+                //        }
+                //    }
+                //    catch (ArgumentOutOfRangeException)
+                //    {
+
+                //    }
+
+                //}
+                //currentEntityForEntityLoad += Globals.entitiesPerTick;
+
+                //if (currentEntityForEntityLoad > entityList.Count)
+                //{
+                //    for (int i = 0; i < 144; i++)
+                //    {
+                //        Chunk curChunk = chunkArray[i];
+                //        if (curChunk != null)
+                //        {
+                //            chunkArray[i].entities.Clear();
+                //        }
+                //    }
+                //    currentEntityForEntityLoad = 0;
+                //}
+
+
                 
                         
               

@@ -23,7 +23,8 @@ namespace Desolation
         public static readonly byte blockSize = 16;
         public static readonly int screenX = 1920;
         public static readonly int screenY = 1080;
-        public static readonly int entitiesPerTick = 10;
+        public static readonly int entitiesPerTick = 100;
+        public static readonly int chunkSavePerTick = 10;
         public static long ticksLastChunkLoad = 0;
 
 
