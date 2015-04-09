@@ -54,7 +54,7 @@ namespace Desolation
 
             player = new Player(new Vector2(200, 200));
             ChunkManager.entityList.Add(new Zombie(new Vector2(500, 500)));
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 200; i++)
             {
             ChunkManager.entityList.Add(new Goblin(new Vector2(i*0.1f, i*0.1f)));
             }
@@ -65,7 +65,12 @@ namespace Desolation
         {
             for (int i = 0; i < 9; i++)
             {
+                if (i == 7)
+                {
+                    int derp = 0;
+                }
                 TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
+                
             }
         }
         protected override void Update(GameTime gameTime)

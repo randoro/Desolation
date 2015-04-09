@@ -17,6 +17,7 @@ namespace Desolation
         public static List<Entity> entityList;
         long ticksLastChunkLoad;
         int currentChunkForEntityLoad;
+        int currentEntityForEntityLoad;
 
         int lastRegionX;
         int lastRegionY;
@@ -75,6 +76,7 @@ namespace Desolation
 
             chunkArray = new Chunk[144];
             currentChunkForEntityLoad = 0;
+            currentEntityForEntityLoad = 0;
 
             //for (int i = 0; i < 144; i++)
             //{
@@ -152,7 +154,9 @@ namespace Desolation
                     {
                         if (newRegionX == lastRegionX && newRegionY == lastRegionY)
                         {
-                            regionArray[i] = fileLoader.loadRegionFile(newRegionX - 1 + i % 3, newRegionY - 1 + i / 3);
+                            int currentRegionLoadX = Globals.getRegionValue(Globals.playerPos.X + 1024 * ( -1 + i % 3));
+                            int currentRegionLoadY = Globals.getRegionValue(Globals.playerPos.Y + 1024 * ( -1 + i / 3));
+                            regionArray[i] = fileLoader.loadRegionFile(currentRegionLoadX, currentRegionLoadY);
                         }
                     }
                 }
@@ -471,27 +475,59 @@ namespace Desolation
                 #endregion
 
 
-                Chunk curChunk = chunkArray[currentChunkForEntityLoad];
-                if (curChunk != null)
+                //Chunk curChunk = chunkArray[currentChunkForEntityLoad];
+                //if (curChunk != null)
+                //{
+                //    List<List<Tag>> listListTag = new List<List<Tag>>();
+                //    foreach (Entity e in entityList)
+                //    {
+                //        Vector2 pos = e.position;
+                //        int ChunkX = Globals.getChunkValue(pos.X);
+                //        int ChunkY = Globals.getChunkValue(pos.Y);
+                //        if (curChunk.XPos == ChunkX && curChunk.YPos == ChunkY)
+                //        {
+                //            List<Tag> newList = new List<Tag>();
+                //            e.getTagList(ref newList);
+                //            listListTag.Add(newList);
+
+                //        }
+                //    }
+                //    curChunk.entities = listListTag;
+                //}
+                //currentChunkForEntityLoad++;
+                //currentChunkForEntityLoad %= 144;
+
+
+                for (; currentEntityForEntityLoad < Globals.entitiesPerTick; currentEntityForEntityLoad++)
                 {
-                    List<List<Tag>> listListTag = new List<List<Tag>>();
-                    foreach (Entity e in entityList)
+                    Entity e = entityList[currentEntityForEntityLoad];
+                    if (e != null)
                     {
                         Vector2 pos = e.position;
-                        int ChunkX = Globals.getChunkValue(pos.X);
-                        int ChunkY = Globals.getChunkValue(pos.Y);
-                        if (curChunk.XPos == ChunkX && curChunk.YPos == ChunkY)
+                        int chunkNr = e.getCurrentChunkNrInArray();
+                        Chunk curChunk = chunkArray[chunkNr];
+                        if (curChunk != null)
                         {
-                            List<Tag> newList = new List<Tag>();
-                            e.getTagList(ref newList);
-                            listListTag.Add(newList);
-
+                        List<Tag> newList = new List<Tag>();
+                        e.getTagList(ref newList);
+                        curChunk.entities.Add(newList);
                         }
                     }
-                    curChunk.entities = listListTag;
+                    
                 }
-                currentChunkForEntityLoad++;
-                currentChunkForEntityLoad %= 144;
+
+                if (currentEntityForEntityLoad > entityList.Count)
+                {
+                    for (int i = 0; i < 144; i++)
+                    {
+                        chunkArray[i].entities.Clear(); 
+                    }
+                    currentEntityForEntityLoad = 0;
+                }
+                
+                        
+              
+
 
         }
 
