@@ -103,7 +103,7 @@ namespace Desolation
                 {
                     currentBlockY = 15 + ((int)position.Y) / 16 % 16;
                 }
-                int chunkIndex = getCurrentChunkNrInArray();
+                int chunkIndex = getCurrentChunkNrInArray(Globals.playerPos);
                 if (chunkIndex != -1)
                 {
                     Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
@@ -139,7 +139,7 @@ namespace Desolation
                 //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
 
-       public int getCurrentChunkNrInArray() 
+       public int getCurrentChunkNrInArray(Vector2 playerPos) 
        {
            //Vector2 tempPos = new Vector2(1050, 1050);
            //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
@@ -154,8 +154,8 @@ namespace Desolation
            }
            else
            {
-               playerChunkX = Globals.getChunkValue(Globals.playerPos.X);
-               playerChunkY = Globals.getChunkValue(Globals.playerPos.Y);
+               playerChunkX = Globals.getChunkValue(playerPos.X);
+               playerChunkY = Globals.getChunkValue(playerPos.Y);
            }
            
 
@@ -191,7 +191,7 @@ namespace Desolation
            int chunkNrInArrayX = 4 + internChunkPosInRegionX + chunkOffsetX;
            int chunkNrInArrayY = 4 + internChunkPosInRegionY + chunkOffsetY;
 
-           if (chunkNrInArrayX > 0 && chunkNrInArrayX < 11 && chunkNrInArrayY > 0 && chunkNrInArrayY < 11)
+           if (chunkNrInArrayX > 0 && chunkNrInArrayX <= 11 && chunkNrInArrayY > 0 && chunkNrInArrayY <= 11)
            {
                return chunkNrInArrayX + chunkNrInArrayY * 12;
            }

@@ -52,21 +52,44 @@ namespace Desolation
             textureManager = new TextureManager(Content);
 
 
-            player = new Player(new Vector2(200, 200));
-            ChunkManager.entityList.Add(new Zombie(new Vector2(500, 500)));
-            for (int i = 0; i < 100; i++)
+            player = new Player(new Vector2(2000, 2000));
+            //ChunkManager.entityList.Add(new Zombie(new Vector2(500, 500)));
+            for (int i = 0; i < 20; i++)
             {
-            ChunkManager.entityList.Add(new Goblin(new Vector2(i*0.1f, i*0.1f)));
+                ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
 
             //ChunkManager.entityList.Add(new Deer(new Vector2(100, 100)));
         }
         protected override void UnloadContent()
         {
-            //for (int i = 0; i < 9; i++)
-            //{
-            //    TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
-            //}
+            for (int i = ChunkManager.entityList.Count - 1; i >= 0; i--)
+            {
+
+                Entity e = ChunkManager.entityList[i];
+                Vector2 pos = e.position;
+                int regionX = Globals.getRegionValue(pos.X);
+                int regionY = Globals.getRegionValue(pos.Y);
+                        //entity is inside unloading regions cause all regions are unloading
+                        int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
+                        if (chunkNr != -1)
+                        {
+                            Chunk curChunk = ChunkManager.chunkArray[chunkNr];
+                            if (curChunk != null)
+                            {
+                                List<Tag> newList = new List<Tag>();
+                                e.getTagList(ref newList);
+                                curChunk.entities.Add(newList);
+                                ChunkManager.entityList.Remove(e);
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < 9; i++)
+            {
+                TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
+            }
         }
         protected override void Update(GameTime gameTime)
         {

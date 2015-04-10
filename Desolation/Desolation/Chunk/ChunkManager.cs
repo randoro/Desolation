@@ -93,12 +93,13 @@ namespace Desolation
 
         public void update(GameTime gameTime, GameWindow window)
         {
-
+               
                 foreach (Entity e in entityList)
                 {
                     e.Update(gameTime);
                 }
 
+                window.Title = "Nr or entities: "+entityList.Count;
                 //if (regionArray[currentRegionPerTick] != null)
                 //{
                 //    bool[] chunksLoaded = regionArray[currentRegionPerTick].chunksLoaded;
@@ -178,13 +179,9 @@ namespace Desolation
                                             entityList.Add(newEntity);
                                         }
                                     }
+                                    newChunk.entities.Clear();
                                 }
                             }
-                        }
-                        else
-                        {
-                            TagTranslator.overwriteRegionStream(ChunkManager.regionArray[i], i);
-                            ChunkManager.regionArray[i] = null;
                         }
 
 
@@ -210,9 +207,37 @@ namespace Desolation
                         if (newRegionY < lastRegionY)
                         {
                             //northwest
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[2] != null && regionArray[5] != null && regionArray[8] != null && regionArray[7] != null && regionArray[6] != null)
+                                {
+                                    if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y + 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
-
 
                             TagTranslator.overwriteRegionStream(regionArray[2], 2);
                             TagTranslator.overwriteRegionStream(regionArray[5], 5);
@@ -256,6 +281,35 @@ namespace Desolation
                         else if (newRegionY > lastRegionY)
                         {
                             //southwest
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null && regionArray[5] != null && regionArray[8] != null)
+                                {
+                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y - 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
 
@@ -301,6 +355,35 @@ namespace Desolation
                         else
                         {
                             //west
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[2] != null && regionArray[5] != null && regionArray[8] != null)
+                                {
+                                    if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2 (Globals.playerPos.X + 1024, Globals.playerPos.Y));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionX = newRegionX;
 
                             TagTranslator.overwriteRegionStream(regionArray[2], 2);
@@ -334,6 +417,35 @@ namespace Desolation
                         if (newRegionY < lastRegionY)
                         {
                             //northeast
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[0] != null && regionArray[3] != null && regionArray[6] != null && regionArray[7] != null && regionArray[8] != null)
+                                {
+                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y + 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
 
@@ -380,6 +492,35 @@ namespace Desolation
                         else if (newRegionY > lastRegionY)
                         {
                             //southeast
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null && regionArray[3] != null &&regionArray[6] != null)
+                                {
+                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y - 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
 
@@ -423,6 +564,36 @@ namespace Desolation
                         else
                         {
                             //east
+                            
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[0] != null && regionArray[3] != null && regionArray[6] != null)
+                                {
+                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionX = newRegionX;
 
                             TagTranslator.overwriteRegionStream(regionArray[0], 0);
@@ -455,6 +626,35 @@ namespace Desolation
                         if (newRegionY < lastRegionY)
                         {
                             //north
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[6] != null && regionArray[7] != null && regionArray[8] != null)
+                                {
+                                    if ((regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y + 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionY = newRegionY;
 
                             TagTranslator.overwriteRegionStream(regionArray[6], 6);
@@ -483,6 +683,35 @@ namespace Desolation
                         else if (newRegionY > lastRegionY)
                         {
                             //south
+
+                            for (int i = entityList.Count - 1; i >= 0; i--)
+                            {
+
+                                Entity e = entityList[i];
+                                Vector2 pos = e.position;
+                                int regionX = Globals.getRegionValue(pos.X);
+                                int regionY = Globals.getRegionValue(pos.Y);
+                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null)
+                                {
+                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion))
+                                    {
+                                        //entity is inside unloading regions
+                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y - 1024));
+                                        if (chunkNr != -1)
+                                        {
+                                            Chunk curChunk = chunkArray[chunkNr];
+                                            if (curChunk != null)
+                                            {
+                                                List<Tag> newList = new List<Tag>();
+                                                e.getTagList(ref newList);
+                                                curChunk.entities.Add(newList);
+                                                entityList.Remove(e);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             lastRegionY = newRegionY;
 
                             TagTranslator.overwriteRegionStream(regionArray[0], 0);

@@ -30,7 +30,7 @@ namespace Desolation
         {
             this.position = position;
             this.sourceRect = new Rectangle(0, 16, 16, 16);
-            speed = 3;
+            speed = 0;
         }
         #endregion
 
