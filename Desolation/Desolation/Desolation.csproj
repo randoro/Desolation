@@ -76,14 +76,15 @@
     <Compile Include="Chunk\Chunk.cs" />
     <Compile Include="Chunk\ChunkManager.cs" />
     <Compile Include="Chunk\RenderObject.cs" />
-    <Compile Include="GameObjects\Deer.cs" />
+    <Compile Include="ChildObjects\Deer.cs" />
     <Compile Include="GameObjects\Entity.cs" />
+    <Compile Include="GameObjects\Item.cs" />
     <Compile Include="Tag\FileLoader.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="GameObjects\Goblin.cs" />
+    <Compile Include="ChildObjects\Goblin.cs" />
     <Compile Include="KeyMouseReader.cs" />
-    <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="ChildObjects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Tag\TagTranslator.cs" />
     <Compile Include="Chunk\TempChunkCreator.cs" />
     <Compile Include="TextureManager.cs" />
-    <Compile Include="GameObjects\Zombie.cs" />
+    <Compile Include="ChildObjects\Zombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

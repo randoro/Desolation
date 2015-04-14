@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Desolation
 {
-    public static class Item
+    public abstract class Item
     {
         
     }
