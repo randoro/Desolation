@@ -31,7 +31,7 @@ namespace Desolation
         abstract public override void Update(GameTime gameTime);
 
         abstract public override void Draw(SpriteBatch spriteBatch);
-        public virtual void ChekRench()
+        public virtual void CheckRange()
         {
 
         }
@@ -40,7 +40,7 @@ namespace Desolation
 
 
         }
-        public virtual void vinkel()
+        public virtual void CheckAngle()
         {
 
         }
