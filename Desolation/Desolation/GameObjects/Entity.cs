@@ -32,7 +32,7 @@ namespace Desolation
         abstract public override void Update(GameTime gameTime);
 
         abstract public override void Draw(SpriteBatch spriteBatch);
-        public bool CheckRange(Vector2 target)
+        public bool checkRange(Vector2 target)
         {
             if ((target.X - position.X) * (target.X - position.X) + (target.Y - position.Y) * (target.Y - position.Y) < (Arange * Arange))
             {
@@ -40,15 +40,16 @@ namespace Desolation
             }
             return false;
         }
-        public virtual void Attack()
+        public virtual void checkAttack()
         {
 
 
         }
-        public virtual void CheckAngle()
+        public virtual void getAngle(Vector2 target)
         {
 
         }
+
         public virtual void moveDirection(Direction direction)
         {
             oldPosition = position;
