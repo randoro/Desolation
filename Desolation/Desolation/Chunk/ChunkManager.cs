@@ -45,20 +45,8 @@ namespace Desolation
                     e.Update(gameTime);
                 }
 
-                window.Title = "Nr or entities: "+entityList.Count;
-                //if (regionArray[currentRegionPerTick] != null)
-                //{
-                //    bool[] chunksLoaded = regionArray[currentRegionPerTick].chunksLoaded;
-                //    bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
-
-                //    if (allChunksLoaded)
-                //    {
-                //        TagTranslator.overwriteRegionStream(ChunkManager.regionArray[currentRegionPerTick], currentRegionPerTick);
-                //        ChunkManager.regionArray[currentRegionPerTick] = null;
-                //        currentRegionPerTick++;
-                //        currentRegionPerTick %= 9;
-                //    }
-                //}
+                window.Title = "Nr or entities: "+entityList.Count; //temp
+                
 
             
         }
@@ -151,14 +139,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -200,14 +181,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -248,14 +222,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2 (Globals.playerPos.X + 1024, Globals.playerPos.Y));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -294,14 +261,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -341,14 +301,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -389,14 +342,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -435,14 +381,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -477,14 +416,7 @@ namespace Desolation
                                         int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
-                                            Chunk curChunk = chunkArray[chunkNr];
-                                            if (curChunk != null)
-                                            {
-                                                List<Tag> newList = new List<Tag>();
-                                                e.getTagList(ref newList);
-                                                curChunk.entities.Add(newList);
-                                                entityList.Remove(e);
-                                            }
+                                            saveEntityToChunk(ref e, chunkNr);
                                         }
                                     }
                                 }
@@ -532,6 +464,19 @@ namespace Desolation
         public Chunk[] tempGetChunkArray()
         {
             return chunkArray;
+        }
+
+
+        private void saveEntityToChunk(ref Entity e, int chunkNr)
+        {
+            Chunk curChunk = chunkArray[chunkNr];
+            if (curChunk != null)
+            {
+                List<Tag> newList = new List<Tag>();
+                e.getTagList(ref newList);
+                curChunk.entities.Add(newList);
+                entityList.Remove(e);
+            }
         }
 
 
