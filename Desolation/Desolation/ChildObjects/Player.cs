@@ -39,6 +39,7 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
+            
         }
         public override void moveDirection(Direction direction)
         {
@@ -46,6 +47,14 @@ namespace Desolation
             oldPosition = position;
             base.moveDirection(direction);
             base.checkCollision();
+        }
+
+        public override void getAngle(Vector2 target)
+        {
+            MouseState mouse = Mouse.GetState();
+            Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
+
+            base.getAngle(target);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

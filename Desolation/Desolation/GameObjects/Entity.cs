@@ -19,7 +19,7 @@ namespace Desolation
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
-        float rotation;
+        protected float rotation;
         #region Constructor
         public Entity(Vector2 pos)
             : base(pos)
@@ -91,11 +91,11 @@ namespace Desolation
         }
         public virtual void getAngle(Vector2 target)
         {
-            MouseState mouse = Mouse.GetState();
-            Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
+            //MouseState mouse = Mouse.GetState();
+            //Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
 
-            target.X = mousePos.X - position.X;
-            target.Y = mousePos.Y - position.Y;
+            position.X = target.X - sourceRect.X;
+            position.Y = target.Y - sourceRect.Y;
 
             rotation = (float)Math.Atan2(target.X, target.Y);
             //if (target.Length() <= MathHelper.ToDegrees(30))
