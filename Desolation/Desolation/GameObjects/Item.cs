@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Desolation.GameObjects
+namespace Desolation
 {
-    class Item
+    public static class Item
     {
+        
     }
 }
