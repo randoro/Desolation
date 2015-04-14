@@ -20,6 +20,8 @@ namespace Desolation
         public static Player player;
         public static GameWindow gameWindow;
 
+        bool debug = false;
+
 
 
         public Game1()
@@ -42,6 +44,7 @@ namespace Desolation
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
             Globals.rand = new Random();
+            Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
             textureManager = new TextureManager(Content);
 
@@ -154,6 +157,19 @@ namespace Desolation
             {
                 player.moveDirection(Direction.None);
             }
+
+
+            if (KeyMouseReader.KeyPressed(Keys.F3))
+            {
+                if (debug)
+                {
+                    debug = false;
+                }
+                else
+                {
+                    debug = true;
+                }
+            }
             #endregion
 
             KeyMouseReader.Update();
@@ -163,14 +179,24 @@ namespace Desolation
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
+
+            if (debug)
+            {
+                Matrix tempMatrix = Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0);
+                Vector3 CamPos3 = tempMatrix.Translation;
+                Vector2 CamPos2 = new Vector2(-CamPos3.X, -CamPos3.Y);
+                int textPos = 5;
+                spriteBatch.DrawString(Globals.font, "PlayerX:" + Globals.playerPos.X, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                textPos += 15;
+                spriteBatch.DrawString(Globals.font, "PlayerY:" + Globals.playerPos.Y, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                textPos += 15;
+            }
 
 
             chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
-            
 
-            
 
             spriteBatch.End();
 

@@ -28,6 +28,7 @@ namespace Desolation
         public static readonly int entitiesPerTick = 100;
         public static readonly int chunkSavePerTick = 10;
         public static long ticksLastChunkLoad = 0;
+        public static SpriteFont font;
 
 
         public static void shiftChunksRight(ref Chunk[] chunkArray) //chunks moving right and left side getting null

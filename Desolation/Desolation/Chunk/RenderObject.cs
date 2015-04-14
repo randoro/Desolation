@@ -31,10 +31,10 @@ namespace Desolation
             switch (id)
             {
                 case 0:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
                     break;
                 case 1:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White , 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White , 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
                     //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
                     break;
                 default:
@@ -51,7 +51,7 @@ namespace Desolation
                 case 0:
                     break;
                 case 1:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
                     break;
                 default:
                     break;
