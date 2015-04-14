@@ -93,6 +93,14 @@ namespace Desolation
         public void getTagList(ref List<Tag> individualList)
         {
         }
+
+        //public void CheckAngle(MouseState mousePos)
+        //{
+        //    if ( mousePos.X >= position.X && mousePos.Y >= position.Y)
+        //    {
+              
+        //    }
+        //}
         #endregion
 
     }
