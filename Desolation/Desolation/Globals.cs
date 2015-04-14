@@ -12,6 +12,8 @@ namespace Desolation
 
     public enum EntityID { Player, Goblin, Zombie, Deer };
     public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None};
+
+    public enum ItemType { Melee, Ranged, Effect }
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
