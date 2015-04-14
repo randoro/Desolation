@@ -144,12 +144,12 @@ namespace Desolation
         }
 
 
-        public void getTagList(ref List<Tag> individualList)
+        public override void getTagList(ref List<Tag> individualList)
         {
             Tag compound = new Tag(TagID.Compound, "Deer", null, TagID.Compound);
             individualList.Add(compound);
 
-            int theInt = (int)EntityID.Goblin;
+            int theInt = (int)EntityID.Deer;
             byte[] entityID = BitConverter.GetBytes(theInt);
             Tag ID = new Tag(TagID.Int, "ID", entityID, TagID.Int);
             individualList.Add(ID);

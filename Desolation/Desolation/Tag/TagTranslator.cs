@@ -980,6 +980,7 @@ namespace Desolation
             if (isReturnable)
             {
                 return newEntity;
+                
             }
             else
             {

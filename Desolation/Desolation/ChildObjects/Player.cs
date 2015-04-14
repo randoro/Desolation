@@ -90,7 +90,7 @@ namespace Desolation
             }
         }
 
-        public void getTagList(ref List<Tag> individualList)
+        public override void getTagList(ref List<Tag> individualList)
         {
         }
 

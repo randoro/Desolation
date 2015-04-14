@@ -26,7 +26,6 @@ namespace Desolation
             : base(pos)
         {
             sourceRect = new Rectangle(0, 0, 16, 16);
-            position = new Vector2(400, 300);
             player = Game1.player;
 
             speed = 1;
@@ -126,12 +125,12 @@ namespace Desolation
         }
 
 
-        public void getTagList(ref List<Tag> individualList)
+        public override void getTagList(ref List<Tag> individualList)
         {
             Tag compound = new Tag(TagID.Compound, "Zombie", null, TagID.Compound);
             individualList.Add(compound);
 
-            int theInt = (int)EntityID.Goblin;
+            int theInt = (int)EntityID.Zombie;
             byte[] entityID = BitConverter.GetBytes(theInt);
             Tag ID = new Tag(TagID.Int, "ID", entityID, TagID.Int);
             individualList.Add(ID);

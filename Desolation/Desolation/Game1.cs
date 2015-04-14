@@ -47,7 +47,7 @@ namespace Desolation
 
 
             player = new Player(new Vector2(2000, 2000));
-            //ChunkManager.entityList.Add(new Zombie(new Vector2(500, 500)));
+            ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
             for (int i = 0; i < 100; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
