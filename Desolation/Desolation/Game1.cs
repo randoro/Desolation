@@ -16,11 +16,7 @@ namespace Desolation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ChunkManager chunkManager;
-        Camera camera;
         TextureManager textureManager;
-
-        Texture2D spriteSheet;
-        Texture2D zombieSheet, gobSheet;
         public static Player player;
         public static GameWindow gameWindow;
 
@@ -47,8 +43,6 @@ namespace Desolation
             this.IsMouseVisible = true;
             Globals.rand = new Random();
             chunkManager = new ChunkManager();
-
-            camera = new Camera(GraphicsDevice.Viewport);
             textureManager = new TextureManager(Content);
 
 
