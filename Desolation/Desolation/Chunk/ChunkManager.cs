@@ -15,11 +15,6 @@ namespace Desolation
         public static Chunk[] chunkArray;
         public static Region[] regionArray;
         public static List<Entity> entityList;
-        long ticksLastChunkLoad;
-        int currentChunkForEntityLoad;
-        int currentEntityForEntityLoad;
-        int currentRegionPerTick;
-        int regionSave;
 
         int lastRegionX;
         int lastRegionY;
@@ -34,60 +29,11 @@ namespace Desolation
         public ChunkManager()
         {
             fileLoader = new FileLoader();
-            ticksLastChunkLoad = DateTime.Now.Ticks;
             regionArray = new Region[9];
             entityList = new List<Entity>();
 
-
-                //Region tempRegion0 = fileLoader.loadRegionFile(-1, -1);
-                //Region tempRegion1 = fileLoader.loadRegionFile(0, -1);
-                //Region tempRegion2 = fileLoader.loadRegionFile(1, -1);
-                //Region tempRegion3 = fileLoader.loadRegionFile(-1, 0);
-                //Region tempRegion4 = fileLoader.loadRegionFile(0, 0);
-                //Region tempRegion5 = fileLoader.loadRegionFile(1, 0);
-                //Region tempRegion6 = fileLoader.loadRegionFile(-1, 1);
-                //Region tempRegion7 = fileLoader.loadRegionFile(0, 1);
-                //Region tempRegion8 = fileLoader.loadRegionFile(1, 1);
-
-                //bool newGame = false;
-
-                //if (newGame)
-                //{
-                //    TempChunkCreator.makeEmptyChunk(tempRegion0);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion1);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion2);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion3);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion4);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion5);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion6);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion7);
-                //    TempChunkCreator.makeEmptyChunk(tempRegion8);
-                //}
-
-            
-                //regionArray[0] = tempRegion0;
-                //regionArray[1] = tempRegion1;
-                //regionArray[2] = tempRegion2;
-                //regionArray[3] = tempRegion3;
-                //regionArray[4] = tempRegion4;
-                //regionArray[5] = tempRegion5;
-                //regionArray[6] = tempRegion6;
-                //regionArray[7] = tempRegion7;
-                //regionArray[8] = tempRegion8;
-
-
             chunkArray = new Chunk[144];
-            currentChunkForEntityLoad = 0;
-            currentEntityForEntityLoad = 0;
-            currentRegionPerTick = 0;
-            regionSave = 0;
 
-            //for (int i = 0; i < 144; i++)
-            //{
-            //    chunkArray[i] = i;
-            //}
-            //Globals.shiftChunksDown(ref chunkArray);
-            //int temp = 0;
         }
 
 
@@ -237,7 +183,7 @@ namespace Desolation
                         }
                         else if (newRegionY > lastRegionY)
                         {
-                        #region Southwest
+                        #region SouthWest
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -374,11 +320,11 @@ namespace Desolation
                             Globals.shiftChunksLeft(ref chunkArray);
                             Globals.shiftRegionsDown(ref regionArray);
                             Globals.shiftChunksDown(ref chunkArray);
-
+                        #endregion
                         }
                         else if (newRegionY > lastRegionY)
                         {
-                            //southeast
+                        #region SouthEast
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -421,11 +367,11 @@ namespace Desolation
                             Globals.shiftChunksUp(ref chunkArray);
                             Globals.shiftRegionsLeft(ref regionArray);
                             Globals.shiftChunksLeft(ref chunkArray);
-
+                        #endregion
                         }
                         else
                         {
-                            //east
+                        #region East
                             
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
@@ -464,7 +410,7 @@ namespace Desolation
 
                             Globals.shiftRegionsLeft(ref regionArray);
                             Globals.shiftChunksLeft(ref chunkArray);
-
+                        #endregion
                         }
 
                     }
@@ -472,7 +418,7 @@ namespace Desolation
                     {
                         if (newRegionY < lastRegionY)
                         {
-                            //north
+                        #region North
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -510,11 +456,11 @@ namespace Desolation
 
                             Globals.shiftRegionsDown(ref regionArray);
                             Globals.shiftChunksDown(ref chunkArray);
-
+                        #endregion
                         }
                         else if (newRegionY > lastRegionY)
                         {
-                            //south
+                        #region South
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -552,7 +498,7 @@ namespace Desolation
 
                             Globals.shiftRegionsUp(ref regionArray);
                             Globals.shiftChunksUp(ref chunkArray);
-
+                        #endregion
                         }
                     }
 
