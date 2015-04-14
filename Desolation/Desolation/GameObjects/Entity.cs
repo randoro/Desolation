@@ -19,6 +19,7 @@ namespace Desolation
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
+        float rotation;
         #region Constructor
         public Entity(Vector2 pos)
             : base(pos)
@@ -43,10 +44,6 @@ namespace Desolation
         public virtual void checkAttack()
         {
 
-
-        }
-        public virtual void getAngle(Vector2 target)
-        {
 
         }
 
@@ -91,6 +88,48 @@ namespace Desolation
                 default:
                     break;
             }
+        }
+        public virtual void getAngle(Vector2 target)
+        {
+            MouseState mouse = Mouse.GetState();
+            Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
+
+            target.X = mousePos.X - position.X;
+            target.Y = mousePos.Y - position.Y;
+
+            rotation = (float)Math.Atan2(target.X, target.Y);
+            //if (target.Length() <= MathHelper.ToDegrees(30))
+            //{
+                
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(60))
+            //{
+
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(120))
+            //{
+
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(150))
+            //{
+
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(210))
+            //{
+
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(240))
+            //{
+
+            //}
+            //if (target.Length() <= MathHelper.ToDegrees(300))
+            //{
+
+            //}
+            //if (target.Length() >= MathHelper.ToDegrees(330))
+            //{
+
+            //}
 
         }
 

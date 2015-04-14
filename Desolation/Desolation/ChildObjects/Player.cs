@@ -55,7 +55,7 @@ namespace Desolation
             {
                 case Direction.North:
                     sourceRect.X = 2 * 16;
-                    sourceRect.Y = (frame % 4) * 16;
+                    sourceRect.Y = (frame % 4) * 16; 
                     break;
                 case Direction.NorthEast:
                     sourceRect.X = 2 * 16;
