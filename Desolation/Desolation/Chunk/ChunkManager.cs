@@ -188,7 +188,7 @@ namespace Desolation
                     {
                         if (newRegionY < lastRegionY)
                         {
-                            //northwest
+                        #region Northwest
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -233,11 +233,11 @@ namespace Desolation
 
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
-
+                            #endregion
                         }
                         else if (newRegionY > lastRegionY)
                         {
-                            //southwest
+                        #region Southwest
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -281,11 +281,11 @@ namespace Desolation
 
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
-
+                        #endregion
                         }
                         else
                         {
-                            //west
+                        #region West
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
@@ -323,7 +323,7 @@ namespace Desolation
 
                             Globals.shiftRegionsRight(ref regionArray);
                             Globals.shiftChunksRight(ref chunkArray);
-
+                        #endregion
                         }
 
                     }
@@ -331,7 +331,7 @@ namespace Desolation
                     {
                         if (newRegionY < lastRegionY)
                         {
-                            //northeast
+                        #region NorthEast
 
                             for (int i = entityList.Count - 1; i >= 0; i--)
                             {
