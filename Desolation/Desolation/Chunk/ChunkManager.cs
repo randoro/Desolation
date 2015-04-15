@@ -438,7 +438,10 @@ namespace Desolation
                 #endregion
 
 
-                
+                foreach (Entity e in entityList)
+                {
+                    e.syncUpdate(gameTime);
+                }
                         
               
 

@@ -42,22 +42,7 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
-
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            //if(checkRange(Globals.playerPos) )
-            //{
-            //    checkAttack();
-
-            //}
-            //else
-            //{
-            //    attak = 0;
-            //}
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-            if(Globals.checkRange(Globals.playerPos,position, aggroRange))
+            if (Globals.checkRange(Globals.playerPos, position, aggroRange))
             {
                 #region MoveZombie
                 if (Game1.player.position.Y < position.Y - 1)
@@ -121,7 +106,13 @@ namespace Desolation
                 currentDirection = Direction.None;
 
             }
-            moveDirection(currentDirection);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds; //animation
+
+            moveDirection(currentDirection); //rörelse
             
             if (frameTimer <= 0)
             {
