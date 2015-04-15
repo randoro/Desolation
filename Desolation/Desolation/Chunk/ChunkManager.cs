@@ -44,8 +44,6 @@ namespace Desolation
                 {
                     e.Update(gameTime);
                 }
-
-                window.Title = "Nr or entities: "+entityList.Count; //temp
                 
 
             
@@ -440,7 +438,7 @@ namespace Desolation
 
                 foreach (Entity e in entityList)
                 {
-                    e.syncUpdate(gameTime);
+                    e.syncUpdate(gameTime); //must be done after chunkManager shifting to not interfear with movement and collision
                 }
                         
               

@@ -107,7 +107,7 @@ namespace Desolation
                 Globals.ticksLastChunkLoad = now;
                 chunkManager.syncUpdate(gameTime); //must be done before player sync for shifting to not interfear with player movement and collision
 
-                player.syncUpdate(gameTime);
+                player.syncUpdate(gameTime); //must be done after chunkManager shifting to not interfear with movement and collision
                 
 
                 textureManager.runTimeLoading();
