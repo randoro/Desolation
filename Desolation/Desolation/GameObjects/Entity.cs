@@ -92,12 +92,13 @@ namespace Desolation
         public virtual void getAngle(Vector2 target)
         {
             //MouseState mouse = Mouse.GetState();
-            //Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
+            Vector2 deltaVect = Vector2.Zero;
 
-            position.X = target.X - sourceRect.X;
-            position.Y = target.Y - sourceRect.Y;
+            deltaVect.X = target.X - position.X;
+            deltaVect.Y = target.Y - position.Y;
 
-            rotation = (float)Math.Atan2(target.X, target.Y);
+            //rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)* 180 / Math.PI);
+            rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)); //* 180 / Math.PI);
             //if (target.Length() <= MathHelper.ToDegrees(30))
             //{
                 
