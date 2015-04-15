@@ -30,6 +30,12 @@ namespace Desolation
         #endregion
 
         #region Methods
+
+        public override void syncUpdate(GameTime gameTime)
+        {
+
+        }
+
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;

@@ -32,6 +32,9 @@ namespace Desolation
         #region Methods
         abstract public override void Update(GameTime gameTime);
 
+        abstract public void syncUpdate(GameTime gameTime);
+        
+
         abstract public override void Draw(SpriteBatch spriteBatch);
         
         public abstract void checkAttack();

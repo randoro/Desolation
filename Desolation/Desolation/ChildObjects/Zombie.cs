@@ -17,7 +17,7 @@ namespace Desolation
     {
         int frame;
         double frameTimer, frameInterval = 100;
-        int range = 200;
+        int aggroRange = 200;
         Direction currentDirection;
         #region Constructor
         public Zombie(Vector2 pos)
@@ -40,6 +40,11 @@ namespace Desolation
 
         }
 
+        public override void syncUpdate(GameTime gameTime)
+        {
+
+        }
+
         public override void Update(GameTime gameTime)
         {
             //if(checkRange(Globals.playerPos) )
@@ -52,7 +57,7 @@ namespace Desolation
             //    attak = 0;
             //}
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-            if(Globals.checkRange(Globals.playerPos,position, range))
+            if(Globals.checkRange(Globals.playerPos,position, aggroRange))
             {
                 #region MoveZombie
                 if (Game1.player.position.Y < position.Y - 1)

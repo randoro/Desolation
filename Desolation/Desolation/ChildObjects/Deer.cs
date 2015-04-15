@@ -37,6 +37,12 @@ namespace Desolation
             currentDirection = direction;
             base.moveDirection(direction);
         }
+
+        public override void syncUpdate(GameTime gameTime)
+        {
+
+        }
+
         public override void Update(GameTime gameTime)
         {
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
