@@ -37,6 +37,10 @@ namespace Desolation
                     spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White , 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
                     //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
                     break;
+                case 2:
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(32, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
+                    //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
+                    break;
                 default:
                     break;
             }

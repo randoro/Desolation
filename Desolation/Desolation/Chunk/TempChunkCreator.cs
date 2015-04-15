@@ -74,7 +74,16 @@ namespace Desolation
             byte[] blocks = new byte[256];
             for (int j = 0; j < blocks.Length; j++)
             {
-                blocks[j] = (byte)0;
+                int chance = Globals.rand.Next(0, 2);
+                if (chance <= 0)
+                {
+                    blocks[j] = (byte)0;
+                }
+                else
+                {
+
+                    blocks[j] = (byte)2;
+                }
             }
             blocks[0] = (byte)1;
             blocks[15] = (byte)1;
