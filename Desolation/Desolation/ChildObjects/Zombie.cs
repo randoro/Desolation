@@ -41,6 +41,15 @@ namespace Desolation
 
         public override void Update(GameTime gameTime)
         {
+            if(checkRange(Globals.playerPos) )
+            {
+                checkAttack();
+
+            }
+            else
+            {
+                attak = 0;
+            }
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if ((player.position.X - position.X) * (player.position.X - position.X) + (player.position.Y - position.Y) * (player.position.Y - position.Y)<(range*range))
             {

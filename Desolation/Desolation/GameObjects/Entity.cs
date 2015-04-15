@@ -19,6 +19,7 @@ namespace Desolation
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
+        public   int attak;
         float rotation;
         #region Constructor
         public Entity(Vector2 pos)
@@ -26,6 +27,7 @@ namespace Desolation
         {
             //speed = 0;
             Arange = 5;
+            attak = 0;
         }
         #endregion
 
@@ -43,7 +45,7 @@ namespace Desolation
         }
         public virtual void checkAttack()
         {
-
+            attak = 1;
 
         }
 
