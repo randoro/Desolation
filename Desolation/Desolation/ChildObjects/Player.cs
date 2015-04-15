@@ -39,8 +39,11 @@ namespace Desolation
                 frameTimer = frameInterval;
                 frame++;
             }
+            MouseState mouse = Mouse.GetState();
+            Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
 
-            getAngle(position);
+            Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
+            getAngle(mousePosInGame);
             
         }
         public override void moveDirection(Direction direction)
@@ -53,13 +56,10 @@ namespace Desolation
 
         public override void getAngle(Vector2 target)
         {
-            MouseState mouse = Mouse.GetState();
-            Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
-
-            Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
+            
             //rotation = (float)Math.Atan2(target.X, target.Y);
 
-            base.getAngle(mousePosInGame);
+            base.getAngle(target);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
