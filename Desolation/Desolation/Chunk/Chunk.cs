@@ -9,16 +9,16 @@ namespace Desolation
 {
     public class Chunk
     {
-        public int XPos { set; get; }
-        public int YPos { set; get; }
-        public long lastUpdate { set; get; }
-        public sbyte terrainPopulated { set; get; }
-        public long inhabitedTime { set; get; }
-        public byte[] biomes { set; get; }
-        public byte[] blocks { set; get; }
-        public byte[] objects { set; get; }
-        public List<List<Tag>> entities { set; get; }
-        public List<List<Tag>> tileEntities { set; get; }
+        public int XPos { set; get; } //saved in file
+        public int YPos { set; get; } //saved in file
+        public long lastUpdate { set; get; } //saved in file
+        public sbyte terrainPopulated { set; get; } //saved in file
+        public long inhabitedTime { set; get; } //saved in file
+        public byte[] biomes { set; get; } //saved in file
+        public byte[] blocks { set; get; } //saved in file
+        public byte[] objects { set; get; } //saved in file
+        public List<List<Tag>> entities { set; get; } //saved in file
+        public List<List<Tag>> tileEntities { set; get; } //saved in file
 
         public byte innerIndex; //0-16 which chunk in regionFile
 

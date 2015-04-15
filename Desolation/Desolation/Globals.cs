@@ -190,5 +190,15 @@ namespace Desolation
                 return returnInt = (int)input / 256 - 1;
             }
         }
+
+
+        public static bool checkRange(Vector2 firstPoint, Vector2 secondPoint, int radie)
+        {
+            if ((firstPoint.X - secondPoint.X) * (firstPoint.X - secondPoint.X) + (firstPoint.Y - secondPoint.Y) * (firstPoint.Y - secondPoint.Y) < (radie * radie))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -19,7 +19,6 @@ namespace Desolation
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
-        public   int attak;
         protected float rotation;
         #region Constructor
         public Entity(Vector2 pos)
@@ -35,19 +34,8 @@ namespace Desolation
         abstract public override void Update(GameTime gameTime);
 
         abstract public override void Draw(SpriteBatch spriteBatch);
-        public bool checkRange(Vector2 target)
-        {
-            if ((target.X - position.X) * (target.X - position.X) + (target.Y - position.Y) * (target.Y - position.Y) < (Arange * Arange))
-            {
-                return true;
-            }
-            return false;
-        }
-        public virtual void checkAttack()
-        {
-            attak = 1;
-
-        }
+        
+        public abstract void checkAttack();
 
         public virtual void moveDirection(Direction direction)
         {
