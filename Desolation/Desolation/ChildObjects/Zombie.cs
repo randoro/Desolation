@@ -18,7 +18,6 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
         int range = 200;
-        bool InRange = false;
         Direction currentDirection;
         #region Constructor
         public Zombie(Vector2 pos)
@@ -36,6 +35,11 @@ namespace Desolation
             base.moveDirection(direction);
         }
 
+        public override void checkAttack()
+        {
+
+        }
+
         public override void Update(GameTime gameTime)
         {
             //if(checkRange(Globals.playerPos) )
@@ -50,24 +54,7 @@ namespace Desolation
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if(Globals.checkRange(Globals.playerPos,position, range))
             {
-                InRange = true;
-            }
-            else
-            {
-                InRange = false;
-                currentDirection = Direction.None;
-
-            }
-            moveDirection(currentDirection);
-            
-            if (frameTimer <= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-            }
-            #region CheckRange
-            if (InRange)
-            {
+                #region MoveZombie
                 if (Game1.player.position.Y < position.Y - 1)
                 {
                     sourceRect.X = 2 * 16;
@@ -86,7 +73,7 @@ namespace Desolation
                     }
                 }
                 else if (Game1.player.position.Y > position.Y + 1)
-                {    
+                {
                     sourceRect.X = 0 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     if (Game1.player.position.X < position.X - 1)
@@ -122,8 +109,21 @@ namespace Desolation
                     currentDirection = Direction.None;
                     sourceRect.X = 0 * 16;
                 }
+                #endregion
             }
-            #endregion
+            else
+            {
+                currentDirection = Direction.None;
+
+            }
+            moveDirection(currentDirection);
+            
+            if (frameTimer <= 0)
+            {
+                frameTimer = frameInterval;
+                frame++;
+            }
+            
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

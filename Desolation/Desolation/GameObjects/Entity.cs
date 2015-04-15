@@ -26,7 +26,6 @@ namespace Desolation
         {
             //speed = 0;
             Arange = 5;
-            attak = 0;
         }
         #endregion
 

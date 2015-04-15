@@ -143,6 +143,11 @@ namespace Desolation
 
         }
 
+        public override void checkAttack()
+        {
+
+        }
+
 
         public override void getTagList(ref List<Tag> individualList)
         {

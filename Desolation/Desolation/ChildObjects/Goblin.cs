@@ -110,6 +110,11 @@ namespace Desolation
             spriteBatch.Draw(TextureManager.npcSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
+        public override void checkAttack()
+        {
+
+        }
+
         public Direction GetRandomDirection()
         {
             int randomDirection = Globals.rand.Next(9);

@@ -46,6 +46,12 @@ namespace Desolation
             getAngle(mousePosInGame);
             
         }
+
+        public override void checkAttack()
+        {
+
+        }
+
         public override void moveDirection(Direction direction)
         {
             currentDirection = direction;
