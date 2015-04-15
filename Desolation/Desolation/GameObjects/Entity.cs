@@ -101,7 +101,8 @@ namespace Desolation
 
             
             //rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)* 180 / Math.PI);
-            rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)); //* 180 / Math.PI);
+            //rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)); //* 180 / Math.PI);
+            rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X * Math.PI));
             //if (target.Length() <= MathHelper.ToDegrees(30))
             //{
                 
