@@ -163,7 +163,7 @@ namespace Desolation
             {
                 currentBlockY = 15 + ((int)position.Y) / 16 % 16;
             }
-            int chunkIndex = getCurrentChunkNrInArray(Globals.playerPos);
+            int chunkIndex = getCurrentChunkNrInArray(Globals.oldPlayerPos);
             if (chunkIndex != -1)
             {
                 Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];

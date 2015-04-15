@@ -34,7 +34,7 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
-
+            base.checkCollision();
         }
 
         public override void Update(GameTime gameTime)
@@ -64,7 +64,6 @@ namespace Desolation
             currentDirection = direction;
             oldPosition = position;
             base.moveDirection(direction);
-            base.checkCollision();
         }
 
         public override void getAngle(Vector2 target)

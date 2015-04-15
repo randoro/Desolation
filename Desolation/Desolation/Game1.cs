@@ -102,12 +102,17 @@ namespace Desolation
             long now = DateTime.Now.Ticks;
             if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
             {
+
                 Globals.playerPos = player.position;
                 Globals.ticksLastChunkLoad = now;
+                chunkManager.syncUpdate(gameTime); //must be done before player sync for shifting to not interfear with player movement and collision
 
-                chunkManager.syncUpdate(gameTime);
+                player.syncUpdate(gameTime);
+                
 
                 textureManager.runTimeLoading();
+
+                Globals.oldPlayerPos = player.position;
 
             }
             #endregion

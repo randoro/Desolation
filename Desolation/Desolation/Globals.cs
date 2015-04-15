@@ -17,16 +17,14 @@ namespace Desolation
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly int ticksPerChunkLoad = 1000000; //10 miljoner = 1 sekund
+        public static readonly int ticksPerChunkLoad = 500000; //10 miljoner = 1 sekund //20 ticks per second = 500k
         public static readonly byte[] dataTypeSizes = { 0, 1, 2, 4, 8, 4, 8, 0, 0, 0, 0, 0 }; //datatypes in order of TagID's sizes
-        public static Texture2D tempsheet;
         public static Random rand;
         public static Vector2 playerPos;
+        public static Vector2 oldPlayerPos;
         public static readonly byte blockSize = 16;
         public static readonly int screenX = 1920;
         public static readonly int screenY = 1080;
-        public static readonly int entitiesPerTick = 100;
-        public static readonly int chunkSavePerTick = 10;
         public static readonly int globalMeleeRange = 2;
         public static readonly int globalRangedRange = 50;
         public static long ticksLastChunkLoad = 0;
