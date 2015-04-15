@@ -25,6 +25,7 @@ namespace Desolation
         {
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
+            health = 100;
             speed = 3;
         }
         #endregion

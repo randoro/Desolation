@@ -27,6 +27,8 @@ namespace Desolation
         public static readonly int screenY = 1080;
         public static readonly int entitiesPerTick = 100;
         public static readonly int chunkSavePerTick = 10;
+        public static readonly int globalMeleeRange = 2;
+        public static readonly int globalRangedRange = 50;
         public static long ticksLastChunkLoad = 0;
         public static SpriteFont font;
 

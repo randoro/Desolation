@@ -7,8 +7,8 @@ namespace Desolation
 {
     public class Item
     {
-        int itemID;
-        ItemType itemType;
+        public int itemID { set; get; }
+        public ItemType itemType { set; get; }
         public Item(int itemID, ItemType itemType)
         {
             this.itemID = itemID;

@@ -20,12 +20,15 @@ namespace Desolation
         protected Vector2 oldPosition;
         protected int Arange;
         protected float rotation;
+        protected Item[] equipment; //0 = main hand, 1 = off hand
+        public int health;
         #region Constructor
         public Entity(Vector2 pos)
             : base(pos)
         {
             //speed = 0;
             Arange = 5;
+            equipment = new Item[10];
         }
         #endregion
 
@@ -126,6 +129,11 @@ namespace Desolation
 
             //}
 
+        }
+
+        public void damageEntity(int damage)
+        {
+            health -= damage;
         }
 
         public void checkCollision()

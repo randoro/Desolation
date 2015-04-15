@@ -18,6 +18,8 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
         int aggroRange = 200;
+        int meleeRange = 5;
+        int rangedRange = 150;
         Direction currentDirection;
         #region Constructor
         public Zombie(Vector2 pos)
@@ -25,6 +27,7 @@ namespace Desolation
         {
             sourceRect = new Rectangle(0, 0, 16, 16);
             speed = 1;
+            equipment[0] = new Item(0, ItemType.Ranged);
         }
         #endregion
 
@@ -37,7 +40,29 @@ namespace Desolation
 
         public override void checkAttack()
         {
+            Item tempItem = equipment[0];
+             if (tempItem != null) 
+             {
+                 if(tempItem.itemType.Equals(ItemType.Melee)) 
+                 {
+                     if (Globals.checkRange(Globals.playerPos, position, Globals.globalMeleeRange + meleeRange)) 
+                     {
+                         Game1.player.damageEntity(5);
+                     }
+                 }
+                 else if(tempItem.itemType.Equals(ItemType.Ranged)) 
+                 {
+                     if (Globals.checkRange(Globals.playerPos, position, Globals.globalRangedRange + rangedRange))
+                     {
+                         Game1.player.damageEntity(5);
+                     }
+                 }
+                 else if(tempItem.itemType.Equals(ItemType.Effect)) 
+                 {
 
+                 }
+
+             }
         }
 
         public override void syncUpdate(GameTime gameTime)
@@ -100,6 +125,8 @@ namespace Desolation
                     sourceRect.X = 0 * 16;
                 }
                 #endregion
+
+                checkAttack();
             }
             else
             {
