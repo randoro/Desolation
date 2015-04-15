@@ -44,8 +44,8 @@ namespace Desolation
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 currentDirection = GetRandomDirection();
             }
- 
-            
+
+            //getAngle(Globals.playerPos);
             base.moveDirection(currentDirection);
 
             #region SaveSync
@@ -107,7 +107,7 @@ namespace Desolation
           
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.npcSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.npcSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, 1);
         }
 
         public Direction GetRandomDirection()

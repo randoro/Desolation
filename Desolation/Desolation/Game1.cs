@@ -98,7 +98,6 @@ namespace Desolation
             player.Update(gameTime);
             chunkManager.update(gameTime, Window);
 
-
             #region SaveSync
             long now = DateTime.Now.Ticks;
             if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
