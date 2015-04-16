@@ -51,6 +51,11 @@ namespace Desolation
 
         public void syncUpdate(GameTime gameTime)
         {
+            foreach (Entity e in entityList)
+            {
+                e.syncUpdate(gameTime); //must be done before chunkManager shifting to not interfear with movement and collision
+            }
+
                 newRegionX = Globals.getRegionValue(Globals.playerPos.X);
                 newRegionY = Globals.getRegionValue(Globals.playerPos.Y);
 
@@ -436,10 +441,7 @@ namespace Desolation
                 #endregion
 
 
-                foreach (Entity e in entityList)
-                {
-                    e.syncUpdate(gameTime); //must be done after chunkManager shifting to not interfear with movement and collision
-                }
+                
                         
               
 

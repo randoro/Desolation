@@ -112,7 +112,7 @@ namespace Desolation
 
                 textureManager.runTimeLoading();
 
-                Globals.oldPlayerPos = player.position;
+                Globals.oldPlayerPos = Globals.playerPos;
 
             }
             #endregion
