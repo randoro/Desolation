@@ -17,7 +17,10 @@ namespace Desolation
     {
       
         int frame;
-        double frameTimer, frameInterval = 100;
+        double frameTimer, frameInterval = 100;    
+        int attackspeed =0;
+          int meleeRange = 5;
+        int rangedRange = 150;
         Direction currentDirection;
         #region Constructor
         public Player(Vector2 position)
@@ -27,6 +30,7 @@ namespace Desolation
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
             speed = 3;
+     
         }
         #endregion
 
@@ -36,6 +40,7 @@ namespace Desolation
         {
             oldPosition = position;
             base.checkCollision();
+            checkAttack();
         }
 
         public override void Update(GameTime gameTime)
@@ -57,6 +62,50 @@ namespace Desolation
 
         public override void checkAttack()
         {
+            Item tempItem = equipment[0];
+            if (KeyMouseReader.LeftClick())
+            {
+                
+                if (tempItem != null)
+                {
+                    if (tempItem.itemType.Equals(ItemType.Melee))
+                    {
+                        if (Globals.checkRange(Globals.playerPos, position, Globals.globalMeleeRange + meleeRange))
+                        {
+                            if (attackspeed <= 0)
+                            {
+                                Game1.player.damageEntity(5);
+                                attackspeed = 60;
+                            }
+                            else
+                            {
+                                attackspeed--;
+                            }
+                        }
+                    }
+                    else if (tempItem.itemType.Equals(ItemType.Ranged))
+                    {
+                        if (Globals.checkRange(Globals.playerPos, position, Globals.globalRangedRange + rangedRange))
+                        {
+                            if (attackspeed <= 0)
+                            {
+                                Game1.player.damageEntity(5);
+                                attackspeed = 60;
+                            }
+                            else
+                            {
+                                attackspeed--;
+                            }
+                        }
+                        else if (tempItem.itemType.Equals(ItemType.Effect))
+                        {
+
+                        }
+
+                    }
+                }
+            }
+
 
         }
 
