@@ -50,6 +50,8 @@ namespace Desolation
 
 
             player = new Player(new Vector2(2000, 2000));
+            Globals.playerPos = player.position;
+            Globals.oldPlayerPos = player.position;
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
             for (int i = 0; i < 100; i++)
             {

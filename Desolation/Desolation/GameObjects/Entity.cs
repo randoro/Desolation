@@ -44,8 +44,10 @@ namespace Desolation
 
         public virtual void moveDirection(Direction direction)
         {
-            //if (Globals.checkRange(position, Globals.playerPos, 5512))
+            //if (position.X > Globals.oldPlayerPos.X - 960 && position.X < Globals.oldPlayerPos.X + 960 && position.Y > Globals.oldPlayerPos.Y - 540 && position.Y < Globals.oldPlayerPos.Y + 540)
             //{
+            if (position.X > Globals.oldPlayerPos.X - 1000 && position.X < Globals.oldPlayerPos.X + 1000 && position.Y > Globals.oldPlayerPos.Y - 1000 && position.Y < Globals.oldPlayerPos.Y + 1000)
+            {
                 oldPosition = position;
                 //rörelse
                 realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
@@ -85,7 +87,7 @@ namespace Desolation
                     default:
                         break;
                 }
-            //}
+            }
         }
         public virtual void getAngle(Vector2 target)
         {
@@ -192,6 +194,10 @@ namespace Desolation
                     }
 
                 }
+                else
+                {
+                    position = oldPosition; //undo'ar rörelse
+                }
 
             }
             else
@@ -254,7 +260,7 @@ namespace Desolation
             int chunkNrInArrayX = 4 + internChunkPosInRegionX + chunkOffsetX;
             int chunkNrInArrayY = 4 + internChunkPosInRegionY + chunkOffsetY;
 
-            if (chunkNrInArrayX > 0 && chunkNrInArrayX < 11 && chunkNrInArrayY > 0 && chunkNrInArrayY < 11)
+            if (chunkNrInArrayX >= 0 && chunkNrInArrayX <= 11 && chunkNrInArrayY >= 0 && chunkNrInArrayY <= 11)
             {
                 return chunkNrInArrayX + chunkNrInArrayY * 12;
             }

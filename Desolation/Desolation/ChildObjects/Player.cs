@@ -34,6 +34,7 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
+            oldPosition = position;
             base.checkCollision();
         }
 
