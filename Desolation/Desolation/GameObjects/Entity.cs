@@ -44,45 +44,48 @@ namespace Desolation
 
         public virtual void moveDirection(Direction direction)
         {
-            oldPosition = position;
-            //rörelse
-            realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
-            switch (direction)
-            {
-                case Direction.North:
-                    position.Y -= speed;
+            //if (Globals.checkRange(position, Globals.playerPos, 5512))
+            //{
+                oldPosition = position;
+                //rörelse
+                realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+                switch (direction)
+                {
+                    case Direction.North:
+                        position.Y -= speed;
 
-                    break;
-                case Direction.NorthEast:
-                    position.X += realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.East:
-                    position.X += speed;
-                    break;
-                case Direction.SouthEast:
-                    position.X += realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.South:
-                    position.Y += speed;
-                    break;
-                case Direction.SouthWest:
-                    position.X -= realSpeed;
-                    position.Y += realSpeed;
-                    break;
-                case Direction.West:
-                    position.X -= speed;
-                    break;
-                case Direction.NorthWest:
-                    position.X -= realSpeed;
-                    position.Y -= realSpeed;
-                    break;
-                case Direction.None:
-                    break;
-                default:
-                    break;
-            }
+                        break;
+                    case Direction.NorthEast:
+                        position.X += realSpeed;
+                        position.Y -= realSpeed;
+                        break;
+                    case Direction.East:
+                        position.X += speed;
+                        break;
+                    case Direction.SouthEast:
+                        position.X += realSpeed;
+                        position.Y += realSpeed;
+                        break;
+                    case Direction.South:
+                        position.Y += speed;
+                        break;
+                    case Direction.SouthWest:
+                        position.X -= realSpeed;
+                        position.Y += realSpeed;
+                        break;
+                    case Direction.West:
+                        position.X -= speed;
+                        break;
+                    case Direction.NorthWest:
+                        position.X -= realSpeed;
+                        position.Y -= realSpeed;
+                        break;
+                    case Direction.None:
+                        break;
+                    default:
+                        break;
+                }
+            //}
         }
         public virtual void getAngle(Vector2 target)
         {
@@ -251,7 +254,7 @@ namespace Desolation
             int chunkNrInArrayX = 4 + internChunkPosInRegionX + chunkOffsetX;
             int chunkNrInArrayY = 4 + internChunkPosInRegionY + chunkOffsetY;
 
-            if (chunkNrInArrayX > 0 && chunkNrInArrayX <= 11 && chunkNrInArrayY > 0 && chunkNrInArrayY <= 11)
+            if (chunkNrInArrayX > 0 && chunkNrInArrayX < 11 && chunkNrInArrayY > 0 && chunkNrInArrayY < 11)
             {
                 return chunkNrInArrayX + chunkNrInArrayY * 12;
             }

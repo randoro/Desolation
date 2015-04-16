@@ -38,6 +38,7 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
+            base.checkCollision();
 
         }
 
@@ -50,18 +51,8 @@ namespace Desolation
                 totalElapsedSeconds -= MovementChangeTimeSeconds;
                 currentDirection = GetRandomDirection();
             }
-
-            //getAngle(Globals.playerPos);
             base.moveDirection(currentDirection);
-
-            #region SaveSync
-            long now = DateTime.Now.Ticks;
-            if (now > Globals.ticksLastChunkLoad + Globals.ticksPerChunkLoad)
-            {
-                
-                base.checkCollision();
-            }
-            #endregion
+            
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if (frameTimer <= 0)
