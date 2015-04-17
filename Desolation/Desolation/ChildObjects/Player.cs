@@ -20,7 +20,7 @@ namespace Desolation
         double frameTimer, frameInterval = 100;
         int attackspeed = 0;
         int meleeRange = 7;
-        int rangedRange = 150;
+        int rangedRange = 250;
         Direction currentDirection;
         #region Constructor
         public Player(Vector2 position)
@@ -96,10 +96,10 @@ namespace Desolation
                             if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                             {
                                 // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
-                              
+                              getAngle(position);
                                 getAngle(e.position);
  
-                                getAngle(position);
+                                
                                 if (rotation >= e.rotation - 0.25f && rotation <= e.rotation + 0.25f)
                                 {
                                    e.life--;

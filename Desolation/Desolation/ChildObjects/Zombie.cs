@@ -27,7 +27,7 @@ namespace Desolation
             : base(pos)
         {
             sourceRect = new Rectangle(0, 0, 16, 16);
-            speed = 1;
+            speed = 2.5f;
             equipment[0] = new Item(0, ItemType.Melee);
             life = 5;
         }
