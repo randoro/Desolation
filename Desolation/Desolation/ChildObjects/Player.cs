@@ -65,42 +65,37 @@ namespace Desolation
         {
 
             Item tempItem = equipment[0];
+            attackspeed--;
 
             if (KeyMouseReader.LeftHold())
             {
-                attackspeed--;
-                foreach (Entity e in ChunkManager.entityList)
+                
+                if (attackspeed <= 0)
                 {
-
-
-
-
-
-                    if (tempItem != null)
+                    foreach (Entity e in ChunkManager.entityList)
                     {
-                        if (tempItem.itemType.Equals(ItemType.Melee))
+
+
+
+
+
+                        if (tempItem != null)
                         {
-                            //en if satts til ifal man är rätvänd mot entytyn eller inte 
-                            if (attackspeed <= 0)
+                            if (tempItem.itemType.Equals(ItemType.Melee))
                             {
                                 if (Globals.checkRange(e.position, position, Globals.globalMeleeRange + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                                 {
                                     float directAngle = getAngle(e.position);
-
                                     if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
                                     {
-                                        {
-                                            e.damageEntity(5);
-                                            attackspeed = 5;
-                                        }
+                                        e.damageEntity(5);
+                                        attackspeed = 5;
+
                                     }
                                 }
 
                             }
-                        }
-                        else if (tempItem.itemType.Equals(ItemType.Ranged))
-                        {
-                            if (attackspeed <= 0)
+                            else if (tempItem.itemType.Equals(ItemType.Ranged))
                             {
                                 if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                                 {
@@ -109,7 +104,7 @@ namespace Desolation
                                     //getAngle(e.position);
                                     float directAngle = getAngle(e.position);
 
-                                    if (rotation >= directAngle - 0.1f && rotation <= directAngle + 0.1f)
+                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
                                     {
                                         e.damageEntity(5);
                                         attackspeed = 3;
@@ -126,11 +121,11 @@ namespace Desolation
                             {
 
                             }
-
                         }
                     }
+                    }
                 }
-            }
+            
 
 
 
