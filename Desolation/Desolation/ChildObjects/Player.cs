@@ -13,13 +13,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    public class Player  :   Entity
+    public class Player : Entity
     {
-      
+
         int frame;
-        double frameTimer, frameInterval = 100;    
-        int attackspeed =0;
-          int meleeRange = 5;
+        double frameTimer, frameInterval = 100;
+        int attackspeed = 0;
+        int meleeRange = 7;
         int rangedRange = 150;
         Direction currentDirection;
         #region Constructor
@@ -29,8 +29,9 @@ namespace Desolation
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
+            equipment[0] = new Item(0, ItemType.Melee);
             speed = 3;
-     
+
         }
         #endregion
 
@@ -57,54 +58,56 @@ namespace Desolation
 
             Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
             getAngle(mousePosInGame);
-            
+
         }
 
         public override void checkAttack()
         {
+
             Item tempItem = equipment[0];
-            if (KeyMouseReader.LeftClick())
+
+
+            attackspeed--;
+            foreach (Entity e in ChunkManager.getentityList())
             {
-                
-                if (tempItem != null)
+                if (KeyMouseReader.LeftClick())
                 {
-                    if (tempItem.itemType.Equals(ItemType.Melee))
+
+
+
+
+                    if (tempItem != null)
                     {
-                        if (Globals.checkRange(Globals.playerPos, position, Globals.globalMeleeRange + meleeRange))
+                        if (tempItem.itemType.Equals(ItemType.Melee))
                         {
-                            if (attackspeed <= 0)
+                            if (Globals.checkRange(e.position, position, Globals.globalMeleeRange + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                             {
-                                Game1.player.damageEntity(5);
-                                attackspeed = 60;
-                            }
-                            else
-                            {
-                                attackspeed--;
+                                if (attackspeed <= 0)
+                                {
+                                    e.life--;
+                                }
+
                             }
                         }
-                    }
-                    else if (tempItem.itemType.Equals(ItemType.Ranged))
-                    {
-                        if (Globals.checkRange(Globals.playerPos, position, Globals.globalRangedRange + rangedRange))
+                        else if (tempItem.itemType.Equals(ItemType.Ranged))
                         {
-                            if (attackspeed <= 0)
                             {
-                                Game1.player.damageEntity(5);
-                                attackspeed = 60;
+                                if (attackspeed <= 0)
+                                {
+                                    attackspeed = 60;
+                                }
+
                             }
-                            else
+                            else if (tempItem.itemType.Equals(ItemType.Effect))
                             {
-                                attackspeed--;
+
                             }
-                        }
-                        else if (tempItem.itemType.Equals(ItemType.Effect))
-                        {
 
                         }
-
                     }
                 }
             }
+
 
 
         }
@@ -118,20 +121,20 @@ namespace Desolation
 
         public override void getAngle(Vector2 target)
         {
-            
+
             //rotation = (float)Math.Atan2(target.X, target.Y);
 
             base.getAngle(target);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.playerSheet, new Vector2(position.X - 8, position.Y -15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.playerSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, 1);
 
             switch (currentDirection)
             {
                 case Direction.North:
                     sourceRect.X = 2 * 16;
-                    sourceRect.Y = (frame % 4) * 16; 
+                    sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.NorthEast:
                     sourceRect.X = 2 * 16;
@@ -174,7 +177,7 @@ namespace Desolation
         //{
         //    if ( mousePos.X >= position.X && mousePos.Y >= position.Y)
         //    {
-              
+
         //    }
         //}
         #endregion
