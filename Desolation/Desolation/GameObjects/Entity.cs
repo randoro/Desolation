@@ -19,7 +19,7 @@ namespace Desolation
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
-        protected float rotation;
+    public float rotation;
       public int life;
         protected Item[] equipment; //0 = main hand, 1 = off hand
         public int health;

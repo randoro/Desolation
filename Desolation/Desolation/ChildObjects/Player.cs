@@ -98,16 +98,17 @@ namespace Desolation
                                 // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
                                 getAngle(position);
                                 getAngle(e.position);
-                         
-                                if ( true)
-                                {
 
-                                }
-                                if (attackspeed <= 0)
+                                if (!(rotation > e.rotation) && !(rotation < e.rotation))
                                 {
-                                    e.life--;
+                                   e.life--;
                                     attackspeed = 3;
                                 }
+                                //if (attackspeed <= 0)
+                                //{
+                                //    e.life--;
+                                //    attackspeed = 3;
+                                //}
 
                             }
                             else if (tempItem.itemType.Equals(ItemType.Effect))
