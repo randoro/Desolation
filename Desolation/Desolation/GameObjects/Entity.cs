@@ -15,7 +15,7 @@ namespace Desolation
     abstract public class Entity : GameObject
     {
 
-        protected float speed;
+        public float speed;
         protected float realSpeed;
         protected Vector2 oldPosition;
         protected int Arange;
@@ -93,51 +93,23 @@ namespace Desolation
                 }
             }
         }
-        public virtual void getAngle(Vector2 target)
+        public virtual float getAngle(Vector2 target)
         {
-            MouseState mouse = Mouse.GetState();
+            //float returnAngle;
+            //MouseState mouse = Mouse.GetState();
             Vector2 deltaVect = Vector2.Zero;
 
             deltaVect.X = target.X - position.X;
             deltaVect.Y = target.Y - position.Y;
 
             
-            //rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)* 180 / Math.PI);
-            //rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X)); //* 180 / Math.PI);
-            rotation = (float)(Math.Atan2(deltaVect.Y, deltaVect.X * Math.PI));
-            //if (target.Length() <= MathHelper.ToDegrees(30))
-            //{
-                
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(60))
-            //{
-
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(120))
-            //{
-
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(150))
-            //{
-
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(210))
-            //{
-
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(240))
-            //{
-
-            //}
-            //if (target.Length() <= MathHelper.ToDegrees(300))
-            //{
-
-            //}
-            //if (target.Length() >= MathHelper.ToDegrees(330))
-            //{
-
-            //}
-
+            //returnAngle = (float)(Math.Atan2(deltaVect.Y, deltaVect.X * Math.PI));
+            double compassBearing = Math.Atan2(deltaVect.Y, deltaVect.X);
+            if (compassBearing < 0)
+            {
+                compassBearing = Math.PI * 2 + compassBearing;
+            }
+            return (float)compassBearing;
         }
 
         public void damageEntity(int damage)
