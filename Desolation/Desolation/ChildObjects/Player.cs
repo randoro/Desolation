@@ -29,7 +29,7 @@ namespace Desolation
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
-            equipment[0] = new Item(0, ItemType.Melee);
+            equipment[0] = new Item(0, ItemType.Ranged  );
             speed = 3;
 
         }
@@ -80,21 +80,33 @@ namespace Desolation
                     {
                         if (tempItem.itemType.Equals(ItemType.Melee))
                         {
+                            //en if satts til ifal man är rätvänd mot entytyn eller inte 
                             if (Globals.checkRange(e.position, position, Globals.globalMeleeRange + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                             {
                                 if (attackspeed <= 0)
                                 {
                                     e.life--;
+                                    attackspeed = 5;
                                 }
 
                             }
                         }
                         else if (tempItem.itemType.Equals(ItemType.Ranged))
                         {
+                            if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                             {
+                                // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
+                                getAngle(position);
+                                getAngle(e.position);
+                         
+                                if ( true)
+                                {
+
+                                }
                                 if (attackspeed <= 0)
                                 {
-                                    attackspeed = 60;
+                                    e.life--;
+                                    attackspeed = 3;
                                 }
 
                             }
