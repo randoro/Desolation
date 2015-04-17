@@ -44,7 +44,7 @@ namespace Desolation
             {
 
                 ChunkManager.entityList[i].Update(gameTime);
-                if (ChunkManager.entityList[i].life < 0)
+                if (ChunkManager.entityList[i].health < 0)
                 {
                     ChunkManager.entityList.RemoveAt(i);
                 }

@@ -71,7 +71,7 @@ namespace Desolation
                 attackspeed--;
                 foreach (Entity e in ChunkManager.entityList)
                 {
-                
+
 
 
 
@@ -81,36 +81,46 @@ namespace Desolation
                         if (tempItem.itemType.Equals(ItemType.Melee))
                         {
                             //en if satts til ifal man är rätvänd mot entytyn eller inte 
-                            if (Globals.checkRange(e.position, position, Globals.globalMeleeRange + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
+                            if (attackspeed <= 0)
                             {
-                                if (attackspeed <= 0)
+                                if (Globals.checkRange(e.position, position, Globals.globalMeleeRange + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                                 {
-                                    e.life--;
-                                    attackspeed = 5;
+                                    float directAngle = getAngle(e.position);
+
+                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                    {
+                                        {
+                                            e.damageEntity(5);
+                                            attackspeed = 5;
+                                        }
+                                    }
                                 }
 
                             }
                         }
                         else if (tempItem.itemType.Equals(ItemType.Ranged))
                         {
-                            if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
+                            if (attackspeed <= 0)
                             {
-                                // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
-                              //float currentAngle = getAngle(position);
-                                //getAngle(e.position);
-                                float directAngle = getAngle(e.position);
-
-                                if (rotation >= directAngle - 0.1f && rotation <= directAngle + 0.1f)
+                                if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                                 {
-                                   e.life--;
-                                    attackspeed = 3;
-                                }
-                                //if (attackspeed <= 0)
-                                //{
-                                //    e.life--;
-                                //    attackspeed = 3;
-                                //}
+                                    // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
+                                    //float currentAngle = getAngle(position);
+                                    //getAngle(e.position);
+                                    float directAngle = getAngle(e.position);
 
+                                    if (rotation >= directAngle - 0.1f && rotation <= directAngle + 0.1f)
+                                    {
+                                        e.damageEntity(5);
+                                        attackspeed = 3;
+                                    }
+                                    //if (attackspeed <= 0)
+                                    //{
+                                    //    e.life--;
+                                    //    attackspeed = 3;
+                                    //}
+
+                                }
                             }
                             else if (tempItem.itemType.Equals(ItemType.Effect))
                             {

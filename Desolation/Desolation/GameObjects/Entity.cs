@@ -20,7 +20,6 @@ namespace Desolation
         protected Vector2 oldPosition;
         protected int Arange;
     public float rotation;
-      public int life;
         protected Item[] equipment; //0 = main hand, 1 = off hand
         public int health;
         #region Constructor
