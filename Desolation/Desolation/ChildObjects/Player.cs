@@ -99,7 +99,7 @@ namespace Desolation
                                 getAngle(position);
                                 getAngle(e.position);
 
-                                if (!(rotation > e.rotation) && !(rotation < e.rotation))
+                                if (rotation == e.rotation)
                                 {
                                    e.life--;
                                     attackspeed = 3;
