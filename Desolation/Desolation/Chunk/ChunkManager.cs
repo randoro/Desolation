@@ -43,11 +43,22 @@ namespace Desolation
                 foreach (Entity e in entityList)
                 {
                     e.Update(gameTime);
+                    if (e.life < 0)
+                    {
+                        entityList.Remove(e);
+                        break;
+                    }
                 }
                 
 
             
         }
+        public static List<Entity> getentityList()
+        {
+
+            return entityList;
+        }
+
 
         public void syncUpdate(GameTime gameTime)
         {

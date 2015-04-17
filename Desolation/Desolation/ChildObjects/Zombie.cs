@@ -29,6 +29,7 @@ namespace Desolation
             sourceRect = new Rectangle(0, 0, 16, 16);
             speed = 1;
             equipment[0] = new Item(0, ItemType.Melee);
+            life = 5;
         }
         #endregion
 
@@ -167,7 +168,13 @@ namespace Desolation
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+        
+            {
+
+
+                spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            }
+            
         }
 
 

@@ -20,6 +20,7 @@ namespace Desolation
         protected Vector2 oldPosition;
         protected int Arange;
         protected float rotation;
+      public int life;
         protected Item[] equipment; //0 = main hand, 1 = off hand
         public int health;
         #region Constructor
@@ -38,7 +39,10 @@ namespace Desolation
         abstract public void syncUpdate(GameTime gameTime);
         
 
+   
+    
         abstract public override void Draw(SpriteBatch spriteBatch);
+    
         
         public abstract void checkAttack();
 
