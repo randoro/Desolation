@@ -68,7 +68,7 @@ namespace Desolation
 
 
             attackspeed--;
-            foreach (Entity e in ChunkManager.getentityList())
+            foreach (Entity e in ChunkManager.entityList)
             {
                 if (KeyMouseReader.HoldClick())
                 {

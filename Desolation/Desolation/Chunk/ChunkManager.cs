@@ -53,11 +53,6 @@ namespace Desolation
 
             
         }
-        public static List<Entity> getentityList()
-        {
-
-            return entityList;
-        }
 
 
         public void syncUpdate(GameTime gameTime)
