@@ -39,16 +39,18 @@ namespace Desolation
 
         public void update(GameTime gameTime, GameWindow window)
         {
-               
-                foreach (Entity e in entityList)
+
+            for (int i = ChunkManager.entityList.Count - 1; i >= 0; i--)
+            {
+
+                ChunkManager.entityList[i].Update(gameTime);
+                if (ChunkManager.entityList[i].life < 0)
                 {
-                    e.Update(gameTime);
-                    if (e.life < 0)
-                    {
-                        entityList.Remove(e);
-                        break;
-                    }
+                    ChunkManager.entityList.RemoveAt(i);
                 }
+            }
+
+                
                 
 
             

@@ -66,12 +66,12 @@ namespace Desolation
 
             Item tempItem = equipment[0];
 
-
-            attackspeed--;
-            foreach (Entity e in ChunkManager.entityList)
+            if (KeyMouseReader.LeftHold())
             {
-                if (KeyMouseReader.HoldClick())
+                attackspeed--;
+                foreach (Entity e in ChunkManager.entityList)
                 {
+                
 
 
 
