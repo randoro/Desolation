@@ -96,10 +96,11 @@ namespace Desolation
                             if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                             {
                                 // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
-                                getAngle(position);
+                              
                                 getAngle(e.position);
-
-                                if (rotation >= e.rotation + 0.25f && rotation <= e.rotation - 0.25f)
+ 
+                                getAngle(position);
+                                if (rotation >= e.rotation - 0.25f && rotation <= e.rotation + 0.25f)
                                 {
                                    e.life--;
                                     attackspeed = 3;
