@@ -70,7 +70,7 @@ namespace Desolation
             attackspeed--;
             foreach (Entity e in ChunkManager.getentityList())
             {
-                if (KeyMouseReader.LeftClick())
+                if (KeyMouseReader.HoldClick())
                 {
 
 
@@ -99,7 +99,7 @@ namespace Desolation
                                 getAngle(position);
                                 getAngle(e.position);
 
-                                if (rotation == e.rotation)
+                                if (rotation >= e.rotation + 0.25f && rotation <= e.rotation - 0.25f)
                                 {
                                    e.life--;
                                     attackspeed = 3;

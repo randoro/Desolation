@@ -22,6 +22,10 @@ namespace Desolation
         {
             return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released;
         }
+         public static bool HoldClick()
+         {
+             return mouseState.RightButton == ButtonState.Pressed &&  mouseState.LeftButton == ButtonState.Pressed;
+         }
 
         //Should be called at beginning of Update in Game
         public static void Update()
