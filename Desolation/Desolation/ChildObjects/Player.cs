@@ -29,7 +29,7 @@ namespace Desolation
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
-            equipment[0] = new Item(0, ItemType.Ranged  );
+            equipment[0] = new Item(0, ItemType.Ranged);
             speed = 3;
 
         }
@@ -57,7 +57,7 @@ namespace Desolation
             Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
 
             Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
-            getAngle(mousePosInGame);
+            rotation = getAngle(mousePosInGame);
 
         }
 
@@ -96,11 +96,11 @@ namespace Desolation
                             if (Globals.checkRange(e.position, position, Globals.globalRangedRange + rangedRange))
                             {
                                 // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
-                              getAngle(position);
-                                getAngle(e.position);
- 
-                                
-                                if (rotation >= e.rotation - 0.25f && rotation <= e.rotation + 0.25f)
+                              //float currentAngle = getAngle(position);
+                                //getAngle(e.position);
+                                float directAngle = getAngle(e.position);
+
+                                if (rotation >= directAngle - 0.1f && rotation <= directAngle + 0.1f)
                                 {
                                    e.life--;
                                     attackspeed = 3;
@@ -133,12 +133,9 @@ namespace Desolation
             base.moveDirection(direction);
         }
 
-        public override void getAngle(Vector2 target)
+        public override float getAngle(Vector2 target)
         {
-
-            //rotation = (float)Math.Atan2(target.X, target.Y);
-
-            base.getAngle(target);
+            return base.getAngle(target);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
