@@ -19,7 +19,7 @@ namespace Desolation
         int frame;
         double frameTimer, frameInterval = 100;
         int attackspeed = 0;
-        int meleeRange = 7;
+        int meleeRange = 15;
         int rangedRange = 250;
         Direction currentDirection;
         #region Constructor
@@ -88,8 +88,8 @@ namespace Desolation
                                     float directAngle = getAngle(e.position);
                                     if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
                                     {
-                                        e.damageEntity(5);
-                                        attackspeed = 5;
+                                        e.damageEntity(7);
+                                        attackspeed = 4;
 
                                     }
                                 }
