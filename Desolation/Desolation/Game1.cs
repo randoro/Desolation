@@ -58,7 +58,7 @@ namespace Desolation
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
 
-            //ChunkManager.entityList.Add(new Deer(new Vector2(100, 100)));
+            ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
         }
         protected override void UnloadContent()
         {
