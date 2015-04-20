@@ -19,6 +19,7 @@ namespace Desolation
         TextureManager textureManager;
         public static Player player;
         public static GameWindow gameWindow;
+        //Matrix matrix;
 
         bool debug = false;
 
@@ -43,6 +44,7 @@ namespace Desolation
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
+            //matrix = new Matrix();
             Globals.rand = new Random();
             Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
@@ -190,7 +192,7 @@ namespace Desolation
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
-
+            
             if (debug)
             {
                 Matrix tempMatrix = Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0);

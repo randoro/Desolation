@@ -23,8 +23,8 @@ namespace Desolation
         public static Vector2 playerPos;
         public static Vector2 oldPlayerPos;
         public static readonly byte blockSize = 16;
-        public static readonly int screenX = 1920;
-        public static readonly int screenY = 1080;
+        public static readonly int screenX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; //should be 1920
+        public static readonly int screenY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; //should be 1080
         public static readonly int globalMeleeRange = 2;
         public static readonly int globalRangedRange = 50;
         public static long ticksLastChunkLoad = 0;
