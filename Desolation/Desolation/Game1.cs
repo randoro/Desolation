@@ -17,6 +17,7 @@ namespace Desolation
         SpriteBatch spriteBatch;
         ChunkManager chunkManager;
         TextureManager textureManager;
+        Counter frameXNACounter;
         public static Player player;
         public static GameWindow gameWindow;
         //Matrix matrix;
@@ -49,6 +50,8 @@ namespace Desolation
             Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
             textureManager = new TextureManager(Content);
+
+            frameXNACounter = new Counter(); //debug
 
 
             player = new Player(new Vector2(2000, 2000));
@@ -101,6 +104,8 @@ namespace Desolation
 
             player.Update(gameTime);
             chunkManager.update(gameTime, Window);
+
+            frameXNACounter.Update(gameTime); //debug
 
             #region SaveSync
             long now = DateTime.Now.Ticks;
@@ -190,6 +195,8 @@ namespace Desolation
 
         protected override void Draw(GameTime gameTime)
         {
+            frameXNACounter.increaseCounter();
+
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
             
@@ -205,7 +212,7 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "PlayerHP:" + Game1.player.health, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "XNAFrameRate:" + frameXNACounter.frameRate, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
