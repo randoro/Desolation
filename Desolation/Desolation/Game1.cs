@@ -34,7 +34,7 @@ namespace Desolation
 
         protected override void Initialize()
         {
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = Globals.screenX;
             graphics.PreferredBackBufferHeight = Globals.screenY;
             graphics.ApplyChanges();

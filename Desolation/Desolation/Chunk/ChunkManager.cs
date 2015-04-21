@@ -454,6 +454,12 @@ namespace Desolation
                 #endregion
 
 
+                int nr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos); //must be done after shifting
+                if (chunkArray[nr] != null)
+                {
+                    Globals.currentPlayerChunkXPos = chunkArray[nr].XPos;
+                    Globals.currentPlayerChunkYPos = chunkArray[nr].YPos;
+                }
                 
                         
               
@@ -466,8 +472,11 @@ namespace Desolation
             for (int i = 0; i < 144; i++)
 			{
                 if(chunkArray[i] != null) 
-                { 
-                    chunkArray[i].draw(spriteBatch);
+                {
+                    if (chunkArray[i].XPos > Globals.currentPlayerChunkXPos - 5 && chunkArray[i].XPos < Globals.currentPlayerChunkXPos + 5 && chunkArray[i].YPos > Globals.currentPlayerChunkYPos - 4 && chunkArray[i].YPos < Globals.currentPlayerChunkYPos + 4)
+                    {
+                        chunkArray[i].draw(spriteBatch);
+                    }
                 }
             }
 

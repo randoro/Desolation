@@ -21,6 +21,8 @@ namespace Desolation
         public static readonly byte[] dataTypeSizes = { 0, 1, 2, 4, 8, 4, 8, 0, 0, 0, 0, 0 }; //datatypes in order of TagID's sizes
         public static Random rand;
         public static Vector2 playerPos;
+        public static int currentPlayerChunkXPos;
+        public static int currentPlayerChunkYPos;
         public static Vector2 oldPlayerPos;
         public static readonly byte blockSize = 16;
         public static readonly int screenX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; //should be 1920
