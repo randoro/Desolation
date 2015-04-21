@@ -186,6 +186,13 @@ namespace Desolation
                     //}
                     debug = true;
                 }
+            }else if (KeyMouseReader.KeyPressed(Keys.F4))
+            {
+                ChunkManager.changeWorld(@"heaven\");
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.F5))
+            {
+                ChunkManager.changeWorld(@"mainworld\");
             }
             #endregion
 

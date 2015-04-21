@@ -11,7 +11,7 @@ namespace Desolation
     public class ChunkManager
     {
 
-        FileLoader fileLoader;
+        static FileLoader fileLoader;
         public static Chunk[] chunkArray;
         public static Region[] regionArray;
         public static List<Entity> entityList;
@@ -502,6 +502,50 @@ namespace Desolation
                 curChunk.entities.Add(newList);
                 entityList.Remove(e);
             }
+        }
+
+
+
+        public static void changeWorld(String worldName)
+        {
+            //unloading
+            for (int i = entityList.Count - 1; i >= 0; i--)
+            {
+
+                Entity e = entityList[i];
+                Vector2 pos = e.position;
+                int regionX = Globals.getRegionValue(pos.X);
+                int regionY = Globals.getRegionValue(pos.Y);
+                //entity is inside unloading regions cause all regions are unloading
+                int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
+                if (chunkNr != -1)
+                {
+                    Chunk curChunk = chunkArray[chunkNr];
+                    if (curChunk != null)
+                    {
+                        List<Tag> newList = new List<Tag>();
+                        e.getTagList(ref newList);
+                        curChunk.entities.Add(newList);
+                        entityList.Remove(e);
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < 9; i++)
+            {
+                TagTranslator.overwriteRegionStream(regionArray[i], i);
+                regionArray[i] = null;
+            }
+
+            //changing world
+            String newWorldName = worldName;
+            String newWorldFolder = newWorldName+@"\";
+            String regionFolder = @"region\";
+            fileLoader.checkAndCreateFolder(newWorldFolder);
+            fileLoader.checkAndCreateFolder(newWorldFolder + regionFolder);
+            fileLoader.currentWorldFolder = newWorldFolder;
+
         }
 
 
