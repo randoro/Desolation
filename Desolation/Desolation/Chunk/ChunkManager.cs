@@ -15,6 +15,7 @@ namespace Desolation
         public static Chunk[] chunkArray;
         public static Region[] regionArray;
         public static List<Entity> entityList;
+        public static Counter syncCounter;
 
         int lastRegionX;
         int lastRegionY;
@@ -32,6 +33,7 @@ namespace Desolation
             regionArray = new Region[9];
             entityList = new List<Entity>();
 
+            syncCounter = new Counter(); //debug
             chunkArray = new Chunk[144];
 
         }
@@ -39,6 +41,7 @@ namespace Desolation
 
         public void update(GameTime gameTime, GameWindow window)
         {
+            syncCounter.Update(gameTime);
 
             for (int i = ChunkManager.entityList.Count - 1; i >= 0; i--)
             {
@@ -59,6 +62,8 @@ namespace Desolation
 
         public void syncUpdate(GameTime gameTime)
         {
+            syncCounter.increaseCounter();
+
             foreach (Entity e in entityList)
             {
                 e.syncUpdate(gameTime); //must be done before chunkManager shifting to not interfear with movement and collision

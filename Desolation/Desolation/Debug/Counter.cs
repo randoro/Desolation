@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Desolation
 {
-    class Counter
+    public class Counter
     {
 
         public int frameRate = 0;
