@@ -103,7 +103,7 @@ namespace Desolation
                 else
                 {
 
-                    objects[j] = (byte)0;
+                    objects[j] = (byte)1;
                 }
             }
 
