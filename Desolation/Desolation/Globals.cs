@@ -193,6 +193,20 @@ namespace Desolation
             }
         }
 
+        public static int getBlockValue(float input)
+        {
+
+            int returnInt;
+            if (input >= 0)
+            {
+                return returnInt = ((int)input / 16) % 16;
+            }
+            else
+            {
+                return returnInt = 15 + ((int)input) / 16 % 16;
+            }
+        }
+
 
         public static bool checkRange(Vector2 firstPoint, Vector2 secondPoint, int radie)
         {

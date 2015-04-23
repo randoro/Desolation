@@ -118,11 +118,6 @@ namespace Desolation
 
         public void checkCollision()
         {
-
-            //time for new chunkLoad
-            //Console.WriteLine(now);
-
-
             //kolla om entity är laddad
             int currentBlockX;
             int currentBlockY;
