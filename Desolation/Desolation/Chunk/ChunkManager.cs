@@ -103,11 +103,17 @@ namespace Desolation
 
                                 if (newChunk.entities != null)
                                 {
-                                    foreach (List<Tag> e in newChunk.entities)
+                                    for (int j = 0; j < newChunk.entities.Count; j++)
                                     {
+                                    List<Tag> e = newChunk.entities[j];
+                                    
                                         Entity newEntity = TagTranslator.getUnloadedEntity(e);
                                         if (newEntity != null)
                                         {
+                                            if (newEntity.position.X == 0 && newEntity.position.Y == 0)
+                                            {
+                                                int test = 1;
+                                            }
                                             entityList.Add(newEntity);
                                         }
                                     }
@@ -144,6 +150,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -186,6 +196,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -227,6 +241,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -239,7 +257,10 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
+
+                                        
                                     }
                                 }
                             }
@@ -266,6 +287,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -306,6 +331,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -347,6 +376,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -386,6 +419,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -421,6 +458,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
+                                if (e.position.X == 0 && e.position.Y == 0)
+                                {
+                                    int test = 1;
+                                }
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -500,7 +541,6 @@ namespace Desolation
                 List<Tag> newList = new List<Tag>();
                 e.getTagList(ref newList);
                 curChunk.entities.Add(newList);
-                entityList.Remove(e);
             }
         }
 

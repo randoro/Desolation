@@ -17,7 +17,7 @@ namespace Desolation
 
         public float speed;
         protected float realSpeed;
-        protected Vector2 oldPosition;
+        public Vector2 oldPosition;
         protected int Arange;
     public float rotation;
         protected Item[] equipment; //0 = main hand, 1 = off hand
@@ -119,25 +119,27 @@ namespace Desolation
         public void checkCollision()
         {
             //kolla om entity är laddad
-            int currentBlockX;
-            int currentBlockY;
-            if (position.X >= 0)
-            {
-                currentBlockX = ((int)position.X / 16) % 16;
-            }
-            else
-            {
-                currentBlockX = 15 + ((int)position.X) / 16 % 16;
-            }
+            int currentBlockX = Globals.getBlockValue(position.X);
+            int currentBlockY = Globals.getBlockValue(position.Y);
 
-            if (position.Y >= 0)
-            {
-                currentBlockY = ((int)position.Y / 16) % 16;
-            }
-            else
-            {
-                currentBlockY = 15 + ((int)position.Y) / 16 % 16;
-            }
+
+            //if (position.X >= 0)
+            //{
+            //    currentBlockX = ((int)position.X / 16) % 16;
+            //}
+            //else
+            //{
+            //    currentBlockX = 15 + ((int)position.X) / 16 % 16;
+            //}
+
+            //if (position.Y >= 0)
+            //{
+            //    currentBlockY = ((int)position.Y / 16) % 16;
+            //}
+            //else
+            //{
+            //    currentBlockY = 15 + ((int)position.Y) / 16 % 16;
+            //}
             int chunkIndex = getCurrentChunkNrInArray(Globals.oldPlayerPos);
             if (chunkIndex != -1)
             {

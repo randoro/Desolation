@@ -896,8 +896,10 @@ namespace Desolation
         {
             Entity newEntity = new Goblin(Vector2.Zero); // will never be used
             bool isReturnable = false;
-            foreach (Tag e in entity)
+            for (int i = 0; i < entity.Count; i++)
             {
+
+                Tag e = entity[i];
                 String tagName = e.getName();
                 TagID tagID = e.getID();
                 var data = e.getRawData();
@@ -944,12 +946,14 @@ namespace Desolation
                             byte[] byteData = (byte[])e.getRawData();
                             int dataInt = BitConverter.ToInt32(byteData, 0);
                             newEntity.position.X = (float)dataInt;
+                            newEntity.oldPosition.X = (float)dataInt;
                         }
                         else if (tagName.Equals("EntityYPos"))
                         {
                             byte[] byteData = (byte[])e.getRawData();
                             int dataInt = BitConverter.ToInt32(byteData, 0);
                             newEntity.position.Y = (float)dataInt;
+                            newEntity.oldPosition.Y = (float)dataInt;
                             //byte[] data = (byte[])e.getRawData();
                             //float dataFloat = BitConverter.ToSingle(data, 0);
                             //newEntity.position.Y = dataFloat;
