@@ -20,6 +20,7 @@ namespace Desolation
         Counter frameXNACounter;
         public static Player player;
         public static GameWindow gameWindow;
+        //Matrix matrix;
 
         bool debug = false;
 
@@ -33,7 +34,7 @@ namespace Desolation
 
         protected override void Initialize()
         {
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = Globals.screenX;
             graphics.PreferredBackBufferHeight = Globals.screenY;
             graphics.ApplyChanges();
@@ -44,6 +45,7 @@ namespace Desolation
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.IsMouseVisible = true;
+            //matrix = new Matrix();
             Globals.rand = new Random();
             Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
