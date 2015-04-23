@@ -117,7 +117,7 @@ namespace Desolation
                 player.syncUpdate(gameTime); //must be done after chunkManager shifting to not interfear with movement and collision
                 
 
-                textureManager.runTimeLoading();
+                //textureManager.runTimeLoading();
 
                 Globals.oldPlayerPos = Globals.playerPos;
 

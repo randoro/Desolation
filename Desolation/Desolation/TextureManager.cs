@@ -22,7 +22,7 @@ namespace Desolation
         {
             this.contentManager = contentManager;
 
-            playerSheet = contentManager.Load<Texture2D>("testSheet");
+            playerSheet = contentManager.Load<Texture2D>("playerSheet2");
             zombieSheet = contentManager.Load<Texture2D>("ZombieSheet");
             npcSheet = contentManager.Load<Texture2D>("npcSheet");
             deerSheet = contentManager.Load<Texture2D>("DeerspriteShite");

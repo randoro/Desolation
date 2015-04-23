@@ -153,11 +153,11 @@ namespace Desolation
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.NorthEast:
-                    sourceRect.X = 2 * 16;
+                    sourceRect.X = 7 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.NorthWest:
-                    sourceRect.X = 2 * 16;
+                    sourceRect.X = 6 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.South:
@@ -165,11 +165,11 @@ namespace Desolation
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.SouthEast:
-                    sourceRect.X = 0 * 16;
+                    sourceRect.X = 4 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.SouthWest:
-                    sourceRect.X = 0 * 16;
+                    sourceRect.X = 5 * 16;
                     sourceRect.Y = (frame % 4) * 16;
                     break;
                 case Direction.East:
