@@ -192,6 +192,22 @@ namespace Desolation
             {
                 ChunkManager.changeWorld(@"mainworld\");
             }
+            else if (KeyMouseReader.KeyPressed(Keys.F6))
+            {
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos);
+                Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                if (tempChunk != null)
+                {
+                    tempChunk.objects[128] = 1;
+                    tempChunk.objects[129] = 1;
+                    tempChunk.objects[130] = 1;
+                    tempChunk.objects[131] = 1;
+                    tempChunk.objects[132] = 1;
+                    tempChunk.objects[133] = 1;
+                    tempChunk.objects[134] = 1;
+                    tempChunk.objects[135] = 1;
+                }
+            }
             #endregion
 
             KeyMouseReader.Update();
