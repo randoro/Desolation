@@ -20,6 +20,7 @@ namespace Desolation
         Counter frameXNACounter;
         public static Player player;
         public static GameWindow gameWindow;
+        public static Vector2 mousePosOnScreen;
 
         bool debug = false;
 
@@ -192,6 +193,11 @@ namespace Desolation
             else if (KeyMouseReader.KeyPressed(Keys.F5))
             {
                 ChunkManager.changeWorld(@"mainworld\");
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.Space))
+            {
+            
+            // ta bort blocks på musens position
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
