@@ -199,7 +199,7 @@ namespace Desolation
             int returnInt;
             if (input >= 0)
             {
-                return returnInt = ((int)input / 16) % 16;
+                return returnInt = (int)input / 16 % 16;
             }
             else
             {

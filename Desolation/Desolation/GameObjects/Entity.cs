@@ -118,93 +118,108 @@ namespace Desolation
 
         public void checkCollision()
         {
-            //kolla om entity är laddad
-            int currentBlockX = Globals.getBlockValue(position.X);
-            int currentBlockY = Globals.getBlockValue(position.Y);
-
-
-            //if (position.X >= 0)
-            //{
-            //    currentBlockX = ((int)position.X / 16) % 16;
-            //}
-            //else
-            //{
-            //    currentBlockX = 15 + ((int)position.X) / 16 % 16;
-            //}
-
-            //if (position.Y >= 0)
-            //{
-            //    currentBlockY = ((int)position.Y / 16) % 16;
-            //}
-            //else
-            //{
-            //    currentBlockY = 15 + ((int)position.Y) / 16 % 16;
-            //}
-            int chunkIndex = getCurrentChunkNrInArray(Globals.oldPlayerPos);
-            if (chunkIndex != -1)
+            //Få blocket entitien står i
+            Point[] surroundingBlocksPos = new Point[9];
+            for (int i = -1; i < 2; i++)
             {
-                Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
-                //Chunk currentChunk0 = ChunkManager.chunkArray[chunkIndex - 13];
-                //Chunk currentChunk1 = ChunkManager.chunkArray[chunkIndex - 12];
-                //Chunk currentChunk2 = ChunkManager.chunkArray[chunkIndex - 11];
-                //Chunk currentChunk3 = ChunkManager.chunkArray[chunkIndex - 1];
-                //Chunk currentChunk4 = ChunkManager.chunkArray[chunkIndex];
-                //Chunk currentChunk5 = ChunkManager.chunkArray[chunkIndex + 1];
-                //Chunk currentChunk6 = ChunkManager.chunkArray[chunkIndex + 11];
-                //Chunk currentChunk7 = ChunkManager.chunkArray[chunkIndex + 12];
-                //Chunk currentChunk8 = ChunkManager.chunkArray[chunkIndex + 13];
-
-                //if (currentBlockX < 1)
-                if (currentChunk != null)
+                for (int j = -1; j < 2; j++)
                 {
-                    currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
-
-
-                    if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
+                    surroundingBlocksPos[((i + 1) * 3 + j + 1)] = new Point(Globals.getBlockValue(position.X + j * 16), Globals.getBlockValue(position.Y + i * 16));
+                    int chunkIndex = getCurrentChunkNrInArray(new Vector2(position.X + j * 16, position.Y + i * 16), Globals.oldPlayerPos);
+                    if (chunkIndex != -1)
                     {
-                        position = oldPosition; //undo'ar rörelse
+                        Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+                        if (currentChunk != null)
+                        {
+                            currentChunk.blocks[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16] = (byte)1;
+
+
+                            //if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
+                            //{
+                            //    position = oldPosition; //undo'ar rörelse
+                            //}
+
+                        }
+                        else
+                        {
+                            //position = oldPosition; //undo'ar rörelse
+                        }
+
                     }
-
+                    else
+                    {
+                       // position = oldPosition; //undo'ar rörelse
+                    }
                 }
-                else
-                {
-                    position = oldPosition; //undo'ar rörelse
-                }
-
             }
-            else
-            {
-                position = oldPosition; //undo'ar rörelse
-            }
-            //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
-            //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
         }
+            //int currentBlockX = Globals.getBlockValue(position.X);
+            //int currentBlockY = Globals.getBlockValue(position.Y);
 
-        public int getCurrentChunkNrInArray(Vector2 playerPos)
+            //int chunkIndex = getCurrentChunkNrInArray(position, Globals.oldPlayerPos);
+        //    if (chunkIndex != -1)
+        //    {
+        //        Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+        //        //Chunk currentChunk0 = ChunkManager.chunkArray[chunkIndex - 13];
+        //        //Chunk currentChunk1 = ChunkManager.chunkArray[chunkIndex - 12];
+        //        //Chunk currentChunk2 = ChunkManager.chunkArray[chunkIndex - 11];
+        //        //Chunk currentChunk3 = ChunkManager.chunkArray[chunkIndex - 1];
+        //        //Chunk currentChunk4 = ChunkManager.chunkArray[chunkIndex];
+        //        //Chunk currentChunk5 = ChunkManager.chunkArray[chunkIndex + 1];
+        //        //Chunk currentChunk6 = ChunkManager.chunkArray[chunkIndex + 11];
+        //        //Chunk currentChunk7 = ChunkManager.chunkArray[chunkIndex + 12];
+        //        //Chunk currentChunk8 = ChunkManager.chunkArray[chunkIndex + 13];
+
+        //        //if (currentBlockX < 1)
+        //        if (currentChunk != null)
+        //        {
+        //            currentChunk.blocks[currentBlockX + currentBlockY * 16] = (byte)1;
+
+
+        //            if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
+        //            {
+        //                position = oldPosition; //undo'ar rörelse
+        //            }
+
+        //        }
+        //        else
+        //        {
+        //            position = oldPosition; //undo'ar rörelse
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        position = oldPosition; //undo'ar rörelse
+        //    }
+        //    //Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
+        //    //Game1.gameWindow.Title = "currentBlockX:" + currentBlockX + " currentBlockY:" + currentBlockY;
+        //}
+
+        public int getCurrentChunkNrInArray(Vector2 entityPos, Vector2 playerPos)
         {
             //Vector2 tempPos = new Vector2(1050, 1050);
             //int playerRegionX = Globals.getRegionValue(Globals.playerPos.X);
             //int playerRegionY = Globals.getRegionValue(Globals.playerPos.Y);
             int playerChunkX;
             int playerChunkY;
-
-            if (this is Player)
-            {
-                playerChunkX = Globals.getChunkValue(position.X);
-                playerChunkY = Globals.getChunkValue(position.Y);
-            }
-            else
-            {
+            int chunkOffsetX;
+            int chunkOffsetY;
+            
                 playerChunkX = Globals.getChunkValue(playerPos.X);
                 playerChunkY = Globals.getChunkValue(playerPos.Y);
-            }
+
+                int entityChunkX = Globals.getChunkValue(entityPos.X);
+                int entityChunkY = Globals.getChunkValue(entityPos.Y);
+
+                chunkOffsetX = entityChunkX - playerChunkX;
+                chunkOffsetY = entityChunkY - playerChunkY;
+            
 
 
-            int entityChunkX = Globals.getChunkValue(position.X);
-            int entityChunkY = Globals.getChunkValue(position.Y);
+            
 
-            int chunkOffsetX = entityChunkX - playerChunkX;
-            int chunkOffsetY = entityChunkY - playerChunkY;
+            
 
             //window.Title = "chunkOffsetX:" + chunkOffsetX + " chunkOffsetY:" + chunkOffsetY;
 

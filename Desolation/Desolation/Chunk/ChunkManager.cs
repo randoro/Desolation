@@ -162,7 +162,7 @@ namespace Desolation
                                     if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y + 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -208,7 +208,7 @@ namespace Desolation
                                     if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y - 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -253,7 +253,7 @@ namespace Desolation
                                     if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2 (Globals.playerPos.X + 1024, Globals.playerPos.Y));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -299,7 +299,7 @@ namespace Desolation
                                     if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y + 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -343,7 +343,7 @@ namespace Desolation
                                     if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y - 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -388,7 +388,7 @@ namespace Desolation
                                     if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -431,7 +431,7 @@ namespace Desolation
                                     if ((regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y + 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X, Globals.playerPos.Y + 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -470,7 +470,7 @@ namespace Desolation
                                     if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion))
                                     {
                                         //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(new Vector2(Globals.playerPos.X, Globals.playerPos.Y - 1024));
+                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X, Globals.playerPos.Y - 1024));
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
@@ -495,7 +495,7 @@ namespace Desolation
                 #endregion
 
 
-                int nr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos); //must be done after shifting
+                int nr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos); //must be done after shifting
                 if (chunkArray[nr] != null)
                 {
                     Globals.currentPlayerChunkXPos = chunkArray[nr].XPos;
@@ -557,7 +557,7 @@ namespace Desolation
                 int regionX = Globals.getRegionValue(pos.X);
                 int regionY = Globals.getRegionValue(pos.Y);
                 //entity is inside unloading regions cause all regions are unloading
-                int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
+                int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
                 if (chunkNr != -1)
                 {
                     Chunk curChunk = chunkArray[chunkNr];

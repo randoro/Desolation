@@ -56,7 +56,7 @@ namespace Desolation
             Globals.playerPos = player.position;
             Globals.oldPlayerPos = player.position;
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
@@ -73,7 +73,7 @@ namespace Desolation
                 int regionX = Globals.getRegionValue(pos.X);
                 int regionY = Globals.getRegionValue(pos.Y);
                         //entity is inside unloading regions cause all regions are unloading
-                        int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
+                        int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
                         if (chunkNr != -1)
                         {
                             Chunk curChunk = ChunkManager.chunkArray[chunkNr];
@@ -194,7 +194,7 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
-                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos);
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
                 {
