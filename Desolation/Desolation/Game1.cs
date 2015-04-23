@@ -56,7 +56,7 @@ namespace Desolation
             Globals.playerPos = player.position;
             Globals.oldPlayerPos = player.position;
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
@@ -72,17 +72,17 @@ namespace Desolation
                 Vector2 pos = e.position;
                 int regionX = Globals.getRegionValue(pos.X);
                 int regionY = Globals.getRegionValue(pos.Y);
-                        //entity is inside unloading regions cause all regions are unloading
-                        int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
-                        if (chunkNr != -1)
-                        {
-                            Chunk curChunk = ChunkManager.chunkArray[chunkNr];
-                            if (curChunk != null)
-                            {
-                                List<Tag> newList = new List<Tag>();
-                                e.getTagList(ref newList);
-                                curChunk.entities.Add(newList);
-                                ChunkManager.entityList.Remove(e);
+                //entity is inside unloading regions cause all regions are unloading
+                int chunkNr = e.getCurrentChunkNrInArray(Globals.playerPos);
+                if (chunkNr != -1)
+                {
+                    Chunk curChunk = ChunkManager.chunkArray[chunkNr];
+                    if (curChunk != null)
+                    {
+                        List<Tag> newList = new List<Tag>();
+                        e.getTagList(ref newList);
+                        curChunk.entities.Add(newList);
+                        ChunkManager.entityList.Remove(e);
                     }
                 }
             }
@@ -115,7 +115,7 @@ namespace Desolation
                 chunkManager.syncUpdate(gameTime); //must be done before player sync for shifting to not interfear with player movement and collision
 
                 player.syncUpdate(gameTime); //must be done after chunkManager shifting to not interfear with movement and collision
-                
+
 
                 //textureManager.runTimeLoading();
 
@@ -184,7 +184,8 @@ namespace Desolation
                     //}
                     debug = true;
                 }
-            }else if (KeyMouseReader.KeyPressed(Keys.F4))
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.F4))
             {
                 ChunkManager.changeWorld(@"heaven\");
             }
@@ -198,14 +199,44 @@ namespace Desolation
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
                 {
-                    tempChunk.objects[128] = 1;
-                    tempChunk.objects[129] = 1;
-                    tempChunk.objects[130] = 1;
-                    tempChunk.objects[131] = 1;
-                    tempChunk.objects[132] = 1;
-                    tempChunk.objects[133] = 1;
-                    tempChunk.objects[134] = 1;
-                    tempChunk.objects[135] = 1;
+                    for (int i = 0; i < 48; i++)
+                    {
+                        int test = i * 16;
+                        int test2 =(i * 16)+15;
+                         int test3 = i+15 * 16;
+                         int test4 = i ;
+
+
+
+                      
+                        if (test < (tempChunk.objects.Length))
+                        {
+                            tempChunk.objects[test] = 1;
+                        }
+                        if (test2 < (tempChunk.objects.Length)&&test2>=0)
+                        {
+                            tempChunk.objects[test2] = 1;
+
+                        }
+                        if (test3 < (tempChunk.objects.Length) && test3 >= 0)
+                        {
+                            tempChunk.objects[test3] = 1;
+                        }
+                        if (test4 < 16)
+                        {
+                            tempChunk.objects[test4] = 1;
+                        }
+
+
+                        //tempChunk.objects[129] = 1;
+
+                        //tempChunk.objects[130] = 1;
+                        //tempChunk.objects[131] = 1;
+                        //tempChunk.objects[132] = 1;
+                        //tempChunk.objects[133] = 1;
+                        //tempChunk.objects[134] = 1;
+                        //tempChunk.objects[135] = 1;
+                    }
                 }
             }
             #endregion
@@ -220,7 +251,7 @@ namespace Desolation
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
-            
+
             if (debug)
             {
                 Matrix tempMatrix = Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0);
@@ -259,7 +290,7 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-               
+
             }
 
 
