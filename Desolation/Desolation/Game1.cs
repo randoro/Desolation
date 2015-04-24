@@ -74,17 +74,17 @@ namespace Desolation
                 Vector2 pos = e.position;
                 int regionX = Globals.getRegionValue(pos.X);
                 int regionY = Globals.getRegionValue(pos.Y);
-                        //entity is inside unloading regions cause all regions are unloading
-                        int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
-                        if (chunkNr != -1)
-                        {
-                            Chunk curChunk = ChunkManager.chunkArray[chunkNr];
-                            if (curChunk != null)
-                            {
-                                List<Tag> newList = new List<Tag>();
-                                e.getTagList(ref newList);
-                                curChunk.entities.Add(newList);
-                                ChunkManager.entityList.Remove(e);
+                //entity is inside unloading regions cause all regions are unloading
+                int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
+                if (chunkNr != -1)
+                {
+                    Chunk curChunk = ChunkManager.chunkArray[chunkNr];
+                    if (curChunk != null)
+                    {
+                        List<Tag> newList = new List<Tag>();
+                        e.getTagList(ref newList);
+                        curChunk.entities.Add(newList);
+                        ChunkManager.entityList.Remove(e);
                     }
                 }
             }
@@ -197,53 +197,79 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.Space))
             {
-            
-            // ta bort blocks på musens position
+
+                // ta bort blocks på musens position
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
+                int startpos = Globals.rand.Next(0, 255);
                 int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
                 {
-                    for (int i = 0; i < 48; i++)
+                    bool fis = true;
+                    while (fis)
                     {
-                        int test = i * 16;
-                        int test2 =(i * 16)+15;
-                         int test3 = i+15 * 16;
-                         int test4 = i ;
-
-
-
-                      
-                        if (test < (tempChunk.objects.Length))
+                        tempChunk.objects[startpos] = 1;
+                        for (int i = 0; i < Globals.rand.Next(10, 16); i++)
                         {
-                            tempChunk.objects[test] = 1;
-                        }
-                        if (test2 < (tempChunk.objects.Length)&&test2>=0)
-                        {
-                            tempChunk.objects[test2] = 1;
+                            int test5 = startpos + i;
+                            
+                            if (test5 < (tempChunk.objects.Length) && test5 >= 0)
+                            {
+                                tempChunk.objects[test5] = 1;
+                            }
+                            if (test5<startpos+i*16)
+                            {
+                                 tempChunk = ChunkManager.chunkArray[chunkNr+1];
+                                 tempChunk.objects[test5-15] = 1;
+                                
+                            }
 
-                        }
-                        if (test3 < (tempChunk.objects.Length) && test3 >= 0)
-                        {
-                            tempChunk.objects[test3] = 1;
-                        }
-                        if (test4 < 16)
-                        {
-                            tempChunk.objects[test4] = 1;
                         }
 
 
-                        //tempChunk.objects[129] = 1;
+                        fis = false;
 
-                        //tempChunk.objects[130] = 1;
-                        //tempChunk.objects[131] = 1;
-                        //tempChunk.objects[132] = 1;
-                        //tempChunk.objects[133] = 1;
-                        //tempChunk.objects[134] = 1;
-                        //tempChunk.objects[135] = 1;
                     }
+
+
+                    //for (int i = 0; i < 48; i++)
+                    //{
+                    //    int test = i * 16;
+                    //    int test2 = (i * 16) + 15;
+                    //    int test3 = i + 15 * 16;
+                    //    int test4 = i;
+
+
+
+
+                    //    if (test < (tempChunk.objects.Length))
+                    //    {
+                    //        tempChunk.objects[test] = 1;
+                    //    }
+                    //    if (test2 < (tempChunk.objects.Length) && test2 >= 0)
+                    //    {
+                    //        tempChunk.objects[test2] = 1;
+
+                    //    }
+                    //    if (test3 < (tempChunk.objects.Length) && test3 >= 0)
+                    //    {
+                    //        tempChunk.objects[test3] = 1;
+                    //    }
+                    //    if (test4 < 16)
+                    //    {
+                    //        tempChunk.objects[test4] = 1;
+                    //    }
+
+
+                    //    tempChunk.objects[130] = 1;
+                    //    tempChunk.objects[131] = 1;
+                    //    tempChunk.objects[132] = 1;
+                    //    tempChunk.objects[133] = 1;
+                    //    tempChunk.objects[134] = 1;
+                    //    tempChunk.objects[135] = 1;
+                    //}
                 }
             }
             #endregion
