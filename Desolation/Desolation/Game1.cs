@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace Desolation
 {
@@ -271,6 +272,33 @@ namespace Desolation
                     //    tempChunk.objects[135] = 1;
                     //}
                 }
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                //delete current world
+
+                ChunkManager.saveEntities();
+
+                ChunkManager.saveAndUnloadRegions();
+
+                for (int i = 0; i < 144; i++)
+                {
+                    ChunkManager.chunkArray[i] = null;
+                }
+
+                try
+                {
+                    var dir = new DirectoryInfo(Globals.gamePath + ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
+                    dir.Delete(true);
+
+                    ChunkManager.fileLoader.checkAndCreateFolder(ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                }
+                catch (IOException e)
+                {
+
+                }
+
             }
             #endregion
 

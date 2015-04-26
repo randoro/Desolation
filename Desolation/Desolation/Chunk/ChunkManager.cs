@@ -11,7 +11,7 @@ namespace Desolation
     public class ChunkManager
     {
 
-        static FileLoader fileLoader;
+        public static FileLoader fileLoader;
         public static Chunk[] chunkArray;
         public static Region[] regionArray;
         public static List<Entity> entityList;
@@ -549,6 +549,23 @@ namespace Desolation
         public static void changeWorld(String worldName)
         {
             //unloading
+            saveEntities();
+
+            saveAndUnloadRegions();
+            
+
+            //changing world
+            String newWorldName = worldName;
+            String newWorldFolder = newWorldName+@"\";
+            String regionFolder = @"region\";
+            fileLoader.checkAndCreateFolder(newWorldFolder);
+            fileLoader.checkAndCreateFolder(newWorldFolder + regionFolder);
+            fileLoader.currentWorldFolder = newWorldFolder;
+
+        }
+
+        public static void saveEntities()
+        {
             for (int i = entityList.Count - 1; i >= 0; i--)
             {
 
@@ -570,22 +587,15 @@ namespace Desolation
                     }
                 }
             }
+        }
 
-
+        public static void saveAndUnloadRegions()
+        {
             for (int i = 0; i < 9; i++)
             {
                 TagTranslator.overwriteRegionStream(regionArray[i], i);
                 regionArray[i] = null;
             }
-
-            //changing world
-            String newWorldName = worldName;
-            String newWorldFolder = newWorldName+@"\";
-            String regionFolder = @"region\";
-            fileLoader.checkAndCreateFolder(newWorldFolder);
-            fileLoader.checkAndCreateFolder(newWorldFolder + regionFolder);
-            fileLoader.currentWorldFolder = newWorldFolder;
-
         }
 
 

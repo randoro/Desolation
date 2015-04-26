@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Desolation
 {
-    class FileLoader
+    public class FileLoader
     {
         public String currentWorldFolder = @"mainworld\";
-        const String regionFolder = @"region\";
+        public String regionFolder = @"region\";
         public FileLoader()
         {
             checkAndCreateFolder(currentWorldFolder);
