@@ -216,5 +216,42 @@ namespace Desolation
             }
             return false;
         }
+
+        public static Direction getOppositeDirection(Direction dir)
+        {
+            switch (dir)
+            {
+                case Direction.North:
+                    return Direction.South;
+                    break;
+                case Direction.NorthEast:
+                    return Direction.SouthWest;
+                    break;
+                case Direction.East:
+                    return Direction.West;
+                    break;
+                case Direction.SouthEast:
+                    return Direction.NorthWest;
+                    break;
+                case Direction.South:
+                    return Direction.North;
+                    break;
+                case Direction.SouthWest:
+                    return Direction.NorthEast;
+                    break;
+                case Direction.West:
+                    return Direction.East;
+                    break;
+                case Direction.NorthWest:
+                    return Direction.SouthEast;
+                    break;
+                case Direction.None:
+                    return Direction.None;
+                    break;
+                default:
+                    return Direction.None;
+                    break;
+            }
+        }
     }
 }

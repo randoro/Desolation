@@ -22,6 +22,7 @@ namespace Desolation
     public float rotation;
         protected Item[] equipment; //0 = main hand, 1 = off hand
         public int health;
+        protected Direction currentDirection;
         #region Constructor
         public Entity(Vector2 pos)
             : base(pos)
@@ -51,6 +52,7 @@ namespace Desolation
             //{
             if (position.X > Globals.oldPlayerPos.X - 1000 && position.X < Globals.oldPlayerPos.X + 1000 && position.Y > Globals.oldPlayerPos.Y - 1000 && position.Y < Globals.oldPlayerPos.Y + 1000)
             {
+                currentDirection = direction;
                 oldPosition = position;
                 //rörelse
                 realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
@@ -119,6 +121,8 @@ namespace Desolation
         public void checkCollision()
         {
             //Få blocket entitien står i
+            byte[] surroundingBlocks = new byte[9];
+            byte[] surroundingObjects = new byte[9];
             Point[] surroundingBlocksPos = new Point[9];
             for (int i = -1; i < 2; i++)
             {
@@ -131,9 +135,90 @@ namespace Desolation
                         Chunk currentChunk = ChunkManager.chunkArray[chunkIndex];
                         if (currentChunk != null)
                         {
-                            currentChunk.blocks[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16] = (byte)1;
+                            surroundingBlocks[((i + 1) * 3 + j + 1)] = currentChunk.blocks[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16];
+                            surroundingObjects[((i + 1) * 3 + j + 1)] = currentChunk.objects[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16];
 
 
+                            if (surroundingObjects[4] == 1)
+                                    {
+                                        //position = oldPosition;
+                                        
+                                            moveDirection(Globals.getOppositeDirection(currentDirection));
+                                        
+                                        //currentDirection = Direction.None;
+                                    }
+
+                            //switch (currentDirection)
+                            //{
+                            //    case Direction.North:
+                            //        if (surroundingObjects[1] == 1) //hårdkodat måste fixas
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.South);
+                            //        }
+                            //        break;
+                            //    case Direction.NorthEast:
+                            //        if (surroundingObjects[2] == 1 || (surroundingObjects[1] == 1 && surroundingObjects[5] == 1))
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.SouthWest);
+                            //        }
+                            //        break;
+                            //    case Direction.East:
+                            //        if (surroundingObjects[3] == 1) //hårdkodat måste fixas
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.West);
+                            //        }
+                            //        break;
+                            //    case Direction.SouthEast:
+                            //        if (surroundingObjects[8] == 1 || (surroundingObjects[7] == 1 && surroundingObjects[5] == 1))
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.NorthWest);
+                            //        }
+                            //        break;
+                            //    case Direction.South:
+                            //        if (surroundingObjects[7] == 1) //hårdkodat måste fixas
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.North);
+                            //        }
+                            //        break;
+                            //    case Direction.SouthWest:
+                            //        if (surroundingObjects[6] == 1 || (surroundingObjects[7] == 1 && surroundingObjects[3] == 1))
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.NorthEast);
+                            //        }
+                            //        break;
+                            //    case Direction.West:
+                            //        if (surroundingObjects[3] == 1) //hårdkodat måste fixas
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.East);
+                            //        }
+                            //        break;
+                            //    case Direction.NorthWest:
+                            //        if (surroundingObjects[0] == 1 || (surroundingObjects[1] == 1 && surroundingObjects[3] == 1))
+                            //        {
+                            //            //position = oldPosition;
+                            //            currentDirection = Direction.None;
+                            //            moveDirection(Direction.SouthEast);
+                            //        }
+                            //        break;
+                            //    case Direction.None:
+                            //        break;
+                            //    default:
+                            //        break;
+                            //}
                             //if (currentChunk.objects[currentBlockX + currentBlockY * 16] == 1)
                             //{
                             //    position = oldPosition; //undo'ar rörelse

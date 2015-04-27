@@ -21,7 +21,6 @@ namespace Desolation
         int attackspeed = 0;
         int meleeRange = 15;
         int rangedRange = 250;
-        Direction currentDirection;
         #region Constructor
         public Player(Vector2 position)
             : base(position)
@@ -39,13 +38,13 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
-            oldPosition = position;
-            base.checkCollision();
             checkAttack();
+            oldPosition = position;
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.checkCollision();
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (frameTimer <= 0)
@@ -133,7 +132,6 @@ namespace Desolation
 
         public override void moveDirection(Direction direction)
         {
-            currentDirection = direction;
             oldPosition = position;
             base.moveDirection(direction);
         }
