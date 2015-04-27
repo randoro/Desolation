@@ -47,17 +47,16 @@ namespace Desolation
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             for (int index = 0; index < particles.Count; index++)
             {
                 particles[index].Draw(spriteBatch);
             }
-            spriteBatch.End();
         }
 
         private Particle GenerateNewParticle()
         {
-            //Texture2D text = textures[rand.Next(textures.Count)]; <-----------------
+            Texture2D text = textures[rand.Next(textures.Count)];
+            
             Vector2 pos = EmitterLocation;
             Vector2 vel = new Vector2(1f * (float)(rand.NextDouble() * 2 - 1), 1f * (float)(rand.NextDouble() * 2 - 1));
             float angle = 0;
@@ -66,7 +65,7 @@ namespace Desolation
             float size = (float)rand.NextDouble();
             int ttl = 20 + rand.Next(40);
 
-            return new Particle(text, pos, vel, angle, angularVel, color, size, ttl);
+            return new Particle(TextureManager.redlazer, pos, vel, angle, angularVel, color, size, ttl);
         }
     }
 }
