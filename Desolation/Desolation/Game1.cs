@@ -217,269 +217,118 @@ namespace Desolation
 
                     #region horesentel
                     tempChunk.objects[startpos] = 1;
-                        for (int i = 0; i < Globals.rand.Next(15, 18); i++)
-                        { bool fis = true;
-
-
-                            int test5 = startpos + i;
-                             if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
-                            {
-                                tempChunk.objects[test5] = 1;
-                            }
-
-                            if (startpos > 239)
-                            {
-                                if (test5 >= 255)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-                            }
-                            else if (startpos > 223)
-                            {
-                                if (test5 >= 239)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-                            }
-                            else if (startpos > 207)
-                            {
-                                if (test5 >= 223)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 191)
-                            {
-                                if (test5 >= 207)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-
-                            else if (startpos > 175)
-                            {
-                                if (test5 >= 191)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 159)
-                            {
-                                if (test5 >= 175)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 143)
-                            {
-                                if (test5 >= 159)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 127)
-                            {
-                                if (test5 >= 143)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 111)
-                            {
-                                if (test5 >= 127)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 95)
-                            {
-                                if (test5 >= 11)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 79)
-                            {
-                                if (test5 >= 95)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 63)
-                            {
-                                if (test5 >= 79)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 47)
-                            {
-                                if (test5 >= 63)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 31)
-                            {
-                                if (test5 >= 47)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos > 15)
-                            {
-                                if (test5 >= 31)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 16] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                            else if (startpos < 15)
-                            {
-                                if (test5 >= 15)
-                                {
-                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
-                                    fis = false;
-                                }
-
-                            }
-                        }
-                    #endregion
-                        for (int i = 0; i < Globals.rand.Next(15, 18); i++)
+                    for (int i = 0; i < Globals.rand.Next(15, 18); i++)
+                    {
+                        bool fis = true;
+                        int test5 = startpos + i;
+                        if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
                         {
-                            bool fis = true;
-                           int test5 = startpos + ((i*16)+15);
-                            if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
-                            { 
-                                tempChunk.objects[test5] = 1;
-                            }
-                            
+                            tempChunk = ChunkManager.chunkArray[chunkNr];
+                            tempChunk.objects[test5] = 1;
                         }
-                  
+
+
+                    }
+                    #endregion
+                    for (int i = 0; i < Globals.rand.Next(5, 15); i++)
+                    {
+                        bool fis = true;
+                        int test5 = startpos + ((i * 16) + 15);
+                        if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
+                        {
+                            tempChunk = ChunkManager.chunkArray[chunkNr];
+                            tempChunk.objects[test5] = 1;
+                        }
+
+                    }
+
                 }
             }
 
-                else if (KeyMouseReader.KeyPressed(Keys.F7))
-                {                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
+            else if (KeyMouseReader.KeyPressed(Keys.F7))
+            {
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
-                    for (int i = 0; i < 48; i++)
-                    {
-                        int test = i * 16;
-                        int test2 = (i * 16) + 15;
-                        int test3 = i + 15 * 16;
-                        int test4 = i;
-
-
-
-
-                        if (test < (tempChunk.objects.Length))
-                        {
-                            tempChunk.objects[test] = 1;
-                        }
-                        if (test2 < (tempChunk.objects.Length) && test2 >= 0)
-                        {
-                            tempChunk.objects[test2] = 1;
-
-                        }
-                        if (test3 < (tempChunk.objects.Length) && test3 >= 0)
-                        {
-                            tempChunk.objects[test3] = 1;
-                        }
-                        if (test4 < 16)
-                        {
-                            tempChunk.objects[test4] = 1;
-                        }
-
-
-                        //    tempChunk.objects[130] = 1;
-                        //    tempChunk.objects[131] = 1;
-                        //    tempChunk.objects[132] = 1;
-                        //    tempChunk.objects[133] = 1;
-                        //    tempChunk.objects[134] = 1;
-                        //    tempChunk.objects[135] = 1;
-                        
-
-                    }
-                }
-        
-                else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
+                for (int i = 0; i < 48; i++)
                 {
-                    //delete current world
+                    int test = i * 16;
+                    int test2 = (i * 16) + 15;
+                    int test3 = i + 15 * 16;
+                    int test4 = i;
 
-                    ChunkManager.saveEntities();
 
-                    ChunkManager.saveAndUnloadRegions();
 
-                    for (int i = 0; i < 144; i++)
+
+                    if (test < (tempChunk.objects.Length))
                     {
-                        ChunkManager.chunkArray[i] = null;
+                        tempChunk.objects[test] = 1;
                     }
-
-                    try
+                    if (test2 < (tempChunk.objects.Length) && test2 >= 0)
                     {
-                        var dir = new DirectoryInfo(Globals.gamePath + ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
-                        dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
-                        dir.Delete(true);
-
-                        ChunkManager.fileLoader.checkAndCreateFolder(ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
-                    }
-                    catch (IOException e)
-                    {
+                        tempChunk.objects[test2] = 1;
 
                     }
+                    if (test3 < (tempChunk.objects.Length) && test3 >= 0)
+                    {
+                        tempChunk.objects[test3] = 1;
+                    }
+                    if (test4 < 16)
+                    {
+                        tempChunk.objects[test4] = 1;
+                    }
+
+
+                    //    tempChunk.objects[130] = 1;
+                    //    tempChunk.objects[131] = 1;
+                    //    tempChunk.objects[132] = 1;
+                    //    tempChunk.objects[133] = 1;
+                    //    tempChunk.objects[134] = 1;
+                    //    tempChunk.objects[135] = 1;
+
 
                 }
-            #endregion
+            }
 
+            else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                //delete current world
+
+                ChunkManager.saveEntities();
+
+                ChunkManager.saveAndUnloadRegions();
+
+                for (int i = 0; i < 144; i++)
+                {
+                    ChunkManager.chunkArray[i] = null;
+                }
+
+                try
+                {
+                    var dir = new DirectoryInfo(Globals.gamePath + ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
+                    dir.Delete(true);
+
+                    ChunkManager.fileLoader.checkAndCreateFolder(ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                }
+                catch (IOException e)
+                {
+
+                }
+
+<<<<<<< HEAD
             animationEngine.EmitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             animationEngine.Update();
             KeyMouseReader.Update();
             base.Update(gameTime);
+=======
+>>>>>>> origin/master
             }
-        
+            #endregion
+
+            KeyMouseReader.Update();
+            base.Update(gameTime);
+        }
+
 
 
         protected override void Draw(GameTime gameTime)
