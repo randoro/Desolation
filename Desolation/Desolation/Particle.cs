@@ -18,9 +18,6 @@ namespace Desolation
         public float Size { get; set; }
         public int TTL { get; set; } //TTL = time to live för partiklarna 
 
-        Rectangle srcRect;
-        Vector2 origin;
-
         public Particle(Texture2D text, Vector2 pos, Vector2 vel, float angle, float angularVel, Color color, float size, int ttl)
         {
             Text = text;

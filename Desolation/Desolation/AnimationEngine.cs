@@ -45,14 +45,6 @@ namespace Desolation
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            for (int index = 0; index < particles.Count; index++)
-            {
-                particles[index].Draw(spriteBatch);
-            }
-        }
-
         private Particle GenerateNewParticle()
         {
             Texture2D text = textures[rand.Next(textures.Count)];
@@ -65,6 +57,14 @@ namespace Desolation
             int ttl = 20 + rand.Next(40);
 
             return new Particle(text, pos, vel, angle, angularVel, color, size, ttl);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int index = 0; index < particles.Count; index++)
+            {
+                particles[index].Draw(spriteBatch);
+            }
         }
     }
 }

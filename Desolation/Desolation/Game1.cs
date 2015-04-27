@@ -28,7 +28,6 @@ namespace Desolation
         AnimationEngine animationEngine;
 
 
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -72,7 +71,7 @@ namespace Desolation
             textures.Add(Content.Load<Texture2D>("leaf"));
             textures.Add(Content.Load<Texture2D>("leaf2"));
             textures.Add(Content.Load<Texture2D>("leaf3"));
-            animationEngine = new AnimationEngine(textures, new Vector2(400, 240));
+            animationEngine = new AnimationEngine(textures, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
         }
         protected override void UnloadContent()
         {
@@ -110,6 +109,8 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            animationEngine.EmitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            animationEngine.Update();
 
             player.Update(gameTime);
             chunkManager.update(gameTime, Window);
@@ -316,13 +317,11 @@ namespace Desolation
                 {
 
                 }
-
-            animationEngine.EmitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            animationEngine.Update();
             KeyMouseReader.Update();
             base.Update(gameTime);
             }
             #endregion
+            
 
             KeyMouseReader.Update();
             base.Update(gameTime);
