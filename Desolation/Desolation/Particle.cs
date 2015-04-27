@@ -23,14 +23,14 @@ namespace Desolation
 
         public Particle(Texture2D text, Rectangle srcRect, Vector2 origin, Vector2 pos, Vector2 vel, float angle, float angularVel, Color Color, float size, int ttl)
         {
-            this.text = text;
-            this.pos = pos;
-            this.vel = vel;
-            this.angle = angle;
-            this.angularVel = angularVel;
-            this.Color = Color;
-            this.size = size;
-            this.TTL = ttl;
+            text = text;
+            pos = pos;
+            vel = vel;
+            angle = angle;
+            angularVel = angularVel;
+            Color = Color;
+            size = size;
+            TTL = ttl;
             this.srcRect = new Rectangle(0, 0, text.Width, text.Height);
             this.origin = new Vector2(text.Width / 2, text.Height / 2);
 
