@@ -21,7 +21,6 @@ namespace Desolation
         int meleeRange = 5;
         int rangedRange = 150;
         int attackspeed = 0;
-        Direction currentDirection;
         #region Constructor
         public Zombie(Vector2 pos)
             : base(pos)
@@ -36,7 +35,6 @@ namespace Desolation
         #region Methods
         public override void moveDirection(Direction direction)
         {
-            currentDirection = direction;
             base.moveDirection(direction);
         }
 
@@ -86,6 +84,14 @@ namespace Desolation
         public override void syncUpdate(GameTime gameTime)
         {
             base.checkCollision();
+
+            
+
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds; //animation
 
             if (Globals.checkRange(Globals.playerPos, position, aggroRange))
             {
@@ -139,11 +145,11 @@ namespace Desolation
                     sourceRect.Y = (frame % 4) * 16;
 
                 }
-                else
-                {
-                    currentDirection = Direction.None;
-                    sourceRect.X = 0 * 16;
-                }
+                //else
+                //{
+                //    currentDirection = Direction.None;
+                //    sourceRect.X = 0 * 16;
+                //}
                 #endregion
 
                 checkAttack();
@@ -153,13 +159,9 @@ namespace Desolation
                 currentDirection = Direction.None;
 
             }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds; //animation
 
             moveDirection(currentDirection); //rörelse
+            
             
             if (frameTimer <= 0)
             {
@@ -170,12 +172,7 @@ namespace Desolation
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-        
-            {
-
-
                 spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
-            }
             
         }
 
