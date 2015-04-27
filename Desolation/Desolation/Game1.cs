@@ -203,7 +203,7 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
-                int startpos = Globals.rand.Next(0, 255);
+                int startpos = Globals.rand.Next(195, 255);
                 int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
@@ -212,20 +212,52 @@ namespace Desolation
                     while (fis)
                     {
                         tempChunk.objects[startpos] = 1;
-                        for (int i = 0; i < Globals.rand.Next(10, 16); i++)
+                        for (int i = 0; i < Globals.rand.Next(10, 15); i++)
                         {
+
+
                             int test5 = startpos + i;
-                            
-                            if (test5 < (tempChunk.objects.Length) && test5 >= 0)
+
+
+                            if (startpos > 239)
+                            {
+                                if (test5 > 255)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 15] = 1;
+                                }
+                            }
+                            else if (startpos > 223)
+                            {
+                                if (test5 > 239)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 15] = 1;
+                                }
+                            }
+                            else if (startpos > 207)
+                            {
+                                if (test5 > 223)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 15] = 1;
+                                }
+
+                            }
+                            else if (startpos > 191)
+                            {
+                                if (test5 > 207)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 15] = 1;
+                                }
+
+                            }
+                            else if (test5 < (tempChunk.objects.Length) && test5 >= 0)
                             {
                                 tempChunk.objects[test5] = 1;
                             }
-                            if (test5<startpos+i*16)
-                            {
-                                 tempChunk = ChunkManager.chunkArray[chunkNr+1];
-                                 tempChunk.objects[test5-15] = 1;
-                                
-                            }
+
 
                         }
 
@@ -233,78 +265,86 @@ namespace Desolation
                         fis = false;
 
                     }
-
-
-                    //for (int i = 0; i < 48; i++)
-                    //{
-                    //    int test = i * 16;
-                    //    int test2 = (i * 16) + 15;
-                    //    int test3 = i + 15 * 16;
-                    //    int test4 = i;
-
-
-
-
-                    //    if (test < (tempChunk.objects.Length))
-                    //    {
-                    //        tempChunk.objects[test] = 1;
-                    //    }
-                    //    if (test2 < (tempChunk.objects.Length) && test2 >= 0)
-                    //    {
-                    //        tempChunk.objects[test2] = 1;
-
-                    //    }
-                    //    if (test3 < (tempChunk.objects.Length) && test3 >= 0)
-                    //    {
-                    //        tempChunk.objects[test3] = 1;
-                    //    }
-                    //    if (test4 < 16)
-                    //    {
-                    //        tempChunk.objects[test4] = 1;
-                    //    }
-
-
-                    //    tempChunk.objects[130] = 1;
-                    //    tempChunk.objects[131] = 1;
-                    //    tempChunk.objects[132] = 1;
-                    //    tempChunk.objects[133] = 1;
-                    //    tempChunk.objects[134] = 1;
-                    //    tempChunk.objects[135] = 1;
-                    //}
                 }
             }
-            else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
-            {
-                //delete current world
 
-                ChunkManager.saveEntities();
+                else if (KeyMouseReader.KeyPressed(Keys.F7))
+                {                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
+                Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                    for (int i = 0; i < 48; i++)
+                    {
+                        int test = i * 16;
+                        int test2 = (i * 16) + 15;
+                        int test3 = i + 15 * 16;
+                        int test4 = i;
 
-                ChunkManager.saveAndUnloadRegions();
 
-                for (int i = 0; i < 144; i++)
-                {
-                    ChunkManager.chunkArray[i] = null;
+
+
+                        if (test < (tempChunk.objects.Length))
+                        {
+                            tempChunk.objects[test] = 1;
+                        }
+                        if (test2 < (tempChunk.objects.Length) && test2 >= 0)
+                        {
+                            tempChunk.objects[test2] = 1;
+
+                        }
+                        if (test3 < (tempChunk.objects.Length) && test3 >= 0)
+                        {
+                            tempChunk.objects[test3] = 1;
+                        }
+                        if (test4 < 16)
+                        {
+                            tempChunk.objects[test4] = 1;
+                        }
+
+
+                        //    tempChunk.objects[130] = 1;
+                        //    tempChunk.objects[131] = 1;
+                        //    tempChunk.objects[132] = 1;
+                        //    tempChunk.objects[133] = 1;
+                        //    tempChunk.objects[134] = 1;
+                        //    tempChunk.objects[135] = 1;
+                        
+
+                    }
                 }
-
-                try
+        
+                else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
                 {
-                    var dir = new DirectoryInfo(Globals.gamePath + ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
-                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
-                    dir.Delete(true);
+                    //delete current world
 
-                    ChunkManager.fileLoader.checkAndCreateFolder(ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                    ChunkManager.saveEntities();
+
+                    ChunkManager.saveAndUnloadRegions();
+
+                    for (int i = 0; i < 144; i++)
+                    {
+                        ChunkManager.chunkArray[i] = null;
+                    }
+
+                    try
+                    {
+                        var dir = new DirectoryInfo(Globals.gamePath + ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                        dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
+                        dir.Delete(true);
+
+                        ChunkManager.fileLoader.checkAndCreateFolder(ChunkManager.fileLoader.currentWorldFolder + ChunkManager.fileLoader.regionFolder);
+                    }
+                    catch (IOException e)
+                    {
+
+                    }
+
                 }
-                catch (IOException e)
-                {
-
-                }
-
-            }
             #endregion
 
-            KeyMouseReader.Update();
-            base.Update(gameTime);
-        }
+                KeyMouseReader.Update();
+                base.Update(gameTime);
+            }
+        
+
 
         protected override void Draw(GameTime gameTime)
         {
