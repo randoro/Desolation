@@ -208,11 +208,11 @@ namespace Desolation
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
                 {
-                    bool fis = true;
-                    
-                        tempChunk.objects[startpos] = 1;
+
+                    #region horesentel
+                    tempChunk.objects[startpos] = 1;
                         for (int i = 0; i < Globals.rand.Next(15, 18); i++)
-                        {
+                        { bool fis = true;
 
 
                             int test5 = startpos + i;
@@ -381,7 +381,17 @@ namespace Desolation
 
                             }
                         }
-
+                    #endregion
+                        for (int i = 0; i < Globals.rand.Next(15, 18); i++)
+                        {
+                            bool fis = true;
+                           int test5 = startpos + ((i*16)+15);
+                            if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
+                            { 
+                                tempChunk.objects[test5] = 1;
+                            }
+                            
+                        }
                   
                 }
             }
