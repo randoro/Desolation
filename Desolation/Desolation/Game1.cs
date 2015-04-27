@@ -315,13 +315,10 @@ namespace Desolation
 
                 }
 
-<<<<<<< HEAD
             animationEngine.EmitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             animationEngine.Update();
             KeyMouseReader.Update();
             base.Update(gameTime);
-=======
->>>>>>> origin/master
             }
             #endregion
 
