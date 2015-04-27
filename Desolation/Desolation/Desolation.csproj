@@ -80,6 +80,7 @@
     <Compile Include="Debug\Counter.cs" />
     <Compile Include="GameObjects\Entity.cs" />
     <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="Particle.cs" />
     <Compile Include="Tag\FileLoader.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Globals.cs" />
