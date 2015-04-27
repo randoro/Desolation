@@ -203,7 +203,7 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
-                int startpos = Globals.rand.Next(195, 255);
+                int startpos = Globals.rand.Next(0, 255);
                 int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
                 Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                 if (tempChunk != null)
@@ -259,9 +259,127 @@ namespace Desolation
                                 }
 
                             }
-                            
 
+                            else if (startpos > 175)
+                            {
+                                if (test5 > 191)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
 
+                            }
+                            else if (startpos > 159)
+                            {
+                                if (test5 > 175)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 143)
+                            {
+                                if (test5 > 159)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 127)
+                            {
+                                if (test5 > 143)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 111)
+                            {
+                                if (test5 > 127)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 95)
+                            {
+                                if (test5 > 11)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 79)
+                            {
+                                if (test5 > 95)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 63)
+                            {
+                                if (test5 > 79)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 47)
+                            {
+                                if (test5 > 63)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 31)
+                            {
+                                if (test5 > 47)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos > 15)
+                            {
+                                if (test5 > 31)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
+                            else if (startpos < 15)
+                            {
+                                if (test5 > 15)
+                                {
+                                    tempChunk = ChunkManager.chunkArray[chunkNr + 1];
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
+                                }
+
+                            }
                         }
 
                   
