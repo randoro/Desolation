@@ -83,16 +83,6 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
-            base.checkCollision();
-
-            
-
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds; //animation
-
             if (Globals.checkRange(Globals.playerPos, position, aggroRange))
             {
                 #region MoveZombie
@@ -160,7 +150,19 @@ namespace Desolation
 
             }
 
+            base.checkCollision();
+
+            
+
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds; //animation
+
+
             moveDirection(currentDirection); //rörelse
+
             
             
             if (frameTimer <= 0)
