@@ -21,7 +21,7 @@ namespace Desolation
         Rectangle srcRect;
         Vector2 origin;
 
-        public Particle(Texture2D text, Rectangle srcRect, Vector2 origin, Vector2 pos, Vector2 vel, float angle, float angularVel, Color Color, float size, int ttl)
+        public Particle(Texture2D text, Vector2 pos, Vector2 vel, float angle, float angularVel, Color Color, float size, int ttl)
         {
             text = text;
             pos = pos;
