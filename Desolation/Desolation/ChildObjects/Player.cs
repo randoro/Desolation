@@ -132,7 +132,6 @@ namespace Desolation
 
         public override void moveDirection(Direction direction)
         {
-            oldPosition = position;
             base.moveDirection(direction);
         }
 

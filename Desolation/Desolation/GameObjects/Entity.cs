@@ -53,7 +53,6 @@ namespace Desolation
             if (position.X > Globals.oldPlayerPos.X - 1000 && position.X < Globals.oldPlayerPos.X + 1000 && position.Y > Globals.oldPlayerPos.Y - 1000 && position.Y < Globals.oldPlayerPos.Y + 1000)
             {
                 currentDirection = direction;
-                oldPosition = position;
                 //rörelse
                 realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
                 switch (direction)
@@ -138,15 +137,30 @@ namespace Desolation
                             surroundingBlocks[((i + 1) * 3 + j + 1)] = currentChunk.blocks[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16];
                             surroundingObjects[((i + 1) * 3 + j + 1)] = currentChunk.objects[surroundingBlocksPos[((i + 1) * 3 + j + 1)].X + surroundingBlocksPos[((i + 1) * 3 + j + 1)].Y * 16];
 
-
-                            if (surroundingObjects[4] == 1)
-                                    {
-                                        //position = oldPosition;
-                                        
-                                            moveDirection(Globals.getOppositeDirection(currentDirection));
-                                        
-                                        //currentDirection = Direction.None;
-                                    }
+                            if ((this is Player))
+                            {
+                                if (surroundingObjects[4] == 1)
+                                {
+                                    moveDirection(Globals.getOppositeDirection(currentDirection));
+                                    currentDirection = Direction.None;
+                                }
+                            }
+                            else
+                            {
+                                if (surroundingObjects[4] == 1)
+                                {
+                                    position = oldPosition;
+                                    moveDirection(Globals.getOppositeDirection(currentDirection));
+                                    
+                                }
+                                else
+                                {
+                                        oldPosition = position;
+                                }
+                            }
+                            
+                                
+                            
 
                             //switch (currentDirection)
                             //{

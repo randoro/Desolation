@@ -85,6 +85,8 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
+            base.checkCollision();
+
             if (Globals.checkRange(Globals.playerPos, position, aggroRange))
             {
                 #region MoveZombie

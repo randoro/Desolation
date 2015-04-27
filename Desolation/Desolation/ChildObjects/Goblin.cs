@@ -16,7 +16,7 @@ namespace Desolation
     {
         Random rnd = new Random();
 
-        Direction currentDirection;
+        
 
         double totalElapsedSeconds = 2;
         const double MovementChangeTimeSeconds = 1.0; //seconds
@@ -39,12 +39,14 @@ namespace Desolation
 
         public override void syncUpdate(GameTime gameTime)
         {
-            base.checkCollision();
 
+            base.checkCollision();
         }
 
         public override void Update(GameTime gameTime)
         {
+            
+
             totalElapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
 
             if (totalElapsedSeconds >= MovementChangeTimeSeconds)

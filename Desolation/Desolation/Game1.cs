@@ -59,7 +59,7 @@ namespace Desolation
             Globals.oldPlayerPos = player.position;
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
 
-            for (int i = 0; i < 0; i++)
+            for (int i = 0; i < 10; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
