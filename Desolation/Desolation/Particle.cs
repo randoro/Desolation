@@ -18,7 +18,10 @@ namespace Desolation
         public float size { get; set; }
         public int TTL { get; set; } //TTL = time to live för partiklarna 
 
-        public Particle(Texture2D text, Vector2 pos, Vector2 vel, float angle, float angularVel, Color Color, float size, int ttl)
+        Rectangle srcRect;
+        Vector2 origin;
+
+        public Particle(Texture2D text, Rectangle srcRect, Vector2 origin, Vector2 pos, Vector2 vel, float angle, float angularVel, Color Color, float size, int ttl)
         {
             this.text = text;
             this.pos = pos;
@@ -28,17 +31,24 @@ namespace Desolation
             this.Color = Color;
             this.size = size;
             this.TTL = ttl;
+            this.srcRect = new Rectangle(0, 0, text.Width, text.Height);
+            this.origin = new Vector2(text.Width / 2, text.Height / 2);
+
+            //Rectangle srcRect = new Rectangle(0, 0, text.Width, text.Height);
+            //Vector2 origin = new Vector2(text.Width / 2, text.Height / 2);
 
         }
 
         public void Update()
         {
-
+            TTL--;
+            pos += vel;
+            angle += angularVel;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(text, pos, srcRect, Color, angle, origin, size, SpriteEffects.None, 0f);
         }
     }
 }
