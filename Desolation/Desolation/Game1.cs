@@ -209,22 +209,25 @@ namespace Desolation
                 if (tempChunk != null)
                 {
                     bool fis = true;
-                    while (fis)
-                    {
+                    
                         tempChunk.objects[startpos] = 1;
                         for (int i = 0; i < Globals.rand.Next(10, 15); i++)
                         {
 
 
                             int test5 = startpos + i;
-
+                             if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
+                            {
+                                tempChunk.objects[test5] = 1;
+                            }
 
                             if (startpos > 239)
                             {
                                 if (test5 > 255)
                                 {
                                     tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
                                 }
                             }
                             else if (startpos > 223)
@@ -232,7 +235,8 @@ namespace Desolation
                                 if (test5 > 239)
                                 {
                                     tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
                                 }
                             }
                             else if (startpos > 207)
@@ -240,7 +244,8 @@ namespace Desolation
                                 if (test5 > 223)
                                 {
                                     tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
                                 }
 
                             }
@@ -249,22 +254,17 @@ namespace Desolation
                                 if (test5 > 207)
                                 {
                                     tempChunk = ChunkManager.chunkArray[chunkNr + 1];
-                                    tempChunk.objects[test5 - 15] = 1;
+                                    tempChunk.objects[test5 - 16] = 1;
+                                    fis = false;
                                 }
 
                             }
-                            else if (test5 < (tempChunk.objects.Length) && test5 >= 0)
-                            {
-                                tempChunk.objects[test5] = 1;
-                            }
+                            
 
 
                         }
 
-
-                        fis = false;
-
-                    }
+                  
                 }
             }
 
