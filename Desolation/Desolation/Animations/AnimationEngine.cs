@@ -10,25 +10,53 @@ namespace Desolation
     class AnimationEngine
     {
         ParticleEngine particleEngine;
-        int total;
 
+        List<Animation> animations;
 
         public AnimationEngine()
         {
             particleEngine = new ParticleEngine(new Vector2(2100, 2100), 0);
-            total = 10;
+            animations = new List<Animation>();
+
+            animations.Add(new Animation(AnimationType.Smoke, new Vector2(2100, 2100), 200));
         }
 
         public void update(GameTime gameTime)
         {
-
-            for (int i = 0; i < total; i++)
+            for (int i = animations.Count - 1; i >= 0; i--)
             {
-                particleEngine.particles.Add(particleEngine.GenerateSmokeParticle());
+                animations[i].TTL--;
+                if (animations[i].TTL < 0)
+                {
+                    animations.RemoveAt(i);
+                }
+                else
+                {
+                    addParticlesToAnimation(animations[i]);
+                }
+
             }
 
             particleEngine.update(gameTime);
 
+        }
+
+        public void addParticlesToAnimation(Animation animation)
+        {
+            AnimationType type = animation.animationType;
+            switch (type)
+            {
+                case AnimationType.FadeOutAndIn:
+                    break;
+                case AnimationType.Smoke:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        particleEngine.particles.Add(particleEngine.GenerateSmokeParticle());
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void draw(SpriteBatch spriteBatch)

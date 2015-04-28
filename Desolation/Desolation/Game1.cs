@@ -55,23 +55,23 @@ namespace Desolation
             Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
             textureManager = new TextureManager(Content);
-
+            animationEngine = new AnimationEngine();
             frameXNACounter = new Counter(); //debug
 
 
             player = new Player(new Vector2(2000, 2000));
             Globals.playerPos = player.position;
             Globals.oldPlayerPos = player.position;
-            //ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
+            ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
 
             for (int i = 0; i < 10; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
 
-            //ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
+            ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
-            animationEngine = new AnimationEngine();
+            
         }
         protected override void UnloadContent()
         {
