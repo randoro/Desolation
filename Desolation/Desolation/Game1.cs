@@ -25,7 +25,7 @@ namespace Desolation
 
         bool debug = false;
 
-        ParticleEngine animationEngine;
+        AnimationEngine animationEngine;
 
 
         public Game1()
@@ -67,7 +67,7 @@ namespace Desolation
 
             ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
-            animationEngine = new ParticleEngine(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), 0);
+            animationEngine = new AnimationEngine();
         }
         protected override void UnloadContent()
         {
@@ -105,8 +105,7 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            animationEngine.emitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            animationEngine.Update();
+            animationEngine.update(gameTime);
 
             player.Update(gameTime);
             chunkManager.update(gameTime, Window);
@@ -376,7 +375,7 @@ namespace Desolation
 
             chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
-            animationEngine.Draw(spriteBatch);
+            animationEngine.draw(spriteBatch);
             
 
             spriteBatch.End();

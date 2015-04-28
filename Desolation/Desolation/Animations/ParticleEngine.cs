@@ -10,10 +10,9 @@ namespace Desolation
 {
     public class ParticleEngine
     {
-        private Random rand;
         public Vector2 emitterLocation { get; set; }
 
-        private List<Particle> particles;
+        public List<Particle> particles;
 
         public ParticleEngine(Vector2 loaction, int particleType)
         {
@@ -22,14 +21,9 @@ namespace Desolation
             
         }
 
-        public void Update()
+        public void update(GameTime gameTime)
         {
-            //int total = 10;
-
-            //for (int i = 0; i < total; i++)
-            //{
-            //    particles.Add(GenerateSmokeParticle());
-            //}
+            
 
             for (int particle = 0; particle < particles.Count; particle++)
             {
@@ -42,7 +36,7 @@ namespace Desolation
             }
         }
 
-        private Particle GenerateSmokeParticle()
+        public Particle GenerateSmokeParticle()
         {
             Vector2 pos = emitterLocation;
             Vector2 vel = new Vector2(1f * (float)(Globals.rand.NextDouble() * 2 - 1), 1f * (float)(Globals.rand.NextDouble() * 2 - 1));
@@ -55,7 +49,7 @@ namespace Desolation
             return new Particle(TextureManager.leaf, pos, vel, angle, angularVel, color, size, ttl);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch)
         {
             for (int index = 0; index < particles.Count; index++)
             {
