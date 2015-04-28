@@ -58,14 +58,14 @@ namespace Desolation
             player = new Player(new Vector2(2000, 2000));
             Globals.playerPos = player.position;
             Globals.oldPlayerPos = player.position;
-            ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
+            //ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
 
             for (int i = 0; i < 10; i++)
             {
                 ChunkManager.entityList.Add(new Goblin(new Vector2(i * 0.1f + 2000, i * 0.1f + 2000)));
             }
 
-            ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
+            //ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
             animationEngine = new AnimationEngine();
         }
@@ -347,8 +347,16 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "SyncCounter:" + ChunkManager.syncCounter.frameRate, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-                textPos += 15;
+                if(ChunkManager.regionArray[4] != null) 
+                {
+                    spriteBatch.DrawString(Globals.font, "RegionX:"+ ChunkManager.regionArray[4].xPosRegion, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                    textPos += 15;
+                }
+                if (ChunkManager.regionArray[4] != null)
+                {
+                    spriteBatch.DrawString(Globals.font, "RegionY:" + ChunkManager.regionArray[4].yPosRegion, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                    textPos += 15;
+                }
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);

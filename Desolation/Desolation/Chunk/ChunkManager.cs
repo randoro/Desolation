@@ -166,6 +166,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -212,6 +213,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -303,6 +305,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -347,6 +350,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -392,6 +396,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -435,6 +440,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
@@ -474,6 +480,7 @@ namespace Desolation
                                         if (chunkNr != -1)
                                         {
                                             saveEntityToChunk(ref e, chunkNr);
+                                            entityList.Remove(e);
                                         }
                                     }
                                 }
