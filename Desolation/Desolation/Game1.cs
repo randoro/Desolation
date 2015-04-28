@@ -67,11 +67,7 @@ namespace Desolation
 
             ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
-            List<Texture2D> textures = new List<Texture2D>();
-            textures.Add(Content.Load<Texture2D>("leaf"));
-            textures.Add(Content.Load<Texture2D>("leaf2"));
-            textures.Add(Content.Load<Texture2D>("leaf3"));
-            animationEngine = new ParticleEngine(textures, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+            animationEngine = new ParticleEngine(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), 0);
         }
         protected override void UnloadContent()
         {
@@ -109,7 +105,7 @@ namespace Desolation
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            animationEngine.EmitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            animationEngine.emitterLocation = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             animationEngine.Update();
 
             player.Update(gameTime);

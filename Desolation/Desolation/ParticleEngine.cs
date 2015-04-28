@@ -11,17 +11,14 @@ namespace Desolation
     public class ParticleEngine
     {
         private Random rand;
-        public Vector2 EmitterLocation { get; set; }
+        public Vector2 emitterLocation { get; set; }
 
         private List<Particle> particles;
-        private List<Texture2D> textures;
 
-        public ParticleEngine(List<Texture2D> textures, Vector2 loaction)
+        public ParticleEngine(Vector2 loaction, int particleType)
         {
-            EmitterLocation = loaction;
-            this.textures = textures;
+            emitterLocation = loaction;
             this.particles = new List<Particle>();
-            rand = new Random();
             
         }
 
@@ -31,7 +28,7 @@ namespace Desolation
 
             for (int i = 0; i < total; i++)
             {
-                particles.Add(GenerateNewParticle());
+                particles.Add(GenerateSmokeParticle());
             }
 
             for (int particle = 0; particle < particles.Count; particle++)
@@ -45,18 +42,22 @@ namespace Desolation
             }
         }
 
-        private Particle GenerateNewParticle()
+        public void makeSmoke()
         {
-            Texture2D text = textures[rand.Next(textures.Count)];
-            Vector2 pos = EmitterLocation;
-            Vector2 vel = new Vector2(1f * (float)(rand.NextDouble() * 2 - 1), 1f * (float)(rand.NextDouble() * 2 - 1));
-            float angle = 0;
-            float angularVel = 0.1f * (float)(rand.NextDouble() * 2 - 1);
-            Color color = new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble());
-            float size = (float)rand.NextDouble();
-            int ttl = 20 + rand.Next(40);
 
-            return new Particle(text, pos, vel, angle, angularVel, color, size, ttl);
+        }
+
+        private Particle GenerateSmokeParticle()
+        {
+            Vector2 pos = emitterLocation;
+            Vector2 vel = new Vector2(1f * (float)(Globals.rand.NextDouble() * 2 - 1), 1f * (float)(Globals.rand.NextDouble() * 2 - 1));
+            float angle = 0;
+            float angularVel = 0.1f * (float)(Globals.rand.NextDouble() * 2 - 1);
+            Color color = Color.White; //((float)Globals.rand.NextDouble(), (float)Globals.rand.NextDouble(), (float)Globals.rand.NextDouble());
+            float size = (float)Globals.rand.NextDouble();
+            int ttl = 20 + Globals.rand.Next(40);
+
+            return new Particle(TextureManager.leaf, pos, vel, angle, angularVel, color, size, ttl);
         }
 
         public void Draw(SpriteBatch spriteBatch)
