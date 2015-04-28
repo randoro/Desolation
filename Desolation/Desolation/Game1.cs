@@ -198,10 +198,12 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F4))
             {
+                animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100));
                 ChunkManager.changeWorld(@"heaven\");
             }
             else if (KeyMouseReader.KeyPressed(Keys.F5))
             {
+                animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100));
                 ChunkManager.changeWorld(@"mainworld\");
             }
             else if (KeyMouseReader.KeyPressed(Keys.Space))
@@ -339,7 +341,7 @@ namespace Desolation
             Globals.cameraPos = new Vector2(-CamPos3.X, -CamPos3.Y);
 
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, theMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null, null, theMatrix);
 
             if (debug)
             {

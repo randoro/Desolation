@@ -11,7 +11,7 @@ namespace Desolation
     {
         ParticleEngine particleEngine;
 
-        List<Animation> animations;
+        public List<Animation> animations;
 
         public AnimationEngine()
         {
@@ -20,7 +20,7 @@ namespace Desolation
 
             animations.Add(new Animation(AnimationType.Smoke, new Vector2(2100, 2100), 200));
 
-            animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 2000));
+            animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100));
         }
 
         public void update(GameTime gameTime)
@@ -50,6 +50,15 @@ namespace Desolation
             {
                 case AnimationType.FadeOutAndIn:
                     animation.position = new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y);
+                    if(animation.TTL < animation.startTTL / 2) 
+                    {
+                        animation.alpha = (float)((double)animation.TTL / ((double)animation.startTTL / 2));
+                    }
+                    else
+                    {
+                        animation.alpha = 1.0f - (float)(((double)animation.TTL - (animation.startTTL / 2)) / ((double)animation.startTTL / 2));
+                    }
+                    
                     break;
                 case AnimationType.Smoke:
                     for (int i = 0; i < 10; i++)

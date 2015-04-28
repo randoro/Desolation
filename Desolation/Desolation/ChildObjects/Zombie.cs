@@ -174,7 +174,7 @@ namespace Desolation
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-                spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureManager.zombieSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 0.8f);
             
         }
 
