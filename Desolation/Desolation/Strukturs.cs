@@ -26,7 +26,7 @@ namespace Desolation
         {
             Vector2 vec;
             int startpos = Globals.rand.Next(0, 255);
-
+            int test;
             int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
             Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
             if (tempChunk != null)
@@ -38,12 +38,12 @@ namespace Desolation
                     {
                         //kålla för varje blåck om det är i ny chunk 
                         tempChunk = ChunkManager.chunkArray[chunkNr];
-
-                        vec = new Vector2((i + startpos) / 16, (i + startpos) % 16);
+                        
+                        vec = new Vector2((i + startpos) % 16, (i + startpos) / 16);
 
                         chunkNr = Game1.player.getCurrentChunkNrInArray(vec, Globals.playerPos);
-
-                        tempChunk.objects[startpos+i] = 1;
+                        test = startpos + i;
+                        tempChunk.objects[test] = 1;
                     }
                 }
             }
