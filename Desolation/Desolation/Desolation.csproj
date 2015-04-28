@@ -72,7 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimationEngine.cs" />
+    <Compile Include="ParticleEngine.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chunk\Chunk.cs" />
     <Compile Include="Chunk\ChunkManager.cs" />

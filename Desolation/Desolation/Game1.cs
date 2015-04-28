@@ -25,7 +25,7 @@ namespace Desolation
 
         bool debug = false;
 
-        AnimationEngine animationEngine;
+        ParticleEngine animationEngine;
 
 
         public Game1()
@@ -71,7 +71,7 @@ namespace Desolation
             textures.Add(Content.Load<Texture2D>("leaf"));
             textures.Add(Content.Load<Texture2D>("leaf2"));
             textures.Add(Content.Load<Texture2D>("leaf3"));
-            animationEngine = new AnimationEngine(textures, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+            animationEngine = new ParticleEngine(textures, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
         }
         protected override void UnloadContent()
         {
