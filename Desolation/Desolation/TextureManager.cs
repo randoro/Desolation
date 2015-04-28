@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,12 +22,14 @@ namespace Desolation
 
         public static Texture2D leaf3 { set; get; }
 
+        public static Texture2D fillingTexture { set; get; }
+
 
         ContentManager contentManager;
 
         byte currentskin;
 
-        public TextureManager(ContentManager contentManager)
+        public TextureManager(ContentManager contentManager, GraphicsDevice graphics)
         {
             this.contentManager = contentManager;
 
@@ -38,6 +41,9 @@ namespace Desolation
             leaf = contentManager.Load<Texture2D>("leaf");
             leaf2 = contentManager.Load<Texture2D>("leaf2");
             leaf3 = contentManager.Load<Texture2D>("leaf3");
+
+            fillingTexture = new Texture2D(graphics, 1, 1);
+            fillingTexture.SetData(new[] { Color.White });
             currentskin = 0;
         }
 

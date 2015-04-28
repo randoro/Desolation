@@ -54,7 +54,7 @@ namespace Desolation
             Globals.rand = new Random();
             Globals.font = Content.Load<SpriteFont>("font");
             chunkManager = new ChunkManager();
-            textureManager = new TextureManager(Content);
+            textureManager = new TextureManager(Content, graphics.GraphicsDevice);
             animationEngine = new AnimationEngine();
             frameXNACounter = new Counter(); //debug
 
@@ -334,55 +334,57 @@ namespace Desolation
         protected override void Draw(GameTime gameTime)
         {
             frameXNACounter.increaseCounter();
+            Matrix theMatrix = Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0);
+            Vector3 CamPos3 = theMatrix.Translation;
+            Globals.cameraPos = new Vector2(-CamPos3.X, -CamPos3.Y);
 
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0));
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, theMatrix);
 
             if (debug)
             {
-                Matrix tempMatrix = Matrix.CreateTranslation(Globals.screenX / 2 - player.position.X, Globals.screenY / 2 - player.position.Y, 0);
-                Vector3 CamPos3 = tempMatrix.Translation;
-                Vector2 CamPos2 = new Vector2(-CamPos3.X, -CamPos3.Y);
+                
+                
                 int textPos = 5;
-                spriteBatch.DrawString(Globals.font, "PlayerX:" + Globals.playerPos.X, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "PlayerX:" + Globals.playerPos.X, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "PlayerY:" + Globals.playerPos.Y, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "PlayerY:" + Globals.playerPos.Y, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "PlayerHP:" + Game1.player.health, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "PlayerHP:" + Game1.player.health, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "XNAFrameRate:" + frameXNACounter.frameRate, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "XNAFrameRate:" + frameXNACounter.frameRate, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "SyncCounter:" + ChunkManager.syncCounter.frameRate, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "SyncCounter:" + ChunkManager.syncCounter.frameRate, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 if(ChunkManager.regionArray[4] != null) 
                 {
-                    spriteBatch.DrawString(Globals.font, "RegionX:"+ ChunkManager.regionArray[4].xPosRegion, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                    spriteBatch.DrawString(Globals.font, "RegionX:" + ChunkManager.regionArray[4].xPosRegion, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                     textPos += 15;
                 }
                 if (ChunkManager.regionArray[4] != null)
                 {
-                    spriteBatch.DrawString(Globals.font, "RegionY:" + ChunkManager.regionArray[4].yPosRegion, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                    spriteBatch.DrawString(Globals.font, "RegionY:" + ChunkManager.regionArray[4].yPosRegion, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                     textPos += 15;
                 }
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(CamPos2.X + 10, CamPos2.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
 
             }

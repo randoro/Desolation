@@ -22,6 +22,7 @@ namespace Desolation
         public static readonly byte[] dataTypeSizes = { 0, 1, 2, 4, 8, 4, 8, 0, 0, 0, 0, 0 }; //datatypes in order of TagID's sizes
         public static Random rand;
         public static Vector2 playerPos;
+        public static Vector2 cameraPos;
         public static int currentPlayerChunkXPos;
         public static int currentPlayerChunkYPos;
         public static Vector2 oldPlayerPos;

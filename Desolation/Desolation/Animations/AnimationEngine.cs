@@ -19,6 +19,8 @@ namespace Desolation
             animations = new List<Animation>();
 
             animations.Add(new Animation(AnimationType.Smoke, new Vector2(2100, 2100), 200));
+
+            animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 2000));
         }
 
         public void update(GameTime gameTime)
@@ -47,6 +49,7 @@ namespace Desolation
             switch (type)
             {
                 case AnimationType.FadeOutAndIn:
+                    animation.position = new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y);
                     break;
                 case AnimationType.Smoke:
                     for (int i = 0; i < 10; i++)
@@ -62,6 +65,11 @@ namespace Desolation
         public void draw(SpriteBatch spriteBatch)
         {
             particleEngine.draw(spriteBatch);
+
+            foreach(Animation e in animations) 
+            {
+                e.draw(spriteBatch);
+            }
         }
     }
 }
