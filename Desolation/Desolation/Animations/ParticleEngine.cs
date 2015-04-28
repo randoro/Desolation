@@ -24,12 +24,12 @@ namespace Desolation
 
         public void Update()
         {
-            int total = 10;
+            //int total = 10;
 
-            for (int i = 0; i < total; i++)
-            {
-                particles.Add(GenerateSmokeParticle());
-            }
+            //for (int i = 0; i < total; i++)
+            //{
+            //    particles.Add(GenerateSmokeParticle());
+            //}
 
             for (int particle = 0; particle < particles.Count; particle++)
             {
@@ -40,11 +40,6 @@ namespace Desolation
                     particle--;
                 }
             }
-        }
-
-        public void makeSmoke()
-        {
-
         }
 
         private Particle GenerateSmokeParticle()
