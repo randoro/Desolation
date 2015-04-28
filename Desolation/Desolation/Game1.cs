@@ -211,7 +211,7 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
-                strukturs.Hus();
+                strukturs.Hustest();
             }
             //{
             //    int startpos = Globals.rand.Next(0, 255);
