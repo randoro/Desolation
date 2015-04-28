@@ -13,6 +13,7 @@ namespace Desolation
     public enum EntityID { Player, Goblin, Zombie, Deer };
     public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None};
 
+    public enum AnimationType { FadeOutAndIn, Smoke }
     public enum ItemType { Melee, Ranged, Effect }
     static class Globals
     {
