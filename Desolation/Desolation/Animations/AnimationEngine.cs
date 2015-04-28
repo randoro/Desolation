@@ -50,13 +50,17 @@ namespace Desolation
             {
                 case AnimationType.FadeOutAndIn:
                     animation.position = new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y);
-                    if(animation.TTL < animation.startTTL / 2) 
+                    if(animation.TTL < animation.startTTL / 8) 
                     {
-                        animation.alpha = (float)((double)animation.TTL / ((double)animation.startTTL / 2));
+                        animation.alpha = (float)((double)animation.TTL / ((double)animation.startTTL / 8));
+                    }
+                    else if(animation.TTL > 7 * animation.startTTL / 8) 
+                    {
+                        animation.alpha = 1.0f - (float)(((double)animation.TTL - (7 * animation.startTTL / 8)) / ((double)animation.startTTL / 8));
                     }
                     else
                     {
-                        animation.alpha = 1.0f - (float)(((double)animation.TTL - (animation.startTTL / 2)) / ((double)animation.startTTL / 2));
+                        animation.alpha = 1.0f;
                     }
                     
                     break;
