@@ -18,9 +18,9 @@ namespace Desolation
             particleEngine = new ParticleEngine(new Vector2(2100, 2100), 0);
             animations = new List<Animation>();
 
-            animations.Add(new Animation(AnimationType.Smoke, new Vector2(2100, 2100), 200));
+            animations.Add(new Animation(AnimationType.Smoke, new Vector2(2100, 2100), 200, 200));
 
-            animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100));
+            animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 70, 100));
         }
 
         public void update(GameTime gameTime)
