@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Desolation
 {
-    class Strukturs
+    public class Strukturs
     {
         public Strukturs()
         {

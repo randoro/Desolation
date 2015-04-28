@@ -20,6 +20,8 @@ namespace Desolation
         TextureManager textureManager;
         Counter frameXNACounter;
         public static Player player;
+        public Strukturs strukturs;
+
         public static GameWindow gameWindow;
         public static Vector2 mousePosOnScreen;
 
@@ -32,6 +34,8 @@ namespace Desolation
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            strukturs = new Strukturs();
+
         }
 
         protected override void Initialize()
@@ -207,41 +211,44 @@ namespace Desolation
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
-                int startpos = Globals.rand.Next(0, 255);
-                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
-                Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
-                if (tempChunk != null)
-                {
-
-                    #region horesentel
-                    tempChunk.objects[startpos] = 1;
-                    for (int i = 0; i < Globals.rand.Next(15, 18); i++)
-                    {
-                        bool fis = true;
-                        int test5 = startpos + i;
-                        if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
-                        {
-                            tempChunk = ChunkManager.chunkArray[chunkNr];
-                            tempChunk.objects[test5] = 1;
-                        }
-
-
-                    }
-                    #endregion
-                    for (int i = 0; i < Globals.rand.Next(5, 15); i++)
-                    {
-                        bool fis = true;
-                        int test5 = startpos + ((i * 16) + 15);
-                        if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
-                        {
-                            tempChunk = ChunkManager.chunkArray[chunkNr];
-                            tempChunk.objects[test5] = 1;
-                        }
-
-                    }
-
-                }
+                strukturs.Hus();
             }
+            //{
+            //    int startpos = Globals.rand.Next(0, 255);
+            //    int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
+            //    Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+            //    if (tempChunk != null)
+            //    {
+
+            //        #region horesentel
+            //        tempChunk.objects[startpos] = 1;
+            //        for (int i = 0; i < Globals.rand.Next(15, 18); i++)
+            //        {
+            //            bool fis = true;
+            //            int test5 = startpos + i;
+            //            if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
+            //            {
+            //                tempChunk = ChunkManager.chunkArray[chunkNr];
+            //                tempChunk.objects[test5] = 1;
+            //            }
+
+
+            //        }
+            //        #endregion
+            //        for (int i = 0; i < Globals.rand.Next(5, 15); i++)
+            //        {
+            //            bool fis = true;
+            //            int test5 = startpos + ((i * 16) + 15);
+            //            if (test5 < (tempChunk.objects.Length) && test5 >= 0 && fis)
+            //            {
+            //                tempChunk = ChunkManager.chunkArray[chunkNr];
+            //                tempChunk.objects[test5] = 1;
+            //            }
+
+            //        }
+
+            //    }
+            //}
 
             else if (KeyMouseReader.KeyPressed(Keys.F7))
             {
