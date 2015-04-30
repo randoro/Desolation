@@ -32,7 +32,7 @@ namespace Desolation
             if (tempChunk != null)
             {
 
-                for (int i = 0; i < Globals.rand.Next(10, 25); i++)
+                for (int i = 0; i < Globals.rand.Next(100, 250); i++)
                 {
                     if (chunkNr != -1)
                     {
@@ -43,7 +43,7 @@ namespace Desolation
   
                         test = startpos + i;
                        // chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos,vec*test );
-                        chunkNr = Game1.player.getCurrentChunkNrInArray(vec , Globals.playerPos);
+                        chunkNr = Game1.player.getCurrentChunkNrInArray(vec+Globals.playerPos , Globals.playerPos);
                         if (tempChunk != null)
                         {
                             if (test < (tempChunk.objects.Length) && test >= 0)
