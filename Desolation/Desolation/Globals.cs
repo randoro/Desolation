@@ -264,5 +264,16 @@ namespace Desolation
             //return 0;
             //π(a,b)=1/2(a+b)(a+b+1)+b
         }
+
+        public static short[] getUniqueNumberReverse(int z)
+        {
+            short[] pair = new short[2];
+            int t = (int)Math.Floor((-1D + Math.Sqrt(1D + 8 * z)) / 2D);
+            int x = t * (t + 3) / 2 - z;
+            int y = z - t * (t + 1) / 2;
+            pair[0] = (short)x;
+            pair[1] = (short)y;
+            return pair;
+        }
     }
 }

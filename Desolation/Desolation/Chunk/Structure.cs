@@ -15,6 +15,8 @@ namespace Desolation
         {
             this.structureCenterX = structureCenterX;
             this.structureCenterY = structureCenterY;
+
+            structureID = Globals.getUniqueNumber(structureCenterX, structureCenterY);
             
         }
     }
