@@ -65,7 +65,7 @@ namespace Desolation
             if (tempChunk != null)
             {
 
-                #region horesentel
+           
                 tempChunk.objects[startpos] = 1;
                 for (int i = 0; i < Globals.rand.Next(15, 18); i++)
                 {
@@ -79,7 +79,7 @@ namespace Desolation
 
 
                 }
-                #endregion
+             
                 for (int i = 0; i < Globals.rand.Next(5, 15); i++)
                 {
                     bool fis = true;
