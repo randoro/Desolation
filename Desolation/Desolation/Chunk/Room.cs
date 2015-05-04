@@ -8,11 +8,8 @@ namespace Desolation
 {
     class Room
     {
-        Rectangle area;
-        int innerPositionX;
-        int innerPositionY;
-        int width;
-        int height;
+        public Rectangle area;
+        public int structureID { set; get; }
 
         public Room(int innerPositionX, int innerPositionY, int width, int height)
         {

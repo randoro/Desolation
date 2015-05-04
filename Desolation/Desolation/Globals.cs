@@ -255,5 +255,14 @@ namespace Desolation
                     break;
             }
         }
+
+
+
+        public static int getUniqueNumber(int firstNr, int secondNr) //Cantor pairing function
+        {
+            return ((firstNr+secondNr)*(firstNr+secondNr+1)/2)+secondNr;
+            //return 0;
+            //π(a,b)=1/2(a+b)(a+b+1)+b
+        }
     }
 }
