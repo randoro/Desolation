@@ -32,6 +32,7 @@ namespace Desolation
         public static readonly int globalMeleeRange = 2;
         public static readonly int globalRangedRange = 50;
         public static long ticksLastChunkLoad = 0;
+        public static int currentStructureID; //structure player is inside
         public static SpriteFont font;
 
 

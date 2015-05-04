@@ -15,6 +15,8 @@ namespace Desolation
         public static Chunk[] chunkArray;
         public static Region[] regionArray;
         public static List<Entity> entityList;
+        public static List<Structure> structureList;
+        public static List<Room> roomList;
         public static Counter syncCounter;
 
         int lastRegionX;
@@ -32,9 +34,15 @@ namespace Desolation
             fileLoader = new FileLoader();
             regionArray = new Region[9];
             entityList = new List<Entity>();
+            roomList = new List<Room>();
+            structureList = new List<Structure>();
 
             syncCounter = new Counter(); //debug
             chunkArray = new Chunk[144];
+
+            Structure tempStruct = new Structure(2000, 2000);
+            tempStruct.generateRooms();
+            structureList.Add(tempStruct);
 
         }
 
@@ -50,6 +58,16 @@ namespace Desolation
                 if (ChunkManager.entityList[i].health <= 0)
                 {
                     ChunkManager.entityList.RemoveAt(i);
+                }
+            }
+
+            Globals.currentStructureID = 0;
+            for (int i = ChunkManager.roomList.Count - 1; i >= 0; i--)
+            {
+                if (ChunkManager.roomList[i].area.Contains((int)Globals.playerPos.X, (int)Globals.playerPos.Y))
+                {
+                    Globals.currentStructureID = ChunkManager.roomList[i].structureID;
+                    break;
                 }
             }
 
@@ -531,6 +549,11 @@ namespace Desolation
             foreach (Entity e in entityList)
             {
                 e.Draw(spriteBatch);
+            }
+
+            foreach (Room e in roomList)
+            {
+                e.draw(spriteBatch); //draws roof
             }
         }
 

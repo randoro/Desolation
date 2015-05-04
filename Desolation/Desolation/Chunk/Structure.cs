@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Desolation
 {
-    class Structure
+    public class Structure
     {
         public int structureCenterX { set; get; }
         public int structureCenterY { set; get; }
@@ -18,6 +18,11 @@ namespace Desolation
 
             structureID = Globals.getUniqueNumber(structureCenterX, structureCenterY);
             
+        }
+
+        public void generateRooms()
+        {
+            ChunkManager.roomList.Add(new Room(structureCenterX - 64, structureCenterY - 32, 128, 64, structureID));
         }
     }
 }
