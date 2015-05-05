@@ -7,24 +7,27 @@ namespace Desolation
 {
     public class Structure
     {
-        public int structureCenterX { set; get; }
-        public int structureCenterY { set; get; }
-        public int structureID { set; get; }
+        public int structureCenterBlockX { set; get; }
+        public int structureCenterBlockY { set; get; }
+        public uint structureID { set; get; }
 
-        public Structure(int structureCenterX, int structureCenterY)
+        public Structure(int structureCenterBlockX, int structureCenterBlockY)
         {
-            this.structureCenterX = structureCenterX;
-            this.structureCenterY = structureCenterY;
+            this.structureCenterBlockX = structureCenterBlockX;
+            this.structureCenterBlockY = structureCenterBlockY;
 
-            structureID = Globals.getUniqueNumber(structureCenterX, structureCenterY);
+
+            uint posStructureCenterX = Globals.getUniquePositiveFromAny(structureCenterBlockX);
+            uint posStructureCenterY = Globals.getUniquePositiveFromAny(structureCenterBlockY);
+            structureID = Globals.getUniqueNumber(posStructureCenterX, posStructureCenterY);
             
         }
 
         public void generateRooms()
         {
-            ChunkManager.roomList.Add(new Room(structureCenterX - 64, structureCenterY - 32, 128, 64, structureID));
+            ChunkManager.roomList.Add(new Room(structureCenterBlockX*16 - 64, structureCenterBlockY*16 - 32, 128, 64, structureID));
 
-            ChunkManager.roomList.Add(new Room(structureCenterX - 64 + 200, structureCenterY - 32 + 200, 128, 64, structureID));
+            ChunkManager.roomList.Add(new Room(structureCenterBlockX*16 - 64 + 200, structureCenterBlockY*16 - 32 + 200, 128, 64, structureID));
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Desolation
     public class Room
     {
         public Rectangle area;
-        public int structureID { set; get; }
+        public uint structureID { set; get; }
 
-        public Room(int innerPositionX, int innerPositionY, int width, int height, int structureID)
+        public Room(int innerPositionX, int innerPositionY, int width, int height, uint structureID)
         {
             area = new Rectangle(innerPositionX, innerPositionY, width, height);
             this.structureID = structureID;

@@ -71,15 +71,21 @@ namespace Desolation
 
             ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
-            //for (int i = 0; i < 100; i++)
+
+            for (int i = -50; i < 100; i++)
+            {
+                Console.WriteLine(Globals.getUniquePositiveFromAny(i));
+            }
+
+            //for (int i = -50; i < 100; i++)
             //{
-            //    Console.WriteLine(Globals.getUniqueNumber(i, -i));
+            //    Console.WriteLine(Globals.getUniqueNumber((uint)i, (uint)10));
             //}
 
             //for (int i = 62767; i < 62867; i++)
             //{
-            //    int nr = Globals.getUniqueNumber(i, -i);
-            //    short[] realNr = Globals.getUniqueNumberReverse(nr);
+            //    uint nr = Globals.getUniqueNumber((uint)i, (uint)i);
+            //    long[] realNr = Globals.getUniqueNumberReverse(nr);
             //    Console.WriteLine("first:" + realNr[0] + " second:" + realNr[1]);
             //}
             

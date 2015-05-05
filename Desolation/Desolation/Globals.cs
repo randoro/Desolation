@@ -32,7 +32,7 @@ namespace Desolation
         public static readonly int globalMeleeRange = 2;
         public static readonly int globalRangedRange = 50;
         public static long ticksLastChunkLoad = 0;
-        public static int currentStructureID; //structure player is inside
+        public static uint currentStructureID; //structure player is inside
         public static SpriteFont font;
 
 
@@ -259,22 +259,33 @@ namespace Desolation
 
 
 
-        public static int getUniqueNumber(int firstNr, int secondNr) //Cantor pairing function
+        public static uint getUniqueNumber(uint firstNr, uint secondNr) //Cantor pairing function
         {
             return ((firstNr+secondNr)*(firstNr+secondNr+1)/2)+secondNr;
             //return 0;
             //π(a,b)=1/2(a+b)(a+b+1)+b
         }
 
-        public static short[] getUniqueNumberReverse(int z)
+        public static long[] getUniqueNumberReverse(long z)
         {
-            short[] pair = new short[2];
-            int t = (int)Math.Floor((-1D + Math.Sqrt(1D + 8 * z)) / 2D);
-            int x = t * (t + 3) / 2 - z;
-            int y = z - t * (t + 1) / 2;
-            pair[0] = (short)x;
-            pair[1] = (short)y;
+            long[] pair = new long[2];
+            long t = (int)Math.Floor((-1D + Math.Sqrt(1D + 8 * z)) / 2D);
+            long x = t * (t + 3) / 2 - z;
+            long y = z - t * (t + 1) / 2;
+            pair[0] = (long)x;
+            pair[1] = (long)y;
             return pair;
+        }
+
+        public static uint getUniquePositiveFromAny(int number)
+        {
+            if(number >= 0) 
+            {
+                return (uint)(2 * number);
+            } else 
+            {
+                return (uint)(-2*number - 1);
+            }
         }
     }
 }

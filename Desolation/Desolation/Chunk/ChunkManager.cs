@@ -40,7 +40,7 @@ namespace Desolation
             syncCounter = new Counter(); //debug
             chunkArray = new Chunk[144];
 
-            Structure tempStruct = new Structure(2000, 2000);
+            Structure tempStruct = new Structure(125, 125);
             tempStruct.generateRooms();
             structureList.Add(tempStruct);
 
