@@ -72,10 +72,10 @@ namespace Desolation
             ChunkManager.entityList.Add(new Deer(new Vector2(2020, 2020)));
 
 
-            for (int i = -50; i < 100; i++)
-            {
-                Console.WriteLine(Globals.getUniquePositiveFromAny(i));
-            }
+            //for (int i = -50; i < 100; i++)
+            //{
+            //    Console.WriteLine(Globals.getUniquePositiveFromAny(i));
+            //}
 
             //for (int i = -50; i < 100; i++)
             //{
@@ -88,6 +88,18 @@ namespace Desolation
             //    long[] realNr = Globals.getUniqueNumberReverse(nr);
             //    Console.WriteLine("first:" + realNr[0] + " second:" + realNr[1]);
             //}
+            //Random tempRand1 = new Random(12345);
+            //Random tempRand2 = new Random(12345);
+            //Console.WriteLine(tempRand1.Next(0, 2));
+            //Console.WriteLine(tempRand1.Next(0, 2));
+            //Console.WriteLine(tempRand1.Next(0, 2));
+            //Console.WriteLine(" ");
+
+            //Console.WriteLine(tempRand2.Next(0, 2));
+            //Console.WriteLine(tempRand2.Next(0, 2));
+            //Console.WriteLine(tempRand2.Next(0, 2));
+            //Console.WriteLine(" ");
+
             
         }
         protected override void UnloadContent()
