@@ -55,7 +55,7 @@ namespace Desolation
             MouseState mouse = Mouse.GetState();
             Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
 
-         Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
+            Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
             rotation = getAngle(mousePosInGame);
 
         }
