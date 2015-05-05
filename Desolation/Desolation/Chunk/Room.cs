@@ -35,5 +35,28 @@ namespace Desolation
                 //spriteBatch.Draw(TextureManager.playerSheet, new Vector2(area.X, area.Y), area , Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1.0f);
             }
         }
+
+        public void generateRoom()
+        {
+            for (int i = 0; i < area.Height; i += 16)
+            {
+                for (int j = 0; j < area.Width; j += 16)
+                {
+                    Vector2 currentBlockPos = new Vector2(area.X + j, area.Y + i);
+                    int chunkNr = Game1.player.getCurrentChunkNrInArray(currentBlockPos, Globals.playerPos);
+                    if (chunkNr != -1)
+                    {
+                        Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                        if (tempChunk != null)
+                        {
+                            int xBlockPos = Globals.getBlockValue(currentBlockPos.X);
+                            int yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
+                            tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

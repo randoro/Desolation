@@ -54,15 +54,17 @@ namespace Desolation
             this.IsMouseVisible = true;
             Globals.rand = new Random();
             Globals.font = Content.Load<SpriteFont>("font");
+            player = new Player(new Vector2(2000, 2000));
+            Globals.playerPos = player.position;
+            Globals.oldPlayerPos = player.position;
             chunkManager = new ChunkManager();
             textureManager = new TextureManager(Content, graphics.GraphicsDevice);
             animationEngine = new AnimationEngine();
             frameXNACounter = new Counter(); //debug
 
 
-            player = new Player(new Vector2(2000, 2000));
-            Globals.playerPos = player.position;
-            Globals.oldPlayerPos = player.position;
+            
+            
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
 
             for (int i = 0; i < 10; i++)
@@ -336,6 +338,13 @@ namespace Desolation
 
 
                 }
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.F8))
+            {
+
+            Structure tempStruct = new Structure(125, 125);
+            tempStruct.generateRooms();
+            ChunkManager.structureList.Add(tempStruct);
             }
 
             else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
