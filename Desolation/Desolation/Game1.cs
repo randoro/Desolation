@@ -234,7 +234,8 @@ namespace Desolation
                 MouseState mouse = Mouse.GetState();
                 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
                 Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
-                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, mousePosInGame);
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(mousePosInGame,Globals.playerPos );
+
                 if (chunkNr != -1)
                 {
                     Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
@@ -242,7 +243,7 @@ namespace Desolation
                     {
 
                         int test = (int)((mousePosOnScreen.X + mousePosOnScreen.Y));
-                        if (test < (tempChunk.objects.Length) && test >= 0)
+                          if (test < (tempChunk.objects.Length) && test >= 0)
                         {
                             tempChunk.objects[test] = 1;
                         }
