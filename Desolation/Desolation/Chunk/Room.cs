@@ -52,6 +52,15 @@ namespace Desolation
                             int xBlockPos = Globals.getBlockValue(currentBlockPos.X);
                             int yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
                             tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 1;
+
+                            if ((i == 0 || j == 0 || i == area.Height - 16 || j == area.Width - 16) && !(i == area.Height - 16 && j == (area.Width/2 - 16)))
+                            {
+                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 1;
+                            }
+                            else 
+                            {
+                            tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 0;
+                            }
                         }
                     }
                 }
