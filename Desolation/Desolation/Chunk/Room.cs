@@ -24,11 +24,11 @@ namespace Desolation
         {
             if (!(Globals.currentStructureID == structureID))
             {
-                for (int i = 0; i < area.Height; i++)
+                for (int i = 0; i < area.Height; i+=16)
                 {
-                    for (int j = 0; j < area.Width; j++)
+                    for (int j = 0; j < area.Width; j+= 16)
                     {
-                        spriteBatch.Draw(TextureManager.playerSheet, new Vector2(area.X + j * 16, area.Y + i * 16), new Rectangle(0, 0, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                        spriteBatch.Draw(TextureManager.playerSheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 0, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
                     }
                 }
             
