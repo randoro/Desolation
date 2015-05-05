@@ -88,7 +88,7 @@ namespace Desolation
             //    long[] realNr = Globals.getUniqueNumberReverse(nr);
             //    Console.WriteLine("first:" + realNr[0] + " second:" + realNr[1]);
             //}
-            
+
         }
         protected override void UnloadContent()
         {
@@ -226,7 +226,21 @@ namespace Desolation
             else if (KeyMouseReader.KeyPressed(Keys.Space))
             {
 
-                // ta bort blocks på musens position
+                //ta bort blocks på musens position
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos,Game1.mousePosOnScreen  );
+                MouseState mouse = Mouse.GetState();
+               mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
+                if (chunkNr != -1)
+                {
+                    Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                    if (tempChunk != null)
+                    {
+                        int test = (int)(mousePosOnScreen.X + mousePosOnScreen.Y);
+                        if (test < (tempChunk.objects.Length) && test >= 0) {
+                          tempChunk.objects[test] = 0; }
+                    }
+                }
+
             }
             else if (KeyMouseReader.KeyPressed(Keys.F6))
             {
@@ -338,11 +352,11 @@ namespace Desolation
                 {
 
                 }
-            KeyMouseReader.Update();
-            base.Update(gameTime);
+                KeyMouseReader.Update();
+                base.Update(gameTime);
             }
             #endregion
-            
+
 
             KeyMouseReader.Update();
             base.Update(gameTime);
@@ -362,8 +376,8 @@ namespace Desolation
 
             if (debug)
             {
-                
-                
+
+
                 int textPos = 5;
                 spriteBatch.DrawString(Globals.font, "PlayerX:" + Globals.playerPos.X, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
@@ -375,7 +389,7 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "SyncCounter:" + ChunkManager.syncCounter.frameRate, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                if(ChunkManager.regionArray[4] != null) 
+                if (ChunkManager.regionArray[4] != null)
                 {
                     spriteBatch.DrawString(Globals.font, "RegionX:" + ChunkManager.regionArray[4].xPosRegion, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                     textPos += 15;
@@ -412,7 +426,7 @@ namespace Desolation
             chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
             animationEngine.draw(spriteBatch);
-            
+
 
             spriteBatch.End();
 
