@@ -41,7 +41,7 @@ namespace Desolation
             deerSheet = contentManager.Load<Texture2D>("DeerspriteShite");
             blocksheet = contentManager.Load<Texture2D>("tempblocksheet");
             objectsheet = contentManager.Load<Texture2D>("tempobjectsheet");
-            roofsheet = contentManager.Load<Texture2D>("temproofsheet");
+            roofsheet = contentManager.Load<Texture2D>("taksheet");
             leaf = contentManager.Load<Texture2D>("leaf");
             leaf2 = contentManager.Load<Texture2D>("leaf2");
             leaf3 = contentManager.Load<Texture2D>("leaf3");
