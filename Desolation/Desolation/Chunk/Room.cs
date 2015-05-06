@@ -28,14 +28,21 @@ namespace Desolation
                 {
                     for (int j = 0; j <= area.Height; j += 16)
                     {
+                        if (i != 0 && j != area.Height && i != area.Width)
+                        {
+                            
+                        
+                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X+j, area.Y+i-16 ), new Rectangle(0, 16, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
 
-
+                        }
 
                         if (area.Width == j && i==0)
                         {
                             spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y-16), new Rectangle(0, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                            spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y + (j-32)), new Rectangle(128, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
                             // spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + i, area.Y + i - 16), new Rectangle(16, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
                         }
+                        
                     }
                 }
             }
