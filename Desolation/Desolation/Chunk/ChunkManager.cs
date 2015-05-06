@@ -166,10 +166,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -213,10 +213,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -259,10 +259,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -305,10 +305,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -350,10 +350,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -396,10 +396,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -440,10 +440,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -480,10 +480,10 @@ namespace Desolation
                             {
 
                                 Entity e = entityList[i];
-                                if (e.position.X == 0 && e.position.Y == 0)
-                                {
-                                    int test = 1;
-                                }
+                                //if (e.position.X == 0 && e.position.Y == 0)
+                                //{
+                                //    int test = 1;
+                                //}
                                 Vector2 pos = e.position;
                                 int regionX = Globals.getRegionValue(pos.X);
                                 int regionY = Globals.getRegionValue(pos.Y);
@@ -555,11 +555,6 @@ namespace Desolation
             }
         }
 
-        public Chunk[] tempGetChunkArray()
-        {
-            return chunkArray;
-        }
-
 
         private void saveEntityToChunk(ref Entity e, int chunkNr)
         {
@@ -569,6 +564,18 @@ namespace Desolation
                 List<Tag> newList = new List<Tag>();
                 e.getTagList(ref newList);
                 curChunk.entities.Add(newList);
+            }
+        }
+
+
+        private void saveRoomToChunk(ref Room e, int chunkNr)
+        {
+            Chunk curChunk = chunkArray[chunkNr];
+            if (curChunk != null)
+            {
+                List<Tag> newList = new List<Tag>();
+                e.getTagList(ref newList);
+                curChunk.rooms.Add(newList);
             }
         }
 

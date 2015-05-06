@@ -110,5 +110,31 @@ namespace Desolation
             }
         }
 
+        public virtual void getTagList(ref List<Tag> individualList)
+        {
+            Tag compound = new Tag(TagID.Compound, "Room", null, TagID.Compound);
+            individualList.Add(compound);
+
+
+            int theInt = (int)structureID;
+            byte[] structureIDArray = BitConverter.GetBytes(theInt);
+            Tag ID = new Tag(TagID.Int, "ID", structureIDArray, TagID.Int);
+            individualList.Add(ID);
+
+            byte[] structureXpos = BitConverter.GetBytes((int)area.X);
+            Tag xPos = new Tag(TagID.Int, "StructureXPos", structureXpos, TagID.Int);
+            individualList.Add(xPos);
+
+            byte[] structureYpos = BitConverter.GetBytes((int)area.Y);
+            Tag yPos = new Tag(TagID.Int, "StructureYPos", structureYpos, TagID.Int);
+            individualList.Add(yPos);
+
+            Tag end = new Tag(TagID.End, null, null, TagID.End);
+            individualList.Add(end);
+
+
+            
+        }
+
     }
 }

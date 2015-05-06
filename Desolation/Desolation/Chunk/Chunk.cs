@@ -19,6 +19,7 @@ namespace Desolation
         public byte[] objects { set; get; } //saved in file
         public List<List<Tag>> entities { set; get; } //saved in file
         public List<List<Tag>> tileEntities { set; get; } //saved in file
+        public List<List<Tag>> rooms { set; get; } //saved in file
 
         public byte innerIndex; //0-16 which chunk in regionFile
 
