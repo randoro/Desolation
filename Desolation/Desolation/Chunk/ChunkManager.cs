@@ -126,14 +126,29 @@ namespace Desolation
                                         Entity newEntity = TagTranslator.getUnloadedEntity(e);
                                         if (newEntity != null)
                                         {
-                                            if (newEntity.position.X == 0 && newEntity.position.Y == 0)
-                                            {
-                                                int test = 1;
-                                            }
+                                            //if (newEntity.position.X == 0 && newEntity.position.Y == 0)
+                                            //{
+                                            //    int test = 1;
+                                            //}
                                             entityList.Add(newEntity);
                                         }
                                     }
                                     newChunk.entities.Clear();
+                                }
+
+                                if (newChunk.rooms != null)
+                                {
+                                    for (int j = 0; j < newChunk.rooms.Count; j++)
+                                    {
+                                        List<Tag> e = newChunk.rooms[j];
+
+                                        Room newRoom = TagTranslator.getUnloadedRoom(e);
+                                        if (newRoom != null)
+                                        {
+                                            roomList.Add(newRoom);
+                                        }
+                                    }
+                                    newChunk.rooms.Clear();
                                 }
                             }
                         }

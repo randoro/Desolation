@@ -991,5 +991,85 @@ namespace Desolation
                 return null;
             }
         }
+
+        public static Room getUnloadedRoom(List<Tag> room)
+        {
+            Room newRoom = new Room(0, 0, 0, 0, 0); // will never be used
+            bool isReturnable = false;
+            for (int i = 0; i < room.Count; i++)
+            {
+
+                Tag e = room[i];
+                String tagName = e.getName();
+                TagID tagID = e.getID();
+                var data = e.getRawData();
+
+
+                switch (tagID)
+                {
+                    case TagID.End:
+                        //end of unloaded chunk
+                        //this means its now added return new chunk
+                        //Console.WriteLine("entity now loaded");
+                        isReturnable = true;
+                        break;
+                    case TagID.Byte:
+
+                        break;
+                    case TagID.Short:
+                        break;
+                    case TagID.Int:
+                        if (tagName.Equals("ID"))
+                        {
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            uint ID = (uint)dataInt;
+                            newRoom.structureID = ID;
+                        }
+                        else if (tagName.Equals("StructureXPos"))
+                        {
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newRoom.area.X = dataInt;
+                        }
+                        else if (tagName.Equals("StructureYPos"))
+                        {
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newRoom.area.Y = dataInt;
+                        }
+                        break;
+                    case TagID.Long:
+                        break;
+                    case TagID.Float:
+
+                        break;
+                    case TagID.Double:
+                        break;
+                    case TagID.ByteArray:
+                        break;
+                    case TagID.String:
+                        break;
+                    case TagID.List:
+                        break;
+                    case TagID.Compound:
+                        break;
+                    case TagID.IntArray:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (isReturnable)
+            {
+                return newRoom;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

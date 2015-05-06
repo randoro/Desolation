@@ -129,6 +129,14 @@ namespace Desolation
             Tag yPos = new Tag(TagID.Int, "StructureYPos", structureYpos, TagID.Int);
             individualList.Add(yPos);
 
+            byte[] structureWidth = BitConverter.GetBytes((int)area.Width);
+            Tag width = new Tag(TagID.Int, "StructureWidth", structureWidth, TagID.Int);
+            individualList.Add(width);
+
+            byte[] structureHeight = BitConverter.GetBytes((int)area.Height);
+            Tag height = new Tag(TagID.Int, "StructureHeight", structureHeight, TagID.Int);
+            individualList.Add(height);
+
             Tag end = new Tag(TagID.End, null, null, TagID.End);
             individualList.Add(end);
 
