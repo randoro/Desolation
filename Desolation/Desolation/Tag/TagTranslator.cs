@@ -157,10 +157,10 @@ namespace Desolation
                                 {
                                     newChunk.entities = (List<List<Tag>>)currentTag.getData();
                                 }
-                                //else if (tagName.Equals("TileEntities"))
-                                //{
-                                //    newChunk.tileEntities = (List<List<Tag>>)currentTag.getData();
-                                //}
+                                else if (tagName.Equals("Rooms"))
+                                {
+                                    newChunk.rooms = (List<List<Tag>>)currentTag.getData();
+                                }
                                 break;
                             case TagID.Compound:
                                 layerDepth++;
@@ -236,6 +236,9 @@ namespace Desolation
 
             Tag Entities = new Tag(TagID.List, "Entities", chunk.entities, TagID.Compound);
             writeTag(Entities, fileStream);
+
+            Tag Rooms = new Tag(TagID.List, "Rooms", chunk.rooms, TagID.Compound);
+            writeTag(Rooms, fileStream);
 
             //Tag TileEntities = new Tag(TagID.List, "TileEntities", chunk.tileEntities, TagID.Compound);
             //writeTag(TileEntities, fileStream);
@@ -1037,6 +1040,18 @@ namespace Desolation
                             byte[] byteData = (byte[])e.getRawData();
                             int dataInt = BitConverter.ToInt32(byteData, 0);
                             newRoom.area.Y = dataInt;
+                        }
+                        else if (tagName.Equals("StructureWidth"))
+                        {
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newRoom.area.Width = dataInt;
+                        }
+                        else if (tagName.Equals("StructureHeight"))
+                        {
+                            byte[] byteData = (byte[])e.getRawData();
+                            int dataInt = BitConverter.ToInt32(byteData, 0);
+                            newRoom.area.Height = dataInt;
                         }
                         break;
                     case TagID.Long:

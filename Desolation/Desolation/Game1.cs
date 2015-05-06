@@ -117,6 +117,28 @@ namespace Desolation
                 }
             }
 
+            for (int i = ChunkManager.roomList.Count - 1; i >= 0; i--)
+            {
+
+                Room e = ChunkManager.roomList[i];
+                Vector2 pos = new Vector2(e.area.X, e.area.Y);
+                int regionX = Globals.getRegionValue(pos.X);
+                int regionY = Globals.getRegionValue(pos.Y);
+                //entity is inside unloading regions cause all regions are unloading
+                int chunkNr = player.getCurrentChunkNrInArray(pos, Globals.playerPos);
+                if (chunkNr != -1)
+                {
+                    Chunk curChunk = ChunkManager.chunkArray[chunkNr];
+                    if (curChunk != null)
+                    {
+                        List<Tag> newList = new List<Tag>();
+                        e.getTagList(ref newList);
+                        curChunk.rooms.Add(newList);
+                        ChunkManager.roomList.Remove(e);
+                    }
+                }
+            }
+
 
             for (int i = 0; i < 9; i++)
             {
