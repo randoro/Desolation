@@ -59,7 +59,7 @@ namespace Desolation
                 case 0:
                     break;
                 case 1:
-                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.8f);
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.75f);
                     break;
                 default:
                     break;

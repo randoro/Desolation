@@ -28,7 +28,7 @@ namespace Desolation
                 {
                     for (int j = 0; j < area.Width; j+= 16)
                     {
-                        if (area.X + j > Globals.playerPos.X - (Globals.screenX / 2) && area.X + j < Globals.playerPos.X + (Globals.screenX / 2) && area.Y + i > Globals.playerPos.Y - (Globals.screenY / 2) && area.Y + i < Globals.playerPos.Y + (Globals.screenY / 2))
+                        if (area.X + j > Globals.playerPos.X - (Globals.screenX / 2) - 16 && area.X + j < Globals.playerPos.X + (Globals.screenX / 2) + 16 && area.Y + i > Globals.playerPos.Y - (Globals.screenY / 2) - 16 && area.Y + i < Globals.playerPos.Y + (Globals.screenY / 2) + 16)
                         {
                             if (i == 0)
                             {
