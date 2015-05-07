@@ -22,88 +22,102 @@ namespace Desolation
 
         public void draw(SpriteBatch spriteBatch)
         {
-            if (!(Globals.currentStructureID == structureID))
-            {
-                for (int i = 0; i <= area.Width; i += 16)
-                {
-                    for (int j = 0; j <= area.Height; j += 16)
-                    {
-                        if (i != 0 && j != area.Height && i != area.Width)
-                        {
-                            
-                        
-                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X+j, area.Y+i-16 ), new Rectangle(0, 16, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-                        }
-
-                        if (area.Width == j && i==0)
-                        {
-                            spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y-16), new Rectangle(0, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-                            spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y + (j-32)), new Rectangle(128, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-                            // spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + i, area.Y + i - 16), new Rectangle(16, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-                        }
-                        
-                    }
-                }
-            }
-
-
-
             //if (!(Globals.currentStructureID == structureID))
             //{
-            //    for (int i = 0; i < area.Height; i+=16)
+            //    for (int i = 0; i <= area.Width; i += 16)
             //    {
-            //        for (int j = 0; j < area.Width; j+= 16)
+            //        for (int j = 0; j <= area.Height; j += 16)
             //        {
-            //            if (area.X + j > Globals.playerPos.X - (Globals.screenX / 2) - 16 && area.X + j < Globals.playerPos.X + (Globals.screenX / 2) + 16 && area.Y + i > Globals.playerPos.Y - (Globals.screenY / 2) - 16 && area.Y + i < Globals.playerPos.Y + (Globals.screenY / 2) + 16)
+            //            if (i != 0 && j != area.Height && i != area.Width)
             //            {
-            //                if (i == 0)
-            //                {
+                            
+                        
+            //            spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X+j, area.Y+i-16 ), new Rectangle(0, 16, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
 
-            //                    if (j == 0)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(16, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                    else if (j == area.Width - 16)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j - 16 * 2, area.Y + i - 16), new Rectangle(64, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                    else if (j > 16 * 2 && j < area.Width - 16 * 3)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 16, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                }
-            //                else if (i == area.Height - 16)
-            //                {
-            //                    if (j == 0)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(16, 0, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                    else if (j == area.Width - 16)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j - 16 * 2, area.Y + i - 16), new Rectangle(64, 0, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                    else if (j > 16 * 2 && j < area.Width - 16 * 3)
-            //                    {
-            //                        spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 32, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
-            //                }
             //            }
+
+            //            if (area.Width == j && i==0)
+            //            {
+            //                spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y-16), new Rectangle(0, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+            //                spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X, area.Y + (j-32)), new Rectangle(128, j, j, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+            //                // spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + i, area.Y + i - 16), new Rectangle(16, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+            //            }
+                        
             //        }
             //    }
-
-            //    //spriteBatch.Draw(TextureManager.playerSheet, new Vector2(area.X, area.Y), area , Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1.0f);
             //}
+
+
+
+            if (!(Globals.currentStructureID == structureID))
+            {
+                for (int i = 0; i < area.Height; i += 16)
+                {
+                    for (int j = 0; j < area.Width; j += 16)
+                    {
+                        if (area.X + j > Globals.playerPos.X - (Globals.screenX / 2) - 16 && area.X + j < Globals.playerPos.X + (Globals.screenX / 2) + 16 && area.Y + i > Globals.playerPos.Y - (Globals.screenY / 2) - 16 && area.Y + i < Globals.playerPos.Y + (Globals.screenY / 2) + 16)
+                        {
+                            if (i == 0)
+                            {
+
+                                if (j == 0)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(16, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                                else if (j == area.Width - 16)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j - 16 * 2, area.Y + i - 16), new Rectangle(64, 16, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                                else if (j > 16 * 2 && j < area.Width - 16 * 3)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 16, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                            }
+                            else if (i == area.Height - 16)
+                            {
+                                if (j == 0)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(16, 0, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                                else if (j == area.Width - 16)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j - 16 * 2, area.Y + i - 16), new Rectangle(64, 0, Globals.blockSize * 3, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                                else if (j > 16 * 2 && j < area.Width - 16 * 3)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 32, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+
+                                }
+                            }
+                            else
+                            {
+                                if (j < 16 * 3)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 48, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                            
+                                }
+                                else if (j > area.Width - 16 * 4)
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 64, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                            
+                                }
+                                else
+                                {
+                                    spriteBatch.Draw(TextureManager.roofsheet, new Vector2(area.X + j, area.Y + i - 16), new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                            
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //spriteBatch.Draw(TextureManager.playerSheet, new Vector2(area.X, area.Y), area , Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 1.0f);
+            }
         }
 
         public void generateRoom()
