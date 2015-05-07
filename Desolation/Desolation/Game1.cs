@@ -266,7 +266,9 @@ namespace Desolation
                     if (tempChunk != null)
                     {
 
-                        int test = (int)((mousePosOnScreen.X + mousePosOnScreen.Y));
+                     int testX = (int)((Globals.screenX/mousePosOnScreen.X));
+                     int testY = (int)((Globals.screenY / mousePosOnScreen.Y));
+                     int test =( testY *16)+ testX;
                           if (test < (tempChunk.objects.Length) && test >= 0)
                         {
                             tempChunk.objects[test] = 1;
