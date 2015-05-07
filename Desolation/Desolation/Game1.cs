@@ -266,12 +266,12 @@ namespace Desolation
                     if (tempChunk != null)
                     {
 
-                     int testX = (int)((Globals.screenX/mousePosOnScreen.X));
-                     int testY = (int)((Globals.screenY / mousePosOnScreen.Y));
-                     int test =( testY *16)+ testX;
+                    float testX = (int)((Globals.screenX/mousePosOnScreen.X));
+                    float testY = (int)((Globals.screenY / mousePosOnScreen.Y)*16);
+                    float test = (testY * 16) + testX;
                           if (test < (tempChunk.objects.Length) && test >= 0)
                         {
-                            tempChunk.objects[test] = 1;
+                            tempChunk.objects[(int)test] = 1;
                         }
                     }
                 }
