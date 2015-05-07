@@ -25,7 +25,7 @@ namespace Desolation
         public static GameWindow gameWindow;
         public static Vector2 mousePosOnScreen;
         public static int Statiskchunknr;
-
+        public static int chunkmusnr;
         bool debug = false;
 
         AnimationEngine animationEngine;
@@ -258,8 +258,8 @@ namespace Desolation
                 MouseState mouse = Mouse.GetState();
                 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
                 Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
-                int chunkNr = Game1.player.getCurrentChunkNrInArray(mousePosInGame,Globals.playerPos );
-
+          int chunkNr = Game1.player.getCurrentChunkNrInArray(mousePosInGame,Globals.playerPos );
+          chunkmusnr = chunkNr;
                 if (chunkNr != -1)
                 {
                     Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
@@ -443,7 +443,7 @@ namespace Desolation
                 }
                 spriteBatch.DrawString(Globals.font, "chunk" + Statiskchunknr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "muschunk:"+chunkmusnr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
