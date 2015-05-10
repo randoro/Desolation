@@ -376,7 +376,8 @@ namespace Desolation
             {
                 //delete current world
 
-                ChunkManager.saveEntities();
+                ChunkManager.saveList(Lists.Entities);
+                ChunkManager.saveList(Lists.Rooms);
 
                 ChunkManager.saveAndUnloadRegions();
 

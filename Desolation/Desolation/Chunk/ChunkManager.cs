@@ -393,7 +393,7 @@ namespace Desolation
         }
 
 
-        private void saveEntityToChunk(ref Entity e, int chunkNr)
+        private static void saveEntityToChunk(ref Entity e, int chunkNr)
         {
             Chunk curChunk = chunkArray[chunkNr];
             if (curChunk != null)
@@ -405,7 +405,7 @@ namespace Desolation
         }
 
 
-        private void saveRoomToChunk(ref Room e, int chunkNr)
+        private static void saveRoomToChunk(ref Room e, int chunkNr)
         {
             Chunk curChunk = chunkArray[chunkNr];
             if (curChunk != null)
@@ -421,7 +421,8 @@ namespace Desolation
         public static void changeWorld(String worldName)
         {
             //unloading
-            saveEntities();
+            saveList(Lists.Entities);
+            saveList(Lists.Rooms);
 
             saveAndUnloadRegions();
             
@@ -436,29 +437,50 @@ namespace Desolation
 
         }
 
-        public static void saveEntities()
+        public static void saveList(Lists list)
         {
-            for (int i = entityList.Count - 1; i >= 0; i--)
+            switch (list)
             {
-
-                Entity e = entityList[i];
-                Vector2 pos = e.position;
-                int regionX = Globals.getRegionValue(pos.X);
-                int regionY = Globals.getRegionValue(pos.Y);
-                //entity is inside unloading regions cause all regions are unloading
-                int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
-                if (chunkNr != -1)
-                {
-                    Chunk curChunk = chunkArray[chunkNr];
-                    if (curChunk != null)
+                case Lists.Entities:
+                    for (int i = entityList.Count - 1; i >= 0; i--)
                     {
-                        List<Tag> newList = new List<Tag>();
-                        e.getTagList(ref newList);
-                        curChunk.entities.Add(newList);
-                        entityList.Remove(e);
+
+                        Entity e = entityList[i];
+                        Vector2 pos = e.position;
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        //entity is inside unloading regions cause all regions are unloading
+                        int chunkNr = e.getCurrentChunkNrInArray(e.position, Globals.playerPos);
+                        if (chunkNr != -1)
+                        {
+                                saveEntityToChunk(ref e, chunkNr);
+                                entityList.Remove(e);
+                        }
                     }
-                }
+                    break;
+                case Lists.Rooms:
+                    for (int i = roomList.Count - 1; i >= 0; i--)
+                    {
+
+                        Room e = roomList[i];
+                        Vector2 pos = new Vector2(e.area.X, e.area.Y);
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        //entity is inside unloading regions cause all regions are unloading
+                        int chunkNr = Game1.player.getCurrentChunkNrInArray(pos, Globals.playerPos);
+                        if (chunkNr != -1)
+                        {
+                            saveRoomToChunk(ref e, chunkNr);
+                            roomList.Remove(e);
+                        }
+                    }
+                    break;
+                case Lists.TileEntities:
+                    break;
+                default:
+                    break;
             }
+            
         }
 
         public static void saveAndUnloadRegions()
