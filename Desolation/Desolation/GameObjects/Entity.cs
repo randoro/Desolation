@@ -52,7 +52,6 @@ namespace Desolation
             //{
             if (position.X > Globals.oldPlayerPos.X - 1000 && position.X < Globals.oldPlayerPos.X + 1000 && position.Y > Globals.oldPlayerPos.Y - 1000 && position.Y < Globals.oldPlayerPos.Y + 1000)
             {
-                currentDirection = direction;
                 //rörelse
                 realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
                 switch (direction)

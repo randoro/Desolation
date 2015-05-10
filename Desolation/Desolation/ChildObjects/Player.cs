@@ -47,16 +47,50 @@ namespace Desolation
             base.checkCollision();
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (frameTimer <= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-            }
+            
             MouseState mouse = Mouse.GetState();
             Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
 
             Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - Globals.screenX / 2 + mousePosOnScreen.X, Globals.playerPos.Y - Globals.screenY / 2 + mousePosOnScreen.Y);
             rotation = getAngle(mousePosInGame);
+
+            float degree = (float)(rotation * (180.0 / Math.PI));
+
+            if ((degree < 22.5f && degree >= 0) || (degree > 337.5f && degree <= 360))
+            {
+                currentDirection = Direction.East;
+            }
+            else if (degree < 67.5f && degree >= 22.5f)
+            {
+                currentDirection = Direction.SouthEast;
+            }
+            else if (degree < 112.5f && degree >= 67.5f)
+            {
+                currentDirection = Direction.South;
+            }
+            else if (degree < 157.5f && degree >= 112.5f)
+            {
+                currentDirection = Direction.SouthWest;
+            }
+            else if (degree < 202.5f && degree >= 157.5f)
+            {
+                currentDirection = Direction.West;
+            }
+            else if (degree < 247.5f && degree >= 202.5f)
+            {
+                currentDirection = Direction.NorthWest;
+            }
+            else if (degree < 292.5f && degree >= 247.5f)
+            {
+                currentDirection = Direction.North;
+            }
+            else if (degree < 337.5f && degree >= 292.5f)
+            {
+                currentDirection = Direction.NorthEast;
+            }
+
+
+
 
         }
 
@@ -132,6 +166,15 @@ namespace Desolation
 
         public override void moveDirection(Direction direction)
         {
+            if (direction != Direction.None)
+            {
+                if (frameTimer <= 0)
+                {
+                    frameTimer = frameInterval;
+                    frame++;
+                }
+            }
+
             base.moveDirection(direction);
         }
 
