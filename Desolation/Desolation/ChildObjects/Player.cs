@@ -21,6 +21,7 @@ namespace Desolation
         int attackspeed = 0;
         int meleeRange = 15;
         int rangedRange = 250;
+        Direction watchingDirection;
         #region Constructor
         public Player(Vector2 position)
             : base(position)
@@ -30,6 +31,7 @@ namespace Desolation
             health = 100;
             equipment[0] = new Item(0, ItemType.Ranged);
             speed = 3;
+            watchingDirection = Direction.None;
 
         }
         #endregion
@@ -58,35 +60,35 @@ namespace Desolation
 
             if ((degree < 22.5f && degree >= 0) || (degree > 337.5f && degree <= 360))
             {
-                currentDirection = Direction.East;
+                watchingDirection = Direction.East;
             }
             else if (degree < 67.5f && degree >= 22.5f)
             {
-                currentDirection = Direction.SouthEast;
+                watchingDirection = Direction.SouthEast;
             }
             else if (degree < 112.5f && degree >= 67.5f)
             {
-                currentDirection = Direction.South;
+                watchingDirection = Direction.South;
             }
             else if (degree < 157.5f && degree >= 112.5f)
             {
-                currentDirection = Direction.SouthWest;
+                watchingDirection = Direction.SouthWest;
             }
             else if (degree < 202.5f && degree >= 157.5f)
             {
-                currentDirection = Direction.West;
+                watchingDirection = Direction.West;
             }
             else if (degree < 247.5f && degree >= 202.5f)
             {
-                currentDirection = Direction.NorthWest;
+                watchingDirection = Direction.NorthWest;
             }
             else if (degree < 292.5f && degree >= 247.5f)
             {
-                currentDirection = Direction.North;
+                watchingDirection = Direction.North;
             }
             else if (degree < 337.5f && degree >= 292.5f)
             {
-                currentDirection = Direction.NorthEast;
+                watchingDirection = Direction.NorthEast;
             }
 
 
@@ -166,6 +168,7 @@ namespace Desolation
 
         public override void moveDirection(Direction direction)
         {
+            currentDirection = direction;
             if (direction != Direction.None)
             {
                 if (frameTimer <= 0)
@@ -186,7 +189,7 @@ namespace Desolation
         {
             spriteBatch.Draw(TextureManager.playerSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 0.8f);
 
-            switch (currentDirection)
+            switch (watchingDirection)
             {
                 case Direction.North:
                     sourceRect.X = 2 * 16;
