@@ -24,7 +24,6 @@ namespace Desolation
 
         public static GameWindow gameWindow;
         public static Vector2 mousePosOnScreen;
-        public static int Statiskchunknr;
         public static int chunkmusnr;
         bool debug = false;
 
@@ -177,7 +176,7 @@ namespace Desolation
 
             }
             #endregion
-            Statiskchunknr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
+            
             #region Controls
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -422,6 +421,14 @@ namespace Desolation
 
             if (debug)
             {
+                int xChunkPos = 0;
+                int yChunkPos = 0;
+                int chunknr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
+                if(ChunkManager.chunkArray[chunknr] != null) 
+                {
+                    xChunkPos = ChunkManager.chunkArray[chunknr].XPos;
+                    yChunkPos = ChunkManager.chunkArray[chunknr].YPos;
+                }
                 
                 
                 int textPos = 5;
@@ -445,11 +452,11 @@ namespace Desolation
                     spriteBatch.DrawString(Globals.font, "RegionY:" + ChunkManager.regionArray[4].yPosRegion, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                     textPos += 15;
                 }
-                spriteBatch.DrawString(Globals.font, "chunk" + Statiskchunknr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "ChunkX:" + xChunkPos, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "muschunk:"+chunkmusnr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "ChunkY:" + yChunkPos, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "muschunk:" + chunkmusnr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;

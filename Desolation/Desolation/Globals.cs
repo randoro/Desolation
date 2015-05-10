@@ -15,6 +15,8 @@ namespace Desolation
 
     public enum AnimationType { FadeOutAndIn, Smoke }
     public enum ItemType { Melee, Ranged, Effect }
+
+    public enum Lists { Entities, Rooms, TileEntities }
     static class Globals
     {
         public static readonly String gamePath = AppDomain.CurrentDomain.BaseDirectory;

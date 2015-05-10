@@ -177,31 +177,9 @@ namespace Desolation
                         {
                         #region Northwest
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[2] != null && regionArray[5] != null && regionArray[8] != null && regionArray[7] != null && regionArray[6] != null)
-                                {
-                                    if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y + 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //2, 5, 8, 7, 6
+                            saveListToRegion(Lists.Entities, 1024, 1024, 2, 5, 8, 7, 6);
+                            saveListToRegion(Lists.Rooms, 1024, 1024, 2, 5, 8, 7, 6);
                             
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
@@ -224,31 +202,9 @@ namespace Desolation
                         {
                         #region SouthWest
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null && regionArray[5] != null && regionArray[8] != null)
-                                {
-                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y - 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //0, 1, 2, 5, 8
+                            saveListToRegion(Lists.Entities, 1024, -1024, 0, 1, 2, 5, 8);
+                            saveListToRegion(Lists.Rooms, 1024, -1024, 0, 1, 2, 5, 8);
 
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
@@ -270,33 +226,9 @@ namespace Desolation
                         {
                         #region West
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[2] != null && regionArray[5] != null && regionArray[8] != null)
-                                {
-                                    if ((regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[5].xPosRegion && regionY == regionArray[5].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + 1024, Globals.playerPos.Y));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-
-                                        
-                                    }
-                                }
-                            }
+                            //2, 5, 8
+                            saveListToRegion(Lists.Entities, 1024, 0, 2, 5, 8);
+                            saveListToRegion(Lists.Rooms, 1024, 0, 2, 5, 8);
 
                             lastRegionX = newRegionX;
 
@@ -316,31 +248,9 @@ namespace Desolation
                         {
                         #region NorthEast
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[0] != null && regionArray[3] != null && regionArray[6] != null && regionArray[7] != null && regionArray[8] != null)
-                                {
-                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y + 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //0, 3, 6, 7, 8
+                            saveListToRegion(Lists.Entities, -1024, 1024, 0, 3, 6, 7, 8);
+                            saveListToRegion(Lists.Rooms, -1024, 1024, 0, 3, 6, 7, 8);
 
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
@@ -361,31 +271,9 @@ namespace Desolation
                         {
                         #region SouthEast
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null && regionArray[3] != null &&regionArray[6] != null)
-                                {
-                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y - 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //0, 1, 2, 3, 6
+                            saveListToRegion(Lists.Entities, -1024, -1024, 0, 1, 2, 3, 6);
+                            saveListToRegion(Lists.Rooms, -1024, -1024, 0, 1, 2, 3, 6);
 
                             lastRegionX = newRegionX;
                             lastRegionY = newRegionY;
@@ -405,33 +293,11 @@ namespace Desolation
                         else
                         {
                         #region East
-                            
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
 
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[0] != null && regionArray[3] != null && regionArray[6] != null)
-                                {
-                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[3].xPosRegion && regionY == regionArray[3].yPosRegion) || (regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X - 1024, Globals.playerPos.Y));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //0, 3, 6
+                            saveListToRegion(Lists.Entities, -1024, 0, 0, 3, 6);
+                            saveListToRegion(Lists.Rooms, -1024, 0, 0, 3, 6);
 
                             lastRegionX = newRegionX;
 
@@ -451,31 +317,9 @@ namespace Desolation
                         {
                         #region North
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[6] != null && regionArray[7] != null && regionArray[8] != null)
-                                {
-                                    if ((regionX == regionArray[6].xPosRegion && regionY == regionArray[6].yPosRegion) || (regionX == regionArray[7].xPosRegion && regionY == regionArray[7].yPosRegion) || (regionX == regionArray[8].xPosRegion && regionY == regionArray[8].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X, Globals.playerPos.Y + 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //6, 7, 8
+                            saveListToRegion(Lists.Entities, 0, 1024, 6, 7, 8);
+                            saveListToRegion(Lists.Rooms, 0, 1024, 6, 7, 8);
 
                             lastRegionY = newRegionY;
 
@@ -491,31 +335,9 @@ namespace Desolation
                         {
                         #region South
 
-                            for (int i = entityList.Count - 1; i >= 0; i--)
-                            {
-
-                                Entity e = entityList[i];
-                                //if (e.position.X == 0 && e.position.Y == 0)
-                                //{
-                                //    int test = 1;
-                                //}
-                                Vector2 pos = e.position;
-                                int regionX = Globals.getRegionValue(pos.X);
-                                int regionY = Globals.getRegionValue(pos.Y);
-                                if (regionArray[0] != null && regionArray[1] != null && regionArray[2] != null)
-                                {
-                                    if ((regionX == regionArray[0].xPosRegion && regionY == regionArray[0].yPosRegion) || (regionX == regionArray[1].xPosRegion && regionY == regionArray[1].yPosRegion) || (regionX == regionArray[2].xPosRegion && regionY == regionArray[2].yPosRegion))
-                                    {
-                                        //entity is inside unloading regions
-                                        int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X, Globals.playerPos.Y - 1024));
-                                        if (chunkNr != -1)
-                                        {
-                                            saveEntityToChunk(ref e, chunkNr);
-                                            entityList.Remove(e);
-                                        }
-                                    }
-                                }
-                            }
+                            //0, 1, 2
+                            saveListToRegion(Lists.Entities, 0, -1024, 0, 1, 2);
+                            saveListToRegion(Lists.Rooms, 0, -1024, 0, 1, 2);
 
                             lastRegionY = newRegionY;
 
@@ -648,6 +470,119 @@ namespace Desolation
             }
         }
 
+        public void saveListToRegion(Lists list, int xOffset, int yOffset, int regionIndex1, int regionIndex2, int regionIndex3, int regionIndex4, int regionIndex5)
+        {
+            switch (list)
+            {
+                case Lists.Entities:
+                    for (int i = entityList.Count - 1; i >= 0; i--)
+                    {
 
+                        Entity e = entityList[i];
+                        Vector2 pos = e.position;
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        if (regionArray[regionIndex1] != null && regionArray[regionIndex2] != null && regionArray[regionIndex3] != null && regionArray[regionIndex4] != null && regionArray[regionIndex5] != null)
+                        {
+                            if ((regionX == regionArray[regionIndex1].xPosRegion && regionY == regionArray[regionIndex1].yPosRegion) || (regionX == regionArray[regionIndex2].xPosRegion && regionY == regionArray[regionIndex2].yPosRegion) || (regionX == regionArray[regionIndex3].xPosRegion && regionY == regionArray[regionIndex3].yPosRegion) || (regionX == regionArray[regionIndex4].xPosRegion && regionY == regionArray[regionIndex4].yPosRegion) || (regionX == regionArray[regionIndex5].xPosRegion && regionY == regionArray[regionIndex5].yPosRegion))
+                            {
+                                //entity is inside unloading regions
+                                int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + xOffset, Globals.playerPos.Y + yOffset));
+                                if (chunkNr != -1)
+                                {
+                                    saveEntityToChunk(ref e, chunkNr);
+                                    entityList.Remove(e);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Lists.Rooms:
+                    for (int i = roomList.Count - 1; i >= 0; i--)
+                    {
+
+                        Room e = roomList[i];
+                        Vector2 pos = new Vector2(e.area.X, e.area.Y);
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        if (regionArray[regionIndex1] != null && regionArray[regionIndex2] != null && regionArray[regionIndex3] != null && regionArray[regionIndex4] != null && regionArray[regionIndex5] != null)
+                        {
+                            if ((regionX == regionArray[regionIndex1].xPosRegion && regionY == regionArray[regionIndex1].yPosRegion) || (regionX == regionArray[regionIndex2].xPosRegion && regionY == regionArray[regionIndex2].yPosRegion) || (regionX == regionArray[regionIndex3].xPosRegion && regionY == regionArray[regionIndex3].yPosRegion) || (regionX == regionArray[regionIndex4].xPosRegion && regionY == regionArray[regionIndex4].yPosRegion) || (regionX == regionArray[regionIndex5].xPosRegion && regionY == regionArray[regionIndex5].yPosRegion))
+                            {
+                                //entity is inside unloading regions
+                                int chunkNr = Game1.player.getCurrentChunkNrInArray(pos, new Vector2(Globals.playerPos.X + xOffset, Globals.playerPos.Y + yOffset));
+                                if (chunkNr != -1)
+                                {
+                                    saveRoomToChunk(ref e, chunkNr);
+                                    roomList.Remove(e);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Lists.TileEntities:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void saveListToRegion(Lists list, int xOffset, int yOffset, int regionIndex1, int regionIndex2, int regionIndex3)
+        {
+            switch (list)
+            {
+                case Lists.Entities:
+                    for (int i = entityList.Count - 1; i >= 0; i--)
+                    {
+
+                        Entity e = entityList[i];
+                        Vector2 pos = e.position;
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        if (regionArray[regionIndex1] != null && regionArray[regionIndex2] != null && regionArray[regionIndex3] != null)
+                        {
+                            if ((regionX == regionArray[regionIndex1].xPosRegion && regionY == regionArray[regionIndex1].yPosRegion) || (regionX == regionArray[regionIndex2].xPosRegion && regionY == regionArray[regionIndex2].yPosRegion) || (regionX == regionArray[regionIndex3].xPosRegion && regionY == regionArray[regionIndex3].yPosRegion))
+                            {
+                                //entity is inside unloading regions
+                                int chunkNr = e.getCurrentChunkNrInArray(e.position, new Vector2(Globals.playerPos.X + xOffset, Globals.playerPos.Y + yOffset));
+                                if (chunkNr != -1)
+                                {
+                                    saveEntityToChunk(ref e, chunkNr);
+                                    entityList.Remove(e);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Lists.Rooms:
+                    for (int i = roomList.Count - 1; i >= 0; i--)
+                    {
+
+                        Room e = roomList[i];
+                        Vector2 pos = new Vector2(e.area.X, e.area.Y);
+                        int regionX = Globals.getRegionValue(pos.X);
+                        int regionY = Globals.getRegionValue(pos.Y);
+                        if (regionArray[regionIndex1] != null && regionArray[regionIndex2] != null && regionArray[regionIndex3] != null)
+                        {
+                            if ((regionX == regionArray[regionIndex1].xPosRegion && regionY == regionArray[regionIndex1].yPosRegion) || (regionX == regionArray[regionIndex2].xPosRegion && regionY == regionArray[regionIndex2].yPosRegion) || (regionX == regionArray[regionIndex3].xPosRegion && regionY == regionArray[regionIndex3].yPosRegion))
+                            {
+                                //entity is inside unloading regions
+                                int chunkNr = Game1.player.getCurrentChunkNrInArray(pos, new Vector2(Globals.playerPos.X + xOffset, Globals.playerPos.Y + yOffset));
+                                if (chunkNr != -1)
+                                {
+                                    saveRoomToChunk(ref e, chunkNr);
+                                    roomList.Remove(e);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Lists.TileEntities:
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 }
