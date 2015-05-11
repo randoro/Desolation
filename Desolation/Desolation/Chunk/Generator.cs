@@ -136,7 +136,7 @@ namespace Desolation
 
             float[,] testNoise = GenerateWhiteNoise(width, height);
 
-            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 5);
+            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 7);
 
             //for (int i = 0; i < width; i++)
             //{
