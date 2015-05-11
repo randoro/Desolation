@@ -269,9 +269,9 @@ namespace Desolation
 
                     //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
                     //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
-                        float testX = (int)((mousePosOnScreen.X / chunkNr));
-                        float testY = (int)((mousePosOnScreen.Y / chunkNr));
-                    float test = (testY * 16) + testX;
+                        float testX = (int)((mousePosInGame.X %16));//nr som ska bli 0 - 15 broende på musens x kordinat 
+                        float testY = (int)((mousePosInGame.Y %16));//nr som ska bli 0 - 15 broende på musens y kordinat 
+                     float test = (testY * 16) + testX;
                           if (test < (tempChunk.objects.Length) && test >= 0)
                         {
                             tempChunk.objects[(int)test] = 1;
