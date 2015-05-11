@@ -125,6 +125,16 @@ namespace Desolation
             return null;
         }
 
+
+
+
+
+        public static void createNoise()
+        {
+            Console.WriteLine("Noice:");
+        }
+
+        /*
         public static void makeRandomChunk(Region region)
         {
             
@@ -364,5 +374,7 @@ namespace Desolation
             TagID end = TagID.End;
             fileStream.WriteByte((byte)end);
         }
+
+        */
     }
 }
