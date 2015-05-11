@@ -109,7 +109,7 @@ namespace Desolation
 
                             if (newChunk == null || newChunk.terrainPopulated == 0)
                             {
-                                newChunk = TempChunkCreator.createChunk(regionArray[i]);
+                                newChunk = Generator.createChunk(regionArray[i]);
                             }
 
                             if (newChunk != null)

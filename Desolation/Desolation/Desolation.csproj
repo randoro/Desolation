@@ -99,7 +99,7 @@
     <Compile Include="Chunk\Region.cs" />
     <Compile Include="Tag\Tag.cs" />
     <Compile Include="Tag\TagTranslator.cs" />
-    <Compile Include="Chunk\TempChunkCreator.cs" />
+    <Compile Include="Chunk\Generator.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="ChildObjects\Zombie.cs" />
   </ItemGroup>

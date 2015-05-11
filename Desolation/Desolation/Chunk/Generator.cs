@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Desolation
 {
-    static class TempChunkCreator
+    static class Generator
     {
 
         public static Chunk createChunk(Region region)
