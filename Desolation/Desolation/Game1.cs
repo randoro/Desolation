@@ -261,7 +261,26 @@ namespace Desolation
                 float offset = 0f;
                 if (mousePosOnScreen.Y > ((float)(Globals.screenY) / 2f))
                 {
+<<<<<<< HEAD
                     offset = 8f;
+=======
+                    Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                    if (tempChunk != null)
+                    {
+                     
+                    //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
+                    //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
+                        Globals.getBlockValue(mousePosInGame.X);
+
+                        float testX = Globals.getBlockValue(mousePosInGame.X); //nr som ska bli 0 - 15 broende på musens x kordinat 
+                        float testY = Globals.getBlockValue(mousePosInGame.Y);//nr som ska bli 0 - 15 broende på musens y kordinat 
+                     float test = (testY * 16) + testX;//0 255
+                          if (test < (tempChunk.objects.Length) && test >= 0)
+                        {
+                            tempChunk.objects[(int)test] = 1;
+                        }
+                    }
+>>>>>>> origin/master
                 }
                 Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - (float)(Globals.screenX) / 2f + mousePosOnScreen.X, Globals.playerPos.Y - ((float)(Globals.screenY) / 2f) + mousePosOnScreen.Y);
           int chunkNr = Game1.player.getCurrentChunkNrInArray(mousePosInGame,Globals.playerPos );
