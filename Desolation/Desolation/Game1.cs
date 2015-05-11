@@ -266,7 +266,7 @@ namespace Desolation
                     Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
                     if (tempChunk != null)
                     {
-                        float bajs = 3.0f;
+                     
                     //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
                     //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
                         Globals.getBlockValue(mousePosInGame.X);
