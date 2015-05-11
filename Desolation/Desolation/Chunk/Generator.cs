@@ -130,22 +130,22 @@ namespace Desolation
 
 
 
-        public static float[,] createNoise()
+        public static float[,] createNoise(int width, int height)
         {
             Console.WriteLine("Noice:");
 
-            float[,] testNoise = GenerateWhiteNoise(10, 10);
+            float[,] testNoise = GenerateWhiteNoise(width, height);
 
-            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 3);
+            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 7);
 
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    Console.Write("[" + perlinNoise[i, j] + "] ");
-                }
-                Console.WriteLine("");
-            }
+            //for (int i = 0; i < width; i++)
+            //{
+            //    for (int j = 0; j < height; j++)
+            //    {
+            //        Console.Write("[" + perlinNoise[i, j] + "] ");
+            //    }
+            //    Console.WriteLine("");
+            //}
 
 
 

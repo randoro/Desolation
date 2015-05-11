@@ -63,7 +63,7 @@ namespace Desolation
             frameXNACounter = new Counter(); //debug
 
             
-            noise = Generator.createNoise(); //debug
+            noise = Generator.createNoise(64, 64); //debug
             //Generator.createNoise(); //debug
             
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -476,9 +476,9 @@ namespace Desolation
                 spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 64; i++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 64; j++)
                 {
                     spriteBatch.Draw(TextureManager.blocksheet, new Vector2(Globals.cameraPos.X + 100 + j * 16, Globals.cameraPos.Y + 100 + i * 16), new Rectangle(0, 0, 16, 16), new Color(noise[j, i], noise[j, i], noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 }
