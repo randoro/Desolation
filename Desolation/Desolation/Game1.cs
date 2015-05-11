@@ -264,7 +264,7 @@ namespace Desolation
                     offset = 8f;
                 }
                 Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - (float)(Globals.screenX) / 2f + mousePosOnScreen.X, Globals.playerPos.Y - ((float)(Globals.screenY) / 2f) + mousePosOnScreen.Y);
-          int chunkNr = Game1.player.getCurrentChunkNrInArray(mousePosInGame,Globals.playerPos );
+          int chunkNr = Game1.player.getCurrentChunkNrInArray(new Vector2(mousePosInGame.X, mousePosInGame.Y + offset),Globals.playerPos );
           chunkmusnr = chunkNr;
           if (chunkNr != -1)
           {
