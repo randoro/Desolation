@@ -250,7 +250,7 @@ namespace Desolation
                 animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100, 100));
                 ChunkManager.changeWorld(@"mainworld\");
             }
-            else if (KeyMouseReader.KeyPressed(Keys.Space))
+            else if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
 
 
