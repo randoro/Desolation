@@ -86,7 +86,6 @@
     <Compile Include="Animations\Particle.cs" />
     <Compile Include="Chunk\Structure.cs" />
     <Compile Include="Chunk\Room.cs" />
-    <Compile Include="Strukturs.cs" />
     <Compile Include="Tag\FileLoader.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Globals.cs" />

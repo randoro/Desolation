@@ -20,7 +20,7 @@ namespace Desolation
         TextureManager textureManager;
         Counter frameXNACounter;
         public static Player player;
-        public Strukturs strukturs;
+    
         float[,] noise;
 
         public static GameWindow gameWindow;
@@ -35,7 +35,7 @@ namespace Desolation
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            strukturs = new Strukturs();
+        
 
         }
 
@@ -288,10 +288,7 @@ namespace Desolation
                 // ta bort blocks på musens position
 
             }
-            else if (KeyMouseReader.KeyPressed(Keys.F6))
-            {
-                strukturs.Hustest();
-            }
+          
             //{
             //    int startpos = Globals.rand.Next(0, 255);
             //    int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
@@ -329,49 +326,7 @@ namespace Desolation
             //    }
             //}
 
-            else if (KeyMouseReader.KeyPressed(Keys.F7))
-            {
-                int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
-                Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
-                for (int i = 0; i < 48; i++)
-                {
-                    int test = i * 16;
-                    int test2 = (i * 16) + 15;
-                    int test3 = i + 15 * 16;
-                    int test4 = i;
-
-
-
-
-                    if (test < (tempChunk.objects.Length))
-                    {
-                        tempChunk.objects[test] = 1;
-                    }
-                    if (test2 < (tempChunk.objects.Length) && test2 >= 0)
-                    {
-                        tempChunk.objects[test2] = 1;
-
-                    }
-                    if (test3 < (tempChunk.objects.Length) && test3 >= 0)
-                    {
-                        tempChunk.objects[test3] = 1;
-                    }
-                    if (test4 < 16)
-                    {
-                        tempChunk.objects[test4] = 1;
-                    }
-
-
-                    //    tempChunk.objects[130] = 1;
-                    //    tempChunk.objects[131] = 1;
-                    //    tempChunk.objects[132] = 1;
-                    //    tempChunk.objects[133] = 1;
-                    //    tempChunk.objects[134] = 1;
-                    //    tempChunk.objects[135] = 1;
-
-
-                }
-            }
+           
             else if (KeyMouseReader.KeyPressed(Keys.F8))
             {
 
