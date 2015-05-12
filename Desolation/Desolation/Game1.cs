@@ -62,13 +62,9 @@ namespace Desolation
             animationEngine = new AnimationEngine();
             frameXNACounter = new Counter(); //debug
 
-<<<<<<< HEAD
-            
-            noise = Generator.createNoise(0, 320, 320); //debug
-=======
 
-            noise = Generator.createNoise(320, 320); //debug
->>>>>>> origin/master
+            noise = Generator.createNoise(0, 320, 320); //debug
+
             //Generator.createNoise(); //debug
 
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -242,11 +238,9 @@ namespace Desolation
                     //{
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
-<<<<<<< HEAD
+
                     noise = Generator.createNoise(0, 320, 320); 
-=======
-                    noise = Generator.createNoise(320, 320);
->>>>>>> origin/master
+
                     debug = true;
                 }
             }
@@ -482,14 +476,11 @@ namespace Desolation
                 {
                     for (int j = 0; j < 320; j++)
                     {
-<<<<<<< HEAD
                         float f = noise[j, i];
                         float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
                         byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
                         spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
-=======
-                        spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
->>>>>>> origin/master
+
                         if (i % 16 == 0 && j % 16 == 0)
                         {
                             spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
