@@ -63,7 +63,7 @@ namespace Desolation
             frameXNACounter = new Counter(); //debug
 
             
-            noise = Generator.createNoise(64, 64); //debug
+            noise = Generator.createNoise(320, 320); //debug
             //Generator.createNoise(); //debug
             
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -237,6 +237,7 @@ namespace Desolation
                     //{
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
+                    noise = Generator.createNoise(320, 320); 
                     debug = true;
                 }
             }
@@ -437,11 +438,11 @@ namespace Desolation
                 spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
 
-                for (int i = 0; i < 64; i++)
+                for (int i = 0; i < 320; i++)
                 {
-                    for (int j = 0; j < 64; j++)
+                    for (int j = 0; j < 320; j++)
                 {
-                    spriteBatch.Draw(TextureManager.blocksheet, new Vector2(Globals.cameraPos.X + 100 + j * 16, Globals.cameraPos.Y + 100 + i * 16), new Rectangle(0, 0, 16, 16), new Color(noise[j, i], noise[j, i], noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 }
                 }
                 

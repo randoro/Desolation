@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -136,7 +137,7 @@ namespace Desolation
 
             float[,] testNoise = GenerateWhiteNoise(width, height);
 
-            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 4);
+            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 7);
 
             //for (int i = 0; i < width; i++)
             //{
@@ -159,7 +160,7 @@ namespace Desolation
 
         private static float[,] GenerateWhiteNoise(int width, int height)
         {
-            Random random = new Random(0); //Seed to 0 for testing
+            Random random = new Random(); //Seed to 0 for testing
             float[,] noise = new float[width, height];
 
             for (int i = 0; i < width; i++)
@@ -222,50 +223,64 @@ namespace Desolation
 
 
         private static float[,] GeneratePerlinNoise(float[,] baseNoise, int octaveCount)
-{
+        {
             int width = baseNoise.GetLength(0);
             int height = baseNoise.GetLength(1);
- 
-   float[][,] smoothNoise = new float[octaveCount][,]; //an array of 2D arrays containing
- 
-   float persistance = 0.5f;
- 
-   //generate smooth noise
-   for (int i = 0; i < octaveCount; i++)
-   {
-       smoothNoise[i] = GenerateSmoothNoise(baseNoise, i);
-   }
- 
-    float[,] perlinNoise = new float[width, height];
-    float amplitude = 1.0f;
-    float totalAmplitude = 0.0f;
- 
-    //blend noise together
-    for (int octave = octaveCount - 1; octave >= 0; octave--)
-    {
-       amplitude *= persistance;
-       totalAmplitude += amplitude;
- 
-       for (int i = 0; i < width; i++)
-       {
-          for (int j = 0; j < height; j++)
-          {
-             perlinNoise[i,j] += smoothNoise[octave][i,j] * amplitude;
-          }
-       }
-    }
- 
-   //normalisation
-   for (int i = 0; i < width; i++)
-   {
-      for (int j = 0; j < height; j++)
-      {
-         perlinNoise[i,j] /= totalAmplitude;
-      }
-   }
- 
-   return perlinNoise;
-}
+
+            float[][,] smoothNoise = new float[octaveCount][,]; //an array of 2D arrays containing
+
+            float persistance = 0.5f;
+
+            //generate smooth noise
+            for (int i = 0; i < octaveCount; i++)
+            {
+                smoothNoise[i] = GenerateSmoothNoise(baseNoise, i);
+            }
+
+            float[,] perlinNoise = new float[width, height];
+            float amplitude = 1.0f;
+            float totalAmplitude = 0.0f;
+
+            //blend noise together
+            for (int octave = octaveCount - 1; octave >= 0; octave--)
+            {
+                amplitude *= persistance;
+                totalAmplitude += amplitude;
+
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < height; j++)
+                    {
+                        perlinNoise[i, j] += smoothNoise[octave][i, j] * amplitude;
+                    }
+                }
+            }
+
+            //normalisation
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    perlinNoise[i, j] /= totalAmplitude;
+                }
+            }
+
+            return perlinNoise;
+        }
+
+        public static Color GetColor(Color gradientStart, Color gradientEnd, float t)
+        {
+            float mod = t % 0.2f;
+            float r = t - mod;
+            float u = 1 - r;
+
+            Color color = new Color(
+               (int)(gradientStart.R * u + gradientEnd.R * r),
+               (int)(gradientStart.G * u + gradientEnd.G * r),
+               (int)(gradientStart.B * u + gradientEnd.B * r));
+
+            return color;
+        }
 
         /*
         public static void makeRandomChunk(Region region)
