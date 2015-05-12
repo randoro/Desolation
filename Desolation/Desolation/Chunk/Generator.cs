@@ -73,13 +73,13 @@ namespace Desolation
                              
             chunk.biomes = new byte[256];
                // (int)Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(region.xPosRegion), Globals.getUniquePositiveFromAny(region.yPosRegion)
-            float[,] noise = createNoise(0, 64, 64);
+            float[,] noise = createNoise(XPos, YPos, 16, 16);
 
             for (int i = 0; i < 16; i++)
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    float f = noise[j + localxPos * 16, i + localyPos * 16];
+                    float f = noise[j, i];
                     float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
                     byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
                     chunk.biomes[j + i*16] = b;
@@ -148,13 +148,14 @@ namespace Desolation
 
 
 
-        public static float[,] createNoise(int seed, int width, int height)
+        public static float[,] createNoise(int xPos, int yPos, int width, int height)
         {
             Console.WriteLine("Noice:");
 
-            float[,] testNoise = GenerateWhiteNoise(seed, width, height);
 
-            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 7);
+            float[,] testNoise = GenerateWhiteNoise(xPos, yPos, width, height);
+
+            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 6);
 
             //for (int i = 0; i < width; i++)
             //{
@@ -175,16 +176,18 @@ namespace Desolation
 
 
 
-        private static float[,] GenerateWhiteNoise(int seed,int width, int height)
+        private static float[,] GenerateWhiteNoise(int xPos, int yPos,int width, int height)
         {
-            Random random = new Random(seed); //Seed to 0 for testing
+            
             float[,] noise = new float[width, height];
+            uint seed = Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(xPos * 16), Globals.getUniquePositiveFromAny(yPos * 16));
+            Random random = new Random((int)seed);
 
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < width; j++)
                 {
-                    noise[i, j] = (float)random.NextDouble() % 1f;
+                    noise[j, i] = (float)random.NextDouble() % 1f;
                 }
             }
 

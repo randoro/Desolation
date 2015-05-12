@@ -63,7 +63,7 @@ namespace Desolation
             frameXNACounter = new Counter(); //debug
 
 
-            noise = Generator.createNoise(0, 320, 320); //debug
+            noise = Generator.createNoise(0, 0, 320, 320); //debug
 
             //Generator.createNoise(); //debug
 
@@ -239,7 +239,7 @@ namespace Desolation
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
 
-                    noise = Generator.createNoise(0, 320, 320); 
+                    noise = Generator.createNoise(0, 0, 320, 320); 
 
                     debug = true;
                 }
