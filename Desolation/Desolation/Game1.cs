@@ -63,7 +63,7 @@ namespace Desolation
             frameXNACounter = new Counter(); //debug
 
             
-            noise = Generator.createNoise(320, 320); //debug
+            noise = Generator.createNoise(0, 320, 320); //debug
             //Generator.createNoise(); //debug
             
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -237,7 +237,7 @@ namespace Desolation
                     //{
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
-                    noise = Generator.createNoise(320, 320); 
+                    noise = Generator.createNoise(0, 320, 320); 
                     debug = true;
                 }
             }
@@ -441,12 +441,15 @@ namespace Desolation
                 for (int i = 0; i < 320; i++)
                 {
                     for (int j = 0; j < 320; j++)
-                {
-                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
-                    if (i % 16 == 0 && j % 16 == 0)
                     {
-                        spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-                    }
+                        float f = noise[j, i];
+                        float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                        byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                        spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+                        if (i % 16 == 0 && j % 16 == 0)
+                        {
+                            spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                        }
                     }
                 }
                 

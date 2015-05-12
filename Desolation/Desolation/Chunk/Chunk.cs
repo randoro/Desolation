@@ -38,9 +38,9 @@ namespace Desolation
             for (int i = 0; i < 256; i++)
             {
                 Vector2 pos = new Vector2(XPos * 256 + (i % 16) * 16, YPos * 256 + (i / 16) * 16);
-                RenderObject.draw(spriteBatch, ref pos, RenderType.blocks, ref blocks[i]);
+                RenderObject.draw(spriteBatch, ref pos, RenderType.blocks, ref blocks[i], ref biomes[i]);
 
-                RenderObject.draw(spriteBatch, ref pos, RenderType.objects, ref objects[i]);
+                RenderObject.draw(spriteBatch, ref pos, RenderType.objects, ref objects[i], ref biomes[i]);
                 //if (blocks[i] == 0)
                 //{
                 //    spriteBatch.Draw(TextureManager.blocksheet, pos, new Rectangle(0, 0, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);

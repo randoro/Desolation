@@ -72,6 +72,23 @@ namespace Desolation
                                
                              
             chunk.biomes = new byte[256];
+               // (int)Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(region.xPosRegion), Globals.getUniquePositiveFromAny(region.yPosRegion)
+            float[,] noise = createNoise(0, 64, 64);
+
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    float f = noise[j + localxPos * 16, i + localyPos * 16];
+                    float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                    byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                    chunk.biomes[j + i*16] = b;
+                }
+            }
+            
+
+
+
 
             byte[] blocks = new byte[256];
             for (int j = 0; j < blocks.Length; j++)
@@ -131,11 +148,11 @@ namespace Desolation
 
 
 
-        public static float[,] createNoise(int width, int height)
+        public static float[,] createNoise(int seed, int width, int height)
         {
             Console.WriteLine("Noice:");
 
-            float[,] testNoise = GenerateWhiteNoise(width, height);
+            float[,] testNoise = GenerateWhiteNoise(seed, width, height);
 
             float[,] perlinNoise = GeneratePerlinNoise(testNoise, 7);
 
@@ -151,23 +168,23 @@ namespace Desolation
 
 
             //int[,] oGridCells = { { 1, 2 }, { 3, 4 } };
-            //float[] oResult = new float[10 * 10];
-            //System.Buffer.BlockCopy(perlinNoise, 0, oResult, 0, 10*10*4);
+            //float[] oResult = new float[width * height];
+            //System.Buffer.BlockCopy(perlinNoise, 0, oResult, 0, width * height * 4);
             return perlinNoise;
         }
 
 
 
-        private static float[,] GenerateWhiteNoise(int width, int height)
+        private static float[,] GenerateWhiteNoise(int seed,int width, int height)
         {
-            Random random = new Random(); //Seed to 0 for testing
+            Random random = new Random(seed); //Seed to 0 for testing
             float[,] noise = new float[width, height];
 
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
-                    noise[i, j] = (float)random.NextDouble() % 1;
+                    noise[i, j] = (float)random.NextDouble() % 1f;
                 }
             }
 
@@ -229,7 +246,7 @@ namespace Desolation
 
             float[][,] smoothNoise = new float[octaveCount][,]; //an array of 2D arrays containing
 
-            float persistance = 0.3f;
+            float persistance = 0.5f;
 
             //generate smooth noise
             for (int i = 0; i < octaveCount; i++)
@@ -268,10 +285,11 @@ namespace Desolation
             return perlinNoise;
         }
 
-        public static Color GetColor(Color gradientStart, Color gradientEnd, float t)
+        public static Color GetColor(Color gradientStart, Color gradientEnd, byte t)
         {
-            float mod = t % 0.2f;
-            float r = t - mod;
+            float t2 = (float)t / 256f;
+            float mod = t2 % 0.2f;
+            float r = t2 - mod;
             float u = 1 - r;
 
             Color color = new Color(
