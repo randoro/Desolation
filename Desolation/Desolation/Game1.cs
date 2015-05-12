@@ -20,7 +20,7 @@ namespace Desolation
         TextureManager textureManager;
         Counter frameXNACounter;
         public static Player player;
-    
+
         float[,] noise;
 
         public static GameWindow gameWindow;
@@ -35,7 +35,7 @@ namespace Desolation
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        
+
 
         }
 
@@ -62,10 +62,15 @@ namespace Desolation
             animationEngine = new AnimationEngine();
             frameXNACounter = new Counter(); //debug
 
+<<<<<<< HEAD
             
             noise = Generator.createNoise(0, 320, 320); //debug
+=======
+
+            noise = Generator.createNoise(320, 320); //debug
+>>>>>>> origin/master
             //Generator.createNoise(); //debug
-            
+
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
 
             for (int i = 0; i < 10; i++)
@@ -92,7 +97,7 @@ namespace Desolation
             //    long[] realNr = Globals.getUniqueNumberReverse(nr);
             //    Console.WriteLine("first:" + realNr[0] + " second:" + realNr[1]);
             //}
-            
+
         }
         protected override void UnloadContent()
         {
@@ -178,7 +183,7 @@ namespace Desolation
 
             }
             #endregion
-            
+
             #region Controls
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -237,7 +242,11 @@ namespace Desolation
                     //{
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
+<<<<<<< HEAD
                     noise = Generator.createNoise(0, 320, 320); 
+=======
+                    noise = Generator.createNoise(320, 320);
+>>>>>>> origin/master
                     debug = true;
                 }
             }
@@ -265,31 +274,31 @@ namespace Desolation
                     offset = 8f;
                 }
                 Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - (float)(Globals.screenX) / 2f + mousePosOnScreen.X, Globals.playerPos.Y - ((float)(Globals.screenY) / 2f) + mousePosOnScreen.Y);
-          int chunkNr = Game1.player.getCurrentChunkNrInArray(new Vector2(mousePosInGame.X, mousePosInGame.Y + offset),Globals.playerPos );
-          chunkmusnr = chunkNr;
-          if (chunkNr != -1)
-          {
-              Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
-              if (tempChunk != null)
-              {
-                  //float bajs = 3.0f;
-                  //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
-                  //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(new Vector2(mousePosInGame.X, mousePosInGame.Y + offset), Globals.playerPos);
+                chunkmusnr = chunkNr;
+                if (chunkNr != -1)
+                {
+                    Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                    if (tempChunk != null)
+                    {
+                        //float bajs = 3.0f;
+                        //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
+                        //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
 
-                  int testX = Globals.getBlockValue(mousePosInGame.X); //nr som ska bli 0 - 15 broende på musens x kordinat 
-                  int testY = Globals.getBlockValue(mousePosInGame.Y + offset);//nr som ska bli 0 - 15 broende på musens y kordinat 
-                  int test = (testY * 16) + testX;//0 255
-                  if (test < (tempChunk.objects.Length) && test >= 0)
-                  {
-                      tempChunk.objects[(int)test] = 1;
-                  }
-              }
-          }
+                        int testX = Globals.getBlockValue(mousePosInGame.X); //nr som ska bli 0 - 15 broende på musens x kordinat 
+                        int testY = Globals.getBlockValue(mousePosInGame.Y + offset);//nr som ska bli 0 - 15 broende på musens y kordinat 
+                        int test = (testY * 16) + testX;//0 255
+                        if (test < (tempChunk.objects.Length) && test >= 0)
+                        {
+                            tempChunk.objects[(int)test] = 1;
+                        }
+                    }
+                }
 
                 // ta bort blocks på musens position
 
             }
-          
+
             //{
             //    int startpos = Globals.rand.Next(0, 255);
             //    int chunkNr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
@@ -327,13 +336,44 @@ namespace Desolation
             //    }
             //}
 
-           
+            else if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+            {
+                MouseState mouse = Mouse.GetState();
+                mousePosOnScreen = new Vector2(mouse.X, mouse.Y);
+                float offset = 0f;
+                if (mousePosOnScreen.Y > ((float)(Globals.screenY) / 2f))
+                {
+                    offset = 8f;
+                }
+                Vector2 mousePosInGame = new Vector2(Globals.playerPos.X - (float)(Globals.screenX) / 2f + mousePosOnScreen.X, Globals.playerPos.Y - ((float)(Globals.screenY) / 2f) + mousePosOnScreen.Y);
+                int chunkNr = Game1.player.getCurrentChunkNrInArray(new Vector2(mousePosInGame.X, mousePosInGame.Y + offset), Globals.playerPos);
+                chunkmusnr = chunkNr;
+                if (chunkNr != -1)
+                {
+                    Chunk tempChunk = ChunkManager.chunkArray[chunkNr];
+                    if (tempChunk != null)
+                    {
+                        //float bajs = 3.0f;
+                        //float testX = (int)((Globals.screenX/mousePosOnScreen.X));
+                        //float testY = (int)((Globals.screenY / mousePosOnScreen.Y));
+
+                        int testX = Globals.getBlockValue(mousePosInGame.X); //nr som ska bli 0 - 15 broende på musens x kordinat 
+                        int testY = Globals.getBlockValue(mousePosInGame.Y + offset);//nr som ska bli 0 - 15 broende på musens y kordinat 
+                        int test = (testY * 16) + testX;//0 255
+                        if (test < (tempChunk.objects.Length) && test >= 0)
+                        {
+                            tempChunk.objects[(int)test] = 0;
+                        }
+                    }
+                }
+
+            }
             else if (KeyMouseReader.KeyPressed(Keys.F8))
             {
 
-            Structure tempStruct = new Structure(125, 125);
-            tempStruct.generateRooms();
-            ChunkManager.structureList.Add(tempStruct);
+                Structure tempStruct = new Structure(125, 125);
+                tempStruct.generateRooms();
+                ChunkManager.structureList.Add(tempStruct);
             }
 
             else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
@@ -362,11 +402,11 @@ namespace Desolation
                 {
 
                 }
-            KeyMouseReader.Update();
-            base.Update(gameTime);
+                KeyMouseReader.Update();
+                base.Update(gameTime);
             }
             #endregion
-            
+
 
             KeyMouseReader.Update();
             base.Update(gameTime);
@@ -389,13 +429,13 @@ namespace Desolation
                 int xChunkPos = 0;
                 int yChunkPos = 0;
                 int chunknr = Game1.player.getCurrentChunkNrInArray(Globals.playerPos, Globals.playerPos);
-                if(ChunkManager.chunkArray[chunknr] != null) 
+                if (ChunkManager.chunkArray[chunknr] != null)
                 {
                     xChunkPos = ChunkManager.chunkArray[chunknr].XPos;
                     yChunkPos = ChunkManager.chunkArray[chunknr].YPos;
                 }
-                
-                
+
+
                 int textPos = 5;
                 spriteBatch.DrawString(Globals.font, "PlayerX:" + Globals.playerPos.X, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
@@ -407,7 +447,7 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "SyncCounter:" + ChunkManager.syncCounter.frameRate, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                if(ChunkManager.regionArray[4] != null) 
+                if (ChunkManager.regionArray[4] != null)
                 {
                     spriteBatch.DrawString(Globals.font, "RegionX:" + ChunkManager.regionArray[4].xPosRegion, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                     textPos += 15;
@@ -442,17 +482,21 @@ namespace Desolation
                 {
                     for (int j = 0; j < 320; j++)
                     {
+<<<<<<< HEAD
                         float f = noise[j, i];
                         float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
                         byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
                         spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+=======
+                        spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, noise[j, i]), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+>>>>>>> origin/master
                         if (i % 16 == 0 && j % 16 == 0)
                         {
                             spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                         }
                     }
                 }
-                
+
 
             }
 
@@ -460,7 +504,7 @@ namespace Desolation
             chunkManager.draw(spriteBatch);
             player.Draw(spriteBatch);
             animationEngine.draw(spriteBatch);
-            
+
 
             spriteBatch.End();
 
