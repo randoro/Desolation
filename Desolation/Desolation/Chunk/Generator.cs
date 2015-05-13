@@ -114,10 +114,10 @@ namespace Desolation
             byte[] objects = new byte[256];
             for (int j = 0; j < objects.Length; j++)
             {
-                int chance = Globals.rand.Next(0, 20);
+                int chance = Globals.rand.Next(0, 200);
                 if (chance <= 0)
                 {
-                    objects[j] = (byte)0;
+                    objects[j] = (byte)3;
                 }
                 else
                 {
