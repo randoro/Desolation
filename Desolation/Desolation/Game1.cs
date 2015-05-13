@@ -22,7 +22,7 @@ namespace Desolation
         public static Player player;
 
         float[,] noise;
-        float[] noise2;
+        float[,] noise2;
 
         public static GameWindow gameWindow;
         public static Vector2 mousePosOnScreen;
@@ -65,7 +65,7 @@ namespace Desolation
 
 
             noise = Generator.createNoise(0, 0, 160, 160); //debug
-            noise2 = Generator.noise(1.0f, 100);
+            noise2 = Generator.DiamondSquare(0, 0, 100, 100, 0.5f, 4);
             //Generator.createNoise(); //debug
 
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -241,7 +241,7 @@ namespace Desolation
                     //}
 
                     noise = Generator.createNoise(0, 0, 160, 160);
-                    noise2 = Generator.noise(1.0f, 100);
+                    //noise2 = Generator.DiamondSquare();
 
                     debug = true;
                 }
@@ -493,12 +493,14 @@ namespace Desolation
 
                 for (int i = 0; i < 100; i++)
                 {
+                    for (int j = 0; j < 100; j++)
+                    {
 
-                    float f = noise2[i];
-                    float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
-                    byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
-                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + i * 2, Globals.cameraPos.Y + 500), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
-
+                        float f = noise2[j,i];
+                        float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                        byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                        spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + i * 2, Globals.cameraPos.Y + 500 + j * 2), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+                    }
                 }
 
 

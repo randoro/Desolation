@@ -10,6 +10,13 @@ namespace Desolation
 {
     static class Generator
     {
+        static float[,] values = new float[100,100];
+
+        static int width = 10;
+
+        static int height = 10;
+
+        static int featuresize = 1;
 
         public static Chunk createChunk(Region region)
         {
@@ -339,6 +346,49 @@ namespace Desolation
             return returnValue;
         }
 
+
+
+        public static float[,] DiamondSquare(int x1, int y1, int x2, int y2, float range, int level)
+        {
+            if (level < 1)
+            {
+                return values;
+            }
+            
+
+            Random rand = new Random(0);
+            // diamonds
+            for (int i = x1 + level; i < x2; i += level)
+                for (int j = y1 + level; j < y2; j += level)
+                {
+                    float a = values[i - level,j - level];
+                    float b = values[i,j - level];
+                    float c = values[i - level,j];
+                    float d = values[i,j];
+                    float e = values[i - level / 2,j - level / 2] = (a + b + c + d) / 4 + (float)rand.NextDouble() * range;
+                }
+
+            // squares
+            for (int i = x1 + 2 * level; i < x2; i += level)
+                for (int j = y1 + 2 * level; j < y2; j += level)
+                {
+                    float a = values[i - level,j - level];
+                    float b = values[i,j - level];
+                    float c = values[i - level,j];
+                    float d = values[i,j];
+                    float e = values[i - level / 2,j - level / 2];
+
+                    float f = values[i - level,j - level / 2] = (a + c + e + values[i - 3 * level / 2,j - level / 2]) / 4 + (float)rand.NextDouble() * range;
+                    float g = values[i - level / 2,j - level] = (a + b + e + values[i - level / 2,j - 3 * level / 2]) / 4 + (float)rand.NextDouble() * range;
+                }
+
+            return DiamondSquare(x1, y1, x2, y2, range / 2, level / 2);
+            //return null;
+        }
+        
+
+        
+        
         /*
         public static void makeRandomChunk(Region region)
         {
