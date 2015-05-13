@@ -75,6 +75,7 @@
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\AnimationEngine.cs" />
     <Compile Include="Animations\ParticleEngine.cs" />
+    <Compile Include="ArrayExtention.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chunk\Chunk.cs" />
     <Compile Include="Chunk\ChunkManager.cs" />

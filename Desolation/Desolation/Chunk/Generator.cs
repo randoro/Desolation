@@ -10,8 +10,7 @@ namespace Desolation
 {
     static class Generator
     {
-        static float[,] values = new float[100,100];
-
+        static float[,] values = new float[257, 257];
         static int width = 10;
 
         static int height = 10;
@@ -350,6 +349,16 @@ namespace Desolation
 
         public static float[,] DiamondSquare(int x1, int y1, int x2, int y2, float range, int level)
         {
+            if (level == 8)
+            {
+                for (int i = 0; i < x2 - x1 + 1; i++)
+                {
+                    for (int j = 0; j < y2 - y1 + 1; j++)
+                {
+                    values[i, j] = 0.5f;
+                }
+                }
+            }
             if (level < 1)
             {
                 return values;
