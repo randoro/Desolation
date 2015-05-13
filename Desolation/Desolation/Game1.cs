@@ -22,6 +22,7 @@ namespace Desolation
         public static Player player;
 
         float[,] noise;
+        float[] noise2;
 
         public static GameWindow gameWindow;
         public static Vector2 mousePosOnScreen;
@@ -63,8 +64,8 @@ namespace Desolation
             frameXNACounter = new Counter(); //debug
 
 
-            noise = Generator.createNoise(0, 0, 320, 320); //debug
-
+            noise = Generator.createNoise(0, 0, 160, 160); //debug
+            noise2 = Generator.noise(1.0f, 100);
             //Generator.createNoise(); //debug
 
             ChunkManager.entityList.Add(new Zombie(new Vector2(2050, 2050)));
@@ -239,7 +240,8 @@ namespace Desolation
                     //    ChunkManager.entityList[i].speed = 0;
                     //}
 
-                    noise = Generator.createNoise(0, 0, 320, 320); 
+                    noise = Generator.createNoise(0, 0, 160, 160);
+                    noise2 = Generator.noise(1.0f, 100);
 
                     debug = true;
                 }
@@ -472,7 +474,7 @@ namespace Desolation
                 spriteBatch.DrawString(Globals.font, "Loaded Entities:" + ChunkManager.entityList.Count, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
 
-                for (int i = 0; i < 320; i++)
+                for (int i = 0; i < 160; i++)
                 {
                     for (int j = 0; j < 320; j++)
                     {
@@ -486,6 +488,17 @@ namespace Desolation
                             spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + j * 2, Globals.cameraPos.Y + 100 + i * 2), new Rectangle(0, 0, 2, 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                         }
                     }
+                }
+
+
+                for (int i = 0; i < 100; i++)
+                {
+
+                    float f = noise2[i];
+                    float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                    byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(Globals.cameraPos.X + 100 + i * 2, Globals.cameraPos.Y + 500), new Rectangle(0, 0, 2, 2), Generator.GetColor(Color.Black, Color.White, b), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+
                 }
 
 

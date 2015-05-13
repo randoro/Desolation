@@ -73,18 +73,18 @@ namespace Desolation
                              
             chunk.biomes = new byte[256];
                // (int)Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(region.xPosRegion), Globals.getUniquePositiveFromAny(region.yPosRegion)
-            float[,] noise = createNoise(XPos, YPos, 16, 16);
+            //float[,] noise = createNoise(XPos, YPos, 16, 16);
 
-            for (int i = 0; i < 16; i++)
-            {
-                for (int j = 0; j < 16; j++)
-                {
-                    float f = noise[j, i];
-                    float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
-                    byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
-                    chunk.biomes[j + i*16] = b;
-                }
-            }
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    for (int j = 0; j < 16; j++)
+            //    {
+            //        float f = noise[j, i];
+            //        float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+            //        byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+            //        chunk.biomes[j + i*16] = b;
+            //    }
+            //}
             
 
 
@@ -154,8 +154,32 @@ namespace Desolation
 
 
             float[,] testNoise = GenerateWhiteNoise(xPos, yPos, width, height);
+            float[,] testNoise2 = GenerateWhiteNoise(xPos, yPos, width, height);
 
-            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 6);
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    testNoise2[j, i] = testNoise[width + j - 16, i];
+                }
+            }
+            float[,] perlinNoise = GeneratePerlinNoise(testNoise, 4);
+
+            float[,] perlinNoise2 = GeneratePerlinNoise(testNoise2, 4);
+
+
+            float[,] testNoise3 = new float[width * 2, height];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    testNoise3[j, i] = perlinNoise[j, i];
+                    testNoise3[j + width, i] = perlinNoise2[j, i];
+                }
+            }
+
+            //float[,] perlinNoise3 = GeneratePerlinNoise(testNoise3, 6);
+            //float[,] perlinNoise = GeneratePerlinNoise(testNoise, 6);
 
             //for (int i = 0; i < width; i++)
             //{
@@ -171,7 +195,7 @@ namespace Desolation
             //int[,] oGridCells = { { 1, 2 }, { 3, 4 } };
             //float[] oResult = new float[width * height];
             //System.Buffer.BlockCopy(perlinNoise, 0, oResult, 0, width * height * 4);
-            return perlinNoise;
+            return testNoise3;
         }
 
 
@@ -301,6 +325,18 @@ namespace Desolation
                (int)(gradientStart.B * u + gradientEnd.B * r));
 
             return color;
+        }
+
+        public static float[]noise(float freq, int length) {
+            Random rand = new Random();
+        float phase =  (float)(rand.NextDouble() * 2*Math.PI);
+        float[] returnValue = new float[length];
+            for (int i = 0; i < length; i++)
+			{
+                returnValue[i] = (float)(Math.Sin(2 * Math.PI * freq * i / length + phase));
+			}
+
+            return returnValue;
         }
 
         /*
