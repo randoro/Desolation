@@ -10,7 +10,7 @@ namespace Desolation
 {
     static class Generator
     {
-        static float[,] values = new float[257, 257];
+        static float[,] values = new float[320, 320];
         static int width = 10;
 
         static int height = 10;
@@ -234,7 +234,7 @@ namespace Desolation
             float[,] smoothNoise = new float[width, height];
 
             int samplePeriod = 1 << octave; // calculates 2 ^ k
-            float sampleFrequency = 1.0f / samplePeriod;
+            float sampleFrequency = 0.8f / samplePeriod;
 
             for (int i = 0; i < width; i++)
             {
@@ -266,7 +266,57 @@ namespace Desolation
             return smoothNoise;
         }
 
-        private static float Interpolate(float x0, float x1, float alpha)
+        private static void makeNoise(int seed, float frequency, int width, int height, bool horizontal)
+        {
+            float[] line = noise(seed, frequency, width);
+            for (int j = 0; j < height; j++)
+            {
+                for (int i = 0; i < width; i++)
+                {
+                    float newf = 0;
+                    if (horizontal)
+                    {
+                        newf = Interpolate(values[i, j], line[i], 0.1f);
+                    }
+                    else
+                    {
+                        newf = Interpolate(values[i, j], line[j], 0.1f);
+                    }
+                    values[i, j] = newf;
+                }
+            }
+        }
+
+        public static float[,] noises(int width, int height)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                for (int i = 0; i < width; i++)
+                {
+                    values[i, j] = 0.5f;
+                }
+                }
+            Random rand = new Random(0);
+            for (int i = 0; i < 4; i++)
+            {
+                int bol = rand.Next(0, 1);
+                makeNoise(i, 4.0f + i * 0.1f, width, height, bol == 1 ? true : false);
+            }
+            //makeNoise(0, 4.0f, width, height, true);
+            //makeNoise(1, 3.0f, width, height, true);
+            //makeNoise(2, 0.4f, width, height, true);
+            //makeNoise(3, 0.1f, width, height, true);
+            //makeNoise(4, 1.0f, width, height, true);
+            //makeNoise(0, 0.1f, width, height, false);
+            //makeNoise(1, 3.0f, width, height, false);
+            //makeNoise(2, 5.0f, width, height, false);
+            //makeNoise(3, 2.0f, width, height, false);
+            //makeNoise(4, 0.2f, width, height, false);
+            
+            return values;
+        }
+
+        public static float Interpolate(float x0, float x1, float alpha)
         {
             return x0 * (1 - alpha) + alpha * x1;
         }
@@ -333,8 +383,8 @@ namespace Desolation
             return color;
         }
 
-        public static float[]noise(float freq, int length) {
-            Random rand = new Random();
+        public static float[]noise(int seed, float freq, int length) {
+            Random rand = new Random(seed);
         float phase =  (float)(rand.NextDouble() * 2*Math.PI);
         float[] returnValue = new float[length];
             for (int i = 0; i < length; i++)
@@ -349,7 +399,7 @@ namespace Desolation
 
         public static float[,] DiamondSquare(int x1, int y1, int x2, int y2, float range, int level)
         {
-            if (level == 8)
+            if (level == 9)
             {
                 for (int i = 0; i < x2 - x1 + 1; i++)
                 {
