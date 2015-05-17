@@ -276,11 +276,11 @@ namespace Desolation
                     float newf = 0;
                     if (horizontal)
                     {
-                        newf = Interpolate(values[i, j], line[i], 0.1f);
+                        newf = values[i, j] + line[i] / 2;
                     }
                     else
                     {
-                        newf = Interpolate(values[i, j], line[j], 0.1f);
+                        newf = values[i, j] + line[j] / 2;
                     }
                     values[i, j] = newf;
                 }
@@ -297,10 +297,10 @@ namespace Desolation
                 }
                 }
             Random rand = new Random(0);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 10; i++)
             {
-                int bol = rand.Next(0, 1);
-                makeNoise(i, 4.0f + i * 0.1f, width, height, bol == 1 ? true : false);
+                int bol = rand.Next(0, 2);
+                makeNoise(i, 4.2f + i * 0.11f, width, height, bol == 1 ? true : false);
             }
             //makeNoise(0, 4.0f, width, height, true);
             //makeNoise(1, 3.0f, width, height, true);
