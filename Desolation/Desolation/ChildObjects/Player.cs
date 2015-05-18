@@ -29,8 +29,8 @@ namespace Desolation
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
-            equipment[0] = new Item(4);
-            equipment[1] = new Item(4);
+            equipment[0] = new Item((int)ItemID.Sword);
+            equipment[1] = new Item((int)ItemID.Smg);
 
             speed = 3;
             watchingDirection = Direction.None;
@@ -106,7 +106,7 @@ namespace Desolation
             attackspeed--;
             if (KeyMouseReader.RightHold())
             {
-                if (!lefttempItem.twohandded||!righttempItem.twohandded)
+                if (!lefttempItem.twohandded&&!righttempItem.twohandded)
                 {
 
                     if (attackspeed <= 0)
@@ -125,7 +125,7 @@ namespace Desolation
                                     if (Globals.checkRange(e.position, position, righttempItem.range + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                                     {
                                         float directAngle = getAngle(e.position);
-                                        if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                        if (rotation >= directAngle - righttempItem.skadearea && rotation <= directAngle + righttempItem.skadearea)
                                         {
                                             e.damageEntity(righttempItem.damge);
                                             attackspeed = righttempItem.attackspeed;
@@ -134,7 +134,7 @@ namespace Desolation
                                     }
 
                                 }
-                                else if (lefttempItem.itemType.Equals(ItemType.Ranged))
+                                else if (righttempItem.itemType.Equals(ItemType.Ranged))
                                 {
                                     if (Globals.checkRange(e.position, position, righttempItem.range + rangedRange))
                                     {
@@ -143,7 +143,7 @@ namespace Desolation
                                         //getAngle(e.position);
                                         float directAngle = getAngle(e.position);
 
-                                        if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                        if (rotation >= directAngle - righttempItem.skadearea && rotation <= directAngle + righttempItem.skadearea)
                                         {
                                             e.damageEntity(righttempItem.damge);
                                             attackspeed = righttempItem.attackspeed;
@@ -184,7 +184,7 @@ namespace Desolation
                                 if (Globals.checkRange(e.position, position, lefttempItem.range + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                                 {
                                     float directAngle = getAngle(e.position);
-                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                    if (rotation >= directAngle - lefttempItem.skadearea && rotation <= directAngle + lefttempItem.skadearea)
                                     {
                                         e.damageEntity(lefttempItem.damge);
                                         attackspeed = lefttempItem.attackspeed;
@@ -202,7 +202,7 @@ namespace Desolation
                                     //getAngle(e.position);
                                     float directAngle = getAngle(e.position);
 
-                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                    if (rotation >= directAngle - lefttempItem.skadearea && rotation <= directAngle + lefttempItem.skadearea)
                                     {
                                         e.damageEntity(lefttempItem.damge);
                                         attackspeed = lefttempItem.attackspeed;
