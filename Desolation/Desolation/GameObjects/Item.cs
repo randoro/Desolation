@@ -13,6 +13,7 @@ namespace Desolation
         public int range { set; get; }
         public int damge { set; get; }
         public int attackspeed { set; get; }
+        public bool twohandded { set; get; }
 
         public Item(int itemID)
         {
@@ -21,6 +22,7 @@ namespace Desolation
             this.range = range;
             this.damge = damge;
             this.attackspeed = attackspeed;
+            this.twohandded = twohandded;
             switch (itemID)
             {
                 case 0 :
@@ -30,32 +32,37 @@ namespace Desolation
                     itemType= ItemType.Effect;
                     break;
                 case 1:
-                    range=200;
+                    range=15;
                     damge=5;
-                    attackspeed = 3;
-                    itemType= ItemType.Ranged;
+                    attackspeed = 7;
+                    itemType= ItemType.Melee;
+                    twohandded = false;
+
 
                     break;
 
                 case 2:
-                    range=150;
-                    damge=1;
-                    attackspeed = 1;
-                    itemType= ItemType.Ranged;
+                    range=20;
+                    damge=7;
+                    attackspeed = 5;
+                    itemType= ItemType.Melee;
+                    twohandded = false;
 
                     break;
                 case 3:
-                    range=10;
+                    range=200;
                     damge=7;
                     attackspeed = 7;
-                    itemType= ItemType.Melee;
+                    itemType= ItemType.Ranged;
+                    twohandded = false;
 
                     break;
                 case 4:
-                    range = 15;
-                    damge = 2;
+                    range = 150;
+                    damge = 6;
                     attackspeed = 4;
-                    itemType = ItemType.Melee;
+                    itemType = ItemType.Ranged;
+                    twohandded = true;
 
                     break;
 

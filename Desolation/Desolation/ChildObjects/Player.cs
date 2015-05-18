@@ -106,60 +106,64 @@ namespace Desolation
             attackspeed--;
             if (KeyMouseReader.RightHold())
             {
-                if (attackspeed <= 0)
+                if (!lefttempItem.twohandded||!righttempItem.twohandded)
                 {
-                    foreach (Entity e in ChunkManager.entityList)
+
+                    if (attackspeed <= 0)
                     {
-
-
-
-
-
-                        if (righttempItem != null)
+                        foreach (Entity e in ChunkManager.entityList)
                         {
-                            if (righttempItem.itemType.Equals(ItemType.Melee))
+
+
+
+
+
+                            if (righttempItem != null)
                             {
-                                if (Globals.checkRange(e.position, position, righttempItem.range + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
+                                if (righttempItem.itemType.Equals(ItemType.Melee))
                                 {
-                                    float directAngle = getAngle(e.position);
-                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                    if (Globals.checkRange(e.position, position, righttempItem.range + meleeRange))//kålla vilka enntytis är inom rench och det är de man skadar
                                     {
-                                        e.damageEntity(righttempItem.damge);
-                                        attackspeed = righttempItem.attackspeed;
+                                        float directAngle = getAngle(e.position);
+                                        if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                        {
+                                            e.damageEntity(righttempItem.damge);
+                                            attackspeed = righttempItem.attackspeed;
+
+                                        }
+                                    }
+
+                                }
+                                else if (lefttempItem.itemType.Equals(ItemType.Ranged))
+                                {
+                                    if (Globals.checkRange(e.position, position, righttempItem.range + rangedRange))
+                                    {
+                                        // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
+                                        //float currentAngle = getAngle(position);
+                                        //getAngle(e.position);
+                                        float directAngle = getAngle(e.position);
+
+                                        if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
+                                        {
+                                            e.damageEntity(righttempItem.damge);
+                                            attackspeed = righttempItem.attackspeed;
+                                        }
+                                        //if (attackspeed <= 0)
+                                        //{
+                                        //    e.life--;
+                                        //    attackspeed = 3;
+                                        //}
 
                                     }
                                 }
-
-                            }
-                            else if (lefttempItem.itemType.Equals(ItemType.Ranged))
-                            {
-                                if (Globals.checkRange(e.position, position, righttempItem.range + rangedRange))
+                                else if (lefttempItem.itemType.Equals(ItemType.Effect))
                                 {
-                                    // läg till under i if satsen ....att get angel(pleyer mus)= getangel (player entety)
-                                    //float currentAngle = getAngle(position);
-                                    //getAngle(e.position);
-                                    float directAngle = getAngle(e.position);
-
-                                    if (rotation >= directAngle - 0.2f && rotation <= directAngle + 0.2f)
-                                    {
-                                        e.damageEntity(righttempItem.damge);
-                                        attackspeed = righttempItem.attackspeed;
-                                    }
-                                    //if (attackspeed <= 0)
-                                    //{
-                                    //    e.life--;
-                                    //    attackspeed = 3;
-                                    //}
 
                                 }
-                            }
-                            else if (lefttempItem.itemType.Equals(ItemType.Effect))
-                            {
-
                             }
                         }
                     }
-                }
+                } 
             }
             if (KeyMouseReader.LeftHold())
             {
