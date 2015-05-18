@@ -27,7 +27,7 @@ namespace Desolation
         {
             sourceRect = new Rectangle(0, 0, 16, 16);
             speed = 2.5f;
-            equipment[0] = new Item(0, ItemType.Melee);
+            equipment[0] = new Item(4);
             health = 5;
         }
         #endregion
