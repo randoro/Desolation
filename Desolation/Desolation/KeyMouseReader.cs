@@ -22,6 +22,11 @@ namespace Desolation
         {
             return mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Pressed;
         }
+        public static bool RightHold()
+        {
+            return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Pressed;
+        }
+
         public static bool RightClick()
         {
             return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released;
