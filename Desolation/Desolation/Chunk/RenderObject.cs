@@ -63,7 +63,7 @@ namespace Desolation
                     spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     break;
                 case 3:
-                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 32, position.Y - 96), new Rectangle(0, 288, 80, 112), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
+                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 64, position.Y - 96), new Rectangle(0, 272, 128, 128), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     break;
                 default:
                     break;

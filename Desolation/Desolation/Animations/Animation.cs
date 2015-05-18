@@ -30,7 +30,7 @@ namespace Desolation
             switch (animationType)
             {
                 case AnimationType.FadeOutAndIn:
-                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(position.X - 10, position.Y - 10), new Rectangle(-10, -10, Globals.screenX + 20, Globals.screenY + 20), new Color((float)alpha, (float)alpha, (float)alpha, (float)alpha), 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                    spriteBatch.Draw(TextureManager.fillingTexture, new Vector2(position.X - 10, position.Y - 10), new Rectangle(-10, -10, Globals.screenX + 20, Globals.screenY + 20), new Color((float)alpha, (float)alpha, (float)alpha, (float)alpha), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
                     break; //(float)((double)TTL / (double)startTTL)
                 case AnimationType.Smoke:
                     //uses particleEngine

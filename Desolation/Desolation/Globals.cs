@@ -12,6 +12,7 @@ namespace Desolation
     // 0.2-0.2*y Blocks
     // 0.3-0.3*y Objects
     // 0.3-0.3*y Entities
+    // 0.4 particles
     // 0.5 roof
     //
     // 0.9 animations
@@ -45,6 +46,7 @@ namespace Desolation
         public static long ticksLastChunkLoad = 0;
         public static uint currentStructureID; //structure player is inside
         public static SpriteFont font;
+        public static readonly int seed = 123;
 
 
         public static void shiftChunksRight(ref Chunk[] chunkArray) //chunks moving right and left side getting null

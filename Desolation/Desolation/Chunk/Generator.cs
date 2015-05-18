@@ -44,6 +44,9 @@ namespace Desolation
 
             int YPos = region.yPosRegion * 4 + valueIndex / 4;
 
+            uint uniquePos = Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(XPos), Globals.getUniquePositiveFromAny(YPos));
+            uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
+            Random generator = new Random((int)uniqueseed);
 
             int localxPos;
             int localyPos;
@@ -99,7 +102,7 @@ namespace Desolation
             byte[] blocks = new byte[256];
             for (int j = 0; j < blocks.Length; j++)
             {
-                int chance = Globals.rand.Next(0, 2);
+                int chance = generator.Next(0, 2);
                 if (chance <= 0)
                 {
                     blocks[j] = (byte)0;
@@ -117,10 +120,11 @@ namespace Desolation
 
             chunk.blocks = blocks;
 
+            
             byte[] objects = new byte[256];
             for (int j = 0; j < objects.Length; j++)
             {
-                int chance = Globals.rand.Next(0, 200);
+                int chance = generator.Next(0, 200);
                 if (chance <= 0)
                 {
                     objects[j] = (byte)3;
