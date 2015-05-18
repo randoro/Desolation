@@ -127,9 +127,17 @@ namespace Desolation
             for (int j = 0; j < objects.Length; j++)
             {
                 int chance = generator.Next(0, 200);
-                if (chance <= 0)
+                if (chance == 3)
                 {
                     objects[j] = (byte)3;
+                }
+                  else if (chance==4)
+                {
+                    objects[j] = (byte)4;
+                }
+                else if (chance == 5)
+                {
+                    objects[j] = (byte)5;
                 }
                 else
                 {
