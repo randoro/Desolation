@@ -107,7 +107,7 @@ namespace Desolation
           
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(TextureManager.npcSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, (float)(0.3 + (0.0001f * (position.Y - Globals.cameraPos.Y)) - 0.0003));
+            spriteBatch.Draw(TextureManager.npcSheet, new Vector2(position.X - 8, position.Y - 15), sourceRect, Color.White, rotation, new Vector2(), 1f, SpriteEffects.None, (float)(0.3 + (0.0001f * (position.Y - Globals.cameraPos.Y)) + (0.00001f * (position.X - Globals.cameraPos.X)) - 0.0004));
         }
 
         public override void checkAttack()

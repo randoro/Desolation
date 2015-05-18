@@ -17,9 +17,12 @@ namespace Desolation
     //
     // 0.9 animations
     // 1.0 debug
+
+
     public enum RenderType { blocks, objects };
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
 
+    public enum BlockID { Grass, LightGrass, DarkGrass, DryGrass, SwampGrass, Sand, RoughSand, GreySand, WaveSand, QuickSand, Dirt, DarkDirt, LightDirt, Mud, Gravel, Snow, BlueSnow, YellowSnow, GreySnow, CrystalIce, HardIce, Water, SaltWater, FreshWater, VoidWater , WoodPlanks };
     public enum EntityID { Player, Goblin, Zombie, Deer };
     public enum Direction { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest, None};
 
