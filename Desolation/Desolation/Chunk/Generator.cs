@@ -105,12 +105,12 @@ namespace Desolation
                 int chance = generator.Next(0, 2);
                 if (chance <= 0)
                 {
-                    blocks[j] = (byte)0;
+                    blocks[j] = (byte)BlockID.Sand;
                 }
                 else
                 {
 
-                    blocks[j] = (byte)2;
+                    blocks[j] = (byte)BlockID.RoughSand;
                 }
             }
             blocks[0] = (byte)1;
