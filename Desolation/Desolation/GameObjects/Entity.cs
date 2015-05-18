@@ -139,7 +139,7 @@ namespace Desolation
 
                             if (this is Player)
                             {
-                                if (surroundingObjects[4] == 1)
+                                if (!(surroundingObjects[4] == 0))
                                 {
                                     moveDirection(Globals.getOppositeDirection(currentDirection));
                                     currentDirection = Direction.None;
@@ -147,7 +147,7 @@ namespace Desolation
                             }
                             else if (this is Zombie)
                             {
-                                if (surroundingObjects[4] == 1)
+                                if (!(surroundingObjects[4] == 0))
                                 {
                                     position = oldPosition;
                                     moveDirection(Globals.getOppositeDirection(currentDirection));
@@ -161,7 +161,7 @@ namespace Desolation
                             }
                             else
                             {
-                                if (surroundingObjects[4] == 1)
+                                if (!(surroundingObjects[4] == 0))
                                 {
                                     position = oldPosition;
                                     moveDirection(Globals.getOppositeDirection(currentDirection));

@@ -7,6 +7,15 @@ using Microsoft.Xna.Framework;
 
 namespace Desolation
 {
+
+    //Layerdepth definition
+    // 0.2-0.2*y Blocks
+    // 0.3-0.3*y Objects
+    // 0.3-0.3*y Entities
+    // 0.5 roof
+    //
+    // 0.9 animations
+    // 1.0 debug
     public enum RenderType { blocks, objects };
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
 

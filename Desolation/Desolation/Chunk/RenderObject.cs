@@ -31,18 +31,18 @@ namespace Desolation
             switch (id)
             {
                 case 0:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(48, 0, Globals.blockSize, Globals.blockSize), Generator.GetColor(Color.White, Color.Black, color), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(48, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.2 + 0.0001f*(position.Y - Globals.cameraPos.Y)));
                     break;
                 case 1:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Generator.GetColor(Color.White, Color.Black, color), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.2 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
                     break;
                 case 2:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(64, 0, Globals.blockSize, Globals.blockSize), Generator.GetColor(Color.White, Color.Black, color), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(64, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.2 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
                     break;
                 case 3:
-                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(0, 16, Globals.blockSize, Globals.blockSize), Generator.GetColor(Color.White, Color.Black, color), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.7f);
+                    spriteBatch.Draw(TextureManager.blocksheet, position, new Rectangle(0, 16, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.2 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     //myrornas krig new Color((float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4, (float)Globals.rand.NextDouble() * 4)
                     break;
                
@@ -60,10 +60,10 @@ namespace Desolation
                 case 0:
                     break;
                 case 1:
-                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.75f);
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     break;
                 case 3:
-                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0,288,80, 112), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.95f);
+                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 32, position.Y - 96), new Rectangle(0, 288, 80, 112), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y)));
                     break;
                 default:
                     break;
