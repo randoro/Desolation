@@ -139,6 +139,11 @@ namespace Desolation
                 {
                     objects[j] = (byte)5;
                 }
+                else if (chance == 6)
+                {
+                    objects[j] = (byte)6;
+                }
+
                 else
                 {
 
