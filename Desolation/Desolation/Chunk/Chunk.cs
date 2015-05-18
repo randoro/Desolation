@@ -13,6 +13,7 @@ namespace Desolation
         public int YPos { set; get; } //saved in file
         public long lastUpdate { set; get; } //saved in file
         public sbyte terrainPopulated { set; get; } //saved in file
+        public sbyte structurePopulated { set; get; } //saved in file
         public long inhabitedTime { set; get; } //saved in file
         public byte[] biomes { set; get; } //saved in file
         public byte[] blocks { set; get; } //saved in file

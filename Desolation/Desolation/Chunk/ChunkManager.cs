@@ -152,6 +152,17 @@ namespace Desolation
                                 }
                             }
                         }
+                        else
+                        {
+                            //all chunks loaded
+                            for (int k = 0; k < 16; k++)
+                            {
+                                if (chunkArray[((k / 4) + (i / 3) * 4) * 12 + (k % 4) + (i % 3) * 4].structurePopulated == 0)
+                                {
+                                    Generator.tryToGenerateStructure(chunkArray[((k / 4) + (i / 3) * 4) * 12 + (k % 4) + (i % 3) * 4]);
+                                }
+                            }
+                        }
 
 
                     }

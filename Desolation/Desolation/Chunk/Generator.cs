@@ -76,6 +76,8 @@ namespace Desolation
 
             chunk.terrainPopulated = 1;
 
+            chunk.structurePopulated = 0;
+
             chunk.lastUpdate = 123;
             chunk.inhabitedTime = 456;          
                                
@@ -157,7 +159,24 @@ namespace Desolation
 
 
 
+        public static void tryToGenerateStructure(Chunk chunk)
+        {
+            chunk.structurePopulated = 1;
+            if(chunk.innerIndex == 5) 
+            {
 
+            uint uniquePos = Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(chunk.XPos), Globals.getUniquePositiveFromAny(chunk.YPos));
+            uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
+            Random generator = new Random((int)uniqueseed);
+
+
+            Structure tempStruct = new Structure(chunk.XPos * 16 * 16, chunk.YPos * 16 * 16);
+                tempStruct.generateRooms();
+                ChunkManager.structureList.Add(tempStruct);
+
+            }
+            
+        }
         
         
 

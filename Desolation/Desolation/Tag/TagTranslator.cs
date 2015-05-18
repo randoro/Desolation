@@ -100,6 +100,10 @@ namespace Desolation
                                 {
                                     newChunk.terrainPopulated = (sbyte)currentTag.getData();
                                 }
+                                else if (tagName.Equals("StructurePopulated"))
+                                {
+                                    newChunk.structurePopulated = (sbyte)currentTag.getData();
+                                }
                                 break;
                             case TagID.Short:
                                 break;
@@ -220,6 +224,11 @@ namespace Desolation
             byte[] chunkTerrainPopulated = { terrainByte };
             Tag TerrainPopulated = new Tag(TagID.Byte, "TerrainPopulated", chunkTerrainPopulated, TagID.Byte);
             writeTag(TerrainPopulated, fileStream);
+
+            byte structureByte = (byte)chunk.structurePopulated;
+            byte[] chunkStructurePopulated = { structureByte };
+            Tag StructurePopulated = new Tag(TagID.Byte, "StructurePopulated", chunkStructurePopulated, TagID.Byte);
+            writeTag(StructurePopulated, fileStream);
 
             byte[] chunkInhabitedTime = BitConverter.GetBytes(chunk.inhabitedTime);
             Tag InhabitedTime = new Tag(TagID.Long, "InhabitedTime", chunkInhabitedTime, TagID.Long);
