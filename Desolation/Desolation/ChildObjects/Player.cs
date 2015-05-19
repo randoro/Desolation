@@ -20,7 +20,7 @@ namespace Desolation
         double frameTimer, frameInterval = 100;
         int attackspeed = 0;
         int meleeRange = 15;
-        int rangedRange = 250;
+        int rangedRange = 25;
         Direction watchingDirection;
         #region Constructor
         public Player(Vector2 position)
