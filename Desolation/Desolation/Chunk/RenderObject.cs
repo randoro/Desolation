@@ -181,6 +181,9 @@ namespace Desolation
                     spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
 
                     break;
+                case ObjectID.Skull:
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+                    break;
                 case ObjectID.Bricks:
                     break;
                 case ObjectID.Windows:
@@ -203,6 +206,12 @@ namespace Desolation
                     break;
                 case ObjectID.Pine:
                     spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 58, position.Y - 130), new Rectangle(384, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+                    break;
+                case ObjectID.DarkCactus:
+                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 12, position.Y - 130), new Rectangle(515, 256, 32, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+                    break;
+                case ObjectID.LightCactus:
+                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 6, position.Y - 134), new Rectangle(550, 256, 32, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
                     break;
                 default:
                     break;
