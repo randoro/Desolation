@@ -182,10 +182,13 @@ namespace Desolation
             uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
             Random generator = new Random((int)uniqueseed);
 
-
-            Structure tempStruct = new Structure(chunk.XPos * 16 * 16, chunk.YPos * 16 * 16);
+            int chance = generator.Next(0, 10);
+            if (chance == 0)
+            {
+                Structure tempStruct = new Structure(chunk.XPos * 16 * 16, chunk.YPos * 16 * 16);
                 tempStruct.generateRooms();
                 ChunkManager.structureList.Add(tempStruct);
+            }
 
             }
             
