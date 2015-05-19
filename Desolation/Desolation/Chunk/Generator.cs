@@ -272,17 +272,25 @@ namespace Desolation
                 byte[] objects = new byte[256];
                 for (int j = 0; j < objects.Length; j++)
                 {
-                    int chance = generator.Next(0, 200);
+                    int chance = generator.Next(0, 400);
                     if (chance == 0)
                     {
-                        objects[j] = (byte)ObjectID.Oak;
+                        objects[j] = (byte)ObjectID.DarkCactus;
                     }
-                    
-
+                    else if (chance == 1)
+                    {
+                        objects[j] = (byte)ObjectID.LightCactus;
+                    }
                     else
                     {
 
                         objects[j] = (byte)ObjectID.Air;
+                    }
+
+                    int chance2 = generator.Next(0, 1000);
+                    if (chance2 == 0)
+                    {
+                        objects[j] = (byte)ObjectID.Skull;
                     }
                 }
 
