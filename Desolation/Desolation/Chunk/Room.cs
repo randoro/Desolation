@@ -171,16 +171,18 @@ namespace Desolation
                             //    yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
                             //}
 
-                            tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 3;
+                            
 
                             if ((i == 0 || j == 0 || i == area.Height - 16 || j == area.Width - 16) && !(i == area.Height - 16 && j == (area.Width / 2 - 16)))
                             {
-                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 1;
+                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 0;
                             }
                             else
                             {
                                 tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 0;
                             }
+
+                            tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 3;
                         }
                     }
                 }

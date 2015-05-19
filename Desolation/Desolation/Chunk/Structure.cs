@@ -29,6 +29,10 @@ namespace Desolation
             newRoom.generateRoom();
             ChunkManager.roomList.Add(newRoom);
 
+            Room newRoom2 = new Room((int)structureCenterPositionX + 64, (int)structureCenterPositionY + 64, 128, 128, structureID);
+            newRoom2.generateRoom();
+            ChunkManager.roomList.Add(newRoom2);
+
             //Room newRoom2 = new Room(structureCenterBlockX * 16 - 64 + 192, structureCenterBlockY * 16 - 32 + 192, 1280, 1280, structureID);
             //newRoom2.generateRoom();
             //ChunkManager.roomList.Add(newRoom2);
