@@ -129,25 +129,25 @@ namespace Desolation
                 int chance = generator.Next(0, 200);
                 if (chance == 3)
                 {
-                    objects[j] = (byte)3;
+                    objects[j] = (byte)ObjectID.Oak;
                 }
                   else if (chance==4)
                 {
-                    objects[j] = (byte)4;
+                    objects[j] = (byte)ObjectID.Pine;
                 }
                 else if (chance == 5)
                 {
-                    objects[j] = (byte)5;
+                    objects[j] = (byte)ObjectID.LeafLessTree;
                 }
                 else if (chance == 6)
                 {
-                    objects[j] = (byte)6;
+                    objects[j] = (byte)ObjectID.Snowpine;
                 }
 
                 else
                 {
 
-                    objects[j] = (byte)0;
+                    objects[j] = (byte)ObjectID.Air;
                 }
             }
 
@@ -182,11 +182,11 @@ namespace Desolation
             uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
             Random generator = new Random((int)uniqueseed);
 
-            int chance = generator.Next(0, 10);
+            int chance = generator.Next(0, 2);
             if (chance == 0)
             {
                 Structure tempStruct = new Structure(chunk.XPos * 16 * 16, chunk.YPos * 16 * 16);
-                tempStruct.generateRooms();
+                tempStruct.generateRooms(generator);
                 ChunkManager.structureList.Add(tempStruct);
             }
 

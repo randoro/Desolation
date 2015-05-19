@@ -280,7 +280,7 @@ namespace Desolation
                         int test = (testY * 16) + testX;//0 255
                         if (test < (tempChunk.objects.Length) && test >= 0)
                         {
-                            tempChunk.objects[(int)test] = 3;
+                            tempChunk.objects[(int)test] = (byte)ObjectID.Planks;
                         }
                     }
                 }
@@ -352,7 +352,7 @@ namespace Desolation
                         int test = (testY * 16) + testX;//0 255
                         if (test < (tempChunk.objects.Length) && test >= 0)
                         {
-                            tempChunk.objects[(int)test] = 0;
+                            tempChunk.objects[(int)test] = (byte)ObjectID.Air;
                         }
                     }
                 }
@@ -362,7 +362,7 @@ namespace Desolation
             {
 
                 Structure tempStruct = new Structure(125, 125);
-                tempStruct.generateRooms();
+                tempStruct.generateRooms(new Random(0));
                 ChunkManager.structureList.Add(tempStruct);
             }
 

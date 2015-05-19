@@ -175,14 +175,17 @@ namespace Desolation
 
                             if ((i == 0 || j == 0 || i == area.Height - 16 || j == area.Width - 16) && !(i == area.Height - 16 && j == (area.Width / 2 - 16)))
                             {
-                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 0;
+                                if (tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] != (int)BlockID.WoodPlanks)
+                                {
+                                    tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = (int)ObjectID.Planks;
+                                }
                             }
                             else
                             {
-                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = 0;
+                                tempChunk.objects[(yBlockPos * 16 + xBlockPos)] = (int)ObjectID.Air;
                             }
 
-                            tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 3;
+                            tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = (int)BlockID.WoodPlanks;
                         }
                     }
                 }
