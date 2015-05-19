@@ -126,7 +126,26 @@ namespace Desolation
             {
                 for (int j = 0; j < area.Width; j += 16)
                 {
-                    Vector2 currentBlockPos = new Vector2(area.X + j, area.Y + i);
+
+                    float xpos;
+                    float ypos;
+                    if (area.X + j > 0)
+                    {
+                        xpos = area.X + j;
+                    }
+                    else
+                    {
+                        xpos = area.X + j + 16;
+                    }
+                    if (area.Y + i > 0)
+                    {
+                        ypos = area.Y + i;
+                    }
+                    else
+                    {
+                        ypos = area.Y + i + 16;
+                    }
+                    Vector2 currentBlockPos = new Vector2(xpos, ypos);
                     int chunkNr = Game1.player.getCurrentChunkNrInArray(currentBlockPos, Globals.playerPos);
                     if (chunkNr != -1)
                     {
@@ -135,6 +154,23 @@ namespace Desolation
                         {
                             int xBlockPos = Globals.getBlockValue(currentBlockPos.X);
                             int yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
+                            //if (currentBlockPos.X > 0)
+                            //{
+                            //    xBlockPos = Globals.getBlockValue(currentBlockPos.X);
+                            //}
+                            //else
+                            //{
+                            //    xBlockPos = Globals.getBlockValue(currentBlockPos.X);
+                            //}
+                            //if (currentBlockPos.Y > 0)
+                            //{
+                            //    yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
+                            //}
+                            //else
+                            //{
+                            //    yBlockPos = Globals.getBlockValue(currentBlockPos.Y);
+                            //}
+
                             tempChunk.blocks[(yBlockPos * 16 + xBlockPos)] = 3;
 
                             if ((i == 0 || j == 0 || i == area.Height - 16 || j == area.Width - 16) && !(i == area.Height - 16 && j == (area.Width / 2 - 16)))

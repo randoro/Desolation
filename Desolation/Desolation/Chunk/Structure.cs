@@ -11,14 +11,14 @@ namespace Desolation
         public int structureCenterPositionY { set; get; }
         public uint structureID { set; get; }
 
-        public Structure(int structureCenterBlockX, int structureCenterBlockY)
+        public Structure(int structureCenterPositionX, int structureCenterPositionY)
         {
             this.structureCenterPositionX = structureCenterPositionX;
             this.structureCenterPositionY = structureCenterPositionY;
 
 
-            uint posStructureCenterX = Globals.getUniquePositiveFromAny(structureCenterBlockX);
-            uint posStructureCenterY = Globals.getUniquePositiveFromAny(structureCenterBlockY);
+            uint posStructureCenterX = Globals.getUniquePositiveFromAny(structureCenterPositionX);
+            uint posStructureCenterY = Globals.getUniquePositiveFromAny(structureCenterPositionY);
             structureID = Globals.getUniqueNumber(posStructureCenterX, posStructureCenterY);
             
         }
