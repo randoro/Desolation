@@ -17,7 +17,7 @@ namespace Desolation
 
         static int featuresize = 1;
 
-        public static Chunk createChunk(Region region)
+        public static Chunk createForrestChunk(Region region)
         {
 
             bool[] chunksLoaded = region.chunksLoaded;
@@ -104,21 +104,24 @@ namespace Desolation
             byte[] blocks = new byte[256];
             for (int j = 0; j < blocks.Length; j++)
             {
-                int chance = generator.Next(0, 2);
-                if (chance <= 0)
+                int chance = generator.Next(0, 8);
+                if (chance == 0)
                 {
-                    blocks[j] = (byte)BlockID.Sand;
+                    blocks[j] = (byte)BlockID.DarkGrass;
                 }
-                else
+                else if (chance > 0 && chance < 4)
                 {
-
-                    blocks[j] = (byte)BlockID.RoughSand;
+                    blocks[j] = (byte)BlockID.Grass;
+                }
+                else if (chance > 3 && chance < 8)
+                {
+                    blocks[j] = (byte)BlockID.SwampGrass;
                 }
             }
-            blocks[0] = (byte)1;
-            blocks[15] = (byte)1;
-            blocks[240] = (byte)1;
-            blocks[255] = (byte)1;
+            //blocks[0] = (byte)1;
+            //blocks[15] = (byte)1;
+            //blocks[240] = (byte)1;
+            //blocks[255] = (byte)1;
 
             chunk.blocks = blocks;
 
@@ -126,22 +129,14 @@ namespace Desolation
             byte[] objects = new byte[256];
             for (int j = 0; j < objects.Length; j++)
             {
-                int chance = generator.Next(0, 200);
-                if (chance == 3)
+                int chance = generator.Next(0, 400);
+                if (chance == 0)
                 {
                     objects[j] = (byte)ObjectID.Oak;
                 }
-                  else if (chance==4)
+                  else if (chance > 0 && chance < 8)
                 {
                     objects[j] = (byte)ObjectID.Pine;
-                }
-                else if (chance == 5)
-                {
-                    objects[j] = (byte)ObjectID.LeafLessTree;
-                }
-                else if (chance == 6)
-                {
-                    objects[j] = (byte)ObjectID.Snowpine;
                 }
 
                 else
@@ -169,6 +164,298 @@ namespace Desolation
             return null;
         }
 
+        public static Chunk createDesertChunk(Region region)
+        {
+
+            bool[] chunksLoaded = region.chunksLoaded;
+
+            bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+
+            if (!allChunksLoaded)
+            {
+
+                int valueIndex = -1;
+                for (int i = 0; i < chunksLoaded.Length; i++)
+                {
+                    if (!chunksLoaded[i])
+                    {
+                        valueIndex = i;
+                        break;
+                    }
+                }
+
+                Chunk chunk = new Chunk();
+
+
+                int XPos = region.xPosRegion * 4 + valueIndex % 4;
+
+                int YPos = region.yPosRegion * 4 + valueIndex / 4;
+
+                uint uniquePos = Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(XPos), Globals.getUniquePositiveFromAny(YPos));
+                uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
+                Random generator = new Random((int)uniqueseed);
+
+                int localxPos;
+                int localyPos;
+                if (XPos >= 0)
+                {
+                    localxPos = XPos % 4;
+                }
+                else
+                {
+                    localxPos = 3 + (XPos + 1) % 4;
+                }
+                if (YPos >= 0)
+                {
+                    localyPos = YPos % 4;
+                }
+                else
+                {
+                    localyPos = 3 + (YPos + 1) % 4;
+                }
+
+                chunk.innerIndex = (byte)(localxPos + localyPos * 4);
+                region.chunksLoaded[localxPos + localyPos * 4] = true;
+
+
+                chunk.XPos = XPos;
+                chunk.YPos = YPos;
+
+                chunk.terrainPopulated = 1;
+
+                chunk.structurePopulated = 0;
+
+                chunk.lastUpdate = 123;
+                chunk.inhabitedTime = 456;
+
+
+                chunk.biomes = new byte[256];
+                // (int)Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(region.xPosRegion), Globals.getUniquePositiveFromAny(region.yPosRegion)
+                //float[,] noise = createNoise(XPos, YPos, 16, 16);
+
+                //for (int i = 0; i < 16; i++)
+                //{
+                //    for (int j = 0; j < 16; j++)
+                //    {
+                //        float f = noise[j, i];
+                //        float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                //        byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                //        chunk.biomes[j + i*16] = b;
+                //    }
+                //}
+
+
+
+
+
+                byte[] blocks = new byte[256];
+                for (int j = 0; j < blocks.Length; j++)
+                {
+                    int chance = generator.Next(0, 5);
+                    if (chance == 0)
+                    {
+                        blocks[j] = (byte)BlockID.RoughSand;
+                    }
+                    else if (chance > 0)
+                    {
+                        blocks[j] = (byte)BlockID.Sand;
+                    }
+                }
+                //blocks[0] = (byte)1;
+                //blocks[15] = (byte)1;
+                //blocks[240] = (byte)1;
+                //blocks[255] = (byte)1;
+
+                chunk.blocks = blocks;
+
+
+                byte[] objects = new byte[256];
+                for (int j = 0; j < objects.Length; j++)
+                {
+                    int chance = generator.Next(0, 200);
+                    if (chance == 0)
+                    {
+                        objects[j] = (byte)ObjectID.Oak;
+                    }
+                    
+
+                    else
+                    {
+
+                        objects[j] = (byte)ObjectID.Air;
+                    }
+                }
+
+                chunk.objects = objects;
+
+
+                List<List<Tag>> entities = new List<List<Tag>>();
+                chunk.entities = entities;
+
+                List<List<Tag>> rooms = new List<List<Tag>>();
+                chunk.rooms = rooms;
+
+                //List<List<Tag>> tileEntities = new List<List<Tag>>();
+                //chunk.tileEntities = tileEntities;
+
+                return chunk;
+
+            }
+            return null;
+        }
+
+        public static Chunk createTundraChunk(Region region)
+        {
+
+            bool[] chunksLoaded = region.chunksLoaded;
+
+            bool allChunksLoaded = !Array.Exists(chunksLoaded, delegate(bool x) { return !x; }); //checks if all chunks are loaded
+
+            if (!allChunksLoaded)
+            {
+
+                int valueIndex = -1;
+                for (int i = 0; i < chunksLoaded.Length; i++)
+                {
+                    if (!chunksLoaded[i])
+                    {
+                        valueIndex = i;
+                        break;
+                    }
+                }
+
+                Chunk chunk = new Chunk();
+
+
+                int XPos = region.xPosRegion * 4 + valueIndex % 4;
+
+                int YPos = region.yPosRegion * 4 + valueIndex / 4;
+
+                uint uniquePos = Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(XPos), Globals.getUniquePositiveFromAny(YPos));
+                uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
+                Random generator = new Random((int)uniqueseed);
+
+                int localxPos;
+                int localyPos;
+                if (XPos >= 0)
+                {
+                    localxPos = XPos % 4;
+                }
+                else
+                {
+                    localxPos = 3 + (XPos + 1) % 4;
+                }
+                if (YPos >= 0)
+                {
+                    localyPos = YPos % 4;
+                }
+                else
+                {
+                    localyPos = 3 + (YPos + 1) % 4;
+                }
+
+                chunk.innerIndex = (byte)(localxPos + localyPos * 4);
+                region.chunksLoaded[localxPos + localyPos * 4] = true;
+
+
+                chunk.XPos = XPos;
+                chunk.YPos = YPos;
+
+                chunk.terrainPopulated = 1;
+
+                chunk.structurePopulated = 0;
+
+                chunk.lastUpdate = 123;
+                chunk.inhabitedTime = 456;
+
+
+                chunk.biomes = new byte[256];
+                // (int)Globals.getUniqueNumber(Globals.getUniquePositiveFromAny(region.xPosRegion), Globals.getUniquePositiveFromAny(region.yPosRegion)
+                //float[,] noise = createNoise(XPos, YPos, 16, 16);
+
+                //for (int i = 0; i < 16; i++)
+                //{
+                //    for (int j = 0; j < 16; j++)
+                //    {
+                //        float f = noise[j, i];
+                //        float f2 = (float)Math.Max(0.0, Math.Min(1.0, (double)(f)));
+                //        byte b = (byte)Math.Floor((double)(f2 == 1.0 ? 255 : f2 * 256.0));
+                //        chunk.biomes[j + i*16] = b;
+                //    }
+                //}
+
+
+
+
+
+                byte[] blocks = new byte[256];
+                for (int j = 0; j < blocks.Length; j++)
+                {
+                    int chance = generator.Next(0, 2);
+                    if (chance <= 0)
+                    {
+                        blocks[j] = (byte)BlockID.Sand;
+                    }
+                    else
+                    {
+
+                        blocks[j] = (byte)BlockID.RoughSand;
+                    }
+                }
+                blocks[0] = (byte)1;
+                blocks[15] = (byte)1;
+                blocks[240] = (byte)1;
+                blocks[255] = (byte)1;
+
+                chunk.blocks = blocks;
+
+
+                byte[] objects = new byte[256];
+                for (int j = 0; j < objects.Length; j++)
+                {
+                    int chance = generator.Next(0, 200);
+                    if (chance == 3)
+                    {
+                        objects[j] = (byte)ObjectID.Oak;
+                    }
+                    else if (chance == 4)
+                    {
+                        objects[j] = (byte)ObjectID.Pine;
+                    }
+                    else if (chance == 5)
+                    {
+                        objects[j] = (byte)ObjectID.LeafLessTree;
+                    }
+                    else if (chance == 6)
+                    {
+                        objects[j] = (byte)ObjectID.Snowpine;
+                    }
+
+                    else
+                    {
+
+                        objects[j] = (byte)ObjectID.Air;
+                    }
+                }
+
+                chunk.objects = objects;
+
+
+                List<List<Tag>> entities = new List<List<Tag>>();
+                chunk.entities = entities;
+
+                List<List<Tag>> rooms = new List<List<Tag>>();
+                chunk.rooms = rooms;
+
+                //List<List<Tag>> tileEntities = new List<List<Tag>>();
+                //chunk.tileEntities = tileEntities;
+
+                return chunk;
+
+            }
+            return null;
+        }
+
 
 
 
@@ -182,7 +469,7 @@ namespace Desolation
             uint uniqueseed = Globals.getUniqueNumber(uniquePos, (uint)Globals.seed);
             Random generator = new Random((int)uniqueseed);
 
-            int chance = generator.Next(0, 2);
+            int chance = generator.Next(0, 10);
             if (chance == 0)
             {
                 Structure tempStruct = new Structure(chunk.XPos * 16 * 16, chunk.YPos * 16 * 16);

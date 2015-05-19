@@ -243,12 +243,18 @@ namespace Desolation
             else if (KeyMouseReader.KeyPressed(Keys.F4))
             {
                 animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100, 100));
-                ChunkManager.changeWorld(@"heaven\");
+                ChunkManager.changeWorld(@"mainworld");
+                
             }
             else if (KeyMouseReader.KeyPressed(Keys.F5))
             {
                 animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100, 100));
-                ChunkManager.changeWorld(@"mainworld\");
+                ChunkManager.changeWorld(@"desert");
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.F6))
+            {
+                animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100, 100));
+                ChunkManager.changeWorld(@"tundra");
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {

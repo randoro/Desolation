@@ -109,7 +109,18 @@ namespace Desolation
 
                             if (newChunk == null || newChunk.terrainPopulated == 0)
                             {
-                                newChunk = Generator.createChunk(regionArray[i]);
+                                if(fileLoader.currentWorldFolder.Equals(@"mainworld\")) 
+                                {
+                                    newChunk = Generator.createForrestChunk(regionArray[i]);
+                                }
+                                else if (fileLoader.currentWorldFolder.Equals(@"desert\"))
+                                {
+                                    newChunk = Generator.createDesertChunk(regionArray[i]);
+                                }
+                                else if (fileLoader.currentWorldFolder.Equals(@"tundra\"))
+                                {
+
+                                }
                             }
 
                             if (newChunk != null)

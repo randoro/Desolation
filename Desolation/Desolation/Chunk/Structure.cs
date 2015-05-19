@@ -27,7 +27,7 @@ namespace Desolation
         {
             int chance = generator.Next(0, 4);
             //mainroom
-            switch (1)
+            switch (chance)
             {
                 case 0:
                     Room newRoom = new Room((int)structureCenterPositionX, (int)structureCenterPositionY, 256, 128, structureID);
@@ -52,8 +52,24 @@ namespace Desolation
                     ChunkManager.roomList.Add(newRoom5);
                     break;
                 case 2:
+                    Room newRoom6 = new Room((int)structureCenterPositionX, (int)structureCenterPositionY, 256, 256, structureID);
+                    newRoom6.generateRoom();
+                    ChunkManager.roomList.Add(newRoom6);
+
+                    Room newRoom7 = new Room((int)structureCenterPositionX + 112, (int)structureCenterPositionY + 64, 256, 256, structureID);
+                    newRoom7.generateRoom();
+                    ChunkManager.roomList.Add(newRoom7);
+
+                    Room newRoom8 = new Room((int)structureCenterPositionX - 48, (int)structureCenterPositionY - 16, 128, 128, structureID);
+                    newRoom8.generateRoom();
+                    ChunkManager.roomList.Add(newRoom8);
                     break;
                 case 3:
+                    Room newRoom9 = new Room((int)structureCenterPositionX, (int)structureCenterPositionY, 128, 128, structureID);
+                    newRoom9.generateRoom();
+                    ChunkManager.roomList.Add(newRoom9);
+
+                    
                     break;
                 default:
                     break;
