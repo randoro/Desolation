@@ -280,7 +280,7 @@ namespace Desolation
                         int test = (testY * 16) + testX;//0 255
                         if (test < (tempChunk.objects.Length) && test >= 0)
                         {
-                            tempChunk.objects[(int)test] = 1;
+                            tempChunk.objects[(int)test] = 3;
                         }
                     }
                 }

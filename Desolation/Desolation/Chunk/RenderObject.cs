@@ -18,7 +18,7 @@ namespace Desolation
                     drawBlock(spriteBatch, ref position, (BlockID)id, ref color);
                     break;
                 case RenderType.objects:
-                    drawObject(spriteBatch, ref position, ref id);
+                    drawObject(spriteBatch, ref position, (ObejectID)id);
                     break;
                 default:
                     break;
@@ -162,32 +162,41 @@ namespace Desolation
 
         }
 
-        private static void drawObject(SpriteBatch spriteBatch, ref Vector2 position, ref byte id)
+        private static void drawObject(SpriteBatch spriteBatch, ref Vector2 position, ObejectID oid)
         {
-            switch (id)
+            switch (oid)
             {
-                case 0:
-                    break;
-                case 1:
-                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
-                    break;
-                case 3:
-                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 64, position.Y - 112), new Rectangle(0, 272, 128, 128), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
-                    break;
-                case 4:
-                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 54, position.Y - 130), new Rectangle(128, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
-                    break;
-                case 5:
-                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 44, position.Y - 130), new Rectangle(256, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+                case ObejectID.Planks:
+                            spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(0, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
 
                     break;
-                case 6:
-                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 58, position.Y - 130), new Rectangle(384, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+                case ObejectID.Briks:
+                    break;
+                case ObejectID.Windows:
+                    break;
+                case ObejectID.Marmor:
+                    break;
+                case ObejectID.Oak:
+                        spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 64, position.Y - 112), new Rectangle(0, 272, 128, 128), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
 
+                    break;
+                case ObejectID.Snowpine:
+                           spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 54, position.Y - 130), new Rectangle(128, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
+                    break;
+                case ObejectID.Palm:
+                    break;
+                case ObejectID.Leafelesstree:
+                          spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 44, position.Y - 130), new Rectangle(256, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
+                    break;
+                case ObejectID.Pine:
+                           spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 58, position.Y - 130), new Rectangle(384, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
                     break;
                 default:
                     break;
-            }
+            }  
+          
         }
 
     }
