@@ -96,12 +96,12 @@ namespace Desolation
                     skadearea = 0.075f;
                     break;
                 case ItemID.Shotgun:
-                    range = 150;
+                    range = 130;
                     damge = 9;
                     attackspeed = 6;
                     itemType = ItemType.Ranged;
                     twohandded = true;
-                    skadearea = 0.2f;
+                    skadearea = 0.33f;
                     break;
                 case ItemID.Sniperrifle:
                     range = 300;
@@ -109,7 +109,7 @@ namespace Desolation
                     attackspeed = 7;
                     itemType = ItemType.Ranged;
                     twohandded = true;
-                    skadearea = 0.33f;
+                    skadearea = 0.07f;
                     break;
                 case ItemID.Asultrifle:
                     range = 250;
