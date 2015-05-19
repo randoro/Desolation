@@ -104,7 +104,7 @@ namespace Desolation
             byte[] blocks = new byte[256];
             for (int j = 0; j < blocks.Length; j++)
             {
-                int chance = generator.Next(0, 8);
+                int chance = generator.Next(0, 12);
                 if (chance == 0)
                 {
                     blocks[j] = (byte)BlockID.DarkGrass;
@@ -116,6 +116,10 @@ namespace Desolation
                 else if (chance > 3 && chance < 8)
                 {
                     blocks[j] = (byte)BlockID.SwampGrass;
+                }
+                else if (chance > 8)
+                {
+                    blocks[j] = (byte)BlockID.Grasston;
                 }
             }
             //blocks[0] = (byte)1;

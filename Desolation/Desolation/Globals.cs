@@ -22,7 +22,7 @@ namespace Desolation
     public enum RenderType { blocks, objects };
     public enum TagID { End, Byte, Short, Int, Long, Float, Double, ByteArray, String, List, Compound, IntArray };
 
-    public enum BlockID { Grass, LightGrass, DarkGrass, DryGrass, SwampGrass, Sand, RoughSand, GreySand, WaveSand, QuickSand, Dirt, DarkDirt, LightDirt, Mud, Gravel, Snow, BlueSnow, YellowSnow, GreySnow, CrystalIce, HardIce, Water, SaltWater, FreshWater, VoidWater , WoodPlanks };
+    public enum BlockID { Grass, LightGrass, DarkGrass, DryGrass, SwampGrass, Sand, RoughSand, GreySand, WaveSand, QuickSand, Dirt, DarkDirt, LightDirt, Mud, Gravel, Snow, BlueSnow, YellowSnow, GreySnow, CrystalIce, HardIce, Water, SaltWater, FreshWater, VoidWater , WoodPlanks ,Sandston,Grasston};
     public enum ObjectID {Air, Planks,Bricks ,Windows,Marmor,Oak,Snowpine,Palm,LeafLessTree,Pine };
     public enum ItemID { Sword, Spear, Knife, Halberd, Bow, Crossbow,Pistol,Smg,Shotgun,Sniperrifle,Asultrifle };
     public enum EntityID { Player, Goblin, Zombie, Deer };
