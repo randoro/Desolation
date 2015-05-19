@@ -113,11 +113,11 @@ namespace Desolation
                 {
                     blocks[j] = (byte)BlockID.Grass;
                 }
-                else if (chance > 3 && chance < 8)
+                else if (chance > 3 && chance < 11)
                 {
                     blocks[j] = (byte)BlockID.SwampGrass;
                 }
-                else if (chance > 8)
+                else if (chance > 10)
                 {
                     blocks[j] = (byte)BlockID.Grasston;
                 }
@@ -255,12 +255,16 @@ namespace Desolation
                 byte[] blocks = new byte[256];
                 for (int j = 0; j < blocks.Length; j++)
                 {
-                    int chance = generator.Next(0, 5);
+                    int chance = generator.Next(0, 100);
                     if (chance == 0)
+                    {
+                        blocks[j] = (byte)BlockID.Sandston;
+                    }
+                    else if (chance > 0 && chance < 10)
                     {
                         blocks[j] = (byte)BlockID.RoughSand;
                     }
-                    else if (chance > 0)
+                    else if (chance > 9 && chance < 100)
                     {
                         blocks[j] = (byte)BlockID.Sand;
                     }
@@ -403,21 +407,24 @@ namespace Desolation
                 byte[] blocks = new byte[256];
                 for (int j = 0; j < blocks.Length; j++)
                 {
-                    int chance = generator.Next(0, 2);
-                    if (chance <= 0)
+                    int chance = generator.Next(0, 50);
+                    if (chance == 0)
                     {
-                        blocks[j] = (byte)BlockID.Sand;
+                        blocks[j] = (byte)BlockID.YellowSnow;
                     }
-                    else
+                    else if (chance > 0 && chance < 16)
                     {
-
-                        blocks[j] = (byte)BlockID.RoughSand;
+                        blocks[j] = (byte)BlockID.BlueSnow;
+                    }
+                    else if (chance > 15 && chance < 50)
+                    {
+                        blocks[j] = (byte)BlockID.Snow;
                     }
                 }
-                blocks[0] = (byte)1;
-                blocks[15] = (byte)1;
-                blocks[240] = (byte)1;
-                blocks[255] = (byte)1;
+                //blocks[0] = (byte)1;
+                //blocks[15] = (byte)1;
+                //blocks[240] = (byte)1;
+                //blocks[255] = (byte)1;
 
                 chunk.blocks = blocks;
 
@@ -426,19 +433,11 @@ namespace Desolation
                 for (int j = 0; j < objects.Length; j++)
                 {
                     int chance = generator.Next(0, 200);
-                    if (chance == 3)
-                    {
-                        objects[j] = (byte)ObjectID.Oak;
-                    }
-                    else if (chance == 4)
-                    {
-                        objects[j] = (byte)ObjectID.Pine;
-                    }
-                    else if (chance == 5)
+                    if (chance == 0)
                     {
                         objects[j] = (byte)ObjectID.LeafLessTree;
                     }
-                    else if (chance == 6)
+                    else if (chance == 1)
                     {
                         objects[j] = (byte)ObjectID.Snowpine;
                     }

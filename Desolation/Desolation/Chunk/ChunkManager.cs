@@ -119,7 +119,7 @@ namespace Desolation
                                 }
                                 else if (fileLoader.currentWorldFolder.Equals(@"tundra\"))
                                 {
-
+                                    newChunk = Generator.createTundraChunk(regionArray[i]);
                                 }
                             }
 
