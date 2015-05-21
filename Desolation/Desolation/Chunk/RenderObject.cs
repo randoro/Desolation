@@ -185,10 +185,16 @@ namespace Desolation
                     spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(16, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
                     break;
                 case ObjectID.Bricks:
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(64, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
                     break;
                 case ObjectID.Windows:
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(32, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
                     break;
                 case ObjectID.Marmor:
+                    spriteBatch.Draw(TextureManager.objectsheet, position, new Rectangle(48, 0, Globals.blockSize, Globals.blockSize), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
                     break;
                 case ObjectID.Oak:
                     spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 64, position.Y - 112), new Rectangle(0, 272, 128, 128), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
@@ -199,6 +205,8 @@ namespace Desolation
 
                     break;
                 case ObjectID.Palm:
+                    spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 64, position.Y - 112), new Rectangle(600, 260, 128, 128), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
+
                     break;
                 case ObjectID.LeafLessTree:
                     spriteBatch.Draw(TextureManager.objectsheet, new Vector2(position.X - 44, position.Y - 130), new Rectangle(256, 256, 128, 144), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, (float)(0.3 + 0.0001f * (position.Y - Globals.cameraPos.Y) + 0.00001f * (position.X - Globals.cameraPos.X)));
