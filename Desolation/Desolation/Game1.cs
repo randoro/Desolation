@@ -26,6 +26,7 @@ namespace Desolation
         public static Vector2 mousePosOnScreen;
         public static int chunkmusnr;
         bool debug = false;
+        public ObjectID curentobjekt = ObjectID.Planks;
 
         AnimationEngine animationEngine;
 
@@ -286,7 +287,7 @@ namespace Desolation
                         int test = (testY * 16) + testX;//0 255
                         if (test < (tempChunk.objects.Length) && test >= 0)
                         {
-                            tempChunk.objects[(int)test] = (byte)ObjectID.Planks;
+                            tempChunk.objects[(int)test] = (byte)curentobjekt;
                         }
                     }
                 }
@@ -371,6 +372,57 @@ namespace Desolation
                 tempStruct.generateRooms(new Random(0));
                 ChunkManager.structureList.Add(tempStruct);
             }
+            else if (KeyMouseReader.KeyPressed(Keys.Up))
+	{
+        if (curentobjekt == ObjectID.Planks)
+        {
+            curentobjekt = ObjectID.Skull;
+        }
+        else if (curentobjekt == ObjectID.Skull)
+        {
+            curentobjekt = ObjectID.Snowpine;
+        }
+        else if (curentobjekt == ObjectID.Snowpine)
+        {
+            curentobjekt = ObjectID.Windows;
+        }
+        else if (curentobjekt == ObjectID.Windows)
+        {
+            curentobjekt = ObjectID.Bricks;
+        }
+        else if (curentobjekt == ObjectID.Bricks)
+        {
+            curentobjekt = ObjectID.DarkCactus;
+        }
+        else if (curentobjekt == ObjectID.DarkCactus)
+        {
+            curentobjekt = ObjectID.LeafLessTree;
+        }
+        else if (curentobjekt == ObjectID.LeafLessTree)
+        {
+            curentobjekt = ObjectID.LightCactus;
+        }
+        else if (curentobjekt == ObjectID.LightCactus)
+        {
+            curentobjekt = ObjectID.Marmor;
+        }
+        else if (curentobjekt == ObjectID.Marmor)
+        {
+            curentobjekt = ObjectID.Oak;
+        }
+        else if (curentobjekt == ObjectID.Oak)
+        {
+            curentobjekt = ObjectID.Palm;
+        }
+        else if (curentobjekt == ObjectID.Palm)
+        {
+            curentobjekt = ObjectID.Pine;
+        }
+        else if (curentobjekt == ObjectID.Pine)
+        {
+            curentobjekt = ObjectID.Planks;
+        }
+	}
 
             else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
             {
