@@ -22,6 +22,8 @@ namespace Desolation
         int meleeRange = 15;
         int rangedRange = 25;
         Direction watchingDirection;
+        public ItemID leftitem = ItemID.Asultrifle;
+        public ItemID rightitem = ItemID.Asultrifle;
         #region Constructor
         public Player(Vector2 position)
             : base(position)
@@ -29,8 +31,7 @@ namespace Desolation
             this.position = position;
             sourceRect = new Rectangle(0, 16, 16, 16);
             health = 100;
-            equipment[0] = new Item((int)ItemID.Sword);
-            equipment[1] = new Item((int)ItemID.Smg);
+           
 
             speed = 3;
             watchingDirection = Direction.None;
@@ -50,7 +51,8 @@ namespace Desolation
         {
             base.checkCollision();
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-
+            equipment[0] = new Item((int)leftitem);
+            equipment[1] = new Item((int)rightitem);
 
             MouseState mouse = Mouse.GetState();
             Vector2 mousePosOnScreen = new Vector2(mouse.X, mouse.Y);

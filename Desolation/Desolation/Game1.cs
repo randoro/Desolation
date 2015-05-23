@@ -245,7 +245,7 @@ namespace Desolation
             {
                 animationEngine.animations.Add(new Animation(AnimationType.FadeOutAndIn, new Vector2(Globals.cameraPos.X, Globals.cameraPos.Y), 100, 100));
                 ChunkManager.changeWorld(@"mainworld");
-                
+
             }
             else if (KeyMouseReader.KeyPressed(Keys.F5))
             {
@@ -373,56 +373,155 @@ namespace Desolation
                 ChunkManager.structureList.Add(tempStruct);
             }
             else if (KeyMouseReader.KeyPressed(Keys.Up))
-	{
-        if (curentobjekt == ObjectID.Planks)
-        {
-            curentobjekt = ObjectID.Skull;
-        }
-        else if (curentobjekt == ObjectID.Skull)
-        {
-            curentobjekt = ObjectID.Snowpine;
-        }
-        else if (curentobjekt == ObjectID.Snowpine)
-        {
-            curentobjekt = ObjectID.Windows;
-        }
-        else if (curentobjekt == ObjectID.Windows)
-        {
-            curentobjekt = ObjectID.Bricks;
-        }
-        else if (curentobjekt == ObjectID.Bricks)
-        {
-            curentobjekt = ObjectID.DarkCactus;
-        }
-        else if (curentobjekt == ObjectID.DarkCactus)
-        {
-            curentobjekt = ObjectID.LeafLessTree;
-        }
-        else if (curentobjekt == ObjectID.LeafLessTree)
-        {
-            curentobjekt = ObjectID.LightCactus;
-        }
-        else if (curentobjekt == ObjectID.LightCactus)
-        {
-            curentobjekt = ObjectID.Marmor;
-        }
-        else if (curentobjekt == ObjectID.Marmor)
-        {
-            curentobjekt = ObjectID.Oak;
-        }
-        else if (curentobjekt == ObjectID.Oak)
-        {
-            curentobjekt = ObjectID.Palm;
-        }
-        else if (curentobjekt == ObjectID.Palm)
-        {
-            curentobjekt = ObjectID.Pine;
-        }
-        else if (curentobjekt == ObjectID.Pine)
-        {
-            curentobjekt = ObjectID.Planks;
-        }
-	}
+            {
+                if (curentobjekt == ObjectID.Planks)
+                {
+                    curentobjekt = ObjectID.Skull;
+                }
+                else if (curentobjekt == ObjectID.Skull)
+                {
+                    curentobjekt = ObjectID.Snowpine;
+                }
+                else if (curentobjekt == ObjectID.Snowpine)
+                {
+                    curentobjekt = ObjectID.Windows;
+                }
+                else if (curentobjekt == ObjectID.Windows)
+                {
+                    curentobjekt = ObjectID.Bricks;
+                }
+                else if (curentobjekt == ObjectID.Bricks)
+                {
+                    curentobjekt = ObjectID.DarkCactus;
+                }
+                else if (curentobjekt == ObjectID.DarkCactus)
+                {
+                    curentobjekt = ObjectID.LeafLessTree;
+                }
+                else if (curentobjekt == ObjectID.LeafLessTree)
+                {
+                    curentobjekt = ObjectID.LightCactus;
+                }
+                else if (curentobjekt == ObjectID.LightCactus)
+                {
+                    curentobjekt = ObjectID.Marmor;
+                }
+                else if (curentobjekt == ObjectID.Marmor)
+                {
+                    curentobjekt = ObjectID.Oak;
+                }
+                else if (curentobjekt == ObjectID.Oak)
+                {
+                    curentobjekt = ObjectID.Palm;
+                }
+                else if (curentobjekt == ObjectID.Palm)
+                {
+                    curentobjekt = ObjectID.Pine;
+                }
+                else if (curentobjekt == ObjectID.Pine)
+                {
+                    curentobjekt = ObjectID.Planks;
+                }
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.Left))
+            {
+                if (player.leftitem == ItemID.Asultrifle)
+                {
+                    player.leftitem = ItemID.Bow;
+                }
+                else if (player.leftitem == ItemID.Bow)
+                {
+                    player.leftitem = ItemID.Crossbow;
+                }
+
+                else if (player.leftitem == ItemID.Crossbow)
+                {
+                    player.leftitem = ItemID.Halberd;
+                }
+                else if (player.leftitem == ItemID.Halberd)
+                {
+                    player.leftitem = ItemID.Knife;
+                }
+                else if (player.leftitem == ItemID.Knife)
+                {
+                    player.leftitem = ItemID.Pistol;
+                }
+                else if (player.leftitem == ItemID.Pistol)
+                {
+                    player.leftitem = ItemID.Shotgun;
+                }
+                else if (player.leftitem == ItemID.Shotgun)
+                {
+                    player.leftitem = ItemID.Smg;
+                }
+                else if (player.leftitem == ItemID.Smg)
+                {
+                    player.leftitem = ItemID.Sniperrifle;
+                }
+                else if (player.leftitem == ItemID.Sniperrifle)
+                {
+                    player.leftitem = ItemID.Spear;
+                }
+                else if (player.leftitem == ItemID.Spear)
+                {
+                    player.leftitem = ItemID.Sword;
+                }
+                else if (player.leftitem == ItemID.Sword)
+                {
+                    player.leftitem = ItemID.Asultrifle;
+                }
+
+            }
+            else if (KeyMouseReader.KeyPressed(Keys.Right))
+            {
+                if (player.rightitem == ItemID.Asultrifle)
+                {
+                    player.rightitem = ItemID.Bow;
+                }
+                else if (player.rightitem == ItemID.Bow)
+                {
+                    player.rightitem = ItemID.Crossbow;
+                }
+
+                else if (player.rightitem == ItemID.Crossbow)
+                {
+                    player.rightitem = ItemID.Halberd;
+                }
+                else if (player.rightitem == ItemID.Halberd)
+                {
+                    player.rightitem = ItemID.Knife;
+                }
+                else if (player.rightitem == ItemID.Knife)
+                {
+                    player.rightitem = ItemID.Pistol;
+                }
+                else if (player.rightitem == ItemID.Pistol)
+                {
+                    player.rightitem = ItemID.Shotgun;
+                }
+                else if (player.rightitem == ItemID.Shotgun)
+                {
+                    player.rightitem = ItemID.Smg;
+                }
+                else if (player.rightitem == ItemID.Smg)
+                {
+                    player.rightitem = ItemID.Sniperrifle;
+                }
+                else if (player.rightitem == ItemID.Sniperrifle)
+                {
+                    player.rightitem = ItemID.Spear;
+                }
+                else if (player.rightitem == ItemID.Spear)
+                {
+                    player.rightitem = ItemID.Sword;
+                }
+                else if (player.rightitem == ItemID.Sword)
+                {
+                    player.rightitem = ItemID.Asultrifle;
+                }
+
+            }
+
 
             else if (KeyMouseReader.KeyPressed(Keys.Delete) && KeyMouseReader.keyState.IsKeyDown(Keys.LeftShift))
             {
@@ -511,9 +610,9 @@ namespace Desolation
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "muschunk:" + chunkmusnr, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "leftItem:"+player.leftitem, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
-                spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Globals.font, "rigthitem:"+player.rightitem, new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
                 spriteBatch.DrawString(Globals.font, "Empty:", new Vector2(Globals.cameraPos.X + 10, Globals.cameraPos.Y + textPos), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 textPos += 15;
