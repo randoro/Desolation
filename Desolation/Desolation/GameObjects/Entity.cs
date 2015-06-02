@@ -54,7 +54,7 @@ namespace Desolation
             {
                 currentDirection = direction;
                 //rörelse
-                realSpeed = (float)((Math.Sqrt((speed * speed) + (speed * speed))) / 2);
+                realSpeed = (float)Math.Round((Math.Sqrt((speed * speed) + (speed * speed)) / 2), 0, MidpointRounding.AwayFromZero);
                 switch (direction)
                 {
                     case Direction.North:
